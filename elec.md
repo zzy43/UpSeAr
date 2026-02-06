@@ -142,10 +142,7 @@ a-->c[设备通电]
 		- 一台发动机故障后，中央油箱燃油泵
 	在地面，发动机已关车，前推油门杆到起飞范围可能会引起通用汇流条意外卸载。收回油门杆到慢车，然后按压 UTILITY BUS 电门至 OFF 然后 ON 位将复位意外卸载。
 ```mermaid
-graph LR
-    %% 全局字体设置
-    classDef defaultNode fill:#f9f9f9,stroke:#333,stroke-width:1px,font-size:12px
-    
+graph LR  
     %% 第一组流程
     a[触发卸载]
     b[首先通用汇流条]
@@ -171,14 +168,6 @@ graph LR
     A ==非正常情况==> E
     E --> F
     E --> D
-    
-    %% 应用小字体样式到所有节点
-    class a,b,c,A,B,C,D,E,F,G defaultNode
-    
-    %% 特别缩短A到E的连线长度
-    linkStyle 4 stroke:#333,stroke-width:1px,stroke-dasharray:0
-    linkStyle 5 stroke:#333,stroke-width:1px,stroke-dasharray:0
-```
 <font color="#92d050">交流电气系统示意图</font>
 	![[FCOM2.pdf#page=265&rect=41,72,355,536|FCOM2, p.265]]
 直流电气系统

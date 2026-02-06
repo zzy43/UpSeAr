@@ -12,4 +12,8 @@ include:
   - ISSUE_TEMPLATE.md
   - PULL_REQUEST_TEMPLATE.md
   - 电气系统.md
+<<<<<<< HEAD
   -elec.md
+=======
+  - elec.md
+>>>>>>> 49c72b13ea078dc69c04e94f584a9a8c789ef3fd
