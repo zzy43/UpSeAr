@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>GPS</title>
+		<link rel="stylesheet" href="../css/in2ceng.css">		
+	</head>
+	<body>
+		<!-- 内外部链接模板 -->
+		<div class="wb"><p><span class="blue">外部相关链接:</span><br>
+		暂无
+		<a href="" class="wb"></a>
+		</p>		
+		</div>
+		
+		<div class="nb"><p><span class="green">内部相关链接:</span><br>
+		<a href="IRSSet.html" class="nb">IRS设置</a>
+		<a href="IRSDsplay.html" class="nb">IRS输入</a>
+		<a href="ADIRU.html" class="nb">大气数据</a>
+		<a href="../FwdOverhead/Navigation.html" class="nb">导航转换</a>
+		</p>	
+		</div>
+		
+		<div class="up">
+			<h3>控制与指示:</h3>
+			<a href="../index.html">返回面板</a>
+			<img src="img/GPS2.png" alt="">
+			<p>
+				<br>
+<strong>1 全球定位系统(GPS)指示灯</strong><br>
+亮（琥珀色）--
+<br>&nbsp&nbsp&nbsp&nbsp <span class="blue">• 表明两部GPS传感组件均失效
+<br>&nbsp&nbsp&nbsp&nbsp • 当按压任一系统信号牌面板引发重现时，表明单个GPS传感器组件失效
+<br>&nbsp&nbsp&nbsp&nbsp • 单个GPS传感器失效的情况下，重置系统重现时，灯灭。</span>				
+			</p>
+		</div>
+		
+		<HR>
+		<div class="mid">
+		<h3>系统说明:</h3>
+		<img src="img/GPS1.png" alt="">
+		<br>
+		<p>
+<strong>全球定位系统(GPS)</strong>
+
+<br>两部GPS接收机接收GPS卫星定位信号。
+<br><span class="blue2">左右GPS接收机是相互独立的</span>，每一部都可以为FMC和其它飞机系统提供精确的飞机地理位置。<span class="blue2">GPS自动工作。</span>
+<br>
+<br><strong>GPS显示</strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">位置参考(POS REF)页面第2/3页显示左右两部GPS的纬度和经度位置。
+<br>&nbsp&nbsp&nbsp&nbsp 位置飘移(POS SHIFT)页面第3/3页显示左右两部GPS相对于FMC的位置。
+<br>&nbsp&nbsp&nbsp&nbsp 导航状态(NAV STATUS)页面第1/2页显示FMC计算位置时使用的GPS。</span>
+<br>
+<br>当选择了EFIS控制面板上的POS(位置)电门时，导航显示器显示左和右GPS符号。
+<br>当GPS接收机计算相同的位置时，GPS符号是相同的并且只显示一个符号。<br>			
+		</p>
+	<div class="zy"><p>
+琥珀色的GPS灯亮说明两个GPS传感器组件失效。
+<br>当按压任一系统信号牌面板时，单个GPS传感器故障导致GPS灯亮。
+	</p></div>	
+<p><br>
+<strong>GPS数据</strong>
+<br><span class="red">FMC逻辑选择其中一部GPS传感器组件的位置作为主要FMC位置更新。</span>
+<br>当GPS位置数据可用时，还会发生无线电更新。
+<br><span class="blue1">如果所有GPS数据变为不可用，则可以通过更新无线电或惯导系统(IRS)来确定FMC的位置。</span>
+<br><br>可以在导航选项(NAV OPTIONS)页面第2/2页上人工取消GPS导航信息。
+<br><span class="blue2">由于GPS是完全自动工作的，因此无其他控制。</span>
+
+</p>
+		</div>
+		
+		<hr>
+		<div class="low">
+			<h3>扩展阅读:</h3>
+			等有空再写...
+		</div>
+			
+		<hr>
+		<a href="../index.html">返回面板</a>
+		
+	</body>
+</html>

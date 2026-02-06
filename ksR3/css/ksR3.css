@@ -1,0 +1,31 @@
+p{
+	font-size: 26px;
+	font-weight: 500;	
+	}
+	
+P:nth-child(5n-1){
+            color: #aa007f;
+        }
+		
+P:nth-child(5n-2){
+            color: #00557f;
+        }	
+			
+P:nth-child(5n-3){
+            color: #008a00;
+        }	
+
+P:nth-child(5n-4){
+            color: #aa0000;
+        }
+		
+		body{
+			background-color: lightgrey
+		}
+
+a{
+	font-size: 30px;
+	margin: 40px;
+	margin-right: 50px;
+	
+}

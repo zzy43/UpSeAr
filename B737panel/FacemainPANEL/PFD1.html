@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>PFD1</title>
+		<link rel="stylesheet" href="../css/in2ceng.css">		
+	</head>
+	<body>		
+		<!-- 内外部链接模板 -->
+		<div class="wb"><p><span class="blue">外部相关链接:</span><br>
+		暂无
+		<a href="" class="wb"></a>
+		</p>		
+		</div>
+		
+		<div class="nb"><p><span class="green">内部相关链接:</span><br>
+		<a href="../MainPanel/LnavControl1.html" class="nb">飞行指引</a>
+		<a href="../MainPanel/APControl.html" class="nb">自动驾驶</a>
+		<a href="../FwdOverhead/Navigation.html" class="nb">导航转换源显示</a>
+		</p>	
+		</div>
+		
+		
+		<div class="up">			
+			<h3>控制与指示:</h3>
+			<a href="../index.html">返回面板</a>
+			<img src="img/PFD1.png"/>
+			<p>
+<br><strong>1 飞行方式信号牌
+<br>2 空速/马赫数指示
+<br>3 姿态指示
+<br>4 自动驾驶、飞行指引仪系统状态
+<br>5 高度指示
+<br>6 垂直速度指示
+<br>7 航向/航迹指示</strong>
+<br><br><br>
+<img src="img/PFD2.png" alt="">
+<br>
+<br><strong>1 选定的速度(洋红色)</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 显示目标空速:
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 指示IAS/MACH窗中人工选择的空速
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 当IAS/MACH窗空白时，指示FMC计算的空速。
+<br>
+<br><strong>2 速度趋势矢量(绿色)</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 箭头顶端指示根据当前空速和加速度预测的10秒钟后的空速。
+<br>
+<br><strong>3 当前空速(白色)</strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="blue">空速超过45节时，指示当前校准空速。</span>
+<br>&nbsp&nbsp&nbsp&nbsp 当前空速下降到最小机动速度的琥珀色带区域内时：
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 空速读数方框变成琥珀色并闪烁10秒钟
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 响起一次语音告警“Airspeed Low, Airspeed Low”(空速低)(选型)
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 当空速大于最小机动速度时，读数方框变回白色。
+<br>
+<br><strong>4 最大操作速度(红色和黑色)</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 色带的底部指示最大速度，该速度受限于下列速度中的最小值：
+<br>&nbsp&nbsp&nbsp&nbsp <span class="red">• Vmo/Mmo
+<br>&nbsp&nbsp&nbsp&nbsp • 起落架标牌速度
+<br>&nbsp&nbsp&nbsp&nbsp • 襟翼标牌速度。</span>
+<br>
+<br><strong>5 最大机动速度/高速抖振(琥珀色)</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 当襟翼收上时，琥珀色带的底部指示最大机动速度。
+<br>&nbsp&nbsp&nbsp&nbsp 这个速度提供了到高速抖振速度1.3g的机动能力（或者是在FMC维修页面设置的备用的经批准的机动能力）
+<br>&nbsp&nbsp&nbsp&nbsp 当在高高度和全重相对较大的情况下操作时，也会显示这个弧线。 
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="blue1">Note: 在带40度坡度角进行平飞时，会出现1.3g机动能力。</span>
+<br>
+<br><strong>6 速度游标 (洋红色)</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 指向下列空速:
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 在IAS/MACH 窗内人工选择的空速
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 当IAS/MACH窗空白时，指示FMC计算的空速。
+<br>&nbsp&nbsp&nbsp&nbsp 当选择的速度超出刻度范围，则游标停留在速度带的顶部或底部，只可见半个游标。
+<br>
+<br><strong>7 当前马赫数/地速(白色)</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 指示当前马赫数或地速:
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 当空速在0.40马赫或以上时，显示马赫数
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 当空速下降低于0.40马赫时，显示地速
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 当从马赫数过渡到地速或从地速过渡到马赫数时，一个带白框的数值将显示10秒。(选型)
+<br>
+<br><strong>8 VNAV速度带(洋红色)</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 在VNAV PTH下降中指示FMC目标空速。色带的底部指示自动油门提醒速度。
+<br>&nbsp&nbsp&nbsp&nbsp 色带的顶部指示的速度表示:
+<br>&nbsp&nbsp&nbsp&nbsp VNAV将在此速度由VNAV PTH变为VNAV SPD。
+<br><br><br>
+
+<img src="img/PFD3.png" alt="">
+<img src="img/PFD4.png" alt="">
+<p>
+<Br><strong>1 游标5(白色)</strong>
+<Br>&nbsp&nbsp&nbsp&nbsp 如果发动机显示控制面板上的速度基准选择器在游标5或设定(SET)位置，
+<Br>&nbsp&nbsp&nbsp&nbsp 且选择了一个大于节的数值时，显示游标5。
+<Br>&nbsp&nbsp&nbsp&nbsp 如果速度基准选择器在自动(AUTO)位置，则不显示。	
+<Br>
+<Br><strong>2 襟翼机动速度(绿色)</strong>
+<Br>&nbsp&nbsp&nbsp&nbsp 指示所显示的襟翼位置相对应的襟翼机动速度:
+<Br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 当在CDU中输入全重后或用速度基准选择器设定好起飞全重后显示
+<Br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 当显示与起飞相对应的V2+15游标时，不显示与当前襟翼设定相对应的襟翼机动速度游标，
+<Br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 除襟翼1起飞外
+<Br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 当襟翼手柄移至襟翼30或40时，标有数字的襟翼机动速度游标消失。
+<Br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 如果低于VREF+4，襟翼游标受抑制
+<Br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <span class="blue">• 高度在大约20,000英尺以上时，襟翼收上(UP)游标不显示。</span>
+<Br>
+<Br><strong>3 V2+15(白色)</strong>
+<Br>&nbsp&nbsp&nbsp&nbsp 起飞时显示。
+<Br>&nbsp&nbsp&nbsp&nbsp 当发生以下任一种情况时消失:
+<Br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 第一次收襟翼时
+<Br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 当在CDU中输入VREF时。
+<Br>
+<Br><strong>4 起飞参考速度(绿色)</strong>
+<Br>&nbsp&nbsp&nbsp&nbsp 指示在CDU起飞参考(CDU TAKEOFF REF)页上选择的V1(决断速度)和VR(抬轮速度)
+<Br>&nbsp&nbsp&nbsp&nbsp 或用速度基准(SPD REF)选择器电门设定的V1和VR:
+<Br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 如果CDU上未选择V1和VR或不用速度基准选择器进行设置，则
+<Br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 	&nbsp&nbsp&nbsp&nbsp 在地面时，显示琥珀色的“NO VSPD”(无V速度)
+<Br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <span class="yl">• 起飞时，当速度大于80节时显示
+<Br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 离地时消失</span>
+<Br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 当选择了V1速度且该数值不在刻度范围内时，
+<Br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 	&nbsp&nbsp&nbsp&nbsp V1速度显示在空速指示的顶部
+<Br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • V1通过语音音响自动报出。(选型)
+<Br>
+<Br><strong>5 最小机动速度(琥珀色)</strong>
+<Br>&nbsp&nbsp&nbsp&nbsp <span class="yl">起飞后第一次收襟翼或当输入一个有效的VREF值时，显示琥珀色带。</span>
+<Br>&nbsp&nbsp&nbsp&nbsp 琥珀色带顶部指示最小机动速度。该空速提供：
+<Br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 低于约20,000英尺时，1.3g机动能力至抖杆。
+<Br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 高于约20,000英尺时，1.3g机动能力至低速抖振
+<Br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 	(或在FMC维护页面中设置的备用经批准的机动能力)。
+	<Br>
+<Br><span class="blue1">&nbsp&nbsp&nbsp&nbsp Note: 在带40度坡度角进行平飞时，会出现1.3g机动能力。</span>
+<Br>
+<Br><span class="red2">&nbsp&nbsp&nbsp&nbsp CAUTION: 当在琥珀色区域内以低于最小机动速度或高于最大机动速度操作时，机动能力降低。</span>
+<Br>&nbsp&nbsp&nbsp&nbsp 	&nbsp&nbsp&nbsp&nbsp 	&nbsp&nbsp&nbsp&nbsp <span class="red2">在非正常情况下，目标速度可能低于最小机动速度。</span>
+		<Br>
+<br><strong>6 最小速度(红色和黑色)</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 色带顶部指示出现抖杆时的速度。
+<br>
+<br><strong>7 最大机动速度/下一襟翼位置标牌速度(琥珀色)</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 起飞后不久可能会显示琥珀色弧线，直到空速超过160节或直到第一次收襟翼。
+<br>&nbsp&nbsp&nbsp&nbsp 当襟翼未收上时，琥珀色弧线底部指示下一正常襟翼设置的标牌速度。
+<br>&nbsp&nbsp&nbsp&nbsp 显示逻辑基于襟翼的正常设置顺序1, 5, 15, 30, 40。
+<br>&nbsp&nbsp&nbsp&nbsp 当襟翼手柄移到进近
+<br>&nbsp&nbsp&nbsp&nbsp 基准（APPROACH REF）页上所选的着陆襟翼设置或当襟翼手柄移到襟翼40时，这个弧线消失。
+<br>&nbsp&nbsp&nbsp&nbsp 当任何襟翼收起时，它也会消失。
+<br>
+<br><strong>8 VREF+15/20(选型)(白色)</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 选择VREF后显示。
+<br>
+<br><strong>9 着陆基准速度(绿色)</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 指示在CDU进近基准（APPROACH REF）页上选择的REF(基准速度)，
+<br>&nbsp&nbsp&nbsp&nbsp 或用发动机显示控制面板上的速度基准选择器设定的REF。
+<br>&nbsp&nbsp&nbsp&nbsp 当选择REF速度但该数值不在刻度范围内时，REF速度显示在空速指示底部。
+<br>
+<br><strong>10 速度基准显示(绿色)</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 如果通过发动机显示控制面板上的速度基准选择器输入了空速和/或重量，显示:
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 在地面, 可以选择V1、VR和起飞全重；
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 	&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 如果选择VREF，则显示无效输入(INVAILID ENTRY)
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 在空中, 可以选择VREF和着陆全重；如果选择V1或VR，则显示
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 	&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 无效输入(INVAILID ENTRY)
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 当速度基准选择器调到SET位置时，显示消失。
+<br>
+<br><strong>11 80节空速游标(白色)</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 指示80节:(选型100节)
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 飞行前自动显示
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 在第一次收襟翼或输入VREF时消失。
+<br>
+<br><strong>12 襟翼/VREF速度指示(绿色)</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 指示选择的着陆襟翼位置和CDU进近基准页上选择的VREF:
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 襟翼15、30和40时显示
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 用速度基准选择器设定VREF时不显示。
+<br>
+<br><br><br>
+<img src="img/PFD5.png" alt="">
+<br>
+<br><strong>1 坡度刻度(白色)</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 为坡度指针提供固定的基准；刻度标记为0、10、20、30、45和60度。
+<br>
+<br><strong>2 俯仰限制指示(琥珀色)</strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="blue">指示俯仰限制(在当前飞行条件下激活抖杆)。</span>
+<br>
+<br><strong>• 襟翼未收上时显示。</strong>
+<br>&nbsp&nbsp&nbsp&nbsp • 襟翼收上低速时显示。
+<br>
+<br><strong>3 飞行指引仪(洋红色)</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 指示飞行指引仪操纵指令。。
+<br>
+<br><strong>4 地平线和俯仰刻度(白色)</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 指示相对于飞机标志的地平线；俯仰刻度增量为2.5度。
+<br>
+<br><strong>5 坡度指针</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 	指示坡度角；
+<br>&nbsp&nbsp&nbsp&nbsp 	<span class="yl">如果坡度角为35°或更大时，则指针显示实心并转为琥珀色。</span>
+<br>&nbsp&nbsp&nbsp&nbsp 	• 指向机翼水平方向。
+<br>
+<br><strong>6 侧滑/打滑指示</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 	在坡度指针下方移动，指示内侧滑或外侧滑：
+<br>&nbsp&nbsp&nbsp&nbsp 	• 在满刻度偏转时显示为实心白色
+<br>&nbsp&nbsp&nbsp&nbsp 	• 如果坡度角为35°或更大时，转为琥珀色；如果侧滑/打滑指示也在满刻度偏转，则显示为实心琥珀色。
+<br>
+<br><strong>7 飞机标志</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 	指示相对于地平线的飞机姿态。
+<br>
+<br><strong>8 飞行航径矢量(FPV)指示(白色)</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 	在EFIS控制面板上选择后，显示飞行航径角和偏流角：
+<br>&nbsp&nbsp&nbsp&nbsp 	• 显示相对于地平线的飞行航径角
+<br>&nbsp&nbsp&nbsp&nbsp 	• 显示相对于显示中心的偏流角。
+<br><br><br>
+<img src="img/PFD6.png" alt="">
+<br><br>
+<strong>1 刻度ID显示(白色)</strong>
+<br>&nbsp&nbsp&nbsp&nbsp • 在ADI的左上角处显示
+<br>&nbsp&nbsp&nbsp&nbsp • 指示每个刻度所显示的偏离源
+<br>&nbsp&nbsp&nbsp&nbsp • 当LNAV、VNAV、HDG SEL或TO/GA接通时显示
+<br>&nbsp&nbsp&nbsp&nbsp • 若当前的飞机位置在飞行计划航路横向1海里或2 x RNP之内时
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="blue">显示 - 如果超出横向限制，则显示将超出导航性能刻度(NPS)</span>
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 可能的指示包括:
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • LNAV/VNAV - (LNAV和VNAV偏离)
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • LOC/VNAV- (ILS航向道及VNAV偏离)
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • FAC/VNAV – (IAN五边进近航道及VNAV偏离)(选型)
+<br>
+<br><strong>2 NPS偏离刻度</strong>
+<br>&nbsp&nbsp&nbsp&nbsp • 水平NPS偏离刻度表示当前FMC的水平RNP
+<br>&nbsp&nbsp&nbsp&nbsp • 垂直NPS偏离刻度表示当前FMC的垂直RNP
+<br>&nbsp&nbsp&nbsp&nbsp • 如果进近方式未接通且任一HDG SEL、TO/GA、LNAV，或当任何VNAV方式接通时，显示此偏离刻度。
+<br>
+<br><strong>3 预期偏离提示</strong>
+<br>&nbsp&nbsp&nbsp&nbsp • 如果正在接收有效的进近航道偏离信息，同时显示相应的NPS偏离刻度和指针，显示此标志
+<br>&nbsp&nbsp&nbsp&nbsp • 一个空心的白色菱形符号。
+<br>&nbsp&nbsp&nbsp&nbsp • 如果接通的水平方式随后过渡到LOC, 则水平NPS偏离指示将消失，并显示正常的ILS航向道指示。
+<br>&nbsp&nbsp&nbsp&nbsp • 如果接通的垂直方式随后过渡到G/S, 则垂直NPS偏离指示消失，并显示正常的ILS G/S指示。
+<br>
+<br><strong>4 NPS指针</strong>
+<br>&nbsp&nbsp&nbsp&nbsp • 当指针未停留在偏移限制时，会出现一个实心的洋红色符号
+<br>&nbsp&nbsp&nbsp&nbsp • 当指针位于偏移限制时，会出现一个空心的指针轮廓
+<br>&nbsp&nbsp&nbsp&nbsp • 指示相对于飞机的水平/垂直航径
+<br>&nbsp&nbsp&nbsp&nbsp <span class="red">• 如果在实际导航性能(ANP)指示条限制内偏离持续10秒，则指针会闪烁10秒。</span>
+<br>
+<br><strong>5 实际导航性能(ANP)指示条</strong>
+<br>&nbsp&nbsp&nbsp&nbsp • 基于总系统误差，仍会存在有飞行技术误差的水平/垂直指示
+<br>&nbsp&nbsp&nbsp&nbsp • 水平ANP条在所有的飞行阶段都能显示
+<br>&nbsp&nbsp&nbsp&nbsp • 垂直ANP条仅在达到下降顶点后显示
+<br>&nbsp&nbsp&nbsp&nbsp • 由外圈刻度开始并按ANP相对于RNP的增长比例向内延伸。
+<br>&nbsp&nbsp&nbsp&nbsp • 当ANP等于RNP时，正好到达刻度中央
+<br>&nbsp&nbsp&nbsp&nbsp • 如果当前偏离在ANP条限制内持续10秒钟/5秒钟(选型)，则从白色变为琥珀色。
+<br>
+<br>
+<br>
+<img src="img/PFD7.png" alt="">
+<br>
+<br><strong>1 进近参考</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 显示选择的ILS频率或识别符、进近航道、ILS/DME/FMC距离和源信号。
+<br>&nbsp&nbsp&nbsp&nbsp 显示选择的GLS识别符、通道、所选航道、GLS进近距离和源信号。
+<br>&nbsp&nbsp&nbsp&nbsp 如果调谐的ILS频率不一致(超过1分钟)，则频率变成琥珀色并带有一条琥珀色横线，直至频率设定一致。
+<br>&nbsp&nbsp&nbsp&nbsp 如果在MCP中输入的进近航道不一致(超过1分钟)，则航道变成琥珀色并且有一条琥珀色的横线穿过它。
+<br>
+<br><strong>2 航向道指针和偏差刻度</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 指针:
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 指示相对于飞机的航向道位置
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 当接收到航向道信号时，指针出现
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 当距中心2½点以内时，变成实心洋红色。
+<br>&nbsp&nbsp&nbsp&nbsp 刻度: 
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 指示偏离量
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 调谐航向道频率时，指针出现
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 当航向道接通且偏差略大于1/2点时，指针扩展。
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp 在低无线电高度且自动驾驶接通时，刻度变为琥珀色且指针闪烁以指示航向道偏离量过大。
+<br>&nbsp&nbsp&nbsp&nbsp 低于1000英尺AGL，在LNAV接通且LOC预位时，如果未截获航向道，则航向道刻度变为琥珀色且指针闪烁。
+<br>&nbsp&nbsp&nbsp&nbsp 在1500英尺无线电高度，每个飞行员的偏离告警系统预位后即开始自检。
+<br>&nbsp&nbsp&nbsp&nbsp 自检会在每个姿态指示器上产生2秒钟的LOC偏离告警显示。
+<br>
+<br><strong>3 信标台标志 </strong>
+<br>&nbsp&nbsp&nbsp&nbsp 当飞越其中一个信标台时，信标台标志闪烁（且可听见音响）:
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp OM(蓝绿色) - 外指点标(每秒两个长音)。
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp MM(琥珀色) - 中指点标(长短音交替出现)。
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp IM(白色) - 内指点标(只有短音)。
+<br>
+<br><strong>4 下滑道指针和偏离刻度</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 指针:
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 指示下滑道位置
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 当接收到下滑道信号时显现
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 当距中心2½点以内时，变成实心洋红色。
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 当航迹与方式控制面板上的向台航道相差超过90度(背航道)时，指针不显示。
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp 刻度: 
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 指示偏离量
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 调谐好航向道频率后可见。
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp 在低无线电高度且自动驾驶接通时，刻度变为琥珀色且指针闪烁以指示下
+<br>&nbsp&nbsp&nbsp&nbsp 滑道偏离量过大。
+<br>&nbsp&nbsp&nbsp&nbsp 在1500英尺无线电高度，每个飞行员的偏离告警系统预位后即开始自检。
+<br>&nbsp&nbsp&nbsp&nbsp 自检会在每个姿态指示器上产生2秒钟的LOC或G/S偏离告警显示。
+<br>
+<br><strong>5 上升的跑道(绿色，带有洋红色标杆)</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 出现下列情况时，显示:
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 航向道信号可用且指针可见。
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 航向道信号可用或已选择IAN进近且指针可见(选型)
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 无线电高度低于2500英尺。
+<br>&nbsp&nbsp&nbsp&nbsp <span class="red">当无线电高度低于200英尺时，向飞机标志上升。</span>
+<br><br><br>
+<br><img src="img/PFD8.png" alt="">
+<br>
+<br><strong>1 无线电高度 - 环形刻度盘</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 低于2500英尺离地高度时显示：
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 2500至1000英尺离地高度时显示数字读数
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 下降到低于2500英尺时，外框呈白色高亮显示10秒钟
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 低于1000英尺离地高度时显示环形刻度(选型)
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 指针指示所选的无线电高度最小值(选型)
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 刻度的圆弧增加或减少，以指示飞机的无线电高度。 (选型)
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 当低于无线电高度最小值，剩余的环形刻度和指针变为琥珀色并闪3秒，数字读数不闪。(选型)
+<br><br>
+<br><img src="img/PFD9.png" alt="">
+<br>
+<br><strong>1 空中交通告警与防撞系统俯仰指令(红色)</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 红线以内的区域表示为解决交通冲突而需要避开的俯仰区域。
+<br>&nbsp&nbsp&nbsp&nbsp <span class="blue1">飞机标志必须在TCAS俯仰指令区域之外，以防止空中相撞。</span>
+<br>&nbsp&nbsp&nbsp&nbsp 参见下方系统说明相关内容。
+<br>
+<br>
+<br><img src="img/PFD11.png" alt="">
+<br><strong>1 显示系统信号牌</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 当电子显示组件(DEU)显示系统有故障时，会在主飞行显示左下角出现以下信号牌：
+<br>&nbsp&nbsp&nbsp&nbsp 	&nbsp&nbsp&nbsp&nbsp <span class="blue">CDS MAINT（CDS维修）(白色) - </span>
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 		出现了可放行的通用显示系统(CDS)故障。
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 		仅在地面起动第二台发动机之前显示。
+<br>&nbsp&nbsp&nbsp&nbsp 	&nbsp&nbsp&nbsp&nbsp <span class="blue">CDS FAULT（CDS故障）(琥珀色) - </span>
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 		出现了不可放行的CDS故障。
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 		仅在地面起动第二台发动机之前显示。
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="blue">DSPLY SOURCE（显示源）(琥珀色) - </span>
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 一个电子显示组件（DEU）失效。
+<br>
+<br><strong>十字指引 -</strong>
+<br>&nbsp&nbsp&nbsp&nbsp • 如果一个DEU在高于FL220时失效 - 
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 自动驾驶和飞行指引仪不受影响
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp • 如果一个DEU在低于FL220的爬升或下降时失效，且失效一侧的自动驾驶接通 -
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 两个飞行员的飞行指引消失
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 在高度获得（ALT ACQ）时，飞行指引重现
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 自动驾驶接通在CWS P方式
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 自动驾驶失效一侧的LVL CHG、VNAV和V/S均不可用
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp • 如果一个DEU在低于FL220平飞时失效，且失效一侧的自动驾驶接通 -
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 只可能在CWS P方式下爬升或下降至一个新的高度
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 自动驾驶接通时，不可能在LVL CHG, VNAV 或 V/S方式下初始爬升或下降到新的MCP高度
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp 	• 自动驾驶接通或在爬升或下降时使用人工F/D方式，如果对侧的DEU失效 -
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 飞行指引仪俯仰指令杆从失效一侧的飞行员显示上消失，直到高度截获(ALT ACQ)
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 自动驾驶接通时，可以通过LVL CHG, VNAV 或 V/S方式爬升或下降
+<br>&nbsp&nbsp&nbsp&nbsp • 如果一个DEU在高于400英尺的进近方式下失效，且两个飞行指引仪接通 -
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 飞行指引从失效一侧的显示上消失
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp • 在接通第二套自动驾驶以进行双通道自动驾驶进近之前，如果一个DEU失效 -
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 接通第二套自动驾驶受抑制。
+<br><br><br>
+<br>		<img src="img/PFD10.png" alt="">
+<br><br><strong>显示控制面板信号牌(琥珀色)</strong>
+<br><span class="red1">指示受影响一侧的EFIS控制面板失效</span>。
+<br>
+<br>当显示控制面板(DISPLAYS CONTROL PANEL)出现在显示屏的右下角时，高度信息消失。
+<br>
+<br>当顶板上的控制面板(CONTROL PANEL)选择电门处于下列位置时:
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• BOTH ON 1 - 
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 机长和副驾驶的CDS显示和气压由左侧EFIS面板控制
+<br>&nbsp&nbsp&nbsp&nbsp • NORMAL - 
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 左侧EFIS面板控制机长的CDS显示和气压，右侧EFIS面板控制副驾驶的CDS显示和气压
+<br>&nbsp&nbsp&nbsp&nbsp • BOTH ON 2 - 
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 机长和副驾驶的CDS均显示,气压由右侧EFIS面板控制。</span>		
+<br><br><br><br>
+
+<span class="blue1">空速不一致告警(琥珀色)</span>
+<br>&nbsp&nbsp&nbsp&nbsp 指示机长和副驾驶空速指示相差超过5海里/小时并持续5秒钟。
+<br>
+<br><span class="blue1">高度不一致告戒(琥珀色)</span>
+<br>&nbsp&nbsp&nbsp&nbsp 指示机长和副驾驶高度指示相差超过200英尺并持续5秒钟以上。
+<br>
+<br><span class="blue1">AOA不一致告警(琥珀色)</span>
+<br>&nbsp&nbsp&nbsp&nbsp 指示机长(左) 和副驾驶 (右)的迎角值相差大于10度连续10秒以上。
+<br>
+<br>其余内容太多,略..
+<br>
+<br>
+<br>
+
+
+</p>
+
+
+			</p>
+		</div>
+		
+		<HR>
+		<div class="mid">
+		<h3>系统说明:</h3>
+		
+			<div class="bk">
+			<p>			
+				
+			
+<strong>AFDS飞行方式信号牌</strong>
+<br>
+<br><strong>飞行方式信号牌显示在外侧显示组件姿态指示器的上方，显示方式从左至右为：</strong>
+<br>&nbsp&nbsp&nbsp&nbsp • 自动油门
+<br>&nbsp&nbsp&nbsp&nbsp • 横滚
+<br>&nbsp&nbsp&nbsp&nbsp • 俯仰
+<br>接通或截获方式都在飞行方式信号框顶部以较大的绿色字母显示。
+<br>
+<br>预位方式在飞行方式信号牌框底部以较小的白色字母显示。
+<br>
+<br>
+<br>
+<br><strong>自动油门方式</strong>
+<br>&nbsp&nbsp&nbsp&nbsp • N1 – 自动油门保持推力方式显示器上显示的所选N1极限推力，包括全复飞N1极限。<br>
+<br>&nbsp&nbsp&nbsp&nbsp • GA – 自动油门保持[推力复飞设置的推力<br>
+<br>&nbsp&nbsp&nbsp&nbsp • RETARD（收油门） – 自动油门移动推力手柄到后止动位时显示。
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 	RETARD方式随后是ARM（预位）方式<br>
+<br>&nbsp&nbsp&nbsp&nbsp • FMC SPD（FMC速度） – 自动油门保持FMC指令的速度。
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 	自动油门限制在推力方式显示上显示的N1值<br>
+<br>&nbsp&nbsp&nbsp&nbsp • MCP SPD（方式控制面板速度） – 自动油门保持MCP IAS/MACH信号牌调置的速度。
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 	自动油门限制在推力方式显示上显示的N1值<br>
+<br>&nbsp&nbsp&nbsp&nbsp • THR HLD（推力保持） – 推力手柄自动油门伺服被抑制。
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 	飞行员可以人工设置推力手柄<br>
+<br>&nbsp&nbsp&nbsp&nbsp • ARM（预位） – 自动油门方式未接通。
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 	推力手柄自动油门伺服被抑制。
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 	飞行员可以人工设置推力手柄提供最低速度保护。<br><br>
+
+	<br>
+	
+<strong>俯仰方式</strong> 
+<br>&nbsp&nbsp&nbsp&nbsp <strong>• TO/GA – 起飞</strong>
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 	将两部F/D电门打开（ON），并按压任一TO/GA电门，可接通起飞方式。
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 	在起飞开始前，两部F/D都必须打开（ON）以接通TO/GA方式。
+<br>
+<br>AFDS按下述顺序指令俯仰姿态：
+<br>&nbsp&nbsp&nbsp&nbsp • 空速达60海里/小时之前，机头下俯10°
+<br>&nbsp&nbsp&nbsp&nbsp • 空速达60海里/小时之后，机头上仰15°
+<br>&nbsp&nbsp&nbsp&nbsp • 离地后，机头上仰15°直到获得足够的爬升率。
+<br>&nbsp&nbsp&nbsp&nbsp 	&nbsp&nbsp&nbsp&nbsp 然后指令俯仰保持MCP速度加上20海里/小时。
+	<br>
+<br><span class="blue1">在2000英尺AGL以下，空速80海里/小时后，且在离地后150秒内，若飞行指引仪关闭（OFF），则按压TO/GA电门，TO/GA也能接通起飞方式。</span>
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp <strong>• TO/GA – 复飞</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 在下述条件下，按压TO/GA电门，接通复飞：
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 在空中，2000英尺RA以下
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 在空中，2000英尺RA以上，襟翼未收上或G/S已截获(选型)
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 未在起飞方式
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 飞行指引仪打开（ON）或关闭（OFF）。
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="red">在接通复飞的同时F/D指令横滚，以保持地面航迹，同时机头上仰至15°。
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp 在到达预定的爬升率之后，俯仰依据最大起飞重量的计算来指令每个襟翼设置的目标速度。</span>
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp • VNAV（预位）– 起飞前VNAV预位后显示。
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 	起飞后，在400英尺AGL时VNAV自动接通。
+	<br>
+<br>&nbsp&nbsp&nbsp&nbsp • VNAV（接通）– 按压VNAV电门，接通VNAV。
+	<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 当接通VNAV方式时，FMC指令AFDS俯仰和A/T方式，以便按垂直剖面飞行。	
+	<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • VNAV SPD（ VNAV速度）– AFDS保持在速度指示器和/或CDU爬升或下降页上显示的FMC速度
+	<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • VNAV PTH （VNAV航径）– AFDS保持俯仰指令的FMC高度或下降航径
+	<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • VNAV ALT（VNAV高度）– 如果VNAV剖面和MCP高度产生冲突，则飞机在MCP高度改平，并且俯仰
+	<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 			飞行方式信号显示变为VNAV ALT。VNAV ALT保持此高度。
+	<br>
+	<br>&nbsp&nbsp&nbsp&nbsp • V/S（预位）– 移动垂直速度拇指轮可接通V/S方式
+	<br>
+	<br>&nbsp&nbsp&nbsp&nbsp • V/S（接通）– 提供俯仰指令以保持选定的垂直速度
+	<br>
+	<br>&nbsp&nbsp&nbsp&nbsp • ALT ACQ（高度获得）– 从V/S、高度层改变或VNAV爬升或下降到方式控制面板（MCP）上选择的高度时，自动进入过渡机动动作。在VNAV过渡过程中，接通但无显示
+	<br>
+	<br>&nbsp&nbsp&nbsp&nbsp • ALT HOLD（高度保持）– 提供俯仰指令以保持MCP选择的高度或按压ALT HOLD电门时的未修正气压高度
+	<br>
+	<br>&nbsp&nbsp&nbsp&nbsp • MCP SPD（MCP速度）– 俯仰指令保持IAS/MACH显示窗内显示的	速度或马赫数
+	<br>
+	<br>&nbsp&nbsp&nbsp&nbsp • G/S（预位）– AFDS预位以截获下滑道(选型)
+	<br>&nbsp&nbsp&nbsp&nbsp • G/S（接通）– AFDS跟随ILS下滑道(选型)
+	<br>&nbsp&nbsp&nbsp&nbsp • G/S（预位）– AFDS预位以截获下滑道(选型)
+	<br>&nbsp&nbsp&nbsp&nbsp • G/P (接通) – AFDS 跟随IAN 下滑航道(选型)
+	<br>
+	<br>&nbsp&nbsp&nbsp&nbsp • <span class="blue">FLARE（预位）– 在两部自动驾驶（A/P）ILS进近过程中，无线电高度1500英尺以下，航向道（LOC）和下滑道（G/S）截获后，显示FLARE信号牌。第二部A/P与飞行操纵耦合，A/P复飞方式预位</span>
+	<br>
+	<br>&nbsp&nbsp&nbsp&nbsp • FLARE（接通）– 在两部自动驾驶（A/P）ILS进近过程中，无线电高度50英尺时，接通拉平。FLARE完成自动着陆拉平机动。
+	<br>
+	<br>
+	<br>
+	<br><strong>横滚方式</strong>
+<br>&nbsp&nbsp&nbsp&nbsp • LNAV（预位）– AFDS预位（起飞前），50英尺RA时接通。(选型)
+<br>&nbsp&nbsp&nbsp&nbsp • LNAV (预位) – 在进近阶段以及飞行计划中含有复飞。(选型)
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp • LNAV（接通）– AFDS切入并跟踪生效的FMC航路。必须满足下
+<br>&nbsp&nbsp&nbsp&nbsp 列任意一条截获条件：
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <span class="yl">• 在生效航路3海里之内，飞机任意航向
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 在生效航路3海里之外，飞机必须在90°或小于90°的切入航道上，并在生效航路点之前切入该航路段。</span>
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp • HDG SEL（航向选择）– 飞机转到或保持MCP航向显示窗内的选择的航向；
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp • VOR/LOC（预位）– AFDS预位，以截获选择的VOR或LOC航道
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp • VOR/LOC（接通）– AFDS跟踪选择的VOR航道或沿着向台前航道方向跟踪选择的LOC航道。
+<br>
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp • FAC (预位)– AFDS预位，以截获IAN最终进近航道(选型)
+<br>&nbsp&nbsp&nbsp&nbsp • FAC（接通）– AFDS沿着向台航道方向跟踪IAN最终进近航道。(选型)
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp • B/CRS (预位)– AFDS预位，以截获LOC最终进近背航道(选型)
+<br>&nbsp&nbsp&nbsp&nbsp • B/CRS (接通) – AFDS沿着向台背航道方向跟踪LOC最终进近航(选型)道。
+	<br>
+		</p></div>
+		<br><br>
+		<div class="bk">
+		<p>	
+<strong>空中交通告警与防撞系统(TCAS)</strong>
+<br>TCAS就可能发生的空中交通冲突向机组发出告警。
+<br>
+<br>TCAS对其它飞机上工作的应答机发出询问，通过分析应答机的回答对其它飞机进行跟踪，并预测其飞行航径和位置。
+<br>
+<br>TCAS给飞行机组提供咨询信息和其它飞机的活动显示。如果其它飞机没有工作的应答机，防撞系统既不能提供咨询信息、引导，也不能提供活动显示。
+<br>
+<br>TCAS独立于基于地面的空中交通管制。
+<br>
+<br>如要提供咨询信息，TCAS必须识别飞机周围极可能存在活动冲突的三维空域。
+<br>
+<br>空域的范围基于活动冲突飞机的接近率。
+<br>
+<br>TCAS设备询问其它飞机的应答机以确定其距离、方位和高度。
+<br>
+<br><span class="blue1">当其它飞机离最接近点约40秒时，TCAS产生活动通告（TA）。</span>
+<br>
+<br><span class="blue1">如果其它飞机继续接近，当距离最接近点约25秒时产生措施通告（RA）。</span>
+<br>
+<br>RA提供音响警告和引导，并提供机动引导以保持或增加与冲突飞机的间隔。 
+<br>
+<br><span class="red">如果活动飞机应答机的高度信息不可用，则不能提供RA。	</span>	
+<br>
+<br>
+<br>
+<br><strong>通告和显示</strong>
+<br>TA音响信息为“TRAFFIC, TRAFFIC”，只响一次，然后重置直到再次出现TA。
+<br>
+<br>TRAFFIC信号会出现在导航显示器上。
+<br>
+<br>TA符号显示与其它飞机的距离和相对方位。
+<br>
+<br><span class="blue">如其它飞机使用的是S或C模式的应答机，其符号还包括高度和垂直运动方向。</span>
+<br>
+<br>RA指示为RA音响表中所列的一种或多种音响提示。TRAFFIC信号以及指示冲突飞机的相对方位、距离、高度和垂直运动方向的RA符号出现在导航显示上，与TA符号相似。
+<br>
+<br>还有些符号是临近交通和其它交通的符号。临近交通是指距离6海里、垂直间隔1,200英尺范围内的飞机活动，但不会产生TA或RA警戒。其它交通是指距离6海里、垂直间隔1,200英尺以外的飞机活动。随着TCAS不断对其它飞机运动的重新评估，活动符号会改变。
+<br>
+<br>如果导航显示的范围无法显示出TA或RA，导航显示上会出现OFFSCALE（超出显示范围）信息。
+<br>
+<br>如果TCAS探测到的TA或RA活动不提供方位，则在导航显示上TRAFFIC正文下方产生一个无方位文本块。
+<br>
+<br>它包括距离、高度和垂直运动信息。
+<br>
+<br>如果探测到高度每分钟变化超过500英尺/分钟，垂直运动信息用箭头表示，说明是爬升或下降。
+<br>
+<br>在以下情况中，TCAS自动显示：
+<br>&nbsp&nbsp&nbsp&nbsp • 应答机方式选择器在TA ONLY或TA/RA位置，且
+<br>&nbsp&nbsp&nbsp&nbsp • 出现TCAS TA或RA，且
+<br>&nbsp&nbsp&nbsp&nbsp • 无一飞行员选择TCAS（TFC）显示，且
+<br>&nbsp&nbsp&nbsp&nbsp • 在MAP、中央MAP、VOR或APP方式。
+<br>
+<br>
+<br>
+<br><strong>抑制</strong>
+<br><span class="red">在约1,500英尺无线电高度以下，加速下降（INCREASE DESCENT）RA被抑制。
+<br>
+<br>在约1,100英尺无线电高度以下，下降（DESCENT）RA被抑制。
+<br>
+<br>在约1,000英尺无线电高度以下，所有TCAS语音指示和所有RA被抑制。
+<br>
+<br>在1,000英尺以下，当在应答机面板上选择TA/RA时，仅TA方式自动启用，TCAS信息“TA ONLY”显示在ND上。
+<br>
+<br>所有TCAS警戒都会被GPWS和风切变警告抑制。</span>
+<br>
+<br>
+<br>
+<br><strong>方式控制</strong>
+<br>TCAS工作方式由TCAS/ATC应答机面板控制。
+<br>
+<br>TCAS正常情况下以TA/RA方式工作。
+<br>
+<br>但有时需选择“ 仅TA（TA ONLY）”方式，以防止产生不必要的RA。
+<br>
+<br>例如，当在繁忙机场目视飞行规则(VFR)下飞行或者平行进近时，如果有意要在其它飞机附近飞行，可以选择TA ONLY。
+<br>
+<br>装有TCAS的飞机上，ATC应答机能进行通信，以提供适当协调好的避让机动。
+<br>
+<br>当性能受到限制时，例如单发飞行，选择TA ONLY以防止接收超出飞机性能的RA，以及防止与其它能够执行RA机动的飞机通信。
+<br>		</p></div>
+<p>
+<br><br>
+<br><strong>PFD显示内容介绍</strong>
+<br>主飞行显示(PFD)呈现飞行航迹控制所必需的所有参数的动态彩色显示。
+<br>
+<br><strong>显示提供如下信息:</strong>
+<br>&nbsp&nbsp&nbsp&nbsp • 飞行方式信号显示
+<br>&nbsp&nbsp&nbsp&nbsp • 空速
+<br>&nbsp&nbsp&nbsp&nbsp • 高度
+<br>&nbsp&nbsp&nbsp&nbsp • 垂直速度
+<br>&nbsp&nbsp&nbsp&nbsp • 姿态
+<br>&nbsp&nbsp&nbsp&nbsp • 操纵信息
+<br>&nbsp&nbsp&nbsp&nbsp • 无线电高度
+<br>&nbsp&nbsp&nbsp&nbsp • 仪表着陆 
+<br>&nbsp&nbsp&nbsp&nbsp 系统显示
+<br>&nbsp&nbsp&nbsp&nbsp • 进近最低高度
+<br>&nbsp&nbsp&nbsp&nbsp • 航向/航迹指示
+<br>&nbsp&nbsp&nbsp&nbsp • TCAS指示
+<br>&nbsp&nbsp&nbsp&nbsp • GPWS信息显示
+<br>
+<br>飞机系统失效时显示故障旗。如果显示系统没有可用的有效信息(由于导航设备超出工作范围或出现故障)，则显示的信息空白或被虚线替代。
+<br>
+<br>当飞机系统无法生成可靠的显示时，显示故障旗。
+<br>
+<br>
+<br>
+<br><strong>空速</strong>
+<br>
+<br>空速显示在速度带和主飞行显示（PFD）左侧的数字窗中。
+<br>
+<br><span class="red">当前马赫数大于0.40时，当前马赫数以数字方式显示在空速带下方。</span>
+<br>
+<br>当空速下降低于0.40马赫时，则显示地速。(选型)
+<br>
+<br><span class="blue1">空速趋势矢量指示10秒钟内的预计空速。</span>
+<br>
+<br>起飞和着陆参考速度和襟翼机动速度沿空速带的右侧边缘显示。
+<br>
+<br>最大和最小空速也沿空速带右侧边缘显示。
+<br>
+<br>在VNAV PTH下降期间，在速度带右侧边缘增加一个洋红色条，指示FMC目标空速。(选型)
+<br>
+<br>当飞行方式信号牌上显示“VNAV PTH”时，该区仅显示襟翼收上形态。(选型)
+<br>
+<br>一旦机组在MCDU进近基准( APPROACH REF)页上设定了襟翼/VREF，在PFD上会显示一个绿色的“REF”和数字式的着陆襟翼/VREF。
+<br>
+<br>REF符号在基准空速旁垂直移动，且空速带底部和右侧的数字显示保持不变。
+<br>
+<br>在单发襟翼15°着陆期间，除绿色的VREF外，还有一个白色的VREF游标会提供一个稳定的目标空速，以保障充足的机尾离地裕度。
+<br>
+<br>
+<br>
+<br><strong>姿态</strong>
+<br>姿态指示显示相对于地平线作参考的飞机俯仰和横滚姿态。 
+<br>
+<br>俯仰姿态以飞机标志与俯仰刻度的相对位置来进行显示。
+<br>
+<br>俯仰刻度以2.5度为增量。
+<br>
+<br>指针以10度、20度、30度的增量指示坡度角。
+<br>
+<br>以单个标记表示45和60度的坡度。
+<br>
+<br>坡度角指针下面的小矩形指示内侧滑和外测滑状态。
+<br>
+<br>坡度角也表示为飞机标志相对于地平线和俯仰刻度的姿态。
+<br>
+<br>襟翼未收上时，始终显示俯仰限制指示。 (选型)
+<br>
+<br>俯仰限制指示在襟翼未收上或当襟翼已收上而空速接近当前飞行条件下抖杆器作动的速度时一直显示。(选型)
+	<br>
+	<br>
+	<br>
+<br><strong>操纵指示</strong>
+<br>当相关的飞行指引仪电门接通时，显示飞行指引。俯仰和横滚指令独立显示。
+<br>
+<br>飞行航径引导(FPV)符号表示垂直飞行航迹角和水平偏流角。
+<br>
+<br>当EFIS控制面板上的FPV电门接通时，在PFD上显示飞行航径引导。
+<br>
+<br>FPV 显示出地平线以上或以下的飞行轨径角（FPA）和俯仰刻度中心向左或向右的偏流角。
+<br>
+<br>FPA使用惯性和气压高度输入。主高度显示不可靠时，垂直FPA也不可靠。
+<br>
+<br>FPV 符号显示有两种亮度。
+<br>
+<br>当显示飞行指引仪或TCAS措施通时，FPV符号显示暗亮。
+<br>
+<br>当飞行指引仪关闭且无TCAS措施通告显示时，FPV符号显示明亮。
+<br>
+<br>
+<br>
+<br><strong>仪表着陆系统指示</strong>
+<br>提供ILS下滑道和航向道偏离量、频率/识别代码、DME、航道和信标台指示。 
+<br>
+<br>进近基准信息出现在姿态显示的左上角。显示ILS台识别代码或频率、航道和DME(如可用)。
+<br>
+<br>信标台指示(OM - 外指点标、IM - 内指点标、MM - 中指点标)显示在姿态显示区域的右上角。 
+<br>
+<br>当接收到有效信号时，下滑道指针和刻度出现在姿态指示的右侧。
+<br>
+<br>在无线电高度较低且自动驾驶接通时，刻度变为琥珀色且指针闪烁以指示下滑道偏离量过大。
+<br>
+<br>当下滑道信号不可用且航迹与方式控制面板上的向台航道相差超过90度(背航道)时，指针不显示。
+<br>
+<br>当接收到有效信号时，下滑道指针和刻度出现在姿态指示的底部。
+<br>
+<br><span class="green">当航道偏差略大于1/2 点，接通航向道方式，且航迹处于MCP 选定航道5 度以内时，刻度自动扩展。</span>
+<br>
+<br>在无线电高度较低且自动驾驶接通时，刻度变为琥珀色且指针闪烁以指示航向道偏离量过大。
+<br>
+<br>低于1000英尺AGL，LNAV接通且LOC预位时，如果航向道未截获，则航向道刻度变为琥珀色且指针闪烁。
+<br>
+<br>在1500英尺无线电高度，每个飞行员的偏离告警系统预位后即实施自检。
+<br>
+<br><span class="blue">自检会产生2秒钟的LOC和G/S偏离告警并显示在每个姿态指引仪上。</span>
+<br>
+<br>低于2500英尺无线电高度时，出现航向道指针和一个上升的跑道符号。
+<br>
+<br>该符号提供横向引导。在200英尺无线电高度，跑道符号向飞机标志上升。
+<br>
+<br>
+<br>
+<br><strong>进近最低高度</strong>
+<br>所选的无线电高度或气压进近最低值设定在EFIS控制面板上。
+<br>
+<br>无线电高度的进近最低值显示在高度显示左上角，气压进近的最低值显示在高度显示的左下角。
+<br>
+<br>
+<br>
+<br><strong>无线电高度</strong>
+<br>当无线电高度低于2,500英尺高地高度时，当前无线电高度显示在姿态指示区域底部中心。
+<br>
+<br>当无线电高度低于最低无线电高度的最低值时，显示变为琥珀色。
+<br>
+<br>
+<br>
+<br><strong>高度</strong>
+<br>高度显示在PFD右侧的高度带上。
+<br>
+<br>同时也以数字方式显示在高度带中间的窗内。
+<br>
+<br>当在EFIS控制面板上选择了米制时：
+<br>&nbsp&nbsp&nbsp&nbsp • 以米制为单位的当前高度也显示在高度窗的上方。
+<br>&nbsp&nbsp&nbsp&nbsp • 以米制为单位的所选高度显示在高度带上方。
+<br>
+<br>所选高度显示在高度带上方，当接近所选的高度时，以带框方式显示。
+<br>
+<br>所选高度以高度带上的游标指示。
+<br>
+<br>当选定气压（BARO）最低高度时，在高度带上用三角指针表示选定的气压进近最低高度且有下划线。
+<br>
+<br>当选择了无线电(RADIO)最低高度时，指针仍设定在BARO最低值上，但无下划线。
+<br>
+<br>着陆高度参考杆沿高度指示内边缘显示。
+<br>
+<br>参考杆指示的高度高于接地高度。
+<br>
+<br>在着陆高度以上1000至500英尺之间显示白色杆。
+<br>
+<br>从500英尺至着陆高度之间显示为琥珀色杆。
+<br>
+<br>着陆高度指示以交叉阴影区域显示，并指示：
+<br>&nbsp&nbsp&nbsp&nbsp • 目的地跑道或机场的FMC着陆高度，或
+<br>&nbsp&nbsp&nbsp&nbsp • 在飞离跑道或机场后，直到离出发点400海里或距目的地一半距离(取较高者)的着陆高度。
+<br>
+<br>在高度带下方显示在EFIS控制面板上所选的以英寸汞柱或百帕为单位的当前气压基准。
+<br>
+<br>当显示标准(STD)时，还显示预选的气压基准值。
+<br>
+<br>
+<br>
+<br><strong>垂直速度</strong>
+<br>垂直速度以刻度带和指针的形式显示在高度带的右侧。
+<br>
+<br><span class="blue">当垂直速度大于400英尺/分钟时，垂直速度以数字形式显示在垂直速度显示的上方或下方。</span>
+<br>
+<br>正垂直速度显示在上方，负的垂直速度显示在下方。
+<br>
+<br>当在AFDS垂直速度(V/S)俯仰方式下，所选的垂直速度游标显示所选的垂直速度。
+<br>
+<br>
+<br>
+<br><strong>航向/航迹指示</strong>
+<br>航向/航迹信息显示在PFD底部的罗盘圈部分。当前航向显示在罗盘圈顶部的指针下方。
+<br>
+<br>MCP所选航向以游标显示在罗盘圈外侧，同时以数字方式显示在罗盘圈左半侧。
+<br>
+<br>当前航向/航迹基准(MAG/TRU)显示在罗盘圈的右半侧。
+<br>
+<br>从罗盘圈不可见中心划出一条垂直于罗盘圈边缘的直线来描述当前飞机的航迹。
+<br>
+<br>
+<br>
+
+
+
+
+
+</p>
+		</div>
+		
+		<hr>
+		<div class="low">
+			<h3>扩展阅读:</h3>
+			以后再补充..
+		</div>
+			
+		<hr>
+		<a href="../index.html">返回面板</a>
+		
+	</body>
+</html>

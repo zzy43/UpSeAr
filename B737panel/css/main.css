@@ -1,0 +1,1207 @@
+.body{
+	display: flex;
+	/* width: 100%; */
+}
+
+/* 外部链接式样 */
+a.wb{
+	margin: 10px;
+/* 	border: 1px solid red; */
+	float: none;
+	line-height: 45px;
+/* 	text-decoration: blue; */
+	font-size: 20px;
+	padding: 3px;
+	background-color: skyblue;
+}
+div.wb{
+	background-color: #ccc6cc;
+}
+div.wb{
+	border: 3px solid skyblue;
+	margin: 9px;
+}
+
+.main .AftOverhead{
+	background-image: url("../img/Aft Overhead.png");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	width: 1200px;
+	height: 670px;
+	margin: auto;
+	/* border: 1px solid red; */
+}
+
+.main .FwdOverhead{
+	background-image: url("../img/FWD Overhead.png");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	width: 1200px;
+	height: 1250px;
+	margin: auto;
+	/* border: 1px solid red;	 */
+}
+
+
+.main .MainPanel{
+	background-image: url("../img/Main Panel.png");	
+	background-repeat: no-repeat;
+	background-size: 100%;
+	width: 1200px;
+	height: 130px;
+	margin: auto;
+	/* border: 1px solid red;	 */
+}
+
+.main .FacemainPANEL{
+	background-image: url("../img/FacemainPANEL.png");	
+	background-repeat: no-repeat;
+	background-size: 100%;
+	width: 1200px;
+	height: 490px;
+	margin: auto;
+	/* border: 1px solid red;	 */
+}
+
+.main .DownPANEL{
+	background-image: url("../img/DownPanel.png");	
+	background-repeat: no-repeat;
+	background-size: 100%;
+	width: 1200px;
+	height: 1900px;
+
+	margin: auto;	
+	border: 1px solid red;	
+}
+
+
+
+
+a{
+	display:block;	
+	height: 100%;	
+	width: 100%;	
+	text-decoration:none;
+/* 	background-color: orange; */
+}
+
+a:hover{
+	 border: 5px solid orange; 
+}
+
+a.gg{
+	display: contents;	
+	height: 100%;	
+	width: 100%;		
+	text-decoration: blanchedalmond;
+	background-color: orange}
+	
+a.gg:hover{
+	 border: 0px solid orange; 
+}
+
+/*            以下是 后顶板 框体的设置                      */
+/* ELT */
+.main .AftOverhead .ELT{
+	/* border: 2px solid orange; */
+	position: absolute;
+	width: 258px;
+	height: 98px;
+	/* margin-left: 1px; */
+	margin-top: 300px;
+}
+
+/* 前缘装置 */
+.main .AftOverhead .LeDevices{
+	/* border: 4px solid red; */
+	position: absolute;
+	width: 258px;
+	height: 118px;
+	/* margin-left: 1px; */
+	margin-top: 403px;
+	
+}
+
+/* PSEU */
+.main .AftOverhead .PSEU{
+	/* border: 2px solid red; */
+	position: absolute;
+	margin-top: 535px;
+	margin-left: 140px;
+	width: 145px;
+	height: 85px;
+	/* margin-left: 1px; */
+
+}
+
+/* IRSDsplay */
+.main .AftOverhead .IRSDsplay{
+	/* border: 2px solid orange; */
+	position: absolute;
+	width: 260px;
+	height:216px;
+	/* margin-left: 1px; */
+	margin-top: 130px;
+	margin-left:264px ;
+}
+
+/* GPS */
+.main .AftOverhead .GPS{
+	/* border: 2px solid orange; */
+	position: absolute;
+	width: 260px;
+	height: 40px;
+	
+	margin-top: 345px;
+	margin-left:264px;
+}
+
+/* IRSSet */
+.main .AftOverhead .IRSSet{
+	position: absolute;
+	/* border: 2px solid orange; */
+	width: 263px;
+	height: 132px;
+	/* margin-left: 1px; */
+	margin-top: 390px;
+	margin-left:264px ;
+}
+
+/* SerInterPhone */
+.main .AftOverhead .SerInterPhone{
+	position: absolute;
+	/* border: 2px solid orange; */
+	width: 115px;
+	height: 85px;
+	/* margin-left: 1px; */
+	margin-top: 327px;
+	margin-left:540px ;
+}
+
+/* DomeWhite */
+.main .AftOverhead .DomeWhite{
+	position: absolute;
+	margin-left:550px ;
+	/* border: 2px solid orange; */
+	width: 100px;
+	height: 95px;
+	/* margin-left: 1px; */
+	margin-top: 534px;
+}
+
+/* commun3 */
+.main .AftOverhead .commun3{
+	position: absolute;
+	margin-left:671px ;
+	/* border: 2px solid orange; */
+	width: 258px;
+	height: 203px;
+	/* margin-left: 1px; */
+	margin-top: 52px;
+}
+
+/* Engine */
+.main .AftOverhead .Engine{
+	position: absolute;
+	margin-left:671px ;
+	/* border: 2px solid orange; */
+	width: 258px;
+	height: 118px;
+	/* margin-left: 1px; */
+	margin-top: 258px;
+}
+
+/* OxyGen */
+.main .AftOverhead .OxyGen{
+	position: absolute;
+	margin-left:671px ;
+	/* border: 2px solid orange; */
+	width: 260px;
+	height: 135px;
+	/* margin-left: 1px; */
+	margin-top: 380px;
+}
+
+/* LDGear */
+.main .AftOverhead .LDGear{
+	position: absolute;
+	margin-left:660px ;
+	/* border: 2px solid orange; */
+	width: 120px;
+	height: 110px;
+	/* margin-left: 1px; */
+	margin-top: 520px;
+}
+
+/* FlightRecorder */
+.main .AftOverhead .FlightRecorder{
+	position: absolute;
+	margin-left:937px ;
+	/* border: 2px solid orange; */
+	width: 155px;
+	height: 100px;
+	/* margin-left: 1px; */
+	margin-top: 258px;
+}
+
+.main .AftOverhead .MachAirspeedWarningTest{
+	position: absolute;
+	margin-left:1095px ;
+	/* border: 2px solid orange; */
+	width: 95px;
+	height: 100px;
+	/* margin-left: 1px; */
+	margin-top: 258px;
+}
+
+/* StallWarning */
+.main .AftOverhead .StallWarning{
+	position: absolute;
+	margin-left:937px ;
+	/* border: 2px solid orange; */
+	width: 258px;
+	height: 86px;
+	/* margin-left: 1px; */
+	margin-top: 361px;
+}
+
+
+/*         以下是         前顶板设置                      */
+.main .FwdOverhead .FlyControl{
+	position: absolute;
+	margin-left:5px ;
+	margin-top: 8px;
+	width: 256px;
+	height: 374px;
+	/* border: 2px solid orange; */
+}
+
+.main .FwdOverhead .Navigation{
+	position: absolute;
+	margin-left:5px ;
+	margin-top: 386px;
+	width: 256px;
+	height: 270px;
+	/* border: 2px solid orange; */
+}
+
+.main .FwdOverhead .Fuel{
+	position: absolute;
+	margin-left:5px ;
+	margin-top: 659px;
+	width: 256px;
+	height: 410px;
+	/* border: 2px solid orange; */
+}
+
+.main .FwdOverhead .Leftlights{
+	position: absolute;
+	margin-left:85px ;
+	margin-top: 1073px;
+	width: 353px;
+	height: 140px;
+	/* border-bottom-left-radius: 50%; */
+	/* border: 2px solid orange; */
+}
+
+.main .FwdOverhead .ElecShow{
+	position: absolute;
+	margin-left:267px ;
+	margin-top: 74px;
+	width: 256px;
+	height: 353px;
+	/* border: 2px solid orange; */
+}
+
+.main .FwdOverhead .Drive{
+	position: absolute;
+	margin-left:267px ;
+	margin-top: 435px;
+	width: 256px;
+	height: 180px;
+	/* border: 2px solid orange; */
+}
+
+.main .FwdOverhead .ElecSet{
+	position: absolute;
+	margin-left:267px ;
+	margin-top: 660px;
+	width: 256px;
+	height: 270px;
+	/* border: 2px solid orange; */
+}
+
+.main .FwdOverhead .APUshow{
+	position: absolute;
+	margin-left:267px ;
+	margin-top: 936px;
+	width: 165px;
+	height: 126px;
+	/* border: 2px solid orange; */
+}
+
+.main .FwdOverhead .wiper{
+	position: absolute;
+	margin-left:430px ;
+	margin-top: 966px;
+	width: 225px;
+	height: 100px;
+	/* border: 2px solid orange; */
+}
+
+.main .FwdOverhead .Panellights{
+	position: absolute;
+	margin-left:540px ;
+	margin-top: 182px;
+	width: 110px;
+	height: 200px;
+	/* border: 2px solid orange; */
+}
+
+
+.main .FwdOverhead .Lavatory{
+	position: absolute;
+	margin-left:540px ;
+	margin-top: 382px;
+	width: 110px;
+	height: 65px;
+	/* border: 2px solid orange; */
+}
+
+.main .FwdOverhead .EquipCooling{
+	position: absolute;
+	margin-left:540px ;
+	margin-top: 450px;
+	width: 110px;
+	height: 112px;
+	/* border: 2px solid orange; */
+}
+
+.main .FwdOverhead .EmerExitLight{
+	position: absolute;
+	margin-left:540px ;
+	margin-top: 575px;
+	width: 110px;
+	height: 205px;
+	/* border: 2px solid orange; */
+}
+
+
+
+.main .FwdOverhead .AttGndCall{
+	position: absolute;
+	margin-left:540px ;
+	margin-top: 795px;
+	width: 110px;
+	height: 95px;
+	/* border: 2px solid orange; */
+}
+
+.main .FwdOverhead .ApuStart{
+	position: absolute;
+	margin-left:445px ;
+	margin-top: 1075px;
+	width: 60px;
+	height: 130px;
+	/* border: 2px solid orange; */
+}
+
+.main .FwdOverhead .EngineStart{
+	position: absolute;
+	margin-left:515px ;
+	margin-top: 1075px;
+	width: 285px;
+	height: 130px;
+	/* border: 2px solid orange; */
+}
+
+
+.main .FwdOverhead .WindowHeat{
+	position: absolute;
+	margin-left:670px ;
+	margin-top: 5px;
+	width: 250px;
+	height: 120px;
+	/* border: 2px solid orange; */
+}
+
+.main .FwdOverhead .ProbeHeat{
+	position: absolute;
+	margin-left:670px ;
+	margin-top:135px;
+	width: 250px;
+	height: 130px;
+	/* border: 2px solid orange; */
+}
+
+.main .FwdOverhead .AntiIce{
+	position: absolute;
+	margin-left:670px ;
+	margin-top:280px;
+	width: 250px;
+	height: 150px;
+	/* border: 2px solid orange; */
+}
+
+.main .FwdOverhead .HydPumps{
+	position: absolute;
+	margin-left:670px ;
+	margin-top:435px;
+	width: 250px;
+	height: 145px;
+	/* border: 2px solid orange; */
+}
+
+.main .FwdOverhead .CarbinDoors{
+	position: absolute;
+	margin-left:670px ;
+	margin-top:590px;
+	width: 250px;
+	height: 95px;
+	/* border: 2px solid orange; */
+}
+
+.main .FwdOverhead .CockpitRecord{
+	position: absolute;
+	margin-left:670px ;
+	margin-top:690px;
+	width: 250px;
+	height: 100px;
+	border: 2px solid ora/nge;
+}
+
+.main .FwdOverhead .AltPress{
+	position: absolute;
+	margin-left:670px ;
+	margin-top:795px;
+	width: 250px;
+	height: 270px;
+	/* border: 2px solid orange; */
+}
+
+.main .FwdOverhead .VoiceRecorder{
+	position: absolute;
+	margin-left:930px ;
+	margin-top:5px;
+	width: 255px;
+	height: 55px;
+	/* border: 2px solid orange; */
+}
+
+.main .FwdOverhead .AirSet{
+	position: absolute;
+	margin-left:930px ;
+	margin-top:70px;
+	width: 255px;
+	height: 268px;
+	/* border: 2px solid orange; */
+}
+
+.main .FwdOverhead .BleedPack{
+	position: absolute;
+	margin-left:930px ;
+	margin-top:346px;
+	width: 255px;
+	height: 403px;
+	/* border: 2px solid orange; */
+}
+
+.main .FwdOverhead .PressAlt{
+	position: absolute;
+	margin-left:930px ;
+	margin-top:760px;
+	width: 255px;
+	height: 303px;
+	/* border: 2px solid orange; */
+}
+
+.main .FwdOverhead .RightLights{
+	position: absolute;
+	margin-left:815px ;
+	margin-top:1070px;
+	width: 300px;
+	height: 140px;
+	/* border: 2px solid orange; */
+}
+
+/* 以下是MCP板设置 */
+
+.main .MainPanel .MasterCaution1{
+	position: absolute;
+	margin-left:5px ;
+	margin-top:33px;
+	width: 125px;
+	height: 60px;
+	/* border: 2px solid orange; */
+}
+
+.main .MainPanel .EfisSet1{
+	position: absolute;
+	margin-left:140px ;
+	margin-top:16px;
+	width: 145px;
+	height: 85px;
+	/* border: 2px solid orange; */
+}
+
+.main .MainPanel .LnavControl1{
+	position: absolute;
+	margin-left:295px ;
+	margin-top:13px;
+	width: 80px;
+	height: 85px;
+	/* border: 2px solid orange; */
+}
+
+.main .MainPanel .SpdControl{
+	position: absolute;
+	margin-left:385px ;
+	margin-top:13px;
+	width: 95px;
+	height: 85px;
+	/* border: 2px solid orange; */
+}
+
+.main .MainPanel .VerticalControl1{
+	position: absolute;
+	margin-left:485px ;
+	margin-top:13px;
+	width: 30px;
+	height: 85px;
+	/* border: 2px solid orange; */
+}
+
+.main .MainPanel .LnavControl2{
+	position: absolute;
+	margin-left:520px ;
+	margin-top:13px;
+	width: 72px;
+	height: 85px;
+	/* border: 2px solid orange; */
+}
+
+.main .MainPanel .VerticalControl2{
+	position: absolute;
+	margin-left:602px ;
+	margin-top:13px;
+	width: 115px;
+	height: 85px;
+	/* border: 2px solid orange; */
+}
+
+.main .MainPanel .APControl{
+	position: absolute;
+	margin-left:725px ;
+	margin-top:13px;
+	width: 75px;
+	height: 85px;
+	/* border: 2px solid orange; */
+}
+
+.main .MainPanel .LnavControl3{
+	position: absolute;
+	margin-left:805px ;
+	margin-top:13px;
+	width: 90px;
+	height: 85px;
+	/* border: 2px solid orange; */
+}
+
+.main .MainPanel .EfisSet2{
+	position: absolute;
+	margin-left:905px ;
+	margin-top:16px;
+	width: 145px;
+	height: 82px;
+	/* border: 2px solid orange; */
+}
+
+.main .MainPanel .MasterCaution2{
+	position: absolute;
+	margin-left:1055px ;
+	margin-top:33px;
+	width: 128px;
+	height: 60px;
+	/* border: 2px solid orange; */
+}
+
+.main .FacemainPANEL .Clock1{
+	position: absolute;
+	margin-left:5px ;
+	margin-top:136px;
+	width: 70px;
+	height: 68px;
+	/* border: 2px solid orange; */
+}
+
+.main .FacemainPANEL .NoseWheelSteering{
+	position: absolute;
+	margin-left:5px ;
+	margin-top:208px;
+	width: 73px;
+	height: 30px;
+	/* border: 2px solid orange; */
+}
+
+.main .FacemainPANEL .WindFootAIR{
+	position: absolute;
+	margin-left:55px ;
+	margin-top:330px;
+	width: 65px;
+	height: 30px;
+	/* border: 2px solid orange; */
+}
+
+.main .FacemainPANEL .BelowGS{
+	position: absolute;
+	margin-left:110px ;
+	margin-top:88px;
+	width: 33px;
+	height: 30px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .AUTOLAND{
+	position: absolute;
+	margin-left:155px ;
+	margin-top:88px;
+	width: 33px;
+	height: 30px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .MainPanelDU1{
+	position: absolute;
+	margin-left:210px ;
+	margin-top:65px;
+	width: 95px;
+	height: 50px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .Light3test1{
+	position: absolute;
+	margin-left:330px ;
+	margin-top:52px;
+	width: 70px;
+	height: 32px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .Lightstest{
+	position: absolute;
+	margin-left:410px ;
+	margin-top:52px;
+	width: 25px;
+	height: 32px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .SpeedBrakeLight{
+	position: absolute;
+	margin-left:360px ;
+	margin-top:88px;
+	width: 25px;
+	height: 22px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .StabOutOf{
+	position: absolute;
+	margin-left:390px ;
+	margin-top:88px;
+	width: 20px;
+	height: 22px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .YawDamper{
+	position: absolute;
+	margin-left:450px ;
+	margin-top:22px;
+	width: 65px;
+	height: 35px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .RMI{
+	position: absolute;
+	margin-left:446px ;
+	margin-top:125px;
+	width: 70px;
+	height: 75px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .ManualSetN1SPD{
+	position: absolute;
+	margin-left:535px ;
+	margin-top:40px;
+	width: 70px;
+	height: 38px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .FUELFLOW{
+	position: absolute;
+	margin-left:535px ;
+	margin-top:80px;
+	width: 30px;
+	height: 25px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .MFD2show{
+	position: absolute;
+	margin-left:570px ;
+	margin-top:80px;
+	width: 30px;
+	height: 25px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .AUTOBRAKE{
+	position: absolute;
+	margin-left:610px ;
+	margin-top:40px;
+	width: 40px;
+	height: 70px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .FlapsShow{
+	position: absolute;
+	margin-left:655px ;
+	margin-top:40px;
+	width: 40px;
+	height: 70px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .LandGear{
+	position: absolute;
+	margin-left:705px ;
+	margin-top:40px;
+	width: 40px;
+	height: 250px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .BrakePress{
+	position: absolute;
+	margin-left:763px ;
+	margin-top:55px;
+	width: 30px;
+	height: 45px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .Light3test2{
+	position: absolute;
+	margin-left:805px ;
+	margin-top:60px;
+	width: 65px;
+	height: 30px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .SpeedBreExt{
+	position: absolute;
+	margin-left:805px ;
+	margin-top:95px;
+	width: 25px;
+	height: 15px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .BelowGS2{
+	position: absolute;
+	margin-left:846px ;
+	margin-top:93px;
+	width: 25px;
+	height: 15px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .MainPanelDU2{
+	position: absolute;
+	margin-left:886px ;
+	margin-top:60px;
+	width: 90px;
+	height: 50px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .AUTOLAND2{
+	position: absolute;
+	margin-left:1003px ;
+	margin-top:92px;
+	width: 24px;
+	height: 15px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .Clock2{
+	position: absolute;
+	margin-left:1113px ;
+	margin-top:125px;
+	width: 70px;
+	height: 80px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .PFD1{
+	position: absolute;
+	margin-left:85px ;
+	margin-top:115px;
+	width: 170px;
+	height: 165px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .ND1{
+	position: absolute;
+	margin-left:262px ;
+	margin-top:115px;
+	width: 170px;
+	height: 165px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .upD{
+	position: absolute;
+	margin-left:525px ;
+	margin-top:115px;
+	width: 170px;
+	height: 165px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .downD{
+	position: absolute;
+	margin-left:510px ;
+	margin-top:300px;
+	width: 170px;
+	height: 165px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .ND2{
+	position: absolute;
+	margin-left:752px ;
+	margin-top:115px;
+	width: 170px;
+	height: 165px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .PFD2{
+	position: absolute;
+	margin-left:930px ;
+	margin-top:115px;
+	width: 165px;
+	height: 165px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .mainlights1{
+	position: absolute;
+	margin-left:130px ;
+	margin-top:290px;
+	width: 225px;
+	height: 75px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .GPWS{
+	position: absolute;
+	margin-left:830px ;
+	margin-top:290px;
+	width: 100px;
+	height: 75px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .mainlights2{
+	position: absolute;
+	margin-left:990px ;
+	margin-top:290px;
+	width: 70px;
+	height: 75px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .WindFootAIR2{
+	position: absolute;
+	margin-left:1070px ;
+	margin-top:335px;
+	width: 50px;
+	height: 30px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .CDU1{
+	position: absolute;
+	margin-left:385px ;
+	margin-top:290px;
+	width: 120px;
+	height: 185px;
+	/* border: 2px solid orange; */
+} 
+
+.main .FacemainPANEL .CDU2{
+	position: absolute;
+	margin-left:680px ;
+	margin-top:290px;
+	width: 120px;
+	height: 185px;
+	/* border: 2px solid orange; */
+} 
+
+
+
+/* 下面板 */
+.main .DownPANEL .Trimwheel1{
+	position: absolute;
+	margin-left:280px ;
+	margin-top:200px;
+	width: 180px;
+	height: 285px;
+	/* border: 2px solid orange; */
+} 
+
+.main .DownPANEL .SpeedBreak{
+	position: absolute;
+	margin-left:280px ;
+	margin-top:5px;
+	width: 180px;
+	height: 185px;
+	/* border: 2px solid orange; */
+} 
+
+.main .DownPANEL .ParkingSet{
+	position: absolute;
+	margin-left:370px ;
+	margin-top:485px;
+	width: 100px;
+	height: 145px;
+	/* border: 2px solid orange; */
+} 
+
+.main .DownPANEL .Throttle{
+	position: absolute;
+	margin-left:490px ;
+	margin-top:45px;
+	width: 160px;
+	height: 585px;
+	/* border: 2px solid orange; */
+} 
+
+.main .DownPANEL .WarnHorn{
+	position: absolute;
+	margin-left:650px ;
+	margin-top:460px;
+	width: 60px;
+	height: 70px;
+	/* border: 2px solid orange; */
+} 
+
+
+.main .DownPANEL .Trimwheel2{
+	position: absolute;
+	margin-left:820px ;
+	margin-top:50px;
+	width: 90px;
+	height: 535px;
+	/* border: 2px solid orange; */
+} 
+
+.main .DownPANEL .FlapsSet{
+	position: absolute;
+	margin-left:720px ;
+	margin-top:170px;
+	width: 115px;
+	height: 330px;
+	/* border: 2px solid orange; */
+} 
+
+.main .DownPANEL .StableTrim1{
+	position: absolute;
+	margin-left:700px ;
+	margin-top:545px;
+	width: 110px;
+	height: 70px;
+	/* border: 2px solid orange; */
+} 
+
+.main .DownPANEL .StableTrim2{
+	position: absolute;
+	margin-left:1010px ;
+	margin-top:520px;
+	width: 160px;
+	height: 140px;
+	/* border: 2px solid orange; */
+} 
+
+.main .DownPANEL .FireOverheat{
+	position: absolute;
+	margin-left:308px ;
+	margin-top:625px;
+	width: 585px;
+	height: 150px;
+	/* border: 2px solid orange; */
+} 
+
+.main .DownPANEL .VHFfqSet1{
+	position: absolute;
+	margin-left:165px ;
+	margin-top:775px;
+	width: 285px;
+	height: 130px;
+	/* border: 2px solid orange; */
+} 
+
+.main .DownPANEL .Cargofire{
+	position: absolute;
+	margin-left:455px ;
+	margin-top:775px;
+	width: 285px;
+	height: 130px;
+	/* border: 2px solid orange; */
+} 
+
+.main .DownPANEL .VHFfqSet2{
+	position: absolute;
+	margin-left:750px ;
+	margin-top:775px;
+	width: 285px;
+	height: 130px;
+	/* border: 2px solid orange; */
+} 
+
+.main .DownPANEL .NavFrqSet1{
+	position: absolute;
+	margin-left:165px ;
+	margin-top:910px;
+	width: 285px;
+	height: 130px;
+	/* border: 2px solid orange; */
+} 
+
+.main .DownPANEL .VHFfqSet3{
+	position: absolute;
+	margin-left:455px ;
+	margin-top:910px;
+	width: 285px;
+	height: 130px;
+	/* border: 2px solid orange; */
+} 
+
+.main .DownPANEL .NavFrqSet2{
+	position: absolute;
+	margin-left:750px ;
+	margin-top:910px;
+	width: 285px;
+	height: 130px;
+	/* border: 2px solid orange; */
+} 
+
+.main .DownPANEL .VHF1{
+	position: absolute;
+	margin-left:165px ;
+	margin-top:1045px;
+	width: 285px;
+	height: 225px;
+	/* border: 2px solid orange; */
+} 
+
+.main .DownPANEL .Transport{
+	position: absolute;
+	margin-left:455px ;
+	margin-top:1045px;
+	width: 285px;
+	height: 105px;
+	/* border: 2px solid orange; */
+} 
+
+.main .DownPANEL .WxRadar{
+	position: absolute;
+	margin-left:455px ;
+	margin-top:1155px;
+	width: 285px;
+	height: 130px;
+	/* border: 2px solid orange; */
+} 
+
+
+.main .DownPANEL .VHF2{
+	position: absolute;
+	margin-left:750px ;
+	margin-top:1045px;
+	width: 285px;
+	height: 225px;
+	/* border: 2px solid orange; */
+} 
+
+.main .DownPANEL .SelCal{
+	position: absolute;
+	margin-left:165px ;
+	margin-top:1273px;
+	width: 285px;
+	height: 75px;
+	/* border: 2px solid orange; */
+} 
+
+.main .DownPANEL .ADF{
+	position: absolute;
+	margin-left:455px ;
+	margin-top:1290px;
+	width: 285px;
+	height: 130px;
+	/* border: 2px solid orange; */
+} 
+
+.main .DownPANEL .DataPrinter{
+	position: absolute;
+	margin-left:750px ;
+	margin-top:1270px;
+	width: 285px;
+	height: 325px;
+	/* border: 2px solid orange; */
+} 
+
+.main .DownPANEL .FloodPanellight{
+	position: absolute;
+	margin-left:165px ;
+	margin-top:1600px;
+	width: 285px;
+	height: 110px;
+	/* border: 2px solid orange; */
+} 
+
+.main .DownPANEL .floodTrims{
+	position: absolute;
+	margin-left:455px ;
+	margin-top:1520px;
+	width: 285px;
+	height: 190px;
+	/* border: 2px solid orange; */
+} 
+
+.main .DownPANEL .StabTrim{
+	position: absolute;
+	margin-left:750px ;
+	margin-top:1600px;
+	width: 95px;
+	height: 110px;
+	/* border: 2px solid orange; */
+} 
+
+.main .DownPANEL .FltDkDoor{
+	position: absolute;
+	margin-left:860px ;
+	margin-top:1600px;
+	width: 175px;
+	height: 110px;
+	/* border: 2px solid orange; */
+} 

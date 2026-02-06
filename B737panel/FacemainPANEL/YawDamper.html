@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>YawDamper</title>
+		<link rel="stylesheet" href="../css/in2ceng.css">		
+	</head>
+	<body>
+		
+		
+		<!-- 内外部链接模板 -->
+		<div class="wb"><p><span class="blue">外部相关链接:</span><br>
+		暂无
+		<a href="" class="wb"></a>
+		</p>		
+		</div>
+		
+		<div class="nb"><p><span class="green">内部相关链接:</span><br>
+		<a href="../FwdOverhead/FlyControl.html" class="nb">飞行操纵面板</a>
+		</p>	
+		</div>
+		
+		
+		<div class="up">			
+			<h3>控制与指示:</h3>
+			<a href="../index.html">返回面板</a>
+			<img src="img/YawDamper1.png" alt="">
+			<p>
+<strong>1 方向舵脚蹬</strong>
+<Br>&nbsp&nbsp&nbsp&nbsp按压--
+<Br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp• 控制方向舵位置
+<Br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp• 允许有限的前轮转弯，最大范围为左、右两侧各7度。
+<Br>
+<Br><strong>2 方向舵配平指示器</strong>
+<Br>&nbsp&nbsp&nbsp&nbsp指示方向舵配平单位。
+<Br>
+<Br><strong>3 安定面配平断开(OFF)故障旗</strong>
+<Br>&nbsp&nbsp&nbsp&nbsp亮(琥珀色)(故障旗可见) 
+<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp- 方向舵配平指示器不工作。
+<Br>
+<Br><strong>4 方向舵配平控制(由弹簧保持在中立位)</strong>
+<Br>&nbsp&nbsp&nbsp&nbsp转动 
+<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp- 向所需方向电动配平方向舵。
+<Br>
+<Br><strong>5 偏航阻尼(YAW DAMPER)指示器</strong>
+<Br>&nbsp&nbsp&nbsp&nbsp• 指示方向舵主偏航阻尼器的移动
+<Br>&nbsp&nbsp&nbsp&nbsp• <span class="blue">不指示飞行员在方向舵脚蹬的输入量。</span>
+				<Br>
+			</p>
+		</div>
+		
+		<HR>
+		<div class="mid">
+		<h3>系统说明:</h3>
+		<p>
+<strong>偏航操纵</strong>
+<br>偏航操纵由液压驱动的方向舵和数字式偏航阻尼器系统完成。
+<br>
+<br>通过方向舵脚蹬来操纵方向舵位移。
+<br>
+<br><span class="blue">偏航阻尼功能通过失速管理/偏航阻尼器(SMYD)计算机进行控制。</span>
+<br>
+<br><strong>方向舵(装有方向舵系统增强程序(RSEP))</strong>
+<br>方向舵提供关于沿飞机纵轴的偏航控制。
+<br>
+<br><span class="yl2">A和B飞行操纵(FLT CONTROL)电门控制方向舵和备用方向舵的液压关断活门。</span>
+<br>
+<br>每套方向舵脚蹬都由钢索机械连接到主和备用方向舵动力控制组件(PCU)的输入杆。
+<br>
+<br><span class="blue2">主PCU有两个独立的输入杆、两个独立的控制活门，以及两个分开的作动筒；</span>
+<br>
+<br>一个供A液压系统使用，一个供B液压系统使用。备用方向舵PCU由一个单独的输入杆和控制活门控制，并由备用液压系统提供动力。
+<br>
+<br><span class="green">三个输入杆全都有独立的卡阻超控机械装置，如果一个输入杆或下游硬件受干扰或卡阻，该机械装置可使输入指令继续传输给其它可用的输入杆。</span>
+<br>
+<br><span class="blue1">当速度大于135海里/小时时，主PCU中的A和B的液压系统压力各减少大约25%。</span>
+<br>
+<br>在起飞后和着陆前的飞行中，该项功能可限制方向舵全程效能。
+<br>
+<br><span class="red">主方向舵PCU包含一个反向作用力监控器（FFM），可探测A、B作动筒之间的反向的压力（反向作用力）。</span>
+<br>
+<br>如果A或B系统输入卡阻或断开，压差探测开始。
+<br>
+<br><span class="yl">FFM的输出使备用液压泵自动工作，备用方向舵关断活门打开为备用方向舵PCU增压，并使备用方向舵接通(STBY RUD ON)指示灯、主警戒指示灯和飞行操纵(FLT CONT)指示灯亮。</span>
+<br>
+<br><span class="blue">备用方向舵PCU由备用液压系统驱动。</span>
+<br>
+<br>备用液压系统在A和/或B系统压力失效后提供备用压力。
+<br>
+<br>在由备用PCU提供动力时，飞行员仍能保持足够的方向舵操纵能力。可通过飞行操纵(FLT CONTROL)电门人工操纵方向舵，或采用自动方式进行操纵。
+<br>
+<br><span class="green">当备用方向舵液压系统增压时，琥珀色的备用方向舵接通(STBY RUD ON)指示灯亮。</span>
+<br>
+<br>起飞或着陆过程中，备用方向舵系统可通过飞行操纵电门自动增压，或通过压差监视器自动增压。
+<br>
+<br>备用方向舵接通(STBY RUD ON)指示灯亮会使得信号牌面板上的主警戒指示灯和行操纵警告灯亮。
+<br><br>
+	</p>	
+	<img src="../FwdOverhead/img/flycontrol5.png" alt="">
+	<p>
+<strong>方向舵配平</strong>
+<br>位于后电子面板上的方向舵(RUDDER)配平控制电门可电动调整方向舵感觉和回中组件，使方向舵调节到中立位置。
+<br>
+<br>方向舵脚蹬也相应的移动。方向舵配平(RUDDER TRIM)指示器以配平单位显示方向舵配平位置。 
+<br>
+<br><strong>偏航阻尼器</strong>
+<br><span class="blue">偏航阻尼器系统包含一个主偏航阻尼器和一个备用偏航阻尼器两个偏航阻尼器均由失速管理/偏航阻尼器(SMYD)计算机控制。</span>
+<br>
+<br>SMYD计算机接收来自两台大气数据计算机(ADIRU)、两个驾驶盘和偏航阻尼器(YAW DAMPER)电门的输入信号。
+<br>
+<br>SMYD适时地将偏航阻尼器的信号提供给主方向舵动力控制组件(PCU)或备用方向舵动力控制组件PCU。
+<br>
+<br><span class="red1">任何一个偏航阻尼器都能够提供荷兰滚预防、阵风阻尼和转弯协调能力。</span>
+<br>
+<br><span class="green">偏航阻尼器的操作不会引起方向舵脚蹬的移动。</span>
+<br>
+<br>只有主偏航阻尼器输入显示在偏航阻尼指示器上。
+<br>
+<br>主和备用偏航阻尼器至方向舵的输入显示在飞行操纵舵面位置指示器的方向舵(RUDDER)显示上。
+<br>
+<br>飞行员可用方向舵脚蹬或配平输入超控主或备用偏航阻尼器的输入。(根据选型稍有不同)		
+<br>
+<br><span class="blue">正常操作期间，主偏航阻尼器使用B液压系统，并由失速管理/偏航阻尼器(SMYD)计算机提供连续的系统监控。</span>
+<br>
+<br>发生下述任意状况时，偏航阻尼器(YAW DAMPER)电门自动移至OFF位，琥珀色偏航阻尼器(YAW DAMPER)指示灯亮，并且偏航阻尼器(YAW DAMPER)电门无法重置到ON位：
+<br><span class="yl">&nbsp&nbsp&nbsp&nbsp• SMYD感应到偏航阻尼器系统故障，
+<br>&nbsp&nbsp&nbsp&nbsp• SMYD感应到偏航阻尼器没有回应指令，
+<br>&nbsp&nbsp&nbsp&nbsp• B系统飞行控制(FLT CONTROL)电门置于关(OFF)位或备用方向舵(STBY RUD)位。</span>
+<br>
+<br><span class="green">人工恢复飞行期间(液压系统A和B都失效)，两个飞行控制(FLT CONTROL)电门都置于STBY RUD位。</span>
+<br>
+<br><span class="green1">在此情况下，偏航阻尼器(YAW DAMPER)电门可重置到ON位</span>，且备用液压系统为备用偏航阻尼器提供动力。
+<br>
+<br>在备用偏航阻尼器工作时，驾驶盘的移动将信号传送至备用方向舵PCU使方向舵运动。
+<br>
+<br>在通过人工恢复来控制副翼时，给方向舵助力使飞机偏转。
+<br>
+		</p>
+		</div>
+		
+		<hr>
+		<div class="low">
+			<h3>扩展阅读:</h3>
+			以后再补充..
+		</div>
+			
+		<hr>
+		<a href="../index.html">返回面板</a>
+		
+	</body>
+</html>

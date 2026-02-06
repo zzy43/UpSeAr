@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>LnavControl1</title>
+		<link rel="stylesheet" href="../css/in2ceng.css">		
+	</head>
+	<body>
+		
+		
+		<!-- 内外部链接模板 -->
+		<div class="wb"><p><span class="blue">外部相关链接:</span><br>
+		暂无
+		<a href="" class="wb"></a>
+		</p>		
+		</div>
+		
+		<div class="nb"><p><span class="green">内部相关链接:</span><br>
+		<a href="../MainPanel/APControl.html" class="nb">自动驾驶</a>
+		<a href="../FacemainPANEL/PFD1.html" class="nb">PFD</a>
+		</p>	
+		</div>
+		
+		
+		<div class="up">			
+			<h3>控制与指示:</h3>
+			<a href="../index.html">返回面板</a>
+			<img src="img/LnavControl1.png" alt="">
+			<p>
+ <strong>1 航道（COURSE）显示窗</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 显示航道选择钮设定的航道。
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="blue1">Note: 注：两台VHF NAV接收机航道和频率的差异会引起机长和副驾驶的F/D显示不同，并影响A/P的工作。</span>
+<br>
+<br><strong>飞行指引(FD)</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 左侧F/D电门启动机长姿态指示器上的指令杆。右侧F/D电门启动副驾驶姿态指示器上的指令杆。
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp ON(开)– 
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <span class="green">• 在空中，A/P在ON位，而F/D均在OFF位，将F/D电门置ON位，则在当前选择的A/P方式下接通F/D
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 如果A/P在OFF位或接通CWS方式，在A/P状态显示窗内显示F/D
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 在相应的飞行员姿态指示器上显示指令杆(按选型)
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 在指令俯仰和或横滚方式接通时显示指令杆(按选型)
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 在地面，当按下TO/GA电门时，预位俯仰和横滚方式以备接通TO/GA和机翼水平(按选型)
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 在地面，当按下TO/GA电门时，预位俯仰和横滚方式以备接通TO/GA和HDG SEL。(按选型)</span>
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp OFF（关）– 相应的飞行员姿态指示器上指令杆消失。
+<br>
+<br><strong>2 航向选择器</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 转动–
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <span class="green">• 调定航向（HEADING）显示窗内的航向
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 在DU上设置所选择的航向游标。</span>
+<br>
+<br><strong>3 航向（HEADING）显示窗</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 显示选择的航向。
+<br>
+<br><strong>4 LNAV电门</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 按压 –
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <span class="green">• 指令AFDS横滚切入并跟踪生效的FMC航路
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 显示LNAV方式为横滚方式，LNAV方式电门指示灯亮。</span>
+<br>
+<br><strong>LNAV方式</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 在LNAV方式中，FMC控制AFDS横滚切入并跟踪有效的FMC航路。可通过FMC CDU输入和更改有效航路，包括SID、STAR及仪表近进。
+ <br><br>
+ <div class="bk">
+ 	<p>
+	<strong>在地面预位LNAV的标准：</strong>
+	<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 飞行计划中含有起飞跑道
+	<br>&nbsp&nbsp&nbsp&nbsp • 在FMC里输入的航路已生效。
+	<br>&nbsp&nbsp&nbsp&nbsp • 第一个航段轨迹在跑道航向５度以内
+	<br>&nbsp&nbsp&nbsp&nbsp • 接通TO/GA前选择了LNAV。 
+	<br>&nbsp&nbsp&nbsp&nbsp • 在50英尺AGL以上LNAV引导生效</span>	
+		</p>
+ </div><p>
+
+<br><strong>(按选型不同)</strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="yl">• 50英尺到200英尺AGL内坡度限制在８度； 200英尺到400英尺AGL之间，坡度限制在15度。
+<br>&nbsp&nbsp&nbsp&nbsp • 200英尺AGL以下坡度限制在8度；200英尺AGL以上坡度限制在30度。			
+<br>&nbsp&nbsp&nbsp&nbsp • 200英尺AGL以下坡度限制在15度；200英尺AGL以上坡度限制在30度。</span>
+<br>
+<br><span class="blue2">Note: 当LNAV FMA预位时，显示为白色，当它接通时，显示为绿色。如果在地面上选择LNAV，它将会和预位时一样显示为白色。 如果所需的FMC数据（如，有效的无线电高度）不可用，那么LNAV FMA将显示为闪烁的白色。</span>
+<br><br>
+<div class="bk">
+	<p>
+<strong>飞行中接通LNAV的标准：</strong> 
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 在FMC里输入的航路已生效。
+<br>&nbsp&nbsp&nbsp&nbsp • 在生效航路３海里的范围内，可在任何航向接通LNAV；
+<br>&nbsp&nbsp&nbsp&nbsp • 超出了３海里范围，必须：
+<br>&nbsp&nbsp&nbsp&nbsp • 在90°或小于90°切入航道上。
+<br>&nbsp&nbsp&nbsp&nbsp • 在到达生效航路点前切入航段。</span>
+<br>
+<br><strong>由于下述原因，LNAV自动断开：</strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 到达现飞航路的末端
+<br>&nbsp&nbsp&nbsp&nbsp • 到达航路不连接处
+<br>&nbsp&nbsp&nbsp&nbsp • 在VOR LOC或APP方式下，切入选择的进近航道（VOR/LOC已预位）
+<br>&nbsp&nbsp&nbsp&nbsp • 选择HDG SEL
+<br>&nbsp&nbsp&nbsp&nbsp • 失去截获标准。</span>
+</p>
+</div><p>
+
+<br><strong>5 VOR LOC电门</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 按压 –
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <span class="green">• 指令AFDS横滚，截获并跟踪选择的VOR或LOC航道
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 显示VOR/LOC预位或接通作为横滚方式，VOR LOC方式电门指示灯亮。</span>
+<br>
+<br><strong>VOR LOC方式</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 若VOR频率已调谐好，按压VOR LOC方式电门，选择VOR方式；如着陆航向道频率已调谐好，则选择LOC方式。 
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp VOR方式提供横滚指令以跟踪选择的VOR航道。 
+<br>&nbsp&nbsp&nbsp&nbsp LOC方式提供横滚指令沿着向台前航道方位，跟踪选择的航向道。
+<br>
+<br><strong>下述方式接通时，可切入选择的航道</strong>：
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• LNAV
+<br>&nbsp&nbsp&nbsp&nbsp • HDG SEL
+<br>&nbsp&nbsp&nbsp&nbsp • CWS R，如果自动驾驶接通CMD方式。</span>
+<br>
+<br><span class="blue">截获点是可变的，视切入角和航道接近率而定。在1/2点偏离之前航向道截获。</span>
+<br>当VOR/LOC的信号牌从预位变成接通，指示航道截获。
+<br>
+<br><strong>接通VOR或LOC方式时：</strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 自动驾驶A和机长F/D使用的信息来自机长航道选择器和1号VHF NAV接收机
+<br>&nbsp&nbsp&nbsp&nbsp • 自动驾驶B和副驾驶F/D使用的信息来自副驾驶航道选择器和2号VHF NAV接收机</span>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="red">• 两台VHF NAV接收机航道和频率的不同会引起机长和副驾驶的F/D显示不同，并影响A/P的工作。</span>
+<br>
+<br><span class="blue1">Note: 选定航向道频率时，当VOR/LOC已显示（预位或接通），甚高频导航无线电自动地从尾部天线转换到机头的天线。
+<br>
+<br>如没有出现天线转换，则LOC方式被抑制。</span>
+<br>
+<br><span class="yl1">Note: 航向道反航道跟踪不可用。</span>
+<br>
+<br><strong>6 航道选择器</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 为相应的VHF NAV接收机、AFDS和DU在航道（COURSE）显示窗调定航道。两个航道选择钮和航道（COURSE）显示窗在MCP上。
+<br>
+<br><strong>转动机长航道选择器– 将所选择的航道信息提供给：</strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="yl">• A FCC
+<br>&nbsp&nbsp&nbsp&nbsp • １号VHF NAV接收机
+<br>&nbsp&nbsp&nbsp&nbsp • 机长的航道指针和航道偏离杆。</span>
+<br>
+<br><span class="blue1">Note: 在VOR LOC或APP方式中，A自动驾驶和机长的F/D使用选择的航道，导航数据由１号VHF NAV接收机提供。</span>
+<br>
+<br><strong>转动副驾驶航道选择钮– 将所选择的航道信息提供给：</strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="yl">• B FCC
+<br>&nbsp&nbsp&nbsp&nbsp • 2号VHF NAV接收机
+<br>&nbsp&nbsp&nbsp&nbsp • 副驾驶的航道指针及航道偏离杆。</span>
+<br>
+<br><span class="blue1">Note: 在VOR LOC或APP方式中，B自动驾驶和副驾驶的F/D使用选择的航道，导航数据由２号VHF NAV接收机提供。</span>
+<br>
+<br><strong>7 坡度选择钮</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 转动– 
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <span class="green">• 为AFDS在HDG SEL或VOR方式工作时调定最大坡度
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 指令坡度可选择10°, 15°, 20°, 25°或 30°。</span>
+<br>
+<br><strong>8 航向选择（HDG SEL）电门</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 按压 –
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <span class="green">• 接通HDG SEL指令方式
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 指令横滚跟随选择的航向
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 显示HDG SEL作为飞行方式信号牌（FMA）横滚方式。 HDG SEL电门灯亮。</span>
+<br>
+<br><strong>航向选择指令方式</strong>
+<br>&nbsp&nbsp&nbsp&nbsp HDG SEL方式指令横滚转到并保持MCP航向显示窗内调定的航向： 
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <span class="green">• 初始选择时，指令按最近方向转向选定的航向游标
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 方式接通后，给出与航向选择钮转动方向相同的横滚指令
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 通过坡度选择器建立坡度限制
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • VOR LOC或APP方式下（VOR/LOC已预位），截获选择的无线电航道时，HDG SEL方式自动解除。</span>
+<br>
+<br><strong>9 进近（APP）电门</strong>
+<br>&nbsp&nbsp&nbsp&nbsp 按压—
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <span class="green">• APP方式电门指示灯亮
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 预位AFDS以截获下滑道和航道
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 横滚方式显示VOR/LOC预位
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 俯仰方式显示G/S预位
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 两个自动驾驶均可接通。</span>
+<br>
+<br><strong>APP方式</strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="red">• 进近方式预位AFDS，以截获并跟踪航向道和下滑道，并能接通两部或一部自动驾驶。
+<br>&nbsp&nbsp&nbsp&nbsp • 在进近方式接通前，一台VHF NAV接收机必须调谐至ILS频率。调谐好VHF NAV接收机一侧的AFDS就能进行引导和操作。
+<br>&nbsp&nbsp&nbsp&nbsp • 为使两部自动驾驶工作，两台VHF NAV接收机都必须调谐至ILS频率，并且必须在到达800英尺无线电高度以前，将两部自动驾驶放到CMD位置。</span>
+<br>
+<br><strong>APP方式操作：</strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 在截获下滑道之前必须截获航向道
+<br>&nbsp&nbsp&nbsp&nbsp • 在HDG SEL、LNAV或CWS R方式下，可切入航向道
+<br>&nbsp&nbsp&nbsp&nbsp • 航向道截获后，A/P状态显示窗显示单通道（SINGLE CH）
+<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp • 一部自动驾驶进近时，在整个进近过程中都显示单通道（SINGLE CH）
+<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp • 两部自动驾驶进近，当第二部自动驾驶接通并且显示拉平（FLARE）预位时，单通道（SINGLE CH）信号显示熄灭。
+<br>&nbsp&nbsp&nbsp&nbsp • 在低于下滑道2/5点时，截获下滑道
+<br>&nbsp&nbsp&nbsp&nbsp • 在航向道和下滑道截获后，APP方式电门指示灯熄灭。</span>
+<br>
+<br><strong>在航向道和下滑道截获后，APP方式可通过下述方式断开：</strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 按压TO/GA电门
+<br>&nbsp&nbsp&nbsp&nbsp • 断开自动驾驶，并断开两个F/D电门
+<br>&nbsp&nbsp&nbsp&nbsp • 重新调谐VHF NAV接收机。</span>
+<br>
+<br><span class="blue1">Note: (按选型)在单通道自动驾驶进近中，航向道或下滑道截获后，当飞行员人工实施超控俯仰和/或横滚操纵力，将会转换到CWS方式。 <br><br>进近方式将重置（接通和预位方式空白）。</span>
+<br>
+<br><strong>APP方式接通时：</strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 自动驾驶A和机长F/D使用的信息来自动机长航道选择器和１号VHF NAV接收机
+<br>&nbsp&nbsp&nbsp&nbsp • 自动驾驶B和副驾驶F/D使用的信息来自副驾驶航道选择器和２号VHF NAV接收机
+<br>&nbsp&nbsp&nbsp&nbsp • 航道的差异和/或两台VHF NAV接收机频率的差异使机长和副驾驶的F/D显示不同，并影响A/P的工作。</span>
+<br>
+<br><span class="blue1">Note: (按选型)在单通道自动驾驶进近中，航向道或下滑道截获后，CWS不能够通过人工超控俯仰和/或横滚操纵力来接通。人工超控俯仰和/或横滚将引起自动驾驶断开。<br><br>在自动驾驶断开时，生效的自动驾驶方式将保持接通。</span>
+<br>
+<br><span class="red2">Note: 在两部自动驾驶的进近中，并且在FLARE ARM（拉平预位）显示后，任何准备对自动驾驶的手动超控，将导致自动驾驶脱开。</span>
+<br><br>
+
+
+			</p>
+			
+		</div>
+		
+		<HR>
+		<div class="mid">
+		<h3>系统说明:</h3>
+		<p>
+<strong>AFS故障</strong>
+<br><span class="blue">电源中断或失去电源可造成AFDS和/或A/T断开。恢复电源后可重新接通。</span>
+<br>只有当两台发电机都向汇流条供电时，才可使双通道A/P工作。<br>
+<br><span class="yl2">两部独立的无线电高度表向相应的FCCs提供无线电高度。<br><br>如果有一台无线电高度表不工作，在截获航向道（LOC）和下滑道（GS）2秒钟后，相应的自动驾驶断开。	</span>		
+			</p><br>
+<div class="bk">
+	<p>
+<strong>飞行指引仪显示</strong>
+<br>将一个F/D（飞行指引仪）电门设为ON，如果接通指令俯仰和横滚方式，相应的飞行员姿态指示器上显示指令杆。
+<br>
+<br>如果未接通指令俯仰和横滚方式，则不会出现F/D指令杆。
+<br>
+<br>A/P和A/T工作或不工作的情况下，都可以使用F/D。自动驾驶在CWS方式下接通，也可以使用F/D指令方式。
+<br>
+<br><span class="red">除了下述情况外，F/D的指令工作与A/P的指令方式工作相同</span>：
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 起飞方式仅有F/D方式
+<br>&nbsp&nbsp&nbsp&nbsp • 单发工作时，有双F/D引导
+<br>&nbsp&nbsp&nbsp&nbsp • F/D无着陆拉平能力。ILS进近时，大约在50英尺无线电高度，F/D指令杆消失。</span>
+<br>
+<br>正常情况下，FCC A操纵机长的指令杆，FCC B操纵副驾驶的指令杆。
+<br>
+<br>两部F/D电门都打开（ON）的情况下，两个飞行员F/D方式逻辑电路受主控FCC控制，两个FMA显示相同的方式状态。			
+<br>
+<br><span class="red">相应的主（MA）F/D指示灯亮，指示主FCC。</span>主FCC由下列条件来确定：
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 任何一个A/P都未接通在CMD时，先接通F/D的FCC为主FCC
+<br>&nbsp&nbsp&nbsp&nbsp • 一部或两部A/P接通CMD时，先接通CMD的FCC为主FCC,与先接通哪部F/D无关。</span>
+<br>
+<br>在一定条件下，相应的FCC直接控制F/D方式。
+<br>
+<br>当任何一部A/P都未接通CMD，且两部F/D电门都放在ON，以及在下述任一条件存在时，<span class="red">开始独立的F/D工作方式：</span>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• APP方式接通，且LOC和G/S截获
+<br>&nbsp&nbsp&nbsp&nbsp • 接通复飞（GA）方式，且低于400英尺无线电高度
+<br>&nbsp&nbsp&nbsp&nbsp • 接通起飞（TO）方式，且低于400英尺无线电高度。</span>
+<br>
+<br>(按选型)在非进近方式，如果在横滚方式下，飞行员人工飞行但不按照飞行指引仪的引导，然后选择了自动驾驶CDM接通，自动驾驶将接通到当前飞行指引仪角色的方式。 (不明白?)
+<br>
+<br>两个MA灯亮表示F/D独立工作。<span class="blue">当独立工作结束时，辅助一侧的MA灯熄灭。</span>
+<br>
+<br><span class="red">F/D在起飞或复飞过程中，或800英尺以下飞机处于双F/D APP方式，如果一台发电机失效，那么未受影响一侧的FCC操纵两个姿态指示器的F/D指令杆。</span>
+<br>
+<br>如果受影响一侧的F/D MA灯已亮，则该灯会在汇流条转换时熄灭
+<br>
+<br>
+<br>
+<br><strong>自动飞行起飞和爬升</strong>
+<br><span class="blue">起飞是飞行指引仪在TO/GA状态的唯一方式。</span>
+<br>
+<br>（在此方式下）飞行指引仪的俯仰和横滚指令被显示，并且自动油门保持FMC选择的起飞N1推力限制。起飞后，可接通自动驾驶。
+<br>
+<br>开始起飞前，必须将两部F/D打开（ON）接通起飞方式。按压任一推力手柄上的TO/GA电门，即可接通F/D起飞方式。
+<br>FMC的显示：<span class="yl">A/P状态显示为FD；俯仰方式显示为TO/GA；横滚方式显示为HDG SEL。</span>
+<br>
+<br>在起飞过程中，按压TO/GA电门自动油门即接通N1方式。自动油门信号显示从ARM转变成N1,且将推力手柄前推至起飞推力。
+<br>
+<br>在起飞方式下，即使关闭F/D电门，也可以接通F/D。
+<br>
+<br>
+<span class="red1">80海里/小时后，在2000英尺离地高度以下，且在离地后150秒内，按压TO/GA电门，两个飞行员F/D指令杆自动出现。</span>
+			<br>
+<br><strong>起飞过程中，60海里/小时前</strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 俯仰指令机头下俯10°
+<br>&nbsp&nbsp&nbsp&nbsp • 横滚指令机翼水平。
+<br>&nbsp&nbsp&nbsp&nbsp • 自动油门接通N1方式
+<br>&nbsp&nbsp&nbsp&nbsp • 前推推力手柄，直到发动机达到起飞推力
+<br>&nbsp&nbsp&nbsp&nbsp • 在FMA上自动油门方式显示为N1；俯仰方式显示TO/GA；横滚方式空白。(按选型HDG SEL)</span>
+			<br>
+<br><span class="yl">60KIAS，F/D俯仰指令机头上仰15°。
+<br>84KIAS，A/T方式显示推力保持（THR HLD）。</span>
+<br>
+<br><strong>离地时：</strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 俯仰指令持续15°仰角，直至获得足够的爬升率。然后，俯仰指令MCP速度（通常是V2）+20海里。
+<br>&nbsp&nbsp&nbsp&nbsp • 如果在地面上发生一台发动机失效,离地时的俯仰指令的目标速度是V2或离地速度中较大的一个。			
+<br>&nbsp&nbsp&nbsp&nbsp • 横滚指令保持机翼水平。
+<br>&nbsp&nbsp&nbsp&nbsp • (按选型)横滚方式保持HDG SEL。400英尺AGL以下坡度限制在8度；400英尺AGL以上坡度限制在10-30度。	</span>		
+<br>
+<br><strong>离地后：</strong>
+<br>&nbsp&nbsp&nbsp&nbsp<span class="green"> • 如果发生一台发动机失效，俯仰指令目标速度为：</span>	
+<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  		<span class="yl">• V2，如果空速低于V2
+<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  		• 当前速度，如果空速介于V2和V2+20之间
+<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  		• V2+20，如果空速高于V2+20。</span>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 在到达机场标高800英尺之前，A/T仍保持THR HLD。然后A/T信号牌显示从THR HLD转变成ARM，按下N1电门，即可减小为爬升推力。</span>	
+<br>
+<br><span class="blue1">Note: 减推力起飞时，机场标高800英尺以下再次按压TO/GA电门可将推力限制方式改为GA，N1参考游标增大到全GA推力，推力手柄不会移动。
+<br>
+<br>高于机场标高800英尺再次按压TO/GA电门，推力手柄前移到全GA推力。</span>
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• (按选型)在VNAV、ALT ACQ或ALT HOLD方式接通时，推力自动降低至爬升推力。在离地后2.5分钟内，LVL CHG或V/S方式接通时，自动减推力被抑制。
+<br>&nbsp&nbsp&nbsp&nbsp • (按选型)当到达选定的减推力高度（飞行前准备时此高度显示在FMC CDU起飞参考页第2/2页上）时或当飞机在ALT HOLD或VNAV PTH方式改平时，飞机自动减至爬升推力。飞行员可人工输入覆盖默认值。输入范围是800 英尺至9999英尺。
+<br>&nbsp&nbsp&nbsp&nbsp • 当自动驾驶接通CMD方式时，飞行指引仪的接通状态终止（A/P状态显示窗内CMD替代FD）。</span>	
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 		<span class="yl">• 俯仰接通LVL CHG，俯仰方式FMA显示MCP SPD方式，除非选择另一俯仰方式。
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 		• MCP IAS/MACH显示窗和空速游标转变成V2+20海里/小时。
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 		• 除非选择另一横滚方式，否则，横滚方式接通HDG SEL方式。</span>	
+		<br>
+<br><span class="red">低于无线电高度400英尺时，要终止起飞方式，必须关闭（OFF）两部F/D电门。</span>
+<br>
+<br>无线电高度400英尺以上，选择其它的F/D俯仰方式，或接通自动驾驶将会终止起飞方式；也可选择其他F/D横滚方式。
+<br>
+<br></p>
+<img src="img/LnavControl2.png" alt=""><br><br>
+</div>	<p>	
+		
+<br><strong>自动飞行进近和着陆</strong>
+<br>AFDS为单部自动驾驶仪非精密进近提供指引。
+<br>
+<br>VOR/LOC电门预位AFDS，进行VOR或航向道跟踪。
+<br>
+<br>可使用VNAV,LVL CHG 或V/S 进行下降。
+<br>
+<br>横滚方式可使用VOR/LOC,LNAV 或HDG SEL。
+<br>
+<br><span class="red">AFDS也为单或双自动驾驶精密进近提供指引。</span>
+<br>
+<br>进近方式预位AFDS，以便截获和跟踪航向道和下滑道。
+<br>
+<br>
+<br>
+<br><strong>双自动驾驶（A/Ps）进近（APP）方式</strong>
+<br>进近方式允许同时接通两部A/Ps。
+<br>
+<br>双A/P在着陆拉平和接地或自动复飞过程中提供故障性能下降操纵。
+<br>
+<br><span class="blue">故障性能下降操纵期间，飞行操纵以较小的操纵移动量来响应A/P指令。
+<br>
+<br>如果一部A/P通道发生故障，则另一通道会抵制已故障通道，以便飞机以最小的机动量及提供给飞行员目视及语音警告条件下来断开两部A/Ps。</span>
+<br>
+<br>选择进近方式前，一部甚高频导航（VHF NAV）接收机必须调为ILS频率。
+<br>
+<br><span class="blue2">双A/P进近时高于800英尺RA前，第二部甚高频导航接收机必须调为ILS频率，相应的A/P接通CMD方式。</span>
+<br>
+<br><span class="yl">如果飞行员在人工飞行，但没有按照飞行指引仪的引导进近，然后选择一个自动驾驶CMD接通，自动驾驶恢复到CWS俯仰和横滚方式。之后进近方式将重新预位。</span>
+<br>
+<br>
+<br>
+<br><strong>航向道和下滑道预位</strong>
+<br>调好航向道频率和航道后，按压APP电门选择进近方式。
+<br>
+<br>APP电门亮，VOR/LOC和G/S信号预位。
+<br>
+<br>APP方式使得第二部自动驾驶可接通CMD方式。
+<br>
+<br>此时第二部A/P预位，在截获LOC和G/S后，当下降到无线电高度1500英尺以下时自动接通。
+<br>
+<br>在HDG SEL、CWS R或LNAV方式下，可以切入航向道。
+			<br>
+<br>在截获航向道之前不能截获下滑道。(选型)
+			<br>
+<br>
+<br>
+<br><strong>航向道截获</strong>
+<br><span class="red">航向道（LOC）截获点是不定的，取决于切入角和接近率。但截获发生在1/2个点之前。</span>
+<br>
+<br>在LOC截获时，VOR/LOC信号牌显示截获。
+<br>
+<br> A/P状态显示为单通道（SINGLE CH）[按选型]，先前的横滚方式断开，飞机转向跟踪LOC。			
+			<br>
+<br>
+<br>
+<br><strong>下滑道截获</strong>
+<br>在截获航向道之前不能截获下滑道。(选型) 
+<br><span class="blue1">可以从下滑道（G/S）上方或下方截获下滑道。在2/5个点截获，并引起下列结果：</span>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• G/S信号牌显示截获
+<br>&nbsp&nbsp&nbsp&nbsp • 原来的俯仰方式断开
+<br>&nbsp&nbsp&nbsp&nbsp • 如果航向道也截获，则APP灯熄灭
+<br>&nbsp&nbsp&nbsp&nbsp • 飞机俯仰跟踪G/S
+<br>&nbsp&nbsp&nbsp&nbsp • 推力方式显示窗内显示复飞（GA）（N1推力限制）。</span>
+<br>
+<br><span class="red">VOR/LOC和G/S都被截获后，通过下列方式，可退出APP方式:</span>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="yl">• 按压TO/GA电门
+<br>&nbsp&nbsp&nbsp&nbsp • 断开A/P并关闭两部F/D电门
+<br>&nbsp&nbsp&nbsp&nbsp • 再调谐VHF NAV接收机。		</span>	
+<br>
+<br>
+<br>
+<br><strong>LOC和G/S截获后</strong>
+<br>截获LOC或G/S不久，并在1500英尺RA以下；
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 第二部A/P与飞行操纵耦合
+<br>&nbsp&nbsp&nbsp&nbsp • ILS偏离监视系统实施了测试， G/S和LOC显示变为琥珀色且闪烁
+<br>&nbsp&nbsp&nbsp&nbsp • 信号牌显示拉平（FLARE）预位
+<br>&nbsp&nbsp&nbsp&nbsp • 单通道（SINGLE CH）信号熄灭(选型)
+<br>&nbsp&nbsp&nbsp&nbsp • A/P复飞方式预位，但无信号显示。(选型)</span>
+<br>
+<br><span class="blue1">Note: 在两部自动驾驶的进近中，并且在FLARE ARM（拉平预位）显示后，任何准备对自动驾驶的手动超控，将导致自动驾驶脱开。</span>
+<br>
+<br><span class="red">自动驾驶断开，F/D指令杆消失，表明ILS信号无效。</span>
+<br>
+<br>
+<br>
+<br><strong>800英尺无线电高度</strong>
+<br><span class="yl">800英尺RA时，第二部A/P必须接通CMD方式，以进行双通道A/P进近。否则，第二部A/P的CMD接通受到抑制。</span>
+<br>
+<br>
+<br>
+<br><strong>400英尺无线电高度</strong>
+<br><span class="blue">安定面自动地配平，额外增大一点机头上仰。</span>如果随后断开A/P，则可能需要前推驾驶杆，以保持所需的俯仰姿态。
+<br>
+<br><span class="yl">如果拉平（FLARE）方式在约350英尺RA时未预位，则两部A/P自动断开。</span>
+<br>
+<br>
+<br>
+<br><strong>拉平</strong>
+<br><span class="red">A/P拉平机动大约在50英尺RA时开始，接地时结束：</span>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 信号牌显示FLARE接通，F/D指令杆消失
+<br>&nbsp&nbsp&nbsp&nbsp • 约27英尺RA时， A/T开始收油门，以便在接地时达到慢车。A/T飞行方式信号牌显示收回（RETARD）。
+<br>&nbsp&nbsp&nbsp&nbsp • 接地后约2秒钟，A/T自动断开
+<br>&nbsp&nbsp&nbsp&nbsp • 接地后A/P必须人工断开。断开A/P以后，应人工进行着陆滑跑。		</span>	
+			<br>
+<br>
+<br>
+<br><strong>单自动驾驶进近（APP）方式</strong>
+<br>按压APP方式选择电门，仅接通一部A/P在CMD方式就可进行单自动驾驶ILS进近。
+<br>
+<br>除下列情况外，单A/P进近操纵与双A/P进近操作情况相同：
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 无完全自动拉平和接地能力。不显示FLARE信号及不提供安定面配平
+<br>&nbsp&nbsp&nbsp&nbsp • (选型)如果飞行员在人工飞行，但没有按照飞行指引仪的引导进近，然后选择一个自动驾驶CMD接通，自动驾驶恢复到CWS俯仰和横滚方式。之后进近方式将重新预位。
+<br>&nbsp&nbsp&nbsp&nbsp • (选型)航向道截获后，整个进近阶段自动驾驶状态一直显示单通道（SINGLE CH）
+<br>&nbsp&nbsp&nbsp&nbsp • (选型)自动驾驶复飞不可用。
+<br>&nbsp&nbsp&nbsp&nbsp • (选型)航向道或下滑道截获后，CWS 不能够通过人工超控俯仰和/或横滚操纵力来接通。人工超控俯仰和/或横滚将引起自动驾驶脱开。在自动驾驶断开时，生效的方式将保持接通。
+<br>&nbsp&nbsp&nbsp&nbsp • (选型)航向道或下滑道截获后，当飞行员人工实施超控俯仰和/或横滚操纵力。进近方式将重置（接通和预位方式空白）。</span>
+<br>
+<br>
+<br>
+<br><strong>ILS波束异常/地面导航台探测失效</strong>
+<br>对于单通道或仅F/D进近，如果航向道/下滑道信号持续异常或地面导航台探测失效，会脱开自动驾驶，并且有可能F/D指令杆消失。
+<br>
+<br>
+<br>
+<br><strong>进近（APP）方式集成式进近导航</strong>
+<br>集成进近导航 (IAN) 方式的预位/接通是通过选择AFDS方式控制面板(MCP)上的 APP 按钮.
+<br>
+<br>一旦预位，自动驾驶/飞行指引仪截获和跟踪航向道/最终进近航道和下滑道/下滑航路。
+<br>
+<br>
+<br>
+<br><strong>以下FMA的横滚和俯仰方式控制信号牌将显示。</strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 对于ILS进近,显示的横滚和俯仰方式将是 VOR/LOC和G/S 。
+<br>&nbsp&nbsp&nbsp&nbsp • 对于FMC IAN 进近,显示的横滚和俯仰方式将是FAC和G/P。
+<br>&nbsp&nbsp&nbsp&nbsp • 对于ILS进近中,G/S选择了off或单个航向道的进近，显示的横滚和俯仰方式将是VOR/LOC和G/P。
+<br>&nbsp&nbsp&nbsp&nbsp • 对于背航向道进近，显示的横滚和俯仰方式将是B/CRS和G/P。</span>
+<br>
+<br>FAC和G/P的预位和接通状态遵循所建立的常规。以下情况下，飞行控制系统重置FAC和G/P方式（显示为方式空白）：
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 偏差信号丢失
+<br>&nbsp&nbsp&nbsp&nbsp • 有效性丢失
+<br>&nbsp&nbsp&nbsp&nbsp • FAC或G/P故障偏差</span>
+<br>当这些方式被重置时，FCC将消除(偏置不可见)F/D杆，并断开A/P。这些类似于VOR/LOC和G/S重置方式。
+<br><br>
+<div class="bk">
+	<p>
+<strong>飞行指引仪（F/D）复飞</strong>
+<br><span class="red">如果两部A/P均未接通，在下述条件下，可进行仅用F/D的人工复飞：</span>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 在空中，2000 英尺RA 以下
+<br>&nbsp&nbsp&nbsp&nbsp • 在空中，2000英尺RA以上，襟翼未收上或G/S截获(选型)
+<br>&nbsp&nbsp&nbsp&nbsp • 未在起飞方式。
+<br>&nbsp&nbsp&nbsp&nbsp • 接地后如果TOGA电门工作 (机轮加速转动)</span>
+<br>
+<br><span class="red">首次按压任一TO/GA电门：</span>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• A/T（如已预位）接通GA方式，并前推推力手柄至减推力复飞N1，以产生1000-2000英尺/分钟的爬升率。FMA上A/T接通方式显示为GA
+<br>&nbsp&nbsp&nbsp&nbsp • 自动驾驶（如已接通）断开
+<br>&nbsp&nbsp&nbsp&nbsp • 俯仰接通TO/GA方式，并在FMA上俯仰接通方式显示TO/GA
+<br>&nbsp&nbsp&nbsp&nbsp • F/D俯仰指令机头上仰15°，直到达到预计的爬升率。然后，F/D俯仰依据最大起飞重量的计算指令每个襟翼设置的目标速度
+<br>&nbsp&nbsp&nbsp&nbsp • (选型)在或低于50英尺AGL，F/D横滚指令保持当前的地面航迹。高于50英尺AGL，LNAV将接通。高于50英尺AGL，横滚方式信号牌将显示LNAV接通。
+<br>&nbsp&nbsp&nbsp&nbsp • IAS/Mach显示窗口空白
+<br>&nbsp&nbsp&nbsp&nbsp • 依照最大起飞重量计算，指令空速游标按当前襟翼位置自动移至目标速度。</span>
+<br>
+<br>第二次按压任一TO/GA电门（A/T接通，达到减推力复飞推力后）：
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• A/T前推至全复飞N1限制值。</span>
+<br>
+<br><strong>在F/D复飞中，TO/GA方式在下述情况下终止：</strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 400英尺RA以下，两部F/D电门都必须关断
+<br>&nbsp&nbsp&nbsp&nbsp • 400英尺RA以上，选择其它的俯仰或横滚方式
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp • 如果首先改变横滚方式：
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp• F/D横滚接通选定方式
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp• F/D俯仰保持在TO/GA方式。
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp • 如果首先改变俯仰方式：
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp• F/D俯仰接通选定方式
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp• F/D横滚自动转变成HDG SEL
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp • A/T GA方式（如接通）在下述情况下终止：
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp• 选择另一个俯仰方式
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp• ALT ACQ显示接通。</span>
+<br>
+<br><span class="blue1">Note: 一部A/P接通CMD将自动接通A/P和F/Ds的LVL CHG作为相应的俯仰方式。</span>
+<br>
+<br><strong>单发F/D复飞</strong>
+<br>按压任一TO/GA电门：
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• (选型)在或低于50英尺AGL，F/D横滚指令保持当前的地面航迹。高于50英尺AGL，LNAV将接通。高于50英尺AGL，横滚方式信号牌将显示LNAV接通。</span>
+<br>&nbsp&nbsp&nbsp&nbsp • 俯仰接通TO/GA方式，并在FMA上俯仰接通方式显示TO/GA
+<br>&nbsp&nbsp&nbsp&nbsp • IAS/Mach显示窗内显示F/D目标速度
+<br>&nbsp&nbsp&nbsp&nbsp • 空速游标显示F/D目标速度
+<br>&nbsp&nbsp&nbsp&nbsp • F/D俯仰指令机头上仰13°。随着爬升率增加，F/D俯仰指令保持目标速度。
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <span class="yl">• 如果在复飞接通前出现发动机失效，则F/D目标速度为MCP选择的速度。
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 如果在复飞接通后出现发动机失效，则F/D目标速度取决于复飞是否已接通10秒钟：
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp • 10秒之内，MCP选择的进近速度变为目标速度
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp • 10秒之后，且发动机失效时的空速在复飞接通速度5海里/小时范围内，则复飞接通时的速度变为目标速度；
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp • 10秒之后，且发动机失效时的空速大于复飞接通速度5海里/小时以上，则当前空速变为目标速度。</span>
+<br>
+<br><span class="blue1">Note: 目标速度一定不会小于基于襟翼位置的V2速度，除非处于风切变条件下。</span>
+<br></p>
+</div><p>
+<br>在MCP空速/马赫显示器上选择更高的空速之前，F/D不会指令加速。
+<br>
+<br><strong>复飞横滚方式－用LNAV替代航迹保持(选型)</strong>
+<br>如果设置多种预位方式，如LNAV和VOR/LOC，则它们在FMA上以白色并排显示。
+<br>
+<br>如果飞行计划中含有复飞，并且FCC可进入复飞，则FMA上信号显示LNAV预位。
+<br>
+<br>在复飞中，横滚复飞航迹保持方式自动过渡到LNAV方式。 
+<br>
+<br>在显示FLARE预位或FLARE接通的自动着陆操作中，如果FMA上信号显示LNAV，且预位时按压了TO/GA，则在400英尺以上时LNAV接通。
+<br>
+<br>低于此高度则横滚方式为航迹保持。
+<br>
+<br>在不显示FLARE预位或FLARE接通的进近中，如果FMA上信号显示LNAV，且预位时按压了TO/GA，则飞机在50英尺以上时飞行指引仪接通LNAV方式。
+<br>
+<br>低于此高度则为航迹保持方式。
+<br>
+<br>单通道自动驾驶最低接通和使用高度不受影响。
+<br>
+<br>在要求确定航道引导的终端程序中，建议使用此功能支持RNP RNAV操作。
+<br><br>
+
+<div class="bk">
+	<p>
+<strong>风切变时的AFS操作</strong><br>
+<br><strong>概述</strong>
+<br>自动驾驶和飞行指引仪为修正大多数风切变提供明确的修正措施。
+<br>
+<br>自动油门系统也通过对增大或减小的速度快速回应以帮助从风切变中改出。
+<br>
+<br><span class="blue">指令的推力量可能会超过飞行员认为的需要量，但实际上这确实是当时的情况需要。</span>
+<br>
+<br>
+<br>
+<br><strong>起飞或复飞</strong>
+<br>如果在F/D起飞或复飞阶段遇到风切变，F/D俯仰指令杆提供指令以保持目标速度直至垂直速度下降到<span class="red1">约+600英尺/分钟</span>。
+<br>
+<br><span class="red">此时，F/D俯仰杆指令机头上仰15°的俯仰姿态。
+<br>
+<br>如果垂直速度继续下降，F/D继续指令15°的俯仰姿态，直至达到接近抖杆的速度</span>。
+<br>
+<br>然后，指令导致间歇抖杆的俯仰姿态。飞机穿越风切变后，F/D程序将恢复。<span class="red1">随着爬升率增至大于约+600英尺/分钟，F/D指令可导致增速至目标速度的俯仰姿态</span>。
+<br>
+<br>在A/P或F/D复飞阶段，A/P和F/D的工作方式相同。
+<br>
+<br>
+<br>
+<br><strong>进近和着陆</strong>
+<br>如果在ILS进近过程中遇到风切变，F/D和A/P都<span class="blue2">试图保持飞机高度或在下滑道截获后保持在下滑道上，而不管迎角或抖杆限制</span>。
+<br>
+<br>空速可能下降到低于抖杆速度。 
+<br>
+<br>而且，<span class="red">如果驾驶员不采取行动按压TO/GA电门或断开A/P进行人工飞行的话，可能进入失速。</span>
+<br>
+<br><span class="yl">WARNING: 虽然F/D、A/P和A/T可能如前所述工作，但严重的风切变可能超出系统和/或飞机的性能。</span>
+<br>
+<br>在这种状态下，<span class="blue1">如果需要避免触地，机组必须准备断开自动油门，前推推力手柄至前止动点，断开自动驾驶，人工飞行。</span>
+<br>
+</p>
+</div>
+			<br>
+			
+			
+		</p>
+		</div>
+		
+		<hr>
+		<div class="low">
+			<h3>扩展阅读:</h3>
+			以后再补充..
+		</div>
+			
+		<hr>
+		<a href="../index.html">返回面板</a>
+		
+	</body>
+</html>

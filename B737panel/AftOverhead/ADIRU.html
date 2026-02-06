@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ADIRU</title>
+		<link rel="stylesheet" href="../css/in2ceng.css">		
+	</head>
+	<body>
+		
+		<!-- 内外部链接模板 -->
+		<div class="wb"><p><span class="blue">外部相关链接:</span><br>
+		暂无
+		<a href="" class="wb"></a>
+		</p>		
+		</div>
+		
+		<div class="nb"><p><span class="green">内部相关链接:</span><br>
+		<a href="IRSSet.html" class="nb">IRS设置</a>
+		<a href="IRSDsplay.html" class="nb">IRS输入</a>
+		<a href="GPS.html" class="nb">GPS导航</a>
+		</p>	
+		</div>
+		
+		
+		<div class="up">
+			<h3>控制与指示:</h3>
+			<a href="../index.html">返回面板</a>
+			<img src="img/ADIRU.png" alt="">
+			<p>
+				<strong>显示系统信息源</strong>
+				<strong>大气数据惯性基准系统(ADIRU)</strong>
+			</p>
+			<p>
+<span class="yl1">ADIRS为飞行显示、飞行管理计算机、飞行操纵、发动机控制和所有其它需要惯性和大气数据的系统提供飞行数据</span>，如<span class="yl2">位置、速度、高度和姿态。</span>				
+				</p>
+				
+			<div class="zy">
+				<p><br>
+					<strong>ADIRS的主要组成部分是：</strong>
+					<br>• 两个大气数据惯性基准组件(ADIRU)
+					<br>• 四个大气数据组件(ADM)
+					<br>• 一个惯性系统显示组件(ISDU)
+					<br>• 一个双模式选择组件(MSU)
+					<br>• 六个静压口
+					<br>• 三个空速管探头
+					<br>• 两个迎角传感片
+					<br>• 一个大气全温探头
+				</p>		
+			</div>
+			<p><br>
+<strong>大气数据惯性基准组件(ADIRU)</strong>
+					<br>ADIRU <span class="red2">向FMC提供惯性基准位置和航迹数据</span>，同时还向显示组件提供姿态、高度和空速数据。
+					<br><span class="blue1">ADIRU处理由内置陀螺仪和加速表测量的信息，以及来自大气数据组件输入、迎角叶片和其它系统的信息。</span>
+					<br><br>
+					<!-- <a class="mgs" href="./IRSDsplay.html">ADIRU相关内容</a>		 -->		
+			</p>
+			
+		</div>
+		
+		<HR>
+		<div class="mid">
+		<h3>系统说明:</h3>
+		<p>
+<strong>大气数据</strong>
+<br>空速管静压系统<span class="red2">由三个独立的空速管探头和六个与机身表面齐平的静压孔组成。</span>
+<br><span class="green">&nbsp&nbsp&nbsp&nbsp 其中两个空速管探头和四个静压孔和大气数据模块相连。
+<br>&nbsp&nbsp&nbsp&nbsp 其余的辅助空速管探头和备用静压孔为备用仪表提供总压和静压。
+<br>&nbsp&nbsp&nbsp&nbsp 辅助空速管探头位于飞机的副驾驶一侧。</span><br>
+
+<br><span class="red2">大气数据模块将气动压力转换成电子信号并将这些数据发送给ADIRU。</span>
+<br>&nbsp&nbsp&nbsp&nbsp 每个空速管大气数据模块和同侧的空速管探头相连接；无交叉连接。
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">与机长空速管探头相连的大气数据模块向左ADIRU发送信息，而与副驾驶空速管探头相连的大气数据模块向右ADIRU发送信息。</span>
+<br>&nbsp&nbsp&nbsp&nbsp 其余大气数据模块位于机长和副驾驶静压孔的中心平衡位置上。
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">与机长静压孔相连的大气数据模块向左ADIRU发送信息，而与副驾驶静压孔相连的大气数据模块向右ADIRU发送信息。</span>			
+		</p>
+		<br>
+		<p>
+<strong>迎角:</strong><br>
+<span class="red2">两套迎角传感片分别位于前机身两侧</span>。传感片用来测量相对于气团的飞机迎角。			
+<br>			
+&nbsp&nbsp&nbsp&nbsp <span class="green">(选型部分飞机)在PFD上的迎角（AOA）指示器的数据主要来源自于ADIRU,由失速管理偏航阻尼（SMYD）作为备份源。
+<br>&nbsp&nbsp&nbsp&nbsp 一旦主要来源失效，来源自动选择。</span>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="yl1">由于侧滑或叶片安装错误，机长和副驾驶指示的细微差别，可能会被注意到。</span>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="yl1">这些差别可以大到2度的alpha角。</span>
+<br><br>
+<strong>大气全温(TAT)</strong>
+<br><span class="red2">大气总温全温探头安装在飞机外侧，用来探测气团温度。</span>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">ADIRU使用探头测得的温度来计算大气全温。</span>
+<br>
+<br><strong>Note:</strong> 在地面人工向CUD输入外界气温(OAT)时，TAT指示为近似值，<span class="red1">不应使用TAT代替OAT作为起飞性能使用。</span>
+<br>
+<br><strong>大气静温(SAT)</strong><br>
+&nbsp&nbsp&nbsp&nbsp <span class="green2">在CDU进程（PROGESS）页面上显示的大气静温来自使用大气总温探头信息的ADIRU。</span>
+		</p>
+		
+		</div>
+		
+		<hr>
+		<div class="low">
+			<h3>扩展阅读:</h3>
+			等有空再写...
+		</div>
+			
+		<hr>
+		<a href="../index.html">返回面板</a>
+		
+	</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>资料搜索框架</title>
+		<link rel="shortcut icon" href="./img/favicon.png" />
+		<meta name="keywords" content="自建资料库搜索框架" />
+		<meta name="description" content="自建资料库搜索框架" />
+		<!-- 标题页加头像加说明 -->
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/search.css" />
+	<!-- 	<style type="text/css">
+			a {
+			   display: block;
+			 }
+		  </style> -->
+		  <!-- 搜索框架 -->
+		  <style>
+		      .hidden {
+		          display: none;
+		      }
+		  </style>
+		  
+	</head>
+	<body>
+		<div class="wrapple">
+			<div class="header">
+				<img src="img/favicon.png" alt="" style="float: right; margin: 20px;" /><H1>资料搜索框架</h1>
+				<div class="nav">
+					<a href="javascript:;">首页</a>
+					<a href="./mm.html">资料</a>
+					<a href="../../wylj/B737panel/index.html">737面板</a>
+					
+				</div>
+			</div>
+			
+			<!-- 搜索框架 -->
+			&nbsp;&nbsp;<h1 style="margin: 10px; ">本站搜索：</h1>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="searchInput"  onkeyup="searchLinks()" placeholder="Search for links..." style="height: 80px; width: 600px; font-size: 35px; padding: 5px; box-sizing: border-box;">
+				<div id="searchResults" class="hidden">
+					<h2>搜索结果：</h2>					
+					
+					<div id="results"  class="nb">
+						
+					</div>
+					
+					
+					<!-- style="background-color: antiquewhite;" -->
+				</div>
+				
+				<script>
+					function searchLinks() {
+					    var input = document.getElementById('searchInput').value.toLowerCase();
+					    var links = document.getElementsByClassName('link');
+					    var results = document.getElementById('results');
+					    var searchResultsDiv = document.getElementById('searchResults');
+					    var hasResults = false;
+							
+					    results.innerHTML = '';
+						
+						if(input===''){
+							searchResultDiv.classList.add('hidden')
+							return;
+						}												
+						
+						for (var i = 0; i < links.length; i++) {
+						    var link = links[i];
+						    var textValue = link.textContent || link.innerText;
+						    if (textValue.toLowerCase().indexOf(input) > -1) {
+								
+								
+								
+							var result=document.createElement('div');
+							result.innerHTML='<a href="' +link.href+'" class="nb">'+link.textContent+'</a>';
+							results.appendChild(result);
+							hasResults=true
+							}
+						}
+						
+						if(hasResults){
+							searchResultsDiv.classList.remove('hidden');
+						}else{
+							searchResultsDiv.classList.add('hidden');
+						}								
+					}							
+				</script>
+				
+				
+				
+			
+				
+			<div class="lianjie">
+				<!-- 外部链接 -->
+				<div class="nb">
+					<h1 style="text-align: center; color: darkred;">注意：以下所有链接都无实际数据，仅做搜索框架调试使用。</h1>
+					
+				</div>
+				
+				<!-- 有关优秀文档下载 -->
+				
+			</div>
+			
+			<div class="main">
+				
+				<!-- 部空勤人员运行防疫检查单 R7javascript:;7月 -->
+				<!-- 7月份内容(2022)javascript:;7月 -->
+				<div class="new">
+					<h3 class="may">7月份内容(2022)#7月</h3>
+					<div class="azt">
+						<a href="javascript:;" class="link">安保风险提示（2022年第7期)</a>
+						<a href="javascript:;" class="link">7月防疫内容</a>
+						<a href="javascript:;" class="link">6月29日股份防疫例会</a>						
+						<a href="javascript:;" class="link">迎七一重温党史</a>
+						<a href="javascript:;" style="color: red;" class="link">五项重点运行风险防控要点R1.pdf</a>
+						<a href="javascript:;" class="link">分部7月份月会主要提示</a>						
+						<a href="javascript:;" class="link">全国民航安全警示教育和“第一责任人安全倡议书”</a>						
+						<a href="javascript:;" style="color: red;" class="link">复工复产应知应会PDF</a>
+						<a href="javascript:;" class="link">飞行部安行管理简报（第五期）.pdf</a>
+						<a href="javascript:;" class="link">飞行部安全运行管报（第六期）pdf</a>
+						<a href="javascript:;" class="link">复飞的安全风险提示pdf</a>
+						<a href="javascript:;" class="link">短跑道运行的安全风险通告pdf</a>
+						<a href="javascript:;" style="color: red;" class="link">调整737-800起降操作限制pdf</a>
+						<a href="javascript:;" class="link">调整大兴内部蓝线pdf</a>
+						<a href="javascript:;" class="link">防范“五防”事件PDF</a>
+						<a href="javascript:;" class="link">防范冲偏出跑道PDF</a>
+						<a href="javascript:;" class="link">危险品事件判定和报告方法PDF</a>
+						<a href="javascript:;" class="link">案例分析-空中雷击PDF</a>
+						<a href="javascript:;" class="link">“六防”再教育pdf</a>
+						<a href="javascript:;" class="link">运行提示2022年第五期.pdf</a>
+						<a href="javascript:;" style="color: red;" class="link">近期未遵守高度限制导致不安全事件的汇总及分析.pdf</a>
+						<a href="javascript:;" class="link">2207(西安咸阳机场)pdf</a>
+						<a href="javascript:;" style="color: red;" class="link">近期股份雷击事件分析.pdf</a>
+						<a href="javascript:;" class">危险品专项整治.pdf</a>
+						<a href="javascript:;" class="link">惩治涉枪支弹药爆炸物犯罪意见.pdf</a>
+						<a href="javascript:;" style="color: red;" class="link">运行通告〔2022〕14号-关于临时调整部分仪表进近标准的通告.pdf</a>
+				
+					</div>
+				</div>
+				
+				<!-- 6月份内容(2022)javascript:;6月 -->
+				<div class="new">
+					<h3>6月份内容(2022)#6月</h3>
+					<div class="azt">
+						<a href="javascript:;" style="color: red" class="link">复飞研讨视频</a>
+						<a href="javascript:;" class="link">雷达RDR-4000PG(英)</a>						
+						<a href="javascript:;" style="color: red;" class="link">2022年以来民航典型不安全事件分析pdf</a>
+						<a href="javascript:;" class="link">EFB及电子放行APP更新通知</a>
+						<a href="javascript:;" class="link">疫情下复工复产</a>
+						<a href="javascript:;" style="color: red;" class="link">航班恢复运行初期起降操作限制</a>
+						<a href="javascript:;" class="link">防范冲偏出跑道</a>
+						<a href="javascript:;" class="link">非预期偏航</a>
+						<a href="javascript:;" class="link">LMC优化功能</a>
+						<a href="javascript:;" style="color: red;" class="link">[推荐]B737操纵运行限制</a>
+						<a href="javascript:;" class="link">新一代EFB版本升级功能清单</a>
+						<a href="javascript:;"class="link">空勤人员返岗流程检查单R1</a>
+						<a href="javascript:;" style="color: red;" class="link">QRH记忆项目研讨</a>
+						<a href="javascript:;" style="color: red;" class="link">应急程序处置</a>
+				
+					</div>
+					<p></p>
+				</div>
+				
+				<!-- 5月份内容(2022)javascript:;5月 -->
+				<div class="new">
+					<h3 class="july">5月份内容(2022)#5月#4月</h3>
+					<div class="azt">
+					<a href="javascript:;" style="color: red" class="link">2022年机组原因不安全事件统计</a>
+					<a href="javascript:;" style="color: red" class="link">2022年以来机组原因不安全事件分析</a>
+					<a href="javascript:;" class="link">可靠性技术材料</a>
+					<a href="javascript:;" style="color: red" class="link">疲劳管理</a>
+					<a href="javascript:;" style="color: red" class="link">B737外部检查</a>
+					<a href="javascript:;" style="color: red" class="link">B737机载应急设备</a>
+					<a href="javascript:;" style="coed" class="link">近十年典型不安全事件分析与解读</a>
+					<a href="javascript:;" style="color: red" class="link">飞行安全事件汇编</a>
+					<a href="javascript:;" class="link">运行管理简报（第三期>
+					<a href="javascript:;" class="link">运行管理简报（第二期）</a>
+					<a href="javascript:;" class="link">4月某航班SINK RATE警戒事件调查报告</a>
+					<a href="javascript:;" style="color: red" class="link">B737初期恢复运行的提示</a>
+					<a href="javascript:;" class="link">FM9334触发地形警戒事件调查和处理的通报</a>
+					<a href="javascript:;" class="link">可控飞行撞地的安全风险通告</a>
+					<a href="javascript:;" class="link">无中心线灯机场运行</a>
+					<a href="javascript:;" class="link">空中突发故障的安全风险提示</a>
+					<a href="javascript:;" style="color: red" class="link">进一步明确部分进近最低标准的通知</a>
+					<a href="javascript:;" class="link">防雷击的风险提示</a>
+					<a href="javascript:;" class="link">厦门空管站关于青州方向运行情况及建议的函</a>
+					<a href="javascript:;" style="color: red" class="link">安全复飞及其注意事项</a>
+					<a href="javascript:;" class="link">航空事故合辑（非预期状态、空中失控）</a>
+					<a href="javascript:;" class="link">锂电池与机组</a>
+					<a href="javascript:;" class="link">02-11版《运行手册》修订说明</a>
+					<a href="javascript:;" style="color: red" class="link">雷击点识别研讨</a>
+					<a href="javascript:;" style="color: red" class="link">飞行中常见的SOP执行偏差探讨</a>
+					<a href="javascript:;" class="link">飞行分部月会</a>															
+					</div>
+				</div>
+				
+				<div class="new">
+					<h3 class="may">5月份内容(2022)#5月#4月</h3>
+					<div class="azt">
+					<a href="javascript:;" class="link">4月6日民航航空安全电视电话会议精神</a>
+					<a href="javascript:;" class="link">上海空港防疫提示</a>
+					<a href="javascript:;" class="link">贯彻落实全国安全生产电视电话会议精神</a>
+					<a href="javascript:;" class="link">认真贯彻落实安全生产15条</			
+					<a href="javascript:;" style="color: red" class="link">飞行部不安全事件汇编</a>
+					<a href="javascript:;" class="link">认真贯彻落实安全生产15条</a>
+					<a href="javascript:;" class="link">中共上海市委《致全市共产党员的公开信》</a>
+					<a href="javascript:;" class="link">分部四月份月会主要提示</a>
+					<a href="javascript:;" class="link">公司安全生产委员会2022年3月27日扩大会议纪要</a>
+					<a href="javascript:;" class="link">公司紧急安全视频会纪要</a>
+					<a href="javascript:;" class="link">安全生产应知应会要点摘录</a>
+					<a href="javascript:;" class="link">上海地区疫情防控会上视频会纪要</a>
+					<a href="javascript:;" class="link">之家员工返岗工作的通知</a>
+					<a href="javascript:;" class="link">近期安全工作的紧急通知</a>
+					<a href="javascript:;" class="link">加强机场地区防疫消毒工作</a>
+					<a href="javascript:;" class="link">加强敏感信息保护工作</a>
+					<a href="javascript:;" class="link">加强上海疫情防控</a>
+					<a href="javascript:;" class="link">上海疫情防控落实不到位情况通报</a>
+					<a href="javascript:;" class="link">2月9日榆林机场跑道外接地事件通报</a>
+					<a href="javascript:;" class="link">社区封闭期间员工申请返岗相关事宜</a>
+					<a href="javascript:;" class="link">上海市委号召进一步在疫情防控中发挥党员作用</a>
+					<a href="javascript:;" class="link">开展安全大检查及换季大检查</a>
+					<a href="javascript:;" class="link">贯彻落实全国安全生产电视电话会议精神做好当前安全生产工作的紧急通知</a>
+					<a href="javascript:;" class="link">进一步加强当前疫情防控工作的通知</a>
+					<a href="javascript:;" class="link">国资委郝鹏主任在中央企业安全生产视频会上的讲话</a>
+					<a href="javascript:;" class="link">安全生产电视电话会议精神摘要（一线宣贯版）</a>
+					<a href="javascript:;" class="link">上海市空港工作提示</a>
+					<a href="javascript:;" class="link">李养民总经理在公司安全生产委员会扩大会议上的讲话</a>
+					<a href="javascript:;" class="link">民航华东地区管理局4月安全例会情况通报</a>
+					<a href="javascript:;" class="link">沪发布关于进一步加强疫情防控期间社会面秩序管理通告</a>
+					<a href="javascript:;" style="color: red" class="link">确保绝对安全心法口诀</a>
+					<a href="javascript:;" class="link">空勤人员应激事件心理健康维护与支持手册</a>
+					<a href="javascript:;" class="link">空勤人员疏解心理压力自助指导手册</a>
+					<a href="javascript:;" class="link">飞行部关于近期安全工作暨“十五条”重要举措的落实方案</a>
+					<a href="javascript:;" class="link">飞行部安全大检查检查单</a>
+					<a href="javascript:;" class="link">飞行部贯彻落实安全生产15条重要举措的细化清单</a>
+					</div>
+				</div>	
+				
+				
+				<div class="lianjie">
+					<!-- 外部链接 -->
+					<div class="wb">
+						<strong>实用链接:</strong>
+						<a href="./wylj/B737panel/index.html" class="wb">737面板(互交式)</a>
+						<a href="../nicenav/index.html" class="wb">资料导航</a>
+						<a href="https://efb2.ceair.com/efbng/" class="wb">eNav</a>
+						<a href="https://apps.ceair.com/" class="wb">掌上</a>
+						<a href="http://pilot.caac.gov.cn/jsp/airmanNews/airmanNewsDetail.jsp?uuid=e92f0c9d-8cbe-4aff-a9e5-ee9cbd5bb3f9&code=Download" class="wb">云执照</a>
+						<a href="http://pilot.ceair.com" class="wb">飞行准备网</a>
+						<a href="https://dhyx.ceair.com/#/home" class="wb">易学</a>
+						<a href="https://saas.ceaftc.com/SAAS/Account/Login" class="wb">考试网</a>
+						
+					</div>
+				
+				
+				
+				
+				
+				
+				
+			</div>
+			<div class="flooer">
+				
+			</div>
+		</div>
+	</body>
+</html>

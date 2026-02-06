@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/in2ceng.css">		
+	</head>
+	<body>
+		<div class="wb"><p><span class="blue">外部相关链接:</span><br>
+		暂无
+		<a href="" class="wb"></a>
+		</p>		
+		</div>
+		
+		<div class="nb"><p><span class="green">内部相关链接:</span><br>
+		<a href="GPS.html" class="nb">GPS</a>
+		<a href="IRSDsplay.html" class="nb">IRS输入</a>
+		<a href="ADIRU.html" class="nb">大气数据(ADIRU)</a>
+		<a href="../FwdOverhead/Navigation.html" class="nb">导航转换</a>
+		</p>	
+		</div>
+		
+		<div class="up">
+			<h3>控制与指示:</h3>
+			<a href="../index.html">返回面板</a>
+			<img src="img/IRSSet1.png" alt="">
+			<p><br>
+<strong>1 校准(ALIGN)灯</strong>
+<br>亮 (白色)--
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 稳定-- 对应的IRS在校准（ALGN）方式、初始姿态（ATT）方式或关车循环方式下工作
+<br>&nbsp&nbsp&nbsp&nbsp • 闪烁 -- 由于IRS检测到下列情况而不能完成校准：</span>
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <span class="green2">• 先前位置和输入位置之间差异过大或输入的当前位置不合理</span>
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp<span class="green2">• 未输入当前位置。</span><br>
+<br><strong>灭-- </strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• IRS不在校准(ALIGN)方式
+<br>&nbsp&nbsp&nbsp&nbsp • 当方式选择器在导航(NAV)位时，校准完成且所有IRS信息可用
+<br>&nbsp&nbsp&nbsp&nbsp • 当方式选择电门在姿态(ATT)位时，姿态信息可用。输入了初始磁航向后，航向信息可用。</span>
+<br>
+<br><strong>2 故障(FAULT)灯</strong>
+<br>亮（琥珀色）-- 
+<br>&nbsp&nbsp&nbsp&nbsp 探测到某一影响到对应IRS ATT和/或NAV方式的系统故障	
+<br>
+<br><strong>3 惯性基准系统(IRS)方式选择器</strong>
+<br>关（OFF）
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 失去校准</span>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="red">• 经过30秒关闭周期后，系统所有电源断开。</span>
+
+<br><br>校准（ALIGN）-- 
+<br>&nbsp&nbsp&nbsp&nbsp <span class="blue2">• 将选择器从OFF转至ALIGN，进入校准循环</span>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="blue2">• 将选择器从NAV转至ALIGN，自动更新校准和消除地速误差。</span>
+
+<br><br>导航（NAV）（卡口位）-- 
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 校准周期结束且输入当前位置后，系统进入NAV方式
+<br>&nbsp&nbsp&nbsp&nbsp • 在NAV方式，所有IRS信息可用于飞机系统正常工作。</span>
+
+<br><br>姿态（ATT）-- <span class="red1">仅提供姿态和航向信息:</span>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="yl2">• 在ALIGN灯熄灭之前，姿态信息无效(出现姿态故障旗)</span>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="yl2">• 在ALIGN灯熄灭后，人工输入实际磁航向之前，航向信息无效(出现航向故障旗)</span>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="blue">• 在地面惯导完成校准之前，位置和地速信息不可用
+<br>&nbsp&nbsp&nbsp&nbsp • 在重新选择ALIGN或NAV之前，选择器必须转至OFF。</span>
+
+<br><br><strong>4 直流电接通(ON DC)指示灯</strong>
+<br>亮（琥珀色）-- 
+<br>&nbsp&nbsp&nbsp&nbsp <span class="blue2">• 相应的IRS使用来自转换热电瓶汇流条的直流电源工作(交流电源不正常)</span>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="blue2">• 如果停在地面，前轮舱中的地面报警喇叭发出报警声，警告电瓶正在耗电</span>
+<br>&nbsp&nbsp&nbsp&nbsp • 在校准自测过程中，指示灯瞬时亮是正常的。
+
+<br><br><strong>5 直流失效(DC FAIL)指示灯</strong>
+<br>亮（琥珀色）--
+<br>&nbsp&nbsp&nbsp&nbsp <span class="red">• 相应IRS的直流电源不正常
+<br>&nbsp&nbsp&nbsp&nbsp • 如果其它指示灯熄灭，IRS使用交流电正常工作。</span>		<br>	
+			</p>
+		</div>
+		
+		<HR>
+		<div class="mid">
+		<h3>系统说明:</h3>
+		<p>
+					<strong>惯导系统 </strong><br>
+					
+					惯导系统为显示组件(DUs)、飞行管理系统、自动飞行系统和其它系统<span class="blue2">计算飞机位置、地速和姿态数据。</span><br><br>
+					惯导系统的主要部件包括<span class="red1">大气数据惯性基准系统组件(ADIRU)、一个惯导系统显示组件(ISDU)、IRS方式选择组件(MSU)和一个IRS转换电门。</span>
+					<br>
+					<br>
+					<span class="blue2">ADIRU向FMC提供惯导位置和航迹数据，并向CDS提供姿态、高度和空速数据。</span>
+					<br>
+					<br><span class="yl2">每个ADIRU都有一个IRS部分和一个大气数据部分。</span>
+					<br><br>
+				
+				
+					<strong>惯导基准系统 </strong>
+					<br><span class="red">安装了两部相互独立的IRS。</span><span class="blue1">每部IRS有三套激光陀螺和加速度表</span>。<span class="blue2">除备用姿态指示器和备用磁罗盘外，IRS是飞机姿态和航向信息的唯一数据源。</span>
+					<br><br>
+					<div class="zy"><p>在正常的导航方式下，IRS向相应的飞机系统提供<strong>姿态、真航向和磁航向、加速度、垂直速度、地速、航迹、当前位置以及风数据。</strong>
+					<br>IRS的输出独立于外部助航设备。</p></div><br><br>
+					<p>
+					<strong>IRS校准</strong>
+					<br>IRS必须用飞机当前位置校准并初始化后才可进入导航方式。当前位置通常通过FMC CDU输入。<span class="yl">如果无法通过FMC CDU输入当前位置，则可通过ISDU键盘输入。</span><span class="blue1">校准过程中飞机必须保持静止状态。</span>
+					<br><br>
+					<br>当MSU电门从OFF转至NAV时，<span class="red2">南北纬78度15分之间的正常校准开始。</span>
+					<br>IRS将进行一次短暂的电源测试，测试期间直流电接通(ON DC)灯亮。当ON DC灯灭而ALIGN灯亮时，校准过程开始。这时应输入飞机当前位置。
+					<br>根据飞机纬度的不同，<span class="red2">校准时间短至5分钟，长至17分钟</span>。<br><br>
+					
+					<span class="blue1">北纬82度和南纬82度之间</span>的磁差存储在每个IRS存储器中。
+					<br>当前位置相对应的数据与真航向综合决定磁航向。 <br><br>
+					
+					<span class="blue2">如果纬度/经度位置不在起飞机场4海里之内</span>，<span class="blue">则显示CDU草稿栏信息：VERIFY POSITION(核实位置)。</span>
+					<br>如果输入的纬度/经度位置不能通过IRS系统内部对比测试，<span class="blue">则显示草稿栏信息：ENTER IRS POSITION（输入IRS位置）。</span>
+					<br>
+					
+		<br><span class="yl">ALIGN灯闪烁警示机组输入的位置没有通过两个内部比较测试之一，因此应该检查其准确性。</span>
+		<br>如果输入的位置与上次存储的位置不一致，第一次内部测试失败，ALIGN灯闪烁。如果再次输入相同的位置，IRS会接受这个位置并且继续校准过程。
+		<br>第二次内部位置测试将输入的纬度与系统计算的纬度比较。如果这个测试失败，ALIGN灯会再次闪烁。
+		<br><span class="green2">如果连续两次的相同位置输入都没有通过第二次内部位置测试，FAULT灯亮。</span>
+		<br>如果测试通过，IRS将继续完成校准过程并进入NAV模式。<br>
+		
+		<br>在过站或直达停靠的短暂地面时间，<span class="yl1">飞机停靠后选择ALIGN位可以进行30秒钟的快速校准并消除地速误差。</span>
+		
+		<br><span class="green">选择NAV之前，应人工输入经纬度以同时更新当前位置。</span><br><br>
+		<span class="blue1">Note: 如果在校准或快速再校准期间飞机移动了位置，则IRS自动开始完整的校准过程	</span>
+				
+				<br><br>
+		<strong>失去校准</strong>
+		<br><span class="red2">如果IRS失去AC和DC电源，会丧失校准功能。</span>如果MSU电门从NAV位移开，校准也会丧失。<br>
+		<br>如果飞行中失去校准，在剩余的飞行阶段导航方式(包括当前位置和地速输出)不工作。
+		<br>然而，<span class="red1">选择ATT后可用姿态方式</span>来再校准系统并提供姿态参考。
+		<br><strong><br><div class="zy">
+		<p>大约需要以直线和水平方式匀速飞行约30秒钟后姿态方式才能实现再校准。</strong></p>
+		</div>
+		<p>
+		<br><span class="yl">在加速过程中可能会出现一些姿态误差，但是加速停止后会慢慢消除。</span> <br>
+		<br><span class="red">姿态方式还可以提供航向信息</span>，<strong>但要使罗盘同步化，必须由机组人工输入初始磁航向。</strong><br>
+		
+		<br><span class="blue1">IRS航向可出现每小时高达15度的漂移。</span>因此在姿态方式下，必须定期交叉检查工作的罗盘系统并按需输入IRS更新的磁航向。
+				
+		<br><br><strong>IRS输入</strong>
+		<br><span class="blue">通常在FMC/CDU的位置起始(POS INIT)页面上人工完成当前位置或磁航向的IRS输入。</span>也可使用ISDU。	<br>
+		
+		<br><strong>IRS电源</strong>
+		<br>IRS既可使用交流电源，也可使用直流电源。
+		<br><strong><span class="yl2">左IRS通常由交流备用汇流条供电</span>，<span class="yl2">右IRS由2号交流转换汇流条供电。</span></strong>
+		<br><strong><span class="yl1">如果AC电源不正常，两个系统中的任意一个或两个自动转接到转换热电瓶汇流条提供的备用直流电源。</span></strong><br>
+		<br>如果<span class="red1">交流电源在五分钟内未恢复</span>，<span class="red">供给右IRS的备用直流电源自动终止。</span>
+		<br><br>起始供电要求电瓶汇流条电源可用并且IRS方式选择器在ALIGN、 NAV或ATT位。
+		<br><span class="green">如果关闭IRS，则在飞机移动前必须完成一个完整的校准周期。</span>
+		<br>
+		<br><span class="blue">如果随后从飞机上断开交流电源，转换的热电瓶汇流条继续向IRS供电。
+		<br>ON DC灯亮，起落架轮舱中的喇叭响以警示维护人员IRS在使用电瓶电源。</span> 
+		<br><br>当IRS方式选择器置于OFF位时，<span class="yl2">IRS保持大约30秒有电。直至系统完全关闭后，ALIGN灯才熄灭。</span>
+		<br><br>
+		<strong>惯导系统显示组件(ISDU)</strong>
+		<br>ISDU位于后顶板上，它根据显示选择器和系统选择器的位置显示数据。
+		<br><span class="yl">ISDU还包括一个用于输入当前位置和航向的键盘。</span><br><br>
+		
+		<strong>方式选择组件(MSU)</strong>
+		<br>MSU位于后顶板上，它用来选择每个IRS的工作方式。
+		<br>MSU上的指示灯显示每个IRS的工作方式状态。
+		<br>
+		<br><strong>IRS转换电门</strong>
+		<br><span class="red">如果任一IRS失效，可用IRS转换电门将所有相关的系统转换到工作的IRU。</span><br><br>
+		<img src="img/IRSzh.png" alt="">
+				</p>
+		</div>
+		
+		<hr>
+		<div class="low">
+			<h3>扩展阅读:</h3>
+			等有空再写...
+		</div>
+			
+		<hr>
+		<a href="../index.html">返回面板</a>
+		
+	</body>
+</html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>VerticalControl1</title>
+		<link rel="stylesheet" href="../css/in2ceng.css">		
+	</head>
+	<body>
+		
+		
+		<!-- 内外部链接模板 -->
+		<div class="wb"><p><span class="blue">外部相关链接:</span><br>
+		暂无
+		<a href="" class="wb"></a>
+		</p>		
+		</div>
+		
+		<div class="nb"><p><span class="green">内部相关链接:</span><br>
+		<a href="LnavControl1.html" class="nb">飞行指引与水平导航</a>
+		</p>	
+		</div>
+		
+		
+		<div class="up">			
+			<h3>控制与指示:</h3>
+			<a href="../index.html">返回面板</a>
+			<img src="img/VerticalControl1.png" alt="">
+			<p>
+<br><strong>VNAV 电门</strong>
+<br>按压 – 
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• VNAV电门指示灯亮
+<br>&nbsp&nbsp&nbsp&nbsp • 俯仰方式显示VNAV SPD，VNAV PTH，或VNAV ALT (选型)
+<br>&nbsp&nbsp&nbsp&nbsp • A/T方式显示FMC SPD, N1, RETARD或ARM
+<br>&nbsp&nbsp&nbsp&nbsp • IAS/MACH显示窗空白，空速游标处于FMC指令的速度。</span>
+<br>
+<br><strong>VNAV方式</strong>
+<br>FMC指令AFDS的俯仰和自动油门按FMC CDU上选定的垂直剖面飞行。该剖面包括爬升、巡航、下降、速度，也可包括航路点高度限制。
+<br>
+<br><span class="blue1">Note: 如飞机在FMC目标高度（航路航段（RTE LEGS）页面上的生效航路点高度）和MCP人工输入的目标高度之间，VNAV不会接通。要使用VNAV，须适当调整FMC或MCP目标高度。</span>
+<br>
+<br><div class="bk">
+	<p>
+<strong>VNAV在地面预位的标准：</strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 有效的飞行计划已输入。
+<br>&nbsp&nbsp&nbsp&nbsp • 性能数据已输入和执行。
+<br>&nbsp&nbsp&nbsp&nbsp • 两部飞行指引仪的开关已在开位。
+<br>&nbsp&nbsp&nbsp&nbsp • VNAV引导在400英尺AGL时生效。</span></p>
+</div><p>
+<br><strong>爬升– </strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 自动油门保持FMC推力极限
+<br>&nbsp&nbsp&nbsp&nbsp 	&nbsp&nbsp&nbsp&nbsp • AFDS保持FMC目标速度
+<br>&nbsp&nbsp&nbsp&nbsp 	&nbsp&nbsp&nbsp&nbsp • 在MCP高度或VNAV高度上自动改平，先到达哪个高度就在该高度改平
+<br>&nbsp&nbsp&nbsp&nbsp • 在MCP限制的高度显示VNAV ALT 
+<br>&nbsp&nbsp&nbsp&nbsp • 在VNAV限制的高度，显示VNAV PTH。</span>
+<br>
+<br><strong>巡航– </strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="yl">• 自动油门保持FMC目标速度
+<br>&nbsp&nbsp&nbsp&nbsp • AFDS保持FMC高度
+<br>&nbsp&nbsp&nbsp&nbsp • 选择一个较低的MCP高度以预位FMC，在到达FMC下降顶点时，自动开始下降。</span>
+<br>
+<br><strong>下降– </strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• VNAV SPD下降
+<br>&nbsp&nbsp&nbsp&nbsp • 自动油门保持慢车
+<br>&nbsp&nbsp&nbsp&nbsp • AFDS保持FMC目标速度。
+<br>&nbsp&nbsp&nbsp&nbsp • VNAV PTH下降
+<br>&nbsp&nbsp&nbsp&nbsp • 自动油门保持慢车，但如果地速太小，以至于不能保持FMC垂直航径，自油门可指令FMC SPD方式
+<br>&nbsp&nbsp&nbsp&nbsp • AFDS跟踪FMC下降轨迹。
+<br>&nbsp&nbsp&nbsp&nbsp • 在MCP高度或VNAV高度上自动改平，先到达哪个高度就在该高度</span>
+<br>
+<br><strong>改平</strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="yl">• 在MCP限制的高度显示VNAV ALT(选型) 
+<br>&nbsp&nbsp&nbsp&nbsp • 在VNAV限制的高度，显示VNAV PTH。</span>
+<br><span class="red2">在400英尺RA以下或性能起始未完成时此显示被抑制。</span>
+<br>
+<br><div class="bk">
+	<p>
+<strong>可用下述任一方法终止VNAV方式：</strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 选择另一俯仰方式
+<br>&nbsp&nbsp&nbsp&nbsp • 下滑道截获
+<br>&nbsp&nbsp&nbsp&nbsp • 到达LNAV航路终点
+<br>&nbsp&nbsp&nbsp&nbsp • 下滑道切入航路点的过渡（如果G/S预位）
+<br>&nbsp&nbsp&nbsp&nbsp • 在一个带有数据库垂直角并且LNAV未接通的有效航段的航径（PTH）下降过程中偏航距离超过2倍RNP值。</span>
+</p></div><p>
+
+<br>在下滑道切入航路点的过渡时，可重新接通VNAV。
+<br><span class="yl1">中间改平时，俯仰方式从VNAV SPD变为ALT ACQ，自动油门会指令一个目标IAS而不是马赫数。甚至在高度高于IAS/Mach转换时这也是有效的。</span>
+<br>
+<br><span class="yl2">如果用/以LVL CHG或V/S重新开始爬升，速度窗就会在目标IAS上打开，这会导致超速。</span>
+<br>
+<br><strong>2 高度（ALTITUDE）显示窗</strong>
+<br>显示选择的高度
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 显示的高度将作为高度警告和自动改平的基准
+<br>&nbsp&nbsp&nbsp&nbsp • 高度范围0至50,000 英尺,增量为100 英尺
+<br>&nbsp&nbsp&nbsp&nbsp • 首次接通电源时，显示先前选择的高度。</span>
+<br>
+<br><strong>3 垂直速度（VERT SPEED）显示窗</strong>
+<br>显示：
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• V/S方式未生效时，显示空白
+<br>&nbsp&nbsp&nbsp&nbsp • 当V/S方式电门接通V/S方式时，显示当前的垂直速度
+<br>&nbsp&nbsp&nbsp&nbsp • 当用拇指轮调置V/S时，显示选择的V/S
+<br>&nbsp&nbsp&nbsp&nbsp • 显示范围为-7900至+6000英尺/分钟。</span>
+<br>显示增量为：
+<br>&nbsp&nbsp&nbsp&nbsp <span class="yl">• 如果V/S小于1000英尺/分钟时，增量为50英尺/分钟
+<br>&nbsp&nbsp&nbsp&nbsp • 如果V/S等于或大于1000英尺/分钟时，增量为100英尺/分钟。</span>
+<br>
+<br><strong>4 垂直速度拇指轮</strong>
+<br>转动–
+<br>&nbsp&nbsp&nbsp&nbsp • DN – 
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <span class="green">• 调置垂直速度（VERT SPEED）显示窗内的垂直速度
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 增加下降率或减小爬升率。</span>
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp • UP – 
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <span class="green">• 调置垂直速度（VERT SPEED）显示窗内的垂直速度
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 增加爬升率或减小下降率。</span>
+<br>
+<br><strong>5 高度层改变（LVL CHG）电门</strong>
+<br>按压 –
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• LVL CHG电门指示灯亮
+<br>&nbsp&nbsp&nbsp&nbsp • 俯仰方式显示爬升或下降的MCP SPD（MCP速度）
+<br>&nbsp&nbsp&nbsp&nbsp • 自动油门方式在爬升时显示N1，下降时先显示收回（RETARD）接着为预位（ARM）。
+<br>&nbsp&nbsp&nbsp&nbsp • IAS/MACH显示窗及空速游标显示目标速度。</span>
+<br>
+<br><strong>LVL CHG方式</strong>
+<br>LVL CHG方式配合俯仰和推力指令使其按选择的速度自动爬升和下降到预选高度。
+ <br><strong>通过下列方式开始LVL CHG爬升或下降：</strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 选择新高度
+<br>&nbsp&nbsp&nbsp&nbsp • 按压LVL CHG电门
+<br>&nbsp&nbsp&nbsp&nbsp • 设置所需速度。</span>
+<br>
+<br>爬升–
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 自动油门保持限制推力 
+<br>&nbsp&nbsp&nbsp&nbsp • AFDS保持选择的速度。</span>
+<br>
+<br>下降–
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 自动油门保持慢车推力
+<br>&nbsp&nbsp&nbsp&nbsp • AFDS保持选择的速度。</span>
+<br>
+<br>速度– 
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 若在LVL CHG接通时，采用速度方式，该速度作为目标速度
+<br>&nbsp&nbsp&nbsp&nbsp • 若在LVL CHG接通时，未采用速度方式，当时的速度成为目标速度
+<br>&nbsp&nbsp&nbsp&nbsp • 速度可用MCP IAS/MACH（MCP空速/马赫数）选择器来改变。</span>
+<br><span class="red2">在下滑道截获后，LVL CHG方式受抑制。</span>
+<br>
+<br><strong>6 进近（APP）电门</strong>
+<br>（见上方飞行指引与水平导航的内部链接）。
+<br>
+<br><strong>7 高度选择器（SEL）</strong>
+<br>转动–
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 调定高度 （ALTITUDE）显示窗内的高度，增量为100英尺
+<br>• 在选择的高度上，如果处于高度保持 （ALT HOLD）方式，转动选择钮将预位V/S方式。</span>
+<br>
+<br><strong>8 高度保持（ALT HLD）电门</strong>
+<br>按压 –
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 接通ALT HOLD指令方式
+<br>&nbsp&nbsp&nbsp&nbsp • 指令俯仰以保持未修正的气压高度，即按下电门时的高度
+<br>&nbsp&nbsp&nbsp&nbsp • 显示ALT HOLD俯仰方式，ALT HLD电门指示灯亮。</span>
+<br>
+<br><strong>高度保持指令方式</strong>
+<br>ALT HLD方式指令俯仰以保持下述任一情况：
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• MCP选择高度
+<br>&nbsp&nbsp&nbsp&nbsp • 俯仰方式显示ALT HOLD
+<br>&nbsp&nbsp&nbsp&nbsp • ALT HLD电门指示灯熄灭。
+<br>&nbsp&nbsp&nbsp&nbsp • 如果不在MCP的选择高度上，则保持按压ALT HLD电门时的未修正的气压高度
+<br>&nbsp&nbsp&nbsp&nbsp • 俯仰方式显示ALT HOLD
+<br>&nbsp&nbsp&nbsp&nbsp • ALT HLD电门指示灯亮</span>
+<br>
+<br><strong>当在所选MCP高度上ALT HOLD方式接通时：</strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="yl">• 选择一个新的MCP的选择高度，使ALT HLD电门指示灯亮，且使V/S方式预位
+<br>&nbsp&nbsp&nbsp&nbsp • LVL CHG、V/S和VNAV爬升和下降功能均被抑制，直到选择新的MCP高度。</span>
+<br><span class="blue2">下滑道截获后，ALT HOLD方式抑制。</span>
+<br>
+<br><strong>选择的MCP高度以下述为基准：</strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="yl">• 使用A自动驾驶和飞行指引时以机长的气压高度表调定值作为参考基准 。
+<br>&nbsp&nbsp&nbsp&nbsp • 使用B自动驾驶和飞行指引时以副驾驶的气压高度表调定值作为参考基准。</span>
+<br>
+<br><span class="blue1">Note: 注：ALT HOLD接通后，气压高度表调定的改变不会改变已经选择的高度基准。</span>
+<br>
+<br><strong>9 垂直速度（V/S）电门</strong>
+<br>按压 –
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 预位或接通V/S指令方式
+<br>&nbsp&nbsp&nbsp&nbsp • 指令俯仰以保持垂直速度
+<br>&nbsp&nbsp&nbsp&nbsp • A/T接通速度方式，以保持选择的速度
+<br>&nbsp&nbsp&nbsp&nbsp • 显示V/S俯仰方式，V/S电门指示灯亮。</span>
+<br>
+<br><strong>垂直速度指令方式</strong>
+<br>V/S方式指令俯仰以保持选择的垂直速度，并在SPEED方式接通A/T，以保持选择的速度。<span class="red">V/S方式有预位和接通两种状态。</span>
+<br>
+<br>接通– 
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 显示V/S俯仰方式
+<br>&nbsp&nbsp&nbsp&nbsp • 垂直速度显示窗显示从空白变为当前的垂直速度
+<br>&nbsp&nbsp&nbsp&nbsp • 用垂直速度拇指轮选择所需的垂直速度。</span>
+<br>
+<br>如果出现下列情况，V/S预位：
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 在MCP选择高度上俯仰方式为ALT HLD以及
+<br>&nbsp&nbsp&nbsp&nbsp • 选择新的MCP高度（改变量大于距当前高度100英尺以上）。</span>
+<br>如果V/S预位，转动垂直速度拇指轮接通V/S方式。
+<br><span class="blue">如果高度获得（ALT ACQ）方式接通，且选择了新的MCP高度（改变量大于距原先选择的高度100英尺以上），则V/S方式自动接通。</span>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 可选择垂直速度方式，这指令飞行朝向或偏离选定的高度。</span>
+<br>
+<br><strong>如有下述情况，则该方式被抑制：</strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="yl">• 在选择的MCP高度，ALT HOLD方式生效
+<br>&nbsp&nbsp&nbsp&nbsp • 在APP方式截获下滑道。</span>
+<br>
+<br><strong>10 高度插入（ALT INTV）电门</strong>
+<br><span class="blue">通过高度选择（SEL）和高度插入（AL INTV）电门可人工删除下一个FMC高度限制。</span>
+<br>
+<br><strong>按压– （VNAV爬升过程中）</strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 低于所选MCP高度的最低FMC高度限制被删除
+<br>&nbsp&nbsp&nbsp&nbsp • 如果飞机处于FMC高度限制时，删除将使飞机恢复爬升。所设MCP高度必需高于飞机当前高度
+<br>&nbsp&nbsp&nbsp&nbsp • 按压一次电门删除一个
+<br>&nbsp&nbsp&nbsp&nbsp • 如果所设MCP高度高于当前FMC高度，则FMC巡航高度重置为MCP高度。</span><span class="red">不能用高度插入电门来降低FMC巡航高度。</span>
+<br>
+<br>按压– （VNAV巡航过程中）
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 如果所设MCP高度高于当前FMC巡航高度，则FMC将巡航高度重设为MCP高度，并开始进行巡航爬升
+<br>&nbsp&nbsp&nbsp&nbsp • 如果所设MCP高度低于当前FMC巡航高度，则开始进行提前下降。不能使用高度插入电门输入更低的FMC巡航高度。
+<br>&nbsp&nbsp&nbsp&nbsp • 如果将MCP高度（ALT）设置得更低，但是仍处于或高于任何下降限制，那么如果在当前巡航高度，</span><span class="red">飞机离下降顶点50nm以上，将会发生CRZ DES。</span><span class="green">结果将会就是要对MCP ALT重新设置巡航高度，以及对新巡航高度进行-1000fpm的垂直速度指令。如果在距离下降顶点50海里之内，将会调用提前下降方式。</span>(选型)
+<br>&nbsp&nbsp&nbsp&nbsp <span class="red">• 飞机在距离下降顶点超过50海里，并且VNAV已接通，MCP高度低于当前高度并低于某个下降限制高度时，其结果将会是生成-1000英尺/分钟的提前下降垂直速度指令，直至切入下降航迹或在MCP高度改平。(选型)</span>
+<br>
+<br>按压– （VNAV下降过程中）
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 删除高于MCP高度的最高FMC高度限制
+<br>&nbsp&nbsp&nbsp&nbsp • 如果飞机处于一个FMC高度限制内，删除将使飞机恢复下降。所设MCP高度必须低于飞机当前高度
+<br>&nbsp&nbsp&nbsp&nbsp • 在VNAV航迹下降过程中，如果删除所有的FMC高度限制，则自动过渡到VNAV速度下降。</span>
+
+
+
+
+
+
+
+			</p>
+			
+		</div>
+		
+		<HR>
+		<div class="mid">
+		<h3>系统说明:</h3>
+		<p>
+<strong>自动飞行起飞和爬升</strong>
+<br><span class="blue">起飞是飞行指引仪在TO/GA状态的唯一方式。</span>（在此方式下）飞行指引仪的俯仰和横滚指令被显示，并且自动油门保持FMC选择的起飞N1推力限制。起飞后，可接通自动驾驶。
+<br>
+<br>开始起飞前，必须将两部F/D打开（ON）接通起飞方式。按压任一推力手柄上的TO/GA电门，即可接通F/D起飞方式。
+<br>FMC的显示：<span class="yl">A/P状态显示为FD；俯仰方式显示为TO/GA；横滚方式显示为HDG SEL。</span>
+<br>
+<br>在起飞过程中，按压TO/GA电门自动油门即接通N1方式。自动油门信号显示从ARM转变成N1,且将推力手柄前推至起飞推力。
+<br>
+<br>在起飞方式下，即使关闭F/D电门，也可以接通F/D。
+<span class="red1">80海里/小时后，在2000英尺离地高度以下，且在离地后150秒内，按压TO/GA电门，两个飞行员F/D指令杆自动出现。</span>
+			<br>
+<br><strong>起飞过程中，60海里/小时前</strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 俯仰指令机头下俯10°
+<br>&nbsp&nbsp&nbsp&nbsp • 横滚指令机翼水平。
+<br>&nbsp&nbsp&nbsp&nbsp • 自动油门接通N1方式
+<br>&nbsp&nbsp&nbsp&nbsp • 前推推力手柄，直到发动机达到起飞推力
+<br>&nbsp&nbsp&nbsp&nbsp • 在FMA上自动油门方式显示为N1；俯仰方式显示TO/GA；横滚方式空白。(按选型HDG SEL)</span>
+			<br>
+<br><span class="yl">60KIAS，F/D俯仰指令机头上仰15°。
+<br>84KIAS，A/T方式显示推力保持（THR HLD）。</span>
+<br>
+<br><strong>离地时：</strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 俯仰指令持续15°仰角，直至获得足够的爬升率。然后，俯仰指令MCP速度（通常是V2）+20海里。
+<br>&nbsp&nbsp&nbsp&nbsp • 如果在地面上发生一台发动机失效,离地时的俯仰指令的目标速度是V2或离地速度中较大的一个。			
+<br>&nbsp&nbsp&nbsp&nbsp • 横滚指令保持机翼水平。
+<br>&nbsp&nbsp&nbsp&nbsp • (按选型)横滚方式保持HDG SEL。400英尺AGL以下坡度限制在8度；400英尺AGL以上坡度限制在10-30度。	</span>		
+<br>
+<br><strong>离地后：</strong>
+<br>&nbsp&nbsp&nbsp&nbsp<span class="green"> • 如果发生一台发动机失效，俯仰指令目标速度为：</span>	
+<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  		<span class="yl">• V2，如果空速低于V2
+<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  		• 当前速度，如果空速介于V2和V2+20之间
+<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  		• V2+20，如果空速高于V2+20。</span>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 在到达机场标高800英尺之前，A/T仍保持THR HLD。然后A/T信号牌显示从THR HLD转变成ARM，按下N1电门，即可减小为爬升推力。</span>	
+<br>
+<br><span class="blue1">Note: 减推力起飞时，机场标高800英尺以下再次按压TO/GA电门可将推力限制方式改为GA，N1参考游标增大到全GA推力，推力手柄不会移动。高于机场标高800英尺再次按压TO/GA电门，推力手柄前移到全GA推力。</span>
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• (按选型)在VNAV、ALT ACQ或ALT HOLD方式接通时，推力自动降低至爬升推力。在离地后2.5分钟内，LVL CHG或V/S方式接通时，自动减推力被抑制。
+<br>&nbsp&nbsp&nbsp&nbsp • (按选型)当到达选定的减推力高度（飞行前准备时此高度显示在FMC CDU起飞参考页第2/2页上）时或当飞机在ALT HOLD或VNAV PTH方式改平时，飞机自动减至爬升推力。飞行员可人工输入覆盖默认值。输入范围是800 英尺至9999英尺。
+<br>&nbsp&nbsp&nbsp&nbsp • 当自动驾驶接通CMD方式时，飞行指引仪的接通状态终止（A/P状态显示窗内CMD替代FD）。</span>	
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 		<span class="yl">• 俯仰接通LVL CHG，俯仰方式FMA显示MCP SPD方式，除非选择另一俯仰方式。
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 		• MCP IAS/MACH显示窗和空速游标转变成V2+20海里/小时。
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp 		• 除非选择另一横滚方式，否则，横滚方式接通HDG SEL方式。</span>	
+		<br>
+<br><span class="red">低于无线电高度400英尺时，要终止起飞方式，必须关闭（OFF）两部F/D电门。</span>无线电高度400英尺以上，选择其它的F/D俯仰方式，或接通自动驾驶将会终止起飞方式；也可选择其他F/D横滚方式。
+<br>
+<br></p>
+<img src="img/LnavControl2.png" alt=""><br><br>			
+		</p>
+		</div>
+<p>	
+<strong>自动飞行进近和着陆</strong>
+<br>AFDS为单部自动驾驶仪非精密进近提供指引。VOR/LOC电门预位AFDS，进行VOR或航向道跟踪。可使用VNAV,LVL CHG 或V/S 进行下降。横滚方式可使用VOR/LOC,LNAV 或HDG SEL。
+<br>
+<br><span class="red">AFDS也为单或双自动驾驶精密进近提供指引。</span>进近方式预位AFDS，以便截获和跟踪航向道和下滑道。
+<br>
+<br>双自动驾驶（A/Ps）进近（APP）方式
+<br>进近方式允许同时接通两部A/Ps。双A/P在着陆拉平和接地或自动复飞过程中提供故障性能下降操纵。<span class="blue">故障性能下降操纵期间，飞行操纵以较小的操纵移动量来响应A/P指令。如果一部A/P通道发生故障，则另一通道会抵制已故障通道，以便飞机以最小的机动量及提供给飞行员目视及语音警告条件下来断开两部A/Ps。</span>
+<br>
+<br>选择进近方式前，一部甚高频导航（VHF NAV）接收机必须调为ILS频率。
+<br>
+<br><span class="blue2">双A/P进近时高于800英尺RA前，第二部甚高频导航接收机必须调为ILS频率，相应的A/P接通CMD方式。</span>
+<br>
+<br><span class="yl">如果飞行员在人工飞行，但没有按照飞行指引仪的引导进近，然后选择一个自动驾驶CMD接通，自动驾驶恢复到CWS俯仰和横滚方式。之后进近方式将重新预位。</span>
+<br>
+<br><strong>航向道和下滑道预位</strong>
+<br>调好航向道频率和航道后，按压APP电门选择进近方式。APP电门亮，VOR/LOC和G/S信号预位。APP方式使得第二部自动驾驶可接通CMD方式。此时第二部A/P预位，在截获LOC和G/S后，当下降到无线电高度1500英尺以下时自动接通。
+<br>在HDG SEL、CWS R或LNAV方式下，可以切入航向道。			
+<br>在截获航向道之前不能截获下滑道。(选型)
+			<br>
+<br><strong>航向道截获</strong>
+<br><span class="red">航向道（LOC）截获点是不定的，取决于切入角和接近率。但截获发生在1/2个点之前。</span>在LOC截获时，VOR/LOC信号牌显示截获。 A/P状态显示为单通道（SINGLE CH）[按选型]，先前的横滚方式断开，飞机转向跟踪LOC。			
+			<br>
+<br><strong>下滑道截获</strong>
+<br>在截获航向道之前不能截获下滑道。(选型) 
+<br><span class="blue1">可以从下滑道（G/S）上方或下方截获下滑道。在2/5个点截获，并引起下列结果：</span>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• G/S信号牌显示截获
+<br>&nbsp&nbsp&nbsp&nbsp • 原来的俯仰方式断开
+<br>&nbsp&nbsp&nbsp&nbsp • 如果航向道也截获，则APP灯熄灭
+<br>&nbsp&nbsp&nbsp&nbsp • 飞机俯仰跟踪G/S
+<br>&nbsp&nbsp&nbsp&nbsp • 推力方式显示窗内显示复飞（GA）（N1推力限制）。</span>
+<br>
+<br><span class="red">VOR/LOC和G/S都被截获后，通过下列方式，可退出APP方式:</span>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="yl">• 按压TO/GA电门
+<br>&nbsp&nbsp&nbsp&nbsp • 断开A/P并关闭两部F/D电门
+<br>&nbsp&nbsp&nbsp&nbsp • 再调谐VHF NAV接收机。		</span>	
+<br>
+<br><strong>LOC和G/S截获后</strong>
+<br>截获LOC或G/S不久，并在1500英尺RA以下；
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 第二部A/P与飞行操纵耦合
+<br>&nbsp&nbsp&nbsp&nbsp • ILS偏离监视系统实施了测试， G/S和LOC显示变为琥珀色且闪烁
+<br>&nbsp&nbsp&nbsp&nbsp • 信号牌显示拉平（FLARE）预位
+<br>&nbsp&nbsp&nbsp&nbsp • 单通道（SINGLE CH）信号熄灭(选型)
+<br>&nbsp&nbsp&nbsp&nbsp • A/P复飞方式预位，但无信号显示。(选型)</span>
+<br>
+<br><span class="blue1">Note: 在两部自动驾驶的进近中，并且在FLARE ARM（拉平预位）显示后，任何准备对自动驾驶的手动超控，将导致自动驾驶脱开。</span>
+<br>
+<br><span class="red">自动驾驶断开，F/D指令杆消失，表明ILS信号无效。</span>
+<br>
+<br><strong>800英尺无线电高度</strong>
+<br><span class="yl">800英尺RA时，第二部A/P必须接通CMD方式，以进行双通道A/P进近。否则，第二部A/P的CMD接通受到抑制。</span>
+<br>
+<br><strong>400英尺无线电高度</strong>
+<br><span class="blue">安定面自动地配平，额外增大一点机头上仰。</span>如果随后断开A/P，则可能需要前推驾驶杆，以保持所需的俯仰姿态。
+<br><span class="yl">如果拉平（FLARE）方式在约350英尺RA时未预位，则两部A/P自动断开。</span>
+<br>
+<br><strong>拉平</strong>
+<br><span class="red">A/P拉平机动大约在50英尺RA时开始，接地时结束：</span>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 信号牌显示FLARE接通，F/D指令杆消失
+<br>&nbsp&nbsp&nbsp&nbsp • 约27英尺RA时， A/T开始收油门，以便在接地时达到慢车。A/T飞行方式信号牌显示收回（RETARD）。
+<br>&nbsp&nbsp&nbsp&nbsp • 接地后约2秒钟，A/T自动断开
+<br>&nbsp&nbsp&nbsp&nbsp • 接地后A/P必须人工断开。断开A/P以后，应人工进行着陆滑跑。		</span>	
+			<br>
+<br><strong>单自动驾驶进近（APP）方式</strong>
+<br>按压APP方式选择电门，仅接通一部A/P在CMD方式就可进行单自动驾驶ILS进近。除下列情况外，单A/P进近操纵与双A/P进近操作情况相同：
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 无完全自动拉平和接地能力。不显示FLARE信号及不提供安定面配平
+<br>&nbsp&nbsp&nbsp&nbsp • (选型)如果飞行员在人工飞行，但没有按照飞行指引仪的引导进近，然后选择一个自动驾驶CMD接通，自动驾驶恢复到CWS俯仰和横滚方式。之后进近方式将重新预位。
+<br>&nbsp&nbsp&nbsp&nbsp • (选型)航向道截获后，整个进近阶段自动驾驶状态一直显示单通道（SINGLE CH）
+<br>&nbsp&nbsp&nbsp&nbsp • (选型)自动驾驶复飞不可用。
+<br>&nbsp&nbsp&nbsp&nbsp • (选型)航向道或下滑道截获后，CWS 不能够通过人工超控俯仰和/或横滚操纵力来接通。人工超控俯仰和/或横滚将引起自动驾驶脱开。在自动驾驶断开时，生效的方式将保持接通。
+<br>&nbsp&nbsp&nbsp&nbsp • (选型)航向道或下滑道截获后，当飞行员人工实施超控俯仰和/或横滚操纵力。进近方式将重置（接通和预位方式空白）。</span>
+<br>
+<br><strong>ILS波束异常/地面导航台探测失效</strong>
+<br>对于单通道或仅F/D进近，如果航向道/下滑道信号持续异常或地面导航台探测失效，会脱开自动驾驶，并且有可能F/D指令杆消失。
+<br>
+<br><strong>进近（APP）方式集成式进近导航</strong>
+<br>集成进近导航 (IAN) 方式的预位/接通是通过选择AFDS方式控制面板(MCP)上的 APP 按钮.一旦预位，自动驾驶/飞行指引仪截获和跟踪航向道/最终进近航道和下滑道/下滑航路。
+<br>
+<br><strong>以下FMA的横滚和俯仰方式控制信号牌将显示。</strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 对于ILS进近,显示的横滚和俯仰方式将是 VOR/LOC和G/S 。
+<br>&nbsp&nbsp&nbsp&nbsp • 对于FMC IAN 进近,显示的横滚和俯仰方式将是FAC和G/P。
+<br>&nbsp&nbsp&nbsp&nbsp • 对于ILS进近中,G/S选择了off或单个航向道的进近，显示的横滚和俯仰方式将是VOR/LOC和G/P。
+<br>&nbsp&nbsp&nbsp&nbsp • 对于背航向道进近，显示的横滚和俯仰方式将是B/CRS和G/P。</span>
+<br>
+<br>FAC和G/P的预位和接通状态遵循所建立的常规。以下情况下，飞行控制系统重置FAC和G/P方式（显示为方式空白）：
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 偏差信号丢失
+<br>&nbsp&nbsp&nbsp&nbsp • 有效性丢失
+<br>&nbsp&nbsp&nbsp&nbsp • FAC或G/P故障偏差</span>
+<br>当这些方式被重置时，FCC将消除(偏置不可见)F/D杆，并断开A/P。这些类似于VOR/LOC和G/S重置方式。
+<br>
+<div class="bk">
+	<p>
+<strong>飞行指引仪（F/D）复飞</strong>
+<br><span class="red">如果两部A/P均未接通，在下述条件下，可进行仅用F/D的人工复飞：</span>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 在空中，2000 英尺RA 以下
+<br>&nbsp&nbsp&nbsp&nbsp • 在空中，2000英尺RA以上，襟翼未收上或G/S截获(选型)
+<br>&nbsp&nbsp&nbsp&nbsp • 未在起飞方式。
+<br>&nbsp&nbsp&nbsp&nbsp • 接地后如果TOGA电门工作 (机轮加速转动)</span>
+<br>
+<br><span class="red">首次按压任一TO/GA电门：</span>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• A/T（如已预位）接通GA方式，并前推推力手柄至减推力复飞N1，以产生1000-2000英尺/分钟的爬升率。FMA上A/T接通方式显示为GA
+<br>&nbsp&nbsp&nbsp&nbsp • 自动驾驶（如已接通）断开
+<br>&nbsp&nbsp&nbsp&nbsp • 俯仰接通TO/GA方式，并在FMA上俯仰接通方式显示TO/GA
+<br>&nbsp&nbsp&nbsp&nbsp • F/D俯仰指令机头上仰15°，直到达到预计的爬升率。然后，F/D俯仰依据最大起飞重量的计算指令每个襟翼设置的目标速度
+<br>&nbsp&nbsp&nbsp&nbsp • (选型)在或低于50英尺AGL，F/D横滚指令保持当前的地面航迹。高于50英尺AGL，LNAV将接通。高于50英尺AGL，横滚方式信号牌将显示LNAV接通。
+<br>&nbsp&nbsp&nbsp&nbsp • IAS/Mach显示窗口空白
+<br>&nbsp&nbsp&nbsp&nbsp • 依照最大起飞重量计算，指令空速游标按当前襟翼位置自动移至目标速度。</span>
+<br>
+<br>第二次按压任一TO/GA电门（A/T接通，达到减推力复飞推力后）：
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• A/T前推至全复飞N1限制值。</span>
+<br>
+<br><strong>在F/D复飞中，TO/GA方式在下述情况下终止：</strong>
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 400英尺RA以下，两部F/D电门都必须关断
+<br>&nbsp&nbsp&nbsp&nbsp • 400英尺RA以上，选择其它的俯仰或横滚方式
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp • 如果首先改变横滚方式：
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp• F/D横滚接通选定方式
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp• F/D俯仰保持在TO/GA方式。
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp • 如果首先改变俯仰方式：
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp• F/D俯仰接通选定方式
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp• F/D横滚自动转变成HDG SEL
+<br>
+<br>&nbsp&nbsp&nbsp&nbsp • A/T GA方式（如接通）在下述情况下终止：
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp• 选择另一个俯仰方式
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp• ALT ACQ显示接通。</span>
+<br>
+<br><span class="blue1">Note: 一部A/P接通CMD将自动接通A/P和F/Ds的LVL CHG作为相应的俯仰方式。</span>
+<br>
+<br><strong>单发F/D复飞</strong>
+<br>按压任一TO/GA电门：
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• (选型)在或低于50英尺AGL，F/D横滚指令保持当前的地面航迹。高于50英尺AGL，LNAV将接通。高于50英尺AGL，横滚方式信号牌将显示LNAV接通。</span>
+<br>&nbsp&nbsp&nbsp&nbsp • 俯仰接通TO/GA方式，并在FMA上俯仰接通方式显示TO/GA
+<br>&nbsp&nbsp&nbsp&nbsp • IAS/Mach显示窗内显示F/D目标速度
+<br>&nbsp&nbsp&nbsp&nbsp • 空速游标显示F/D目标速度
+<br>&nbsp&nbsp&nbsp&nbsp • F/D俯仰指令机头上仰13°。随着爬升率增加，F/D俯仰指令保持目标速度。
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp <span class="yl">• 如果在复飞接通前出现发动机失效，则F/D目标速度为MCP选择的速度。
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp • 如果在复飞接通后出现发动机失效，则F/D目标速度取决于复飞是否已接通10秒钟：
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp • 10秒之内，MCP选择的进近速度变为目标速度
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp • 10秒之后，且发动机失效时的空速在复飞接通速度5海里/小时范围内，则复飞接通时的速度变为目标速度；
+<br>&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp • 10秒之后，且发动机失效时的空速大于复飞接通速度5海里/小时以上，则当前空速变为目标速度。</span>
+<br>
+<br><span class="blue1">Note: 目标速度一定不会小于基于襟翼位置的V2速度，除非处于风切变条件下。</span>
+<br></p>
+</div>		
+		
+		
+		<hr>
+		<div class="low">
+			<h3>扩展阅读:</h3>
+			以后再补充..
+		</div>
+			
+		<hr>
+		<a href="../index.html">返回面板</a>
+		
+	</body>
+</html>

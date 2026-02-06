@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ElecSet</title>
+		<link rel="stylesheet" href="../css/in2ceng.css">		
+	</head>
+	<body>
+		<!-- 内外部链接模板 -->
+		<div class="wb"><p><span class="blue">外部相关链接:</span><br>
+		暂无
+		<a href="" class="wb"></a>
+		</p>		
+		</div>
+		
+		<div class="nb"><p><span class="green">内部相关链接:</span><br>
+		<a class="nb"	href="ElecShow.html">电源系统显示说明</a>
+		<a class="nb"	href="Drive.html">电源系统驱动说明</a>
+		<a href="" class="nb"></a>
+		</p>	
+		</div>
+		
+		<div class="up">
+			<h3>控制与指示:</h3>
+			<a href="../index.html">返回面板</a>
+			<img src="img/ElecSet1.png" alt="">
+			<p>
+				<br>
+<br><strong>1 地面电源可用（GRD POWER AVAILABLE）指示灯</strong>
+<br>亮(蓝色)- 地面电源接通并符合飞机电源质量标准。
+<br>
+<br><strong>2 地面电源(GRD PWR)电门</strong>
+<br><span class="blue2">三位电门，由弹簧固定于中立位</span>
+<br>OFF - 断开地面电源与AC 转换汇流条的连接。
+<br>ON - 如果瞬间放到ON位并且地面电源可用：
+<br>&nbsp&nbsp&nbsp&nbsp <span class="green">• 断开AC转换汇流条之前接通的电源
+<br>&nbsp&nbsp&nbsp&nbsp • 如果电源质量正常，将地面电源连接到AC转换汇流条。</span>
+<br>
+<br><strong>3 转换汇流条断开(TRANSFER BUS OFF)指示灯</strong>
+<br>亮(琥珀色)- 相应的转换汇流条没有电。				
+<br>
+<br><strong>4 电源断开（SOURCE OFF）指示灯</strong>
+<br>亮(琥珀色)）- 未人工选择电源向相应的转换汇流条供电，或人工选择的电源已断开
+<br>• 如果所选择的电源向对侧的转换汇流条供电，则两个转换汇流条都能有电。
+<br>
+<br><strong>5 发电机关断汇流条(GEN OFF BUS)指示灯</strong>
+<br>亮(蓝色)- IDG没有向相应的转换汇流条供电。
+<br>
+<br><strong>6 发电机(GEN)电门</strong>
+<br><span class="blue2">三位电门，由弹簧固定于中立位。</span>
+<br>OFF - 断开发电机跳开关，以切断IDG与相应的交流转换汇流条的连接。
+<br>ON - 断开之前连接的电源并闭合发电机跳开关。将IDG连接到相应的AC转换汇流条。 
+<br>
+<br><strong>7 汇流条转换(BUS TRANSFER)电门</strong>
+<br><span class="red1">AUTO(带护盖位)- 汇流条连接断电器(BTB)自动工作,以保持任何工作的发电机或外部电源向AC转换汇流条供电</span>
+<br>&nbsp&nbsp&nbsp&nbsp • DC交叉连接继电器按需自动提供正常操作或隔离操作。
+<br>OFF - 如果一台IDG在向两个AC转换汇流条供电，<span class="red">将1号AC转换汇流条和2号AC转换汇流条隔离</span>
+<br>&nbsp&nbsp&nbsp&nbsp • DC交叉连接继电器打开，以使1号DC汇流条和2号DC汇流条隔离。
+<br>
+<br><strong>8 APU发电机关断汇流条(GEN OFF BUS)指示灯</strong>
+<br>亮(蓝色)- APU在运转但未向汇流条供电。
+<br>
+<br><strong>9 APU发电机(GEN)电门</strong>
+<br><span class="blue2">三位电门，由弹簧固定于中立位。</span>
+<br><span class="red1">OFF– </span>
+<br><span class="green">• APU发电机向两个AC转换汇流条供电</span>
+<br>&nbsp&nbsp&nbsp&nbsp• 将一个APU GEN电门放到OFF位，则相应的源断开(SOURCE OFF)指示灯亮。APU继续向AC转换汇流条供电
+<br>&nbsp&nbsp&nbsp&nbsp• 再将另一个APU GEN电门放到OFF位，断开APU发电机与连接汇流条的连接，并切断APU向AC转换汇流条的供电
+<br><span class="green">• APU发电机向一个AC转换汇流条供电；IDG向一个交流转换汇流条供电</span>
+<br>&nbsp&nbsp&nbsp&nbsp• 将相应的APU GEN电门放到OFF位，断开APU发电机与连接汇流条和AC转换汇流条的连接。IDG向AC转换汇流条供电。
+<br>
+<br><span class="red1">ON –</span>
+<br><span class="yl">• IDG不向AC转换汇流条供电 - 将一个APU GEN电门放到ON位：</span>
+<br>&nbsp&nbsp&nbsp&nbsp• 将两个AC转换汇流条与APU发电机连接
+<br>&nbsp&nbsp&nbsp&nbsp• 如果有连接外接电源，则断开
+<br>&nbsp&nbsp&nbsp&nbsp• 对侧的源断开(SOURCE OFF)指示灯亮，直到另一个APU GEN电门被放到ON位。
+<br><span class="yl">• IDG向两个AC转换汇流条供电 - 将一个APU GEN电门放到ON位：</span>
+<br>&nbsp&nbsp&nbsp&nbsp• APU发电机向相应的AC转换汇流条供电 
+<br>&nbsp&nbsp&nbsp&nbsp• 另一个AC转换汇流条仍由IDG供电。
+<br>
+
+				
+			</p>
+		</div>
+		
+		<HR>
+		<div class="mid">
+		<h3>系统说明:</h3><p>
+<strong>电源的产生</strong>
+<br><strong>发动机发电机</strong>
+<br>主电源由两台发动机驱动的IDG提供。<span class="blue1">IDG在整个发动机正常工作范围内保持恒定的发电机频率。</span>一个集成电子 - 机械断开装置对IDG提供完全的机械隔离。
+<br>
+<br><strong>APU发电机</strong>
+<br>APU发电机可以在地面和空中向两套AC转换汇流条供电。<span class="red1">APU发电机作为唯一的电源时，可以满足所有地面以及大多数飞行条件下的电源需求。</span>
+<br>
+<br><strong>外部地面电源</strong>
+<br>机身右下侧靠近前起落架轮舱处有一个外接AC电源插座，可以接通外部电源。插座旁边面板上的状态灯可使地面人员确定是否正在使用外部电源。<span class="blue2">一旦连接外部电源，就可向两套转换汇流条供电。</span>
+<br>
+<br><strong>地面勤务</strong>
+<br>前乘务面板上有一个地面勤务电门，供地面维护使用。该电门可直接向通用插座、客舱照明和电瓶充电器的AC地面勤务汇流条提供地面电源，而无须向飞机的所有电气汇流条供电。地面勤务电门是一个瞬间按钮，当两个AC转换汇流条通电时，该电门被超控。
+	<br>		
+<br><strong>AC电源系统</strong>
+<br><span class="blue2">每一个AC电源系统由一个转换汇流条、一个主汇流条、两个厨房汇流条和一个地面勤务汇流条组成。</span><span class="green1">1号转换汇流条也向AC备用汇流条供电。</span>如果向任一转换汇流条供电的AC电源故障或被断开，可使用汇流条断路器(BTB)，通过连接汇流条使该转换汇流条有可用的电源供电。
+<br>
+<br>飞机在地面并且两个发电机控制电门在OFF位时，或两台发动机都关车时，选择地面电源(GRD PWR)电门至ON位将使外部电源与两个转换汇流条连接。同样，选择任一APU发电机(GEN)电门至ON位将使APU电源和两个转换汇流条连接。最后选择的电源向两个汇流条供电。<span class="red">一个转换汇流条由外部电源供电而另一个转换汇流条由APU供电的情况是不可能的。</span>
+<br>
+<br>将相应的发电机电门瞬间放到ON位可以使发动机驱动的发电机给转换汇流条供电。这样做将闭合相应发电机跳开关(GCB)并使发电机和转换汇流条连接。<span class="yl">无论何时，当外部电源或APU给两个转换汇流条供电时，如果发动机驱动的发电机开始给同侧的转换汇流条供电，则另一侧转换汇流条仍由外部电源或APU继续供电。</span>
+<br>
+<br>飞行中，每台发动机驱动的发电机通常为各自相应的转换汇流条供电。<span class="blue">如果其中一台发动机驱动的发电机不再提供电源，汇流条断路器自动闭合，使另一台发动机驱动的发电机通过连接汇流条和汇流条断路器为两个转换汇流条供电。</span>APU可以通过汇流条断路器给一个或两个汇流条供电。
+<br>
+<br>APU为两个转换汇流条供电的情况下,飞机起飞时，系统还有一个自动发电机接通功能。<span class="green2">如果APU关车或故障，发动机驱动的发电机自动与它们相应的转换汇流条连接</span>。<span class="green">这种自动接通功能在空中只能进行一次，并且只有在上述条件下才会发生。</span>
+<br>
+<br><strong>汇流条连接系统</strong>
+<br>任一发电机或APU可以向两套转换汇流条供电。如果汇流条转换(BUS TRANS)电门在自动(AUTO)位，并且向转换汇流条供电的电源被切断或发生故障，<span class="blue">为另一侧转换汇流条供电的电源通过汇流条断路器自动为断电的转换汇流条供电。</span>
+<br>		
+
+		</p>
+		</div>
+		
+		<hr>
+		<div class="low">
+			<h3>扩展阅读:</h3>
+			以后再补充..
+		</div>
+			
+		<hr>
+		<a href="../index.html">返回面板</a>
+		
+	</body>
+</html>

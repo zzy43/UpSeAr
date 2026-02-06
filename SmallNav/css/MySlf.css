@@ -1,0 +1,16 @@
+.rt{
+	position: absolute;
+	top: 0;left: 0;
+	margin: 0;
+	padding: 0%;
+	
+	height: 100vh;
+	width: 100%;
+	
+	overflow: auto;
+	/* background-color: antiquewhite; */
+}
+
+.mm-menu{
+	background: linear-gradient(113.58893008880955deg, rgba(236, 236, 236,1) 4.927083333333334%,rgba(195, 229, 248,1) 97.84374999999999%)
+}

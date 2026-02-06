@@ -1,0 +1,302 @@
+*{
+	margin: 0%;
+	padding: 0%;
+	
+}
+
+body{
+	height: 100VH;
+	width: 100vw;
+	/* display: flex; */
+	/* justify-content: center; */
+	/* align-items: center; */
+	background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+}
+
+.header h1{
+	font-size: 60px;
+	color: snow;
+	background-color: black;
+	width: 100%;
+ 	margin: auto; 
+	text-align: center;
+}
+
+.header h2{
+	font-size: 60px;
+	color: #697723;
+	background-color: #fac03d;
+	width: 100%;
+ 	margin: auto; 
+	text-align: center;
+}
+
+.header .nav{
+ 	 
+	font-size: 40px;
+	width: 100%;
+	text-align: center;
+	background-color:darkcyan;
+	/* background-color: #fac03d; */
+	margin: auto;
+	font-weight: 600;
+	/* overflow: auto; */
+	}
+
+.header .nav a{
+	padding-right: 20px; ;
+	padding-left: 20px;
+/* 	float: left; */
+	color:lemonchiffon;
+
+	text-decoration: none; 
+	text-align: center;
+	}
+	
+.header .nav a:hover{
+	background-color: orange;
+}
+
+.lianjie a:hover{
+	background-color: orange;
+}
+
+
+
+.main .new{
+	border: 3px solid seagreen;
+	margin: 5px;
+	margin-top: 15px;
+	margin-bottom: 30px;	
+	/* font-family: "YouYuan"; */
+}
+
+.main .new h3{
+	padding-left: 5px;
+	background-color: salmon;
+	/* background-color: #ff770f; */
+	/* color: #c1c1c1; */
+	text-align: center;
+	font-size: 30px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	}
+
+.main .new .july{
+	background-color: skyblue;
+	}
+	
+.main .new .may{	
+	background-color: #fac03d;
+	}
+	
+/* .july{
+	background-color: skyblue;
+	} */
+
+/* 新内容添加在此下 */
+
+
+.new .sopsp{
+	padding: 20px;
+	padding-top: 10px;
+	text-align: center;
+	overflow: auto;	
+}
+
+.new .sopsp video{
+	border: 3px solid #ccc;
+	width: 90%;
+	
+}
+
+
+
+.main .new .azt{
+	/* border-radius: 5%; */
+	/* border: 2px solid green; */
+	/* margin: 5px; */
+	/* float: left; */
+	padding: 20px;
+	padding-top: 10px;
+	text-align: center;
+	overflow: auto;
+	
+	}
+
+.main .new .azt a{
+	padding: 10px;
+	float: left;
+	margin: 8px;
+	margin-right: 20px; ;
+	margin-left: 20px;
+	background-color: rgb(148, 228, 184);
+	color: rgb(43, 46, 3);
+	font-size: larger;
+	font-weight: 600;
+	text-decoration: none; 
+/* 	text-align: center; */
+	border-radius: 10%;
+}
+
+.main .new .azt a:hover{
+	background-color: rgb(228, 152, 196);
+}
+
+.new p{
+	font-weight: 600;
+	font-size: 20px;
+	text-align: center;
+	margin: 10px;
+		font-family: "微软雅黑";
+}
+
+.main .new .pic{
+	padding: 20px;
+	padding-top: 10px;
+	text-align: center;
+	overflow: auto;
+	
+}
+
+.main .new .pic img{
+	float: left;
+	width: 500px;
+	height: 350px;	
+	border: 3px solid blue;
+	margin:5px;
+}
+
+.main .new .pic video{
+	width: 500px;
+	height: 350px;
+	border: 3px solid blue;
+	margin: 5px;
+	float: left;
+}
+
+.main .new .p1ic{
+	width: 900px;
+	margin: auto;
+	margin-bottom: 20px;
+	border: 3px solid blue;
+	text-align: center;
+}
+
+.main .new .p1ic img{
+	width: 100%;
+	/* align: center; */
+}
+
+
+span{
+	font-weight: 600;
+}
+span.red{
+	color: #ca0b0b;
+}
+span.red1{
+	color: #ca0b0b;
+	background-color:#ffff00;
+}
+span.red2{
+	color: #ca0b0b;
+	background-color:#aaffff;
+}
+span.blue{
+	color: #030bac;
+}
+span.blue1{
+	color: #030bac;
+	background-color:#ffff00;
+}
+span.blue2{
+	color: #030bac;
+	background-color:#aaffff;
+}
+span.green{
+	color: #005500;
+}
+span.green1{
+	color: #005500;
+	background-color:#ffff00;
+}
+span.green2{
+	color: #005500;
+	background-color:#aaffff;
+}
+span.yl{
+	color: #840584;
+}
+span.yl1{
+	background-color:#ffff00;
+}
+span.yl2{
+	background-color:#aaffff;
+}
+
+
+div.nb{
+	border: 3px solid #5ebe8d;
+	margin: 9px;	
+	padding: 1.25rem;
+	overflow: auto;
+}
+
+div.wb{
+	border: 3px solid skyblue;
+	margin: 9px;
+	padding: 1.25rem;
+	overflow: auto;
+}
+
+/* 内部链接式样 */
+a.nb{
+	margin: 5px;
+	padding: 5px;
+	/* 	border: 1px solid red; */
+	line-height: 65px;
+		float: none;
+	/* 	text-decoration: blue; */
+		color: black;
+		font-weight: 600;
+		font-size: 20px;
+		padding: 3px;
+		background-color: antiquewhite;
+		text-decoration: none; 
+		/* color: #9148d9; */
+}
+
+/* 外部链接式样 */
+a.wb{
+	padding: 5px;
+		/* float: left; */
+		margin: 5px;
+		/* margin-bottom: 15px; */
+		line-height: 65px;
+		font-size: larger;
+		font-weight: 600;
+		text-decoration: none; 
+	/* 	text-align: center; */
+		border-radius: 10%;
+
+	color: black;
+	background-color: skyblue;
+}
+
+/* 文件的链接 */
+a.wj{
+	padding: 5px;
+		/* float: left; */
+		margin: 5px;
+		/* margin-bottom: 15px; */
+		line-height: 65px;
+		font-size: larger;
+		font-weight: 600;
+		/* text-decoration: none; */
+	/* 	text-align: center; */
+		border-radius: 10%;
+border: dashed 3px orange;
+	/* color: black; */
+	/* background-color: plum; */
+}
