@@ -1,0 +1,48 @@
+.rt{
+	position: absolute;
+	top: 0;left: 0;
+	margin: 0;
+	padding: 0%;
+	
+	height: 100vh;
+	width: 100%;
+	
+	overflow: auto;
+	/* background-color: antiquewhite; */
+}
+
+.mm-menu{
+	background: linear-gradient(113.58893008880955deg, rgba(236, 236, 236,1) 4.927083333333334%,rgba(195, 229, 248,1) 97.84374999999999%)
+}
+
+/* 默认隐藏子菜单 */
+.mm-submenu {
+  display: none;
+  background: rgba(0, 0, 0, 0.05); /* 稍微深一点的背景色以便区分 */
+  padding-left: 20px; /* 缩进 */
+  list-style: none;
+  margin: 0;
+}
+
+/* 当父级激活时显示 */
+.has-submenu.open .mm-submenu {
+  display: block;
+}
+
+/* 旋转箭头小图标 (可选) */
+.submenu-toggle::after {
+  content: '▼';
+  font-size: 10px;
+  float: right;
+  transition: transform 0.3s;
+}
+.has-submenu.open .submenu-toggle::after {
+  transform: rotate(180deg);
+}
+
+.rt {
+    width: 100%;  /* 占满父容器宽度 */
+    height: 100vh;  /* 占满视口高度，防止滚动条问题 */
+    border: none;  /* 无边框 */
+    display: block;  /* 确保块级显示 */
+}

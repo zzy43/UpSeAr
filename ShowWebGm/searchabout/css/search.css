@@ -1,0 +1,28 @@
+@media (max-width: 600px) {  /* 针对手机屏 */
+    body {
+        font-size: 14px;  /* 减小全局字体，避免太大 */
+        line-height: 1.4;  /* 行高调整 */
+    }
+    .header h1 {
+        font-size: 24px;  /* 标题缩小 */
+    }
+    #searchInput {
+        width: 100%;  /* 输入框占满宽度，而不是固定600px */
+        height: 50px;  /* 高度减小 */
+        font-size: 20px;  /* 字体缩小 */
+        padding: 10px;
+    }
+    .inside h2, .inside h4 {
+        font-size: 20px;  /* 内部标题调整 */
+    }
+    .azt p {
+        font-size: 14px;  /* 段落文字缩小 */
+    }
+    .container {
+        padding: 0 10px;  /* 减小内边距，避免内容太宽 */
+    }
+    img {
+        max-width: 100%;  /* 图片自适应 */
+        height: auto;
+    }
+}
