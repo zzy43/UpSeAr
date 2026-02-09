@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>资料搜索框架 - 2025.12</title>
+  <style>
+    body {      
+      margin: 0;
+      padding: 16px;
+      font-family: system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      background: #fff;
+      color: #333;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    h1, h2, h3, h4 {
+      margin: 1.2em 0 0.6em;
+    }
+    h1 {
+      font-size: 2rem;
+      color: #c62828;
+    }
+    h3 {
+      color: #1565c0;
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 8px;
+    }
+    .inside {
+      background: #f2eded;
+      padding: 16px;
+      margin: 12px 0;
+      border-radius: 8px;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.08);
+    }
+    #searchInput {
+      width: 100%;
+      max-width: 640px;
+      height: 52px;
+      font-size: 1.1rem;
+      padding: 0 16px;
+      margin: 12px 0 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+    #searchInput:focus {
+      outline: none;
+      border-color: #1976d2;
+      box-shadow: 0 0 0 3px rgba(25,118,210,0.15);
+    }
+    a.link {
+      display: block;
+      margin: 10px 0;
+      color: #1976d2;
+      text-decoration: none;
+      font-size: 1.05rem;
+    }
+    a.link:hover {
+      text-decoration: underline;
+      color: #0d47a1;
+    }
+    .hidden {
+      display: none;
+    }
+    #searchResults h3 {
+      margin-top: 0;
+      color: #d81b60;
+    }
+    @media (max-width: 600px) {
+      body { padding: 12px; font-size: 15px; }
+      h1 { font-size: 1.6rem; }
+      #searchInput { height: 48px; font-size: 1rem; }
+      .inside { padding: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>HYT-安全监察部-2512</h1>
+
+<h2>页内搜索</h2>
+<input 
+  type="text" 
+  id="searchInput" 
+  placeholder="输入关键词搜索链接（实时）..." 
+  autocomplete="off"
+>
+
+<div id="searchResults" class="hidden">
+  <h3>搜索结果</h3>
+  <div id="results"></div>
+</div>
+
+<div style="margin-top: 32px;">
+  <h3>审核监察处</h3>
+  <div class="inside">
+    <h4>2024.12.06</h4>
+    <h4>审核监察处主要职责</h4>
+    <p>
+&nbsp;&nbsp;&nbsp;&nbsp;      1.安全审核/监督检查体系维护： 建立健全并维护公司安全审核/监督检查机制、 标准及 SMS 体系审核规定； 负责专/兼职审核员的选聘、 培训、 考评与档案管理； 制定并组织实施公司年度安全审核/监查计划；
+<br>&nbsp;&nbsp;&nbsp;&nbsp;2.IOSA 审计： 配合牵头部门完成 IOSA 审计， 负责组织、安全绩效监测及年度管理评审等 ORG 检查单的内审工作；
+<br>&nbsp;&nbsp;&nbsp;&nbsp;3.法定自查： 建立健全公司法定自查制度， 制定并跟踪年度计划， 将自查工作与 SMS、 隐患排查治理相融合， 并按要求上报局方；
+<br>&nbsp;&nbsp;&nbsp;&nbsp;4.运行监察（ 飞行/维修/航务/运输） ： 对飞行、 维修、运控及货物运输等各运行领域开展监察， 检查操作规范性与程序符合性， 跟踪并验证问题整改闭环； 落实公司应急响应工作的监督检查。
+<br>&nbsp;&nbsp;&nbsp;&nbsp;5.LOSA： 统筹制定 LOSA 计划并组织飞行部、 运行标准技术部开展实施， 收集和分析运行数据与信息， 识别运行偏差和潜在风险， 编写 LOSA 报告， 完成问题的整改和闭环管理， 改进航线运行管理水平；
+<br>&nbsp;&nbsp;&nbsp;&nbsp;6.安全文化： 编写、 修订安全教育与培训管理程序和航空安全培训大纲； 组织编写、 修订《航空安全管理程序》 、《安全监察部管理手册》 ； 对公司整体安全形势具体展开分析， 有效应用安全培训提高运行效率和保障运行安全；
+<br>&nbsp;&nbsp;&nbsp;&nbsp;7.管理评审： 负责组织开展公司安全管理评审工作， 定期对风险管理的输出、 安全保证的输出以及吸取安全经验教训的状况等进行管理评审， 分析、 发现体系运行与预期目标的差距， 提出体系改进方向， 形成评审报告和任务输出。 制定公司年度安全管理工作方案计划， 对各部门完成情况进行跟踪验证；
+<br>&nbsp;&nbsp;&nbsp;&nbsp;8.作风建设： 建立和维护公司作风建设管理制度， 明确各部门作风建设职责； 通过内部审核、 监督检查、 事件调查和法定自查等工作， 排查作风隐患和薄弱点； 组织作风建设宣贯、 案例警示及专项培训， 培育全员良好安全作风；
+<br>&nbsp;&nbsp;&nbsp;&nbsp;9.其他： 贯彻落实上级有关指示和政策， 完成领导交办的各项任务
+    </p>
+    
+  </div>
+
+ <div class="inside">
+    <h4>2024.12.26</h4>    
+    <p>
+    &nbsp;&nbsp;&nbsp;&nbsp;郭靖拍案而起，登城瞭望。只见敌兵的万人队在离城数里之地列开阵势，却不进攻。过不多时，千余个工匠负石竖木，筑成了一个十余丈高的高台。
+<br>&nbsp;&nbsp;&nbsp;&nbsp;这时黄药师、黄蓉、一灯、朱子柳等都已在城头观敌，见蒙古兵忽然构筑高台，均感不解。郭靖道：“我久在蒙古军中，从未见过他们做这般怪事。”
+<br>&nbsp;&nbsp;&nbsp;&nbsp;说话之间，又望见千余名士兵舞动长锹铁铲，在高台四周挖了一条又深又阔的壕沟，挖出来的泥土便堆在壕沟以外，成为一堵土墙。黄药师怒道：“襄阳城是三国时诸葛亮的故居，鞑子无礼，在这位大贤门前玩弄玄虚，岂不是欺大宋无人么？”
+<br>&nbsp;&nbsp;&nbsp;&nbsp;只听得号角吹动，颦鼓声中，一个万人队开了上来，列在高台左侧，跟着又是一个万人队列在右侧。阵势布定，又有一个万人队布在台前，连同先前的万人队，一共是四个万人队围住了高台。这个大阵绵延数里，盾牌手、长矛手、斩马手、强弩手、折冲手，一层一层，将那高台围得铁桶相似。
+<br>&nbsp;&nbsp;&nbsp;&nbsp;猛听得一阵号响，鼓声止歇，数万人鸦雀无声，远处两乘马驰到台下。
+<br>&nbsp;&nbsp;&nbsp;&nbsp;马上乘客翻身下鞍，携手上了高台，只因隔得远了，两人的面目瞧不清楚，依稀可见似是一男一女。
+<br>&nbsp;&nbsp;&nbsp;&nbsp;众人正错愕间，黄蓉突然惊呼一声，往后便倒，竟是晕了过去。众人急忙救醒，齐问“怎么？甚么事？”黄蓉脸色惨白，颤声道：“是襄儿，是襄儿。”众人吃了一惊，面面相觑。朱子柳道：“郭夫人，你瞧明白了么？”
+<br>&nbsp;&nbsp;&nbsp;&nbsp;黄蓉道：“我虽瞧不清她面目，但依情理推断，决计是她。鞑子攻城不成，竟然使出奸计，真是……真是无耻卑鄙已极。”黄药师和朱子柳经她一说，登时省悟，满脸愤激之色，郭靖却兀自未解，问道：“襄儿怎地会到这高台上去？鞑子使甚么奸计了？”
+<br>&nbsp;&nbsp;&nbsp;&nbsp;黄蓉挺直身子，昂然道：“靖哥哥，襄儿不幸落入了鞑子的手里，他们建此高台，台下堆了柴草，却将襄儿置在台上，那是要逼你投降。你若不降，他们便举火烧台，叫咱们夫妇心痛肠断，神智昏乱，不能专心守城。”
+<br>&nbsp;&nbsp;&nbsp;&nbsp;郭靖又惊又怒，问道：“襄儿怎会落入鞑子手里？”黄蓉道：“连日军务紧急，我怕你分心，没说此事。”于是将郭襄如何在绝情谷中被金轮法王掳去之事说了。郭靖一听杨过在谷底失去踪迹，连连追问端详，待听黄蓉说完，皱眉道：“蓉儿，这可是你的不对了，过儿生死未明，你怎地便舍他而去？”郭靖一向敬重爱妻，从未在旁人之前对她有丝毫失礼，这两句责备之言说得甚重，黄蓉不由得满脸通红。
+<br>&nbsp;&nbsp;&nbsp;&nbsp;一灯道：“郭夫人深入寒潭，冻得死去活来，查明杨过确系不在谷底，又何况小姑娘落入奸人之手，大伙儿都主张追赶，须怪郭夫人不得。”一灯既如此说，郭靖自不敢再说甚么，只恨恨的道：“郭襄这小娃儿成日闯祸，倘若过儿有甚好歹，咱们心中何安？让她给蒙古兵烧死了干净。”</p>
+    <!-- 其他内容保持原样或删减冗余部分 -->
+  </div>
+
+  </div>
+   <div class="inside">
+    <h4>相关文件</h4>    
+    <a href="javascript:;" class="link">飞行部安行管理简报（第五期）.pdf</a>
+    <a href="javascript:;" class="link">飞行部安全运行管报（第六期）pdf</a>
+    <a href="javascript:;" class="link">复飞的安全风险提示pdf</a>
+    <a href="javascript:;" style="color: red;" class="link">调整737-800起降操作限制pdf</a>
+    <a href="javascript:;" class="link">惩治涉枪支弹药爆炸物犯罪意见.pdf</a>
+    <a href="javascript:;" style="color: red;" class="link">运行通告〔2022〕14号-关于临时调整部分仪表进近标准的通告.pdf</a>
+  </div>
+
+  <!-- 更多内容区域 -->
+  <h3>信息调查处</h3>
+  <div class="inside">
+    <h4>2024.12.13 【重要】复飞研讨学习精要</h4>
+    <p>……</p>
+    <!-- 这里放更多链接 -->
+    <a href="javascript:;" class="link">示例文档1.pdf</a>
+    <a href="javascript:;" class="link">示例文档2.pdf</a>
+  </div>
+
+    <h3>双重预防处</h3>
+  <div class="inside">
+    <h4 style="color: red;">2024.12.13 【重要】复飞研讨学习精要</h4>
+    <p>……</p>
+    <!-- 这里放更多链接 -->
+    <a href="javascript:;" class="link">示例文档1.pdf</a>
+    <a href="javascript:;" class="link">示例文档2.pdf</a>
+  </div>
+
+    <h3>危险品管理处</h3>
+  <div class="inside">
+    <h4>2024.12.13 【重要】复飞研讨学习精要</h4>
+    <p>……</p>
+    <!-- 这里放更多链接 -->
+    <a href="javascript:;" class="link">示例文档1.pdf</a>
+    <a href="javascript:;" class="link">示例文档2.pdf</a>
+  </div>
+
+
+</div>
+
+<script>
+// 防抖函数
+function debounce(fn, delay = 300) {
+  let timer = null;
+  return function (...args) {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      fn.apply(this, args);
+    }, delay);
+  };
+}
+
+const searchLinks = debounce(function () {
+  const input = document.getElementById('searchInput').value.trim().toLowerCase();
+  const resultsContainer = document.getElementById('results');
+  const searchResults = document.getElementById('searchResults');
+
+  // 清空结果
+  resultsContainer.innerHTML = '';
+
+  if (!input) {
+    searchResults.classList.add('hidden');
+    return;
+  }
+
+  const links = document.querySelectorAll('a.link');
+  let foundCount = 0;
+
+  links.forEach(link => {
+    const text = (link.textContent || '').trim().toLowerCase();
+    if (text.includes(input)) {
+      const div = document.createElement('div');
+      div.innerHTML = `<a href="${link.href}" class="link" target="_blank">${link.textContent.trim()}</a>`;
+      resultsContainer.appendChild(div);
+      foundCount++;
+    }
+  });
+
+  searchResults.classList.toggle('hidden', foundCount === 0);
+});
+
+// 绑定事件
+document.getElementById('searchInput').addEventListener('input', searchLinks);
+</script>
+
+</body>
+</html>

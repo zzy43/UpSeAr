@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>资料库 - 华东2069题</title>
+  <link rel="icon" href="img/tx.ico">
+  
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body {
+      height:100%;
+      overflow:hidden;
+      font-family:system-ui, sans-serif;
+      background:#f9f9f9;
+    }
+    #wrapper {
+      height:100%;
+      display:flex;
+      flex-direction:column;
+      position:relative;
+    }
+    #menu-toggle {
+      position:fixed;
+      top:12px; left:12px;
+      z-index:1200;
+      width:48px; height:48px;
+      background:#2c3e50; color:white;
+      border:none; border-radius:8px;
+      font-size:26px; cursor:pointer;
+      box-shadow:0 3px 8px rgba(0,0,0,0.3);
+    }
+    #side-menu {
+      position:fixed;
+      top:0; left:0;
+      width:280px;
+      height:100%;
+      background:white;
+      transform:translateX(-100%);
+      transition:transform 0.4s ease;
+      box-shadow:4px 0 16px rgba(0,0,0,0.25);
+      overflow-y:auto;
+      z-index:1100;
+    }
+    #side-menu.active {
+      transform:translateX(0);
+    }
+    /* 内容区完全不动 */
+    #content-frame {
+      flex:1;
+      width:100%;
+      border:none;
+      background:white;
+    }
+    /* 手机端菜单窄一点 */
+    @media (max-width: 600px) {
+      #side-menu { width:260px; }
+      #menu-toggle { width:44px; height:44px; font-size:24px; }
+    }
+    /* 可选：菜单打开时给内容加一层半透明遮罩（提升体验） */
+    #overlay {
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.4);
+      opacity:0;
+      pointer-events:none;
+      transition:opacity 0.4s;
+      z-index:1050;
+    }
+    #side-menu.active ~ #overlay {
+      opacity:1;
+      pointer-events:auto;
+    }
+  </style>
+</head>
+<body>
+
+<div id="wrapper">
+  <button id="menu-toggle">☰</button>
+
+  <!-- 遮罩层，点击可关闭菜单 -->
+  <div id="overlay" onclick="closeMenu()"></div>
+
+  <nav id="side-menu">
+    <div style="background:#27ae60; color:white; padding:24px 16px; text-align:center;">
+      <h2 style="margin:0; font-size:1.4rem;">泰伦の天空</h2>
+      <p style="margin:6px 0 0; opacity:0.9; font-size:0.95rem;">随便写写</p>
+    </div>
+    <ul style="list-style:none;">
+      <li style="border-bottom:1px solid #eee;">
+        <a href="javascript:;" class="submenu-toggle" style="display:block; padding:14px 20px; color:#222; text-decoration:none; font-size:1.05rem;">2024年</a>
+        <ul class="submenu" style="display:none; background:#fafafa; margin:0; padding:0;">
+          <li><a href="tk/001200.html" target="contentFrame" style="display:block; padding:12px 40px; color:#444; text-decoration:none;">1月</a></li>
+          <li><a href="tk/201400.html" target="contentFrame" style="display:block; padding:12px 40px; color:#444; text-decoration:none;">2月～12月</a></li>
+        </ul>
+      </li>
+      <li style="border-bottom:1px solid #eee;">
+        <a href="javascript:;" class="submenu-toggle" style="display:block; padding:14px 20px; color:#222; text-decoration:none; font-size:1.05rem;">2025年</a>
+        <ul class="submenu" style="display:none; background:#fafafa; margin:0; padding:0;">
+          <li><a href="searchabout/202512.html" target="contentFrame" style="display:block; padding:12px 40px; color:#444; text-decoration:none;">12月</a></li>
+        </ul>
+      </li>
+      <li style="border-bottom:1px solid #eee;">
+        <a href="javascript:;" class="submenu-toggle" style="display:block; padding:14px 20px; color:#222; text-decoration:none; font-size:1.05rem;">2026年</a>
+        <ul class="submenu" style="display:none; background:#fafafa; margin:0; padding:0;">
+          <li><a href="searchabout/202601.html" target="contentFrame" style="display:block; padding:12px 40px; color:#444; text-decoration:none;">1月</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <iframe id="content-frame" name="contentFrame" src="searchabout/202512.html"></iframe>
+</div>
+
+<script>
+  const menu = document.getElementById('side-menu');
+  const wrapper = document.getElementById('wrapper');
+
+  document.getElementById('menu-toggle').addEventListener('click', () => {
+    menu.classList.toggle('active');
+  });
+
+  function closeMenu() {
+    menu.classList.remove('active');
+  }
+
+  // 子菜单
+  document.querySelectorAll('.submenu-toggle').forEach(el => {
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      const submenu = this.nextElementSibling;
+      submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+    });
+  });
+</script>
+
+</body>
+</html>
