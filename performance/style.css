@@ -296,3 +296,67 @@ td {
     background: #f8e1de;
     color: #a52834;
 }
+
+/* ========== 移动端/iPad兼容性修复 ========== */
+
+/* 确保所有控制组在移动端正常显示 */
+@media (max-width: 1200px) {
+    .controls {
+        gap: 16px;
+    }
+    
+    .ctrl-group {
+        flex: 1 1 auto;
+        min-width: 180px;
+    }
+    
+    /* 防冰按钮组特殊处理 */
+    #antiIceGroup {
+        min-width: 130px;
+    }
+}
+
+/* 触摸设备优化 */
+@media (hover: none) and (pointer: coarse) {
+    .btn {
+        padding: 10px 22px; /* 增大点击区域 */
+        font-size: 16px; /* 增大字体避免缩放 */
+    }
+    
+    .btn-group {
+        border: 2px solid #cbd5e1; /* 更明显的边框 */
+    }
+    
+    /* 修复事件穿透问题 */
+    .btn-group,
+    .btn,
+    .ctrl-group {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+}
+
+/* 修复可能的事件捕获/冒泡问题 */
+.ctrl-group {
+    position: relative;
+}
+
+.btn-group {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: visible;
+}
+
+/* 强制按钮可点击 */
+button.btn {
+    opacity: 1;
+    visibility: visible;
+    display: inline-block;
+}
+
+/* 修复Safari上的active状态 */
+.btn.active {
+    background: #1f69c9 !important;
+    color: white !important;
+}
