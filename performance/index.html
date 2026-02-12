@@ -21,7 +21,10 @@
                     <img src="logo.png" alt="圆通航空" style="height: 40px; width: auto;">
                 </div>
                 <span class="airport" id="airportTitle">ZSHC</span>
-                <span class="badge">✈ 襟翼 05 · 防冰 OFF</span>
+                <span class="badge">✈ 襟翼 05</span>
+                <span class="badge">建议用杭州22auto数据进行测试</span>
+                <span class="badge">测试防冰开的逻辑是否有问题</span>
+                <span class="badge">飞机号暂时未上传数据</span>
             </div>
             <div id="dataStatus" class="status-text">⏳ 加载数据...</div>
         </div>
@@ -59,6 +62,13 @@
                 </div>
             </div>
             <div class="ctrl-group">
+                <span class="ctrl-label">🧊 防冰</span>
+                <div class="btn-group" id="antiIceGroup">
+                    <button class="btn active" data-antiice="off">OFF</button>
+                    <button class="btn" data-antiice="on">ON</button>
+                </div>
+            </div>
+            <div class="ctrl-group">
                 <span class="ctrl-label">🛣️ 道面</span>
                 <div class="btn-group" id="surfaceGroup">
                     <button class="btn active" data-surface="dry">干跑道</button>
@@ -92,12 +102,13 @@
             </div>
         </div>
 
-        <!-- 当前状态信息栏 - 增加飞机显示 -->
+        <!-- 当前状态信息栏 - 增加飞机显示和防冰显示 -->
         <div class="info-panel" id="infoPanel">
             <div class="info-item">✈️ 飞机: <span id="aircraftDisplay" style="font-weight: 700;">未选择</span></div>
             <div class="info-item">📍 机场: <span id="airportDisplay" style="font-weight: 700;">ZSHC</span></div>
             <div class="info-item">📊 跑道: <span id="runwayDisplay" style="font-weight: 700;">22</span></div>
             <div class="info-item">❄️ 空调: <span id="acDisplay" style="font-weight: 700;">AUTO</span></div>
+            <div class="info-item">🧊 防冰: <span id="antiIceDisplay" style="font-weight: 700;">OFF</span></div>
             <div class="info-item">🛣️ 道面: <span id="surfaceDisplay" style="font-weight: 700;">干跑道</span></div>
             <div class="info-item">⚖️ 输入重量: <span id="weightDisplay" style="font-weight: 700;">未输入</span></div>
             <div class="info-item">📊 QNH: <span id="qnhDisplay" style="font-weight: 700;">未输入</span></div>
