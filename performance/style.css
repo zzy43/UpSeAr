@@ -1,0 +1,286 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+body {
+    background: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    padding: 30px 20px;
+}
+
+.card {
+    max-width: 1600px;
+    width: 100%;
+    background: white;
+    border-radius: 24px;
+    padding: 28px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+}
+
+/* 头部样式 */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #dce5ec;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.airport {
+    background: #0a3e6f;
+    color: white;
+    padding: 6px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+}
+
+.badge {
+    background: #eef2f6;
+    padding: 6px 20px;
+    border-radius: 30px;
+    color: #1e3e5c;
+}
+
+.status-text {
+    color: #1f69c9;
+    font-weight: 600;
+}
+
+/* 控制区样式 */
+.controls {
+    background: #f5f9ff;
+    border-radius: 20px;
+    padding: 24px;
+    margin-bottom: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    align-items: center;
+    border: 1px solid #d7e1e9;
+}
+
+.ctrl-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ctrl-label {
+    font-weight: 650;
+    color: #1f4a6e;
+    min-width: 70px;
+    font-size: 0.95rem;
+}
+
+.btn-group {
+    display: flex;
+    gap: 6px;
+    background: white;
+    padding: 4px;
+    border-radius: 40px;
+    border: 1px solid #cbd5e1;
+}
+
+.btn {
+    padding: 6px 20px;
+    border: none;
+    background: transparent;
+    border-radius: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.1s;
+}
+
+.btn.active {
+    background: #1f69c9;
+    color: white;
+}
+
+select, input {
+    padding: 10px 18px;
+    border: 1px solid #cbd5e1;
+    border-radius: 40px;
+    font-size: 0.95rem;
+    background: white;
+}
+
+select {
+    width: 220px;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%234b6f8c" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+}
+
+input[type=number] {
+    width: 160px;
+}
+
+.temp-input {
+    width: 130px;
+}
+
+/* 空值警告样式 */
+.empty-warning {
+    background-color: #fff9e6 !important;
+    border: 1.5px solid #f5c542 !important;
+}
+
+/* 信息面板 */
+.info-panel {
+    background: #e3edf5;
+    padding: 18px 24px;
+    border-radius: 18px;
+    margin-bottom: 24px;
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 表格容器 */
+.table-container {
+    overflow-x: auto;
+    border: 1px solid #d0dde8;
+    border-radius: 18px;
+    background: white;
+    margin-bottom: 12px;
+    transition: background-color 0.2s ease;
+}
+
+.table-container.wet-runway {
+    background-color: #e6f3e6 !important;
+    border: 1px solid #2d6a4f !important;
+}
+
+/* 表格样式 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+th {
+    background: #f0f5fa;
+    padding: 14px 8px;
+    border-bottom: 2px solid #c8d6e2;
+    color: #0a334f;
+    text-align: center;
+    font-weight: 600;
+}
+
+td {
+    padding: 10px 8px;
+    border-bottom: 1px solid #e6ecf0;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.star {
+    color: #c7452b;
+    font-weight: 800;
+}
+
+.both-highlight {
+    background: #ffd966 !important;
+    font-weight: 700;
+}
+
+/* 温度限制超限行 */
+.temp-limit-violation {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.temp-limit-violation td {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.temp-limit-violation .both-highlight {
+    background: #ffd966 !important;
+    color: #000;
+}
+
+/* 页脚图例 */
+.footnote {
+    margin-top: 20px;
+    color: #54738c;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.legend {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.color-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    background: #ffd966;
+}
+
+.dot-red {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    background: #f8d7da;
+    border: 1px solid #dc3545;
+}
+
+.dot-green-bg {
+    width: 16px;
+    height: 16px;
+    background: #e6f3e6;
+    border: 1px solid #2d6a4f;
+    border-radius: 4px;
+}
+
+/* 状态徽章 */
+.status-badge {
+    padding: 6px 18px;
+    border-radius: 40px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.status-success {
+    background: #d3f0df;
+    color: #0f5132;
+}
+
+.status-warning {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-danger {
+    background: #f8e1de;
+    color: #a52834;
+}
