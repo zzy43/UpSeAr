@@ -6,6 +6,7 @@ let currentSurface = 'dry';
 let currentWeight = null;
 let currentWind = '';
 let currentOAT = null;
+let currentQNH = null;      // 新增QNH变量
 
 // 数据存储
 let airportData = null;
@@ -30,6 +31,9 @@ const tempDisplay = document.getElementById('tempDisplay');
 const tableContainer = document.getElementById('tableContainer');
 const dataStatus = document.getElementById('dataStatus');
 const wetLegend = document.getElementById('wetLegend');
+// 新增QNH元素
+const qnhInput = document.getElementById('qnhInput');
+const qnhDisplay = document.getElementById('qnhDisplay');
 
 // ---------- 辅助函数 ----------
 function parseTempValue(tempStr) {
@@ -59,6 +63,23 @@ function getLimitType(cell) {
     if (type === 'B') return '刹车能量';
     if (type === 'V') return 'VMCG';
     return null;
+}
+
+// 计算QNH修正重量
+function calculateQNHWeight() {
+    if (currentWeight === null || currentQNH === null) return null;
+    
+    const qnhDiff = currentQNH - 1013;
+    // QNH低于1013每1个单位，重量减少1.5kg；QNH高于1013每1个单位，重量增加1.5kg
+    const correction = qnhDiff * 1.5;
+    const correctedWeight = currentWeight + correction;
+    return {
+        originalWeight: currentWeight,
+        qnh: currentQNH,
+        qnhDiff: qnhDiff,
+        correction: correction,
+        correctedWeight: Math.round(correctedWeight * 100) / 100
+    };
 }
 
 // 加载数据文件
@@ -121,6 +142,8 @@ function applyWarningStyle() {
         currentWeight === null || currentWeight === '' || currentWeight < 555);
     windSelect.classList.toggle('empty-warning', !currentWind);
     currentTempInput.classList.toggle('empty-warning', currentTempInput.value === '');
+    // QNH空值警告
+    qnhInput.classList.toggle('empty-warning', qnhInput.value === '');
 }
 
 // 应用湿跑道样式
@@ -225,6 +248,15 @@ function initEvents() {
         applyWarningStyle();
         if (airportData) renderTable();
     });
+
+    // QNH输入
+    qnhInput.addEventListener('input', function() {
+        let val = this.value.trim() === '' ? null : parseFloat(this.value);
+        currentQNH = (val !== null && !isNaN(val) && val > 0) ? Math.round(val) : null;
+        qnhDisplay.textContent = currentQNH ? currentQNH + ' hPa' : '未输入';
+        applyWarningStyle();
+        if (airportData) renderTable();
+    });
 }
 
 // ---------- 核心渲染 ----------
@@ -266,20 +298,24 @@ function renderTable() {
         windIndex = winds.indexOf(currentWind);
     }
 
-    // ----- 高亮逻辑 -----
+    // 计算QNH修正重量
+    const qnhData = calculateQNHWeight();
+    const comparisonWeight = qnhData ? qnhData.correctedWeight : currentWeight;
+
+    // ----- 高亮逻辑（使用QNH修正后的重量进行比较）-----
     let highlightRowIndex = -1;
     let highlightLimitType = null;
     let highlightLimitWeight = null;
     
-    if (windIndex !== -1 && currentWeight !== null && currentWeight > 0) {
+    if (windIndex !== -1 && comparisonWeight !== null && comparisonWeight > 0) {
         const validRows = [];
         
         rows.forEach((row, index) => {
             const cellText = row.cells[windIndex];
             const limitWeight = extractLimitWeight(cellText);
             
-            const meetClimb = currentWeight <= row.climb;
-            const meetLimit = limitWeight !== null && currentWeight <= limitWeight;
+            const meetClimb = comparisonWeight <= row.climb;
+            const meetLimit = limitWeight !== null && comparisonWeight <= limitWeight;
             
             if (meetClimb && meetLimit) {
                 validRows.push({
@@ -347,7 +383,7 @@ function renderTable() {
     html += '</tbody></table>';
     tableContainer.innerHTML = html;
 
-    // ----- 更新状态栏 -----
+    // ----- 更新状态栏（整合道面、QNH修正信息）-----
     if (!currentAirport) {
         matchStatus.innerHTML = '⏳ 请选择机场';
         matchStatus.className = 'info-item status-badge';
@@ -356,6 +392,9 @@ function renderTable() {
         matchStatus.className = 'info-item status-badge status-warning';
     } else if (currentWeight === null || currentWeight < 555) {
         matchStatus.innerHTML = '⚠️ 请输入有效重量 (≥555kg)';
+        matchStatus.className = 'info-item status-badge status-warning';
+    } else if (currentQNH === null) {
+        matchStatus.innerHTML = '⚠️ 请输入QNH';
         matchStatus.className = 'info-item status-badge status-warning';
     } else if (highlightRowIndex !== -1) {
         const bestRow = rows[highlightRowIndex];
@@ -369,7 +408,18 @@ function renderTable() {
             limitText = ` · 越障:${highlightLimitWeight}kg`;
         }
         
-        let msg = `✅ 推荐: ${bestRow.temp} · 爬升:${bestRow.climb}kg${limitText} · 输入:${currentWeight.toFixed(1)}kg`;
+        // 道面信息
+        const surfaceText = currentSurface === 'dry' ? '干跑道' : '湿跑道';
+        
+        // QNH修正信息
+        let qnhText = '';
+        if (qnhData) {
+            const diff = qnhData.qnhDiff;
+            const sign = diff > 0 ? '+' : '';
+            qnhText = ` · QNH:${qnhData.qnh} (${sign}${diff}) · QNH修正重量:${qnhData.correctedWeight.toFixed(1)}kg`;
+        }
+        
+        let msg = `✅ 推荐: ${bestRow.temp} · 爬升:${bestRow.climb}kg${limitText} · ${surfaceText} · 输入重量:${currentWeight.toFixed(1)}kg${qnhText}`;
         
         if (currentOAT !== null && highlightTemp < currentOAT) {
             msg += ` · ❗ 温度超限 (${bestRow.temp} < ${currentOAT}°C)`;
@@ -379,7 +429,16 @@ function renderTable() {
         }
         matchStatus.innerHTML = msg;
     } else {
-        matchStatus.innerHTML = `⚠️ 无满足条件的性能组合 · 输入:${currentWeight?.toFixed(1) || '--'}kg`;
+        // 无满足条件时也显示道面和QNH信息
+        const surfaceText = currentSurface === 'dry' ? '干跑道' : '湿跑道';
+        let qnhText = '';
+        if (qnhData) {
+            const diff = qnhData.qnhDiff;
+            const sign = diff > 0 ? '+' : '';
+            qnhText = ` · QNH:${qnhData.qnh} (${sign}${diff}) · QNH修正重量:${qnhData.correctedWeight.toFixed(1)}kg`;
+        }
+        
+        matchStatus.innerHTML = `⚠️ 无满足条件的性能组合 · ${surfaceText} · 输入重量:${currentWeight?.toFixed(1) || '--'}kg${qnhText}`;
         matchStatus.className = 'info-item status-badge status-warning';
     }
 }
@@ -391,6 +450,7 @@ async function init() {
     windDisplay.textContent = '未选择';
     tempDisplay.textContent = '未输入';
     surfaceDisplay.textContent = '干跑道';
+    qnhDisplay.textContent = '未输入';  // QNH初始状态
     
     // 加载ZSHC数据
     airportData = await loadAirportData('ZSHC');

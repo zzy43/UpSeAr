@@ -77,6 +77,12 @@
                 <input type="number" id="currentTempInput" class="temp-input" placeholder="OAT" value="" step="1" style="width:130px;">
                 <span>°C</span>
             </div>
+            <!-- 新增：QNH输入框 -->
+            <div class="ctrl-group">
+                <span class="ctrl-label">📊 QNH</span>
+                <input type="number" id="qnhInput" placeholder="QNH" value="" step="1" style="width:120px;">
+                <span style="color: #4f6a7c;">hPa</span>
+            </div>
         </div>
 
         <!-- 当前状态信息栏 -->
@@ -85,7 +91,8 @@
             <div class="info-item">📊 跑道: <span id="runwayDisplay" style="font-weight: 700;">22</span></div>
             <div class="info-item">❄️ 空调: <span id="acDisplay" style="font-weight: 700;">AUTO</span></div>
             <div class="info-item">🛣️ 道面: <span id="surfaceDisplay" style="font-weight: 700;">干跑道</span></div>
-            <div class="info-item">⚖️ 重量: <span id="weightDisplay" style="font-weight: 700;">未输入</span></div>
+            <div class="info-item">⚖️ 输入重量: <span id="weightDisplay" style="font-weight: 700;">未输入</span></div>
+            <div class="info-item">📊 QNH: <span id="qnhDisplay" style="font-weight: 700;">未输入</span></div>
             <div class="info-item">💨 风速: <span id="windDisplay" style="font-weight: 700; color: #1f69c9;">未选择</span></div>
             <div class="info-item">🌡️ OAT: <span id="tempDisplay" style="font-weight: 700;">未输入</span></div>
             <div class="info-item" id="matchStatus">⏳ 请填写参数</div>
@@ -103,7 +110,7 @@
                 <div class="legend-item"><span class="dot-red"></span> 红色行: 性能温度 &lt; 当前温度</div>
                 <div class="legend-item" id="wetLegend" style="display:none;"><span class="dot-green-bg"></span> 湿跑道模式</div>
             </div>
-            <div>⚠️ 黄色输入框 = 必填项未填/重量＜555kg</div>
+            <div>⚠️ 黄色输入框 = 必填项未填/重量＜555kg/QNH未填</div>
         </div>
     </div>
 </body>

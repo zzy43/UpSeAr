@@ -126,6 +126,10 @@ input[type=number] {
     width: 160px;
 }
 
+input#qnhInput {
+    width: 120px;
+}
+
 .temp-input {
     width: 130px;
 }
