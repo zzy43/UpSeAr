@@ -121,6 +121,10 @@ select {
     background-repeat: no-repeat;
     background-position: right 16px center;
 }
+/* 在现有的 select 样式后添加或修改 */
+select#aircraftSelect {
+    width: 140px;
+}
 
 input[type=number] {
     width: 160px;

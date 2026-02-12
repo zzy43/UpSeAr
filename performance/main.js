@@ -1,4 +1,5 @@
 // ---------- 全局变量 ----------
+let currentAircraft = null;  // 新增飞机变量
 let currentAirport = 'ZSHC';
 let currentRunway = '22';
 let currentAC = 'auto';
@@ -6,7 +7,7 @@ let currentSurface = 'dry';
 let currentWeight = null;
 let currentWind = '';
 let currentOAT = null;
-let currentQNH = null;      // 新增QNH变量
+let currentQNH = null;
 
 // 数据存储
 let airportData = null;
@@ -14,6 +15,10 @@ let zshcData = null;
 let zpppData = null;
 
 // ---------- DOM 元素 ----------
+// 新增飞机元素
+const aircraftSelect = document.getElementById('aircraftSelect');
+const aircraftDisplay = document.getElementById('aircraftDisplay');
+
 const airportSelect = document.getElementById('airportSelect');
 const airportTitle = document.getElementById('airportTitle');
 const airportDisplay = document.getElementById('airportDisplay');
@@ -31,7 +36,6 @@ const tempDisplay = document.getElementById('tempDisplay');
 const tableContainer = document.getElementById('tableContainer');
 const dataStatus = document.getElementById('dataStatus');
 const wetLegend = document.getElementById('wetLegend');
-// 新增QNH元素
 const qnhInput = document.getElementById('qnhInput');
 const qnhDisplay = document.getElementById('qnhDisplay');
 
@@ -44,7 +48,6 @@ function parseTempValue(tempStr) {
 // 提取限制重量 - 支持*、T、F、B、V
 function extractLimitWeight(cell) {
     if (!cell) return null;
-    // 匹配 数字* 或 数字T/ 或 数字F/ 或 数字B/ 或 数字V/ 或 数字/
     let match = cell.match(/^(\d+)[*TFBV]?\//);
     return match ? parseInt(match[1], 10) : null;
 }
@@ -70,7 +73,6 @@ function calculateQNHWeight() {
     if (currentWeight === null || currentQNH === null) return null;
     
     const qnhDiff = currentQNH - 1013;
-    // QNH低于1013每1个单位，重量减少1.5kg；QNH高于1013每1个单位，重量增加1.5kg
     const correction = qnhDiff * 1.5;
     const correctedWeight = currentWeight + correction;
     return {
@@ -89,7 +91,6 @@ async function loadAirportData(airportCode) {
     try {
         if (airportCode === 'ZSHC') {
             if (zshcData) return zshcData;
-            // ZSHC_DATA 已通过 script 标签加载
             if (typeof ZSHC_DATA !== 'undefined') {
                 zshcData = ZSHC_DATA;
                 return zshcData;
@@ -138,11 +139,12 @@ function resetRunwayButtons() {
 
 // 应用空值警告样式
 function applyWarningStyle() {
+    // 飞机空值警告
+    aircraftSelect.classList.toggle('empty-warning', aircraftSelect.value === '');
     weightInput.classList.toggle('empty-warning', 
         currentWeight === null || currentWeight === '' || currentWeight < 555);
     windSelect.classList.toggle('empty-warning', !currentWind);
     currentTempInput.classList.toggle('empty-warning', currentTempInput.value === '');
-    // QNH空值警告
     qnhInput.classList.toggle('empty-warning', qnhInput.value === '');
 }
 
@@ -155,6 +157,14 @@ function applyWetRunwayStyle() {
 
 // ---------- 事件监听 ----------
 function initEvents() {
+    // 飞机选择
+    aircraftSelect.addEventListener('change', function() {
+        currentAircraft = this.value || null;
+        aircraftDisplay.textContent = currentAircraft || '未选择';
+        applyWarningStyle();
+        if (airportData) renderTable();
+    });
+
     // 机场选择
     airportSelect.addEventListener('change', async function() {
         const code = this.value;
@@ -356,18 +366,13 @@ function renderTable() {
         let trClass = isTempLimited ? 'temp-limit-violation' : '';
         html += `<tr class="${trClass}">`;
         
-        // 温度列
         html += `<td ${isHighlight ? 'class="both-highlight"' : ''}><strong>${row.temp}</strong></td>`;
-        
-        // 爬升列
         html += `<td ${isHighlight ? 'class="both-highlight"' : ''}>${row.climb} kg</td>`;
         
-        // 风速列
         for (let i = 0; i < winds.length; i++) {
             let cellText = row.cells[i] || '';
             let displayText = cellText;
             
-            // 只处理*号高亮，T/F/B/V保持原样
             if (cellText.includes('*')) {
                 displayText = displayText.replace('*', '<span class="star">*</span>');
             }
@@ -383,8 +388,11 @@ function renderTable() {
     html += '</tbody></table>';
     tableContainer.innerHTML = html;
 
-    // ----- 更新状态栏（整合道面、QNH修正信息）-----
-    if (!currentAirport) {
+    // ----- 更新状态栏（增加飞机未选检查）-----
+    if (!currentAircraft) {
+        matchStatus.innerHTML = '⏳ 请选择飞机';
+        matchStatus.className = 'info-item status-badge status-warning';
+    } else if (!currentAirport) {
         matchStatus.innerHTML = '⏳ 请选择机场';
         matchStatus.className = 'info-item status-badge';
     } else if (!currentWind) {
@@ -400,7 +408,6 @@ function renderTable() {
         const bestRow = rows[highlightRowIndex];
         const highlightTemp = parseTempValue(bestRow.temp);
         
-        // 根据限制类型显示对应的提示文字
         let limitText = '';
         if (highlightLimitType) {
             limitText = ` · ${highlightLimitType}:${highlightLimitWeight}kg`;
@@ -408,18 +415,14 @@ function renderTable() {
             limitText = ` · 越障:${highlightLimitWeight}kg`;
         }
         
-        // 道面信息
-        const surfaceText = currentSurface === 'dry' ? '干跑道' : '湿跑道';
-        
-        // QNH修正信息
         let qnhText = '';
         if (qnhData) {
             const diff = qnhData.qnhDiff;
             const sign = diff > 0 ? '+' : '';
-            qnhText = ` · QNH:${qnhData.qnh} (${sign}${diff}) · QNH修正重量:${qnhData.correctedWeight.toFixed(1)}kg`;
+            qnhText = ` · Q修:${qnhData.correctedWeight.toFixed(1)}kg (${sign}${diff})`;
         }
         
-        let msg = `✅ 推荐: ${bestRow.temp} · 爬升:${bestRow.climb}kg${limitText} · ${surfaceText} · 输入重量:${currentWeight.toFixed(1)}kg${qnhText}`;
+        let msg = `✅ 推荐: ${bestRow.temp} · 输入:${currentWeight.toFixed(1)}kg${qnhText} · 爬升:${bestRow.climb}kg${limitText}`;
         
         if (currentOAT !== null && highlightTemp < currentOAT) {
             msg += ` · ❗ 温度超限 (${bestRow.temp} < ${currentOAT}°C)`;
@@ -429,16 +432,14 @@ function renderTable() {
         }
         matchStatus.innerHTML = msg;
     } else {
-        // 无满足条件时也显示道面和QNH信息
-        const surfaceText = currentSurface === 'dry' ? '干跑道' : '湿跑道';
         let qnhText = '';
         if (qnhData) {
             const diff = qnhData.qnhDiff;
             const sign = diff > 0 ? '+' : '';
-            qnhText = ` · QNH:${qnhData.qnh} (${sign}${diff}) · QNH修正重量:${qnhData.correctedWeight.toFixed(1)}kg`;
+            qnhText = ` · Q修:${qnhData.correctedWeight.toFixed(1)}kg (${sign}${diff})`;
         }
         
-        matchStatus.innerHTML = `⚠️ 无满足条件的性能组合 · ${surfaceText} · 输入重量:${currentWeight?.toFixed(1) || '--'}kg${qnhText}`;
+        matchStatus.innerHTML = `⚠️ 无满足条件 · 输入:${currentWeight?.toFixed(1) || '--'}kg${qnhText}`;
         matchStatus.className = 'info-item status-badge status-warning';
     }
 }
@@ -446,11 +447,12 @@ function renderTable() {
 // ---------- 初始化 ----------
 async function init() {
     // 设置初始状态
+    aircraftDisplay.textContent = '未选择';
     weightDisplay.textContent = '未输入';
     windDisplay.textContent = '未选择';
     tempDisplay.textContent = '未输入';
     surfaceDisplay.textContent = '干跑道';
-    qnhDisplay.textContent = '未输入';  // QNH初始状态
+    qnhDisplay.textContent = '未输入';
     
     // 加载ZSHC数据
     airportData = await loadAirportData('ZSHC');
