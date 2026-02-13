@@ -21,7 +21,6 @@ let airportData = null;
 // ---------- DOM 元素 ----------
 const aircraftSelect = document.getElementById('aircraftSelect');
 const aircraftDisplay = document.getElementById('aircraftDisplay');
-
 const airportSelect = document.getElementById('airportSelect');
 const airportTitle = document.getElementById('airportTitle');
 const airportDisplay = document.getElementById('airportDisplay');
@@ -43,6 +42,10 @@ const wetLegend = document.getElementById('wetLegend');
 const qnhInput = document.getElementById('qnhInput');
 const qnhDisplay = document.getElementById('qnhDisplay');
 const improvedClimbDisplay = document.getElementById('improvedClimbDisplay');
+const maxTakeoffWeightDisplay = document.getElementById('maxTakeoffWeightDisplay');
+const airportElevationDisplay = document.getElementById('airportElevationDisplay');
+const minFlapRetractDisplay = document.getElementById('minFlapRetractDisplay');
+const engineOutProcedureDisplay = document.getElementById('engineOutProcedureDisplay');
 
 // ---------- 辅助函数 ----------
 function parseTempValue(tempStr) {
@@ -301,6 +304,48 @@ function applyWetRunwayStyle() {
     wetLegend.style.display = isWet ? 'flex' : 'none';
 }
 
+// ---------- 更新机场附加信息显示 ----------
+function updateAirportInfo() {
+    if (!airportData) {
+        // 无数据时显示 "--"
+        if (maxTakeoffWeightDisplay) maxTakeoffWeightDisplay.textContent = '--';
+        if (airportElevationDisplay) airportElevationDisplay.textContent = '--';
+        if (minFlapRetractDisplay) minFlapRetractDisplay.textContent = '--';
+        if (engineOutProcedureDisplay) engineOutProcedureDisplay.textContent = '--';
+        return;
+    }
+    // 调试输出当前跑道和对应数据
+    console.log('当前跑道:', currentRunway);
+    console.log('跑道数据:', airportData.runways.find(r => r.id === currentRunway));
+    // ----- 1. 机场级别属性 -----
+    // 最大起飞重量
+    const mtow = airportData.max_takeoff_weight;
+    maxTakeoffWeightDisplay.textContent = mtow ? `${mtow} kg` : '--';
+
+    // 机场标高
+    const elev = airportData.airport_elevation;
+    airportElevationDisplay.textContent = elev ?? '--';
+
+    // ----- 2. 跑道级别属性（需要当前跑道）-----
+    if (currentRunway && airportData.runways) {
+        const runway = airportData.runways.find(r => r.id === currentRunway);
+        if (runway) {
+            // 最低收襟翼高度
+            const minFlap = runway.min_flap_retract_height;
+            minFlapRetractDisplay.textContent = minFlap ?? '--';
+
+            // 单发程序
+            const eop = runway.engine_out_procedure;
+            engineOutProcedureDisplay.textContent = eop || '--';
+        } else {
+            minFlapRetractDisplay.textContent = '--';
+            engineOutProcedureDisplay.textContent = '--';
+        }
+    } else {
+        minFlapRetractDisplay.textContent = '--';
+        engineOutProcedureDisplay.textContent = '--';
+    }
+}
 // ---------- 事件监听 ----------
 function initEvents() {
     // 飞机选择
@@ -480,6 +525,7 @@ function initEvents() {
 
 // ---------- 核心渲染 ----------
 function renderTable() {
+    updateAirportInfo();
     applyWarningStyle();
     applyWetRunwayStyle();
     

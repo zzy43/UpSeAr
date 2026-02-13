@@ -1,16 +1,22 @@
 // zshc-data.js
 // 杭州萧山机场性能数据 - 完整转换
-// 包含跑道22/06(原表04), 干跑道/湿跑道, 空调off/auto, 防冰off
+// 包含跑道22/06, 干跑道/湿跑道, 空调off/auto, 防冰off
 
-var  ZSHC_DATA = {
+var ZSHC_DATA = {
   "airport": "ZSHC",
   "city": "杭州萧山",
   "flap": "05",
   "anti-ice": "off",
+  // ===== 机场级别属性（单位：米）=====
+  "max_takeoff_weight": 108862,
+  "airport_elevation": 7,
   "runways": [
     // ============ 跑道22 ============
     {
       "id": "22",
+      // ===== 跑道级别属性 =====
+      "min_flap_retract_height": 122,
+      "engine_out_procedure": "无",
       "conditions": [
         // ----- 湿跑道 - 空调OFF (w22off) -----
         {
@@ -70,9 +76,12 @@ var  ZSHC_DATA = {
         }
       ]
     },
-    // ============ 跑道06 (原表为跑道04) ============
+    // ============ 跑道06 ============
     {
       "id": "06",
+      // ===== 跑道级别属性 =====
+      "min_flap_retract_height": 122,
+      "engine_out_procedure": "无",
       "conditions": [
         // ----- 湿跑道 - 空调OFF (w06off) -----
         {
