@@ -6,9 +6,7 @@
     <title>圆通航空 · 机场性能工具</title>
     <!-- 外部CSS -->
     <link rel="stylesheet" href="style.css">
-    <!-- 数据文件 -->
-    <script src="./zshc-data.js"></script>
-    <script src="./zppp-data.js"></script>
+    <!-- 删除这两行静态数据文件引用 -->
     <!-- 主JS文件 - 使用defer确保在DOM加载后执行 -->
     <script src="./main.js" defer></script>
 </head>
@@ -22,9 +20,7 @@
                 </div>
                 <span class="airport" id="airportTitle">ZSHC</span>
                 <span class="badge">✈ 襟翼 05</span>
-                <!-- <span class="badge">建议用杭州22auto数据进行测试</span>
-                <span class="badge">测试防冰开的逻辑是否有问题</span>
-                <span class="badge">飞机号暂时未上传数据</span> -->
+              
             </div>
             <div id="dataStatus" class="status-text">⏳ 加载数据...</div>
         </div>
@@ -33,12 +29,13 @@
         <div class="controls">
             <!-- 飞机选择框 - 放在最前面 -->
             <div class="ctrl-group">
-                <span class="ctrl-label">✈️ 飞机</span>
-                <select id="aircraftSelect" style="width: 140px;">
-                    <option value="">-- 请选择飞机 --</option>
-                    <option value="B2853">B2853</option>
-                </select>
-            </div>
+    <span class="ctrl-label">✈️ 飞机</span>
+    <select id="aircraftSelect" style="width: 140px;">
+        <option value="">-- 请选择飞机 --</option>
+        <option value="B2851">B2851</option>
+        <option value="B2853">B2853</option>
+    </select>
+</div>
             <div class="ctrl-group">
                 <span class="ctrl-label">📍 机场</span>
                 <select id="airportSelect" style="width: 220px;">
@@ -68,6 +65,14 @@
                     <button class="btn" data-antiice="on">ON</button>
                 </div>
             </div>
+            <div class="ctrl-group">
+    <span class="ctrl-label">⬆️ 改进爬升</span>
+    <div class="btn-group" id="improvedClimbGroup">
+        <button class="btn active" data-improved="off">OFF</button>
+        <button class="btn" data-improved="on">ON</button>
+    </div>
+</div>
+
             <div class="ctrl-group">
                 <span class="ctrl-label">🛣️ 道面</span>
                 <div class="btn-group" id="surfaceGroup">
@@ -103,19 +108,21 @@
         </div>
 
         <!-- 当前状态信息栏 - 增加飞机显示和防冰显示 -->
-        <div class="info-panel" id="infoPanel">
-            <div class="info-item">✈️ 飞机: <span id="aircraftDisplay" style="font-weight: 700;">未选择</span></div>
-            <div class="info-item">📍 机场: <span id="airportDisplay" style="font-weight: 700;">ZSHC</span></div>
-            <div class="info-item">📊 跑道: <span id="runwayDisplay" style="font-weight: 700;">22</span></div>
-            <div class="info-item">❄️ 空调: <span id="acDisplay" style="font-weight: 700;">AUTO</span></div>
-            <div class="info-item">🧊 防冰: <span id="antiIceDisplay" style="font-weight: 700;">OFF</span></div>
-            <div class="info-item">🛣️ 道面: <span id="surfaceDisplay" style="font-weight: 700;">干跑道</span></div>
-            <div class="info-item">⚖️ 输入重量: <span id="weightDisplay" style="font-weight: 700;">未输入</span></div>
-            <div class="info-item">📊 QNH: <span id="qnhDisplay" style="font-weight: 700;">未输入</span></div>
-            <div class="info-item">💨 风速: <span id="windDisplay" style="font-weight: 700; color: #1f69c9;">未选择</span></div>
-            <div class="info-item">🌡️ OAT: <span id="tempDisplay" style="font-weight: 700;">未输入</span></div>
-            <div class="info-item" id="matchStatus">⏳ 请填写参数</div>
-        </div>
+        <!-- 当前状态信息栏 - 增加改进爬升显示 -->
+<div class="info-panel" id="infoPanel">
+    <div class="info-item">✈️ 飞机: <span id="aircraftDisplay" style="font-weight: 700;">未选择</span></div>
+    <div class="info-item">📍 机场: <span id="airportDisplay" style="font-weight: 700;">ZSHC</span></div>
+    <div class="info-item">📊 跑道: <span id="runwayDisplay" style="font-weight: 700;">22</span></div>
+    <div class="info-item">❄️ 空调: <span id="acDisplay" style="font-weight: 700;">AUTO</span></div>
+    <div class="info-item">🧊 防冰: <span id="antiIceDisplay" style="font-weight: 700;">OFF</span></div>
+    <div class="info-item">⬆️ 改进爬升: <span id="improvedClimbDisplay" style="font-weight: 700;">OFF</span></div>
+    <div class="info-item">🛣️ 道面: <span id="surfaceDisplay" style="font-weight: 700;">干跑道</span></div>
+    <div class="info-item">⚖️ 输入重量: <span id="weightDisplay" style="font-weight: 700;">未输入</span></div>
+    <div class="info-item">📊 QNH: <span id="qnhDisplay" style="font-weight: 700;">未输入</span></div>
+    <div class="info-item">💨 风速: <span id="windDisplay" style="font-weight: 700; color: #1f69c9;">未选择</span></div>
+    <div class="info-item">🌡️ OAT: <span id="tempDisplay" style="font-weight: 700;">未输入</span></div>
+    <div class="info-item" id="matchStatus">⏳ 请填写参数</div>
+</div>
 
         <!-- 表格容器 -->
         <div id="tableContainer" class="table-container">

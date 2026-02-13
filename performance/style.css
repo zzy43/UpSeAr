@@ -205,7 +205,7 @@ td {
 }
 
 .star {
-    color: #c7452b;
+    /* color: #c7452b; */
     font-weight: 800;
 }
 
@@ -359,4 +359,13 @@ button.btn {
 .btn.active {
     background: #1f69c9 !important;
     color: white !important;
+}
+
+/* 改进爬升按钮组样式 */
+#improvedClimbGroup {
+    min-width: 130px;
+}
+
+#improvedClimbGroup .btn {
+    /* 继承.btn-group样式 */
 }

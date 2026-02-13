@@ -9,6 +9,7 @@ let currentWeight = null;
 let currentWind = '';
 let currentOAT = null;
 let currentQNH = null;
+let currentImprovedClimb = 'off'; // 新增：改进爬升状态
 
 // 防冰修正常量
 const ANTI_ICE_CLIMB_REDUCTION = 27;
@@ -16,8 +17,6 @@ const ANTI_ICE_FIELD_REDUCTION = 18;
 
 // 数据存储
 let airportData = null;
-let zshcData = null;
-let zpppData = null;
 
 // ---------- DOM 元素 ----------
 const aircraftSelect = document.getElementById('aircraftSelect');
@@ -43,6 +42,7 @@ const dataStatus = document.getElementById('dataStatus');
 const wetLegend = document.getElementById('wetLegend');
 const qnhInput = document.getElementById('qnhInput');
 const qnhDisplay = document.getElementById('qnhDisplay');
+const improvedClimbDisplay = document.getElementById('improvedClimbDisplay');
 
 // ---------- 辅助函数 ----------
 function parseTempValue(tempStr) {
@@ -50,16 +50,31 @@ function parseTempValue(tempStr) {
     return parseInt(tempStr.toString().replace('A', ''), 10);
 }
 
-// 提取限制重量 - 支持*、T、F、B、V
+// 提取限制重量 - 支持*、**、T、F、B、V
 function extractLimitWeight(cell) {
     if (!cell) return null;
-    let match = cell.match(/^(\d+)[*TFBV]?\//);
+    
+    // 先匹配改进爬升限制格式：数字+**/ 例如 807**/
+    let match = cell.match(/^(\d+)\*\*\//);
+    if (match) {
+        return parseInt(match[1], 10);
+    }
+    
+    // 再匹配普通限制格式：数字+[*TFBV]?/ 例如 807*/、807T/、807F/等
+    match = cell.match(/^(\d+)[*TFBV]?\//);
     return match ? parseInt(match[1], 10) : null;
 }
 
-// 获取限制类型 - T/F/B/V/*
+// 获取限制类型 - T/F/B/V/*/**
 function getLimitType(cell) {
     if (!cell) return null;
+    
+    // 检查是否为改进爬升限制（**）
+    if (cell.includes('**')) {
+        return '改进爬升';
+    }
+    
+    // 检查普通限制类型
     let match = cell.match(/^\d+([*TFBV])?\//);
     if (!match) return null;
     if (!match[1]) return null;
@@ -71,6 +86,12 @@ function getLimitType(cell) {
     if (type === 'B') return '刹车能量';
     if (type === 'V') return 'VMCG';
     return null;
+}
+
+// 判断是否为改进爬升限制（**）
+function isImprovedClimbLimit(cell) {
+    if (!cell) return false;
+    return cell.includes('**');
 }
 
 // 判断是否为场地长度限制（F）
@@ -114,29 +135,125 @@ function calculateQNHWeight() {
     };
 }
 
-// 加载数据文件
+// ---------- 清除已加载的数据全局变量 ----------
+function clearLoadedData() {
+    // 删除已定义的全局数据变量，避免新旧数据冲突
+    if (typeof ZSHC_DATA !== 'undefined') {
+        delete window.ZSHC_DATA;
+        console.log('已清除 ZSHC_DATA');
+    }
+    if (typeof ZPPP_DATA !== 'undefined') {
+        delete window.ZPPP_DATA;
+        console.log('已清除 ZPPP_DATA');
+    }
+}
+
+// ---------- 动态加载数据文件 ----------
 async function loadAirportData(airportCode) {
-    if (!airportCode) return null;
+    if (!airportCode) {
+        console.error('机场代码为空');
+        return null;
+    }
+    
+    if (!currentAircraft) {
+        console.error('未选择飞机');
+        dataStatus.innerHTML = '⏳ 请先选择飞机';
+        return null;
+    }
     
     try {
-        if (airportCode === 'ZSHC') {
-            if (zshcData) return zshcData;
-            if (typeof ZSHC_DATA !== 'undefined') {
-                zshcData = ZSHC_DATA;
-                return zshcData;
-            }
-        } else if (airportCode === 'ZPPP') {
-            if (zpppData) return zpppData;
-            if (typeof ZPPP_DATA !== 'undefined') {
-                zpppData = ZPPP_DATA;
-                return zpppData;
-            }
-        }
+        // 构建文件路径
+        const climbType = currentImprovedClimb === 'on' ? 'ImprovedClimb' : 'Climb';
+        const fileSuffix = currentImprovedClimb === 'on' ? 'improve' : 'climb';
+        const fileName = `${airportCode.toLowerCase()}-${fileSuffix}.js`;
+        const filePath = `./${currentAircraft}/${climbType}/${fileName}`;
+        
+        console.log('========== 数据加载调试 ==========');
+        console.log('当前飞机:', currentAircraft);
+        console.log('当前机场:', airportCode);
+        console.log('改进爬升状态:', currentImprovedClimb);
+        console.log('文件类型:', climbType);
+        console.log('文件后缀:', fileSuffix);
+        console.log('文件名:', fileName);
+        console.log('完整路径:', filePath);
+        console.log('=================================');
+        
+        dataStatus.innerHTML = `⏳ 加载 ${currentAircraft}/${climbType}/${airportCode} 数据...`;
+        
+        // 先清除旧数据
+        clearLoadedData();
+        
+        // 动态加载脚本
+        const script = document.createElement('script');
+        script.src = filePath;
+        
+        // 返回一个Promise，等待脚本加载完成
+        return new Promise((resolve, reject) => {
+            const timeout = setTimeout(() => {
+                reject(new Error('加载超时'));
+            }, 10000);
+            
+            script.onload = () => {
+                clearTimeout(timeout);
+                
+                console.log('脚本加载成功，检查全局变量:');
+                console.log('ZSHC_DATA 是否存在:', typeof ZSHC_DATA !== 'undefined');
+                console.log('ZPPP_DATA 是否存在:', typeof ZPPP_DATA !== 'undefined');
+                
+                // 根据机场代码获取对应的全局变量
+                let data = null;
+                if (airportCode === 'ZSHC' && typeof ZSHC_DATA !== 'undefined') {
+                    data = ZSHC_DATA;
+                    console.log('✅ 成功加载 ZSHC 改进爬升数据');
+                    console.log('数据内容:', data);
+                    
+                    // 验证是否真的是改进爬升数据
+                    const runway22 = data.runways.find(r => r.id === '22');
+                    if (runway22) {
+                        const dryAuto = runway22.conditions.find(c => 
+                            c.surface === 'dry' && c.aircon === 'auto'
+                        );
+                        if (dryAuto) {
+                            console.log('干跑道-空调AUTO 第一行数据:', dryAuto.rows[0]);
+                        }
+                    }
+                    
+                } else if (airportCode === 'ZPPP' && typeof ZPPP_DATA !== 'undefined') {
+                    data = ZPPP_DATA;
+                    console.log('✅ 成功加载 ZPPP 改进爬升数据');
+                }
+                
+                if (data) {
+                    console.log(`✅ 成功加载: ${airportCode} 数据`);
+                    dataStatus.innerHTML = `✅ 已加载: ${currentAircraft}/${climbType}/${airportCode}`;
+                    resolve(data);
+                } else {
+                    reject(new Error(`无法找到 ${airportCode} 的数据，请检查文件是否存在`));
+                }
+                
+                script.remove();
+            };
+            
+            script.onerror = (error) => {
+                clearTimeout(timeout);
+                console.error('❌ 脚本加载失败:', error);
+                console.error('失败路径:', filePath);
+                
+                const errorMsg = `加载失败: ${filePath} - 文件不存在`;
+                console.error(errorMsg);
+                dataStatus.innerHTML = `❌ 加载失败: ${currentAircraft}/${climbType}/${airportCode} 数据文件不存在`;
+                reject(new Error(errorMsg));
+                script.remove();
+            };
+            
+            document.head.appendChild(script);
+        });
+        
     } catch (e) {
         console.error('加载数据失败:', e);
-        dataStatus.innerHTML = '❌ 数据加载失败';
+        dataStatus.innerHTML = `❌ 数据加载失败: ${e.message}`;
+        return null;
     }
-    return null;
 }
 
 // 重置跑道按钮
@@ -187,11 +304,29 @@ function applyWetRunwayStyle() {
 // ---------- 事件监听 ----------
 function initEvents() {
     // 飞机选择
-    aircraftSelect.addEventListener('change', function() {
+    aircraftSelect.addEventListener('change', async function() {
         currentAircraft = this.value || null;
         aircraftDisplay.textContent = currentAircraft || '未选择';
         applyWarningStyle();
-        if (airportData) renderTable();
+        
+        // 当飞机改变时，重新加载当前机场的数据
+        if (currentAircraft && currentAirport) {
+            // 清除旧数据
+            clearLoadedData();
+            airportData = null;
+            
+            // 加载新数据
+            airportData = await loadAirportData(currentAirport);
+            if (airportData) {
+                currentRunway = '';
+                resetRunwayButtons();
+                renderTable();
+            } else {
+                renderTable();
+            }
+        } else {
+            renderTable();
+        }
     });
 
     // 机场选择
@@ -212,20 +347,54 @@ function initEvents() {
         
         airportTitle.textContent = code;
         airportDisplay.textContent = code;
-        dataStatus.innerHTML = `⏳ 加载 ${code} 数据...`;
         
-        airportData = await loadAirportData(code);
-        
-        if (airportData) {
-            dataStatus.innerHTML = `✅ 已加载: ${code}`;
-            currentRunway = '';
-            resetRunwayButtons();
-        } else {
-            dataStatus.innerHTML = `❌ 加载 ${code} 失败`;
+        // 如果已选择飞机，则加载对应数据
+        if (currentAircraft) {
+            // 清除旧数据
+            clearLoadedData();
             airportData = null;
+            
+            // 加载新数据
+            airportData = await loadAirportData(code);
+            if (airportData) {
+                currentRunway = '';
+                resetRunwayButtons();
+            }
+        } else {
+            dataStatus.innerHTML = '⏳ 请先选择飞机';
+            airportData = null;
+            runwayGroup.innerHTML = '<button class="btn" disabled>请先选飞机</button>';
+            runwayDisplay.textContent = '--';
         }
         
         renderTable();
+    });
+
+    // 改进爬升
+    document.querySelectorAll('#improvedClimbGroup .btn').forEach(btn => {
+        btn.addEventListener('click', async function() {
+            document.querySelectorAll('#improvedClimbGroup .btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            currentImprovedClimb = this.dataset.improved;
+            improvedClimbDisplay.textContent = currentImprovedClimb === 'on' ? 'ON' : 'OFF';
+            
+            // 当改进爬升状态改变时，重新加载数据
+            if (currentAircraft && currentAirport) {
+                // 清除旧数据
+                clearLoadedData();
+                airportData = null;
+                
+                // 加载新数据
+                airportData = await loadAirportData(currentAirport);
+                if (airportData) {
+                    currentRunway = '';
+                    resetRunwayButtons();
+                    renderTable();
+                }
+            } else {
+                renderTable();
+            }
+        });
     });
 
     // 跑道
@@ -314,9 +483,25 @@ function renderTable() {
     applyWarningStyle();
     applyWetRunwayStyle();
     
-    if (!airportData) {
-        tableContainer.innerHTML = `<div style="padding: 50px; text-align: center; color: #54738c;">📋 请先选择机场</div>`;
+    // 检查是否选择了飞机
+    if (!currentAircraft) {
+        tableContainer.innerHTML = `<div style="padding: 50px; text-align: center; color: #54738c;">✈️ 请先选择飞机</div>`;
+        matchStatus.innerHTML = '⏳ 请选择飞机';
+        matchStatus.className = 'info-item status-badge status-warning';
+        return;
+    }
+    
+    // 检查是否选择了机场
+    if (!currentAirport) {
+        tableContainer.innerHTML = `<div style="padding: 50px; text-align: center; color: #54738c;">📍 请先选择机场</div>`;
         matchStatus.innerHTML = '⏳ 请选择机场';
+        matchStatus.className = 'info-item status-badge status-warning';
+        return;
+    }
+    
+    if (!airportData) {
+        tableContainer.innerHTML = `<div style="padding: 50px; text-align: center; color: #54738c;">📋 正在加载数据...</div>`;
+        matchStatus.innerHTML = '⏳ 正在加载数据...';
         matchStatus.className = 'info-item status-badge';
         return;
     }
@@ -352,7 +537,7 @@ function renderTable() {
     const qnhData = calculateQNHWeight();
     const comparisonWeight = qnhData ? qnhData.correctedWeight : currentWeight;
 
-    // ----- 高亮逻辑（使用QNH修正后的重量、防冰修正后的限制进行比较）-----
+    // ----- 高亮逻辑（改进爬升时只比较**数据，不考虑爬升限制）-----
     let highlightRowIndex = -1;
     let highlightLimitType = null;
     let highlightLimitWeight = null;
@@ -368,26 +553,53 @@ function renderTable() {
             const cellText = row.cells[windIndex];
             const originalLimitWeight = extractLimitWeight(cellText);
             
-            // 应用防冰修正
-            const adjustedClimb = getAdjustedClimb(row.climb);
-            const adjustedLimitWeight = getAdjustedLimitWeight(cellText, originalLimitWeight);
-            
-            const meetClimb = comparisonWeight <= adjustedClimb;
-            const meetLimit = adjustedLimitWeight !== null && comparisonWeight <= adjustedLimitWeight;
-            
-            if (meetClimb && meetLimit) {
-                validRows.push({
-                    index: index,
-                    tempValue: parseTempValue(row.temp),
-                    temp: row.temp,
-                    originalClimb: row.climb,
-                    adjustedClimb: adjustedClimb,
-                    cellText: cellText,
-                    originalLimitWeight: originalLimitWeight,
-                    adjustedLimitWeight: adjustedLimitWeight,
-                    limitType: getLimitType(cellText),
-                    isFieldLimit: isFieldLengthLimit(cellText)
-                });
+            // 改进爬升开启时：只检查**限制，忽略爬升限制
+            if (currentImprovedClimb === 'on') {
+                // 只检查单元格是否包含**（改进爬升限制）
+                if (isImprovedClimbLimit(cellText)) {
+                    const adjustedLimitWeight = getAdjustedLimitWeight(cellText, originalLimitWeight);
+                    const meetLimit = adjustedLimitWeight !== null && comparisonWeight <= adjustedLimitWeight;
+                    
+                    if (meetLimit) {
+                        validRows.push({
+                            index: index,
+                            tempValue: parseTempValue(row.temp),
+                            temp: row.temp,
+                            originalClimb: row.climb,
+                            adjustedClimb: row.climb, // 改进爬升时不考虑爬升限制，但保留值用于显示
+                            cellText: cellText,
+                            originalLimitWeight: originalLimitWeight,
+                            adjustedLimitWeight: adjustedLimitWeight,
+                            limitType: getLimitType(cellText),
+                            isFieldLimit: isFieldLengthLimit(cellText),
+                            isImprovedClimbLimit: true
+                        });
+                    }
+                }
+            } 
+            // 改进爬升关闭时：同时检查爬升限制和各类限制（原有逻辑）
+            else {
+                // 应用防冰修正
+                const adjustedClimb = getAdjustedClimb(row.climb);
+                const adjustedLimitWeight = getAdjustedLimitWeight(cellText, originalLimitWeight);
+                
+                const meetClimb = comparisonWeight <= adjustedClimb;
+                const meetLimit = adjustedLimitWeight !== null && comparisonWeight <= adjustedLimitWeight;
+                
+                if (meetClimb && meetLimit) {
+                    validRows.push({
+                        index: index,
+                        tempValue: parseTempValue(row.temp),
+                        temp: row.temp,
+                        originalClimb: row.climb,
+                        adjustedClimb: adjustedClimb,
+                        cellText: cellText,
+                        originalLimitWeight: originalLimitWeight,
+                        adjustedLimitWeight: adjustedLimitWeight,
+                        limitType: getLimitType(cellText),
+                        isFieldLimit: isFieldLengthLimit(cellText)
+                    });
+                }
             }
         });
         
@@ -403,7 +615,7 @@ function renderTable() {
         }
     }
 
-    // ----- 构建表格 -----
+    // ----- 构建表格（取消爬升重量列的黄色高亮）-----
     let html = '<table><thead><tr>';
     html += '<th>温度<br><span style="font-size:0.7rem;">(°C)</span></th>';
     html += '<th>爬升重量<br><span style="font-size:0.7rem;">(kg)</span></th>';
@@ -421,8 +633,11 @@ function renderTable() {
         let trClass = isTempLimited ? 'temp-limit-violation' : '';
         html += `<tr class="${trClass}">`;
         
+        // 温度列：保持黄色高亮
         html += `<td ${isHighlight ? 'class="both-highlight"' : ''}><strong>${row.temp}</strong></td>`;
-        html += `<td ${isHighlight ? 'class="both-highlight"' : ''}>${row.climb} kg</td>`;
+        
+        // 爬升重量列：取消黄色高亮，永远不加 both-highlight 类
+        html += `<td>${row.climb} kg</td>`;
         
         for (let i = 0; i < winds.length; i++) {
             let cellText = row.cells[i] || '';
@@ -430,6 +645,9 @@ function renderTable() {
             
             if (cellText.includes('*')) {
                 displayText = displayText.replace('*', '<span class="star">*</span>');
+            }
+            if (cellText.includes('**')) {
+                displayText = displayText.replace('**', '<span class="star">**</span>');
             }
             
             const shouldHighlight = (windIndex !== -1 && i === windIndex && isHighlight);
@@ -443,35 +661,62 @@ function renderTable() {
     html += '</tbody></table>';
     tableContainer.innerHTML = html;
 
-    // ----- 更新状态栏（修复重复爬升、添加粗体）-----
-    if (!currentAircraft) {
-        matchStatus.innerHTML = '⏳ 请选择飞机';
-        matchStatus.className = 'info-item status-badge status-warning';
-    } else if (!currentAirport) {
-        matchStatus.innerHTML = '⏳ 请选择机场';
-        matchStatus.className = 'info-item status-badge';
-    } else if (!currentWind) {
-        matchStatus.innerHTML = '⏳ 请选择风速';
-        matchStatus.className = 'info-item status-badge status-warning';
-    } else if (currentWeight === null || currentWeight < 555) {
-        matchStatus.innerHTML = '⚠️ 请输入有效重量 (≥555kg)';
-        matchStatus.className = 'info-item status-badge status-warning';
-    } else if (currentQNH === null) {
-        matchStatus.innerHTML = '⚠️ 请输入QNH';
-        matchStatus.className = 'info-item status-badge status-warning';
-    } else if (highlightRowIndex !== -1) {
-        const bestRow = rows[highlightRowIndex];
-        const highlightTemp = parseTempValue(bestRow.temp);
+// ----- 更新状态栏（改进爬升时只显示**限制信息）-----
+if (!currentAircraft) {
+    matchStatus.innerHTML = '⏳ 请选择飞机';
+    matchStatus.className = 'info-item status-badge status-warning';
+} else if (!currentAirport) {
+    matchStatus.innerHTML = '⏳ 请选择机场';
+    matchStatus.className = 'info-item status-badge';
+} else if (!currentWind) {
+    matchStatus.innerHTML = '⏳ 请选择风速';
+    matchStatus.className = 'info-item status-badge status-warning';
+} else if (currentWeight === null || currentWeight < 555) {
+    matchStatus.innerHTML = '⚠️ 请输入有效重量 (≥555kg)';
+    matchStatus.className = 'info-item status-badge status-warning';
+} else if (currentQNH === null) {
+    matchStatus.innerHTML = '⚠️ 请输入QNH';
+    matchStatus.className = 'info-item status-badge status-warning';
+} else if (highlightRowIndex !== -1) {
+    const bestRow = rows[highlightRowIndex];
+    const highlightTemp = parseTempValue(bestRow.temp);
+    
+    // ----- QNH修正信息（显示实际修正量，括号内是差值×1.5）-----
+    let qnhText = '';
+    if (qnhData) {
+        const diff = qnhData.qnhDiff;
+        // 修正量已经是 diff * 1.5，直接显示这个值
+        const correctionValue = qnhData.correction;
+        const sign = correctionValue > 0 ? '+' : '';
+        qnhText = ` · Q修:<strong>${qnhData.correctedWeight.toFixed(1)}kg</strong> (${sign}${correctionValue.toFixed(1)})`;
+    }
+    
+    // ----- 改进爬升时：不显示爬升信息，只显示**限制信息 -----
+    let msg = '';
+    if (currentImprovedClimb === 'on') {
+        // 限制类型显示：只显示**限制
+        let limitText = '';
         
-        // ----- QNH修正信息（带粗体）-----
-        let qnhText = '';
-        if (qnhData) {
-            const diff = qnhData.qnhDiff;
-            const sign = diff > 0 ? '+' : '';
-            qnhText = ` · Q修:<strong>${qnhData.correctedWeight.toFixed(1)}kg</strong> (${sign}${diff})`;
+        if (highlightLimitType) {
+            if (currentAntiIce === 'on' && highlightLimitType === '场地长度' && highlightOriginalLimitWeight !== null && highlightLimitWeight !== null) {
+                limitText = ` · ${highlightLimitType}:${highlightOriginalLimitWeight}-><strong>${highlightLimitWeight}kg</strong>(-${ANTI_ICE_FIELD_REDUCTION})`;
+            } else {
+                limitText = ` · ${highlightLimitType}:<strong>${highlightLimitWeight}kg</strong>`;
+            }
+        } else {
+            // 如果没有限制类型，但有**标记，显示为改进爬升限制
+            if (highlightCellText && highlightCellText.includes('**')) {
+                limitText = ` · 改进爬升:<strong>${highlightLimitWeight}kg</strong>`;
+            } else {
+                limitText = ` · 越障:<strong>${highlightLimitWeight}kg</strong>`;
+            }
         }
         
-        // ----- 爬升显示（带粗体）- 只显示一次 -----
+        let antiIceText = currentAntiIce === 'on' ? ` · 防冰ON` : '';
+        
+        msg = `✅ 推荐: ${bestRow.temp} · 输入:${currentWeight.toFixed(1)}kg${qnhText}${limitText}${antiIceText}`;
+    } else {
+        // 原始模式：显示爬升和限制信息
         let climbText = '';
         if (currentAntiIce === 'on') {
             climbText = ` · 爬升:${bestRow.climb}-><strong>${highlightAdjustedClimb}kg</strong>(-${ANTI_ICE_CLIMB_REDUCTION})`;
@@ -479,48 +724,57 @@ function renderTable() {
             climbText = ` · 爬升:<strong>${bestRow.climb}kg</strong>`;
         }
         
-        // ----- 限制类型显示：只有F类型且防冰ON时才显示修正，其他类型显示原始值（带粗体）-----
         let limitText = '';
         if (highlightLimitType) {
             if (currentAntiIce === 'on' && highlightLimitType === '场地长度' && highlightOriginalLimitWeight !== null && highlightLimitWeight !== null) {
-                // F类型：显示修正前后，修正后加粗
                 limitText = ` · ${highlightLimitType}:${highlightOriginalLimitWeight}-><strong>${highlightLimitWeight}kg</strong>(-${ANTI_ICE_FIELD_REDUCTION})`;
             } else {
-                // 非F类型或防冰OFF：只显示当前使用的限制重量并加粗
                 limitText = ` · ${highlightLimitType}:<strong>${highlightLimitWeight}kg</strong>`;
             }
         } else {
-            // 无限制类型（应该是*类型）
             limitText = ` · 越障:<strong>${highlightLimitWeight}kg</strong>`;
         }
         
-        // ----- 防冰ON标记（不重复爬升）-----
         let antiIceText = currentAntiIce === 'on' ? ` · 防冰ON` : '';
         
-        // ----- 组装最终消息（无重复）-----
-        let msg = `✅ 推荐: ${bestRow.temp} · 输入:${currentWeight.toFixed(1)}kg${qnhText}${climbText}${limitText}${antiIceText}`;
-        
-        if (currentOAT !== null && highlightTemp < currentOAT) {
-            msg += ` · ❗ 温度超限 (${bestRow.temp} < ${currentOAT}°C)`;
-            matchStatus.className = 'info-item status-badge status-danger';
-        } else {
-            matchStatus.className = 'info-item status-badge status-success';
-        }
-        matchStatus.innerHTML = msg;
-    } else {
-        // 无满足条件（带粗体）
-        let qnhText = '';
-        if (qnhData) {
-            const diff = qnhData.qnhDiff;
-            const sign = diff > 0 ? '+' : '';
-            qnhText = ` · Q修:<strong>${qnhData.correctedWeight.toFixed(1)}kg</strong> (${sign}${diff})`;
-        }
-        
-        let antiIceText = currentAntiIce === 'on' ? ' · 防冰ON' : '';
-        
-        matchStatus.innerHTML = `⚠️ 无满足条件 · 输入:<strong>${currentWeight?.toFixed(1) || '--'}kg</strong>${qnhText}${antiIceText}`;
-        matchStatus.className = 'info-item status-badge status-warning';
+        msg = `✅ 推荐: ${bestRow.temp} · 输入:${currentWeight.toFixed(1)}kg${qnhText}${climbText}${limitText}${antiIceText}`;
     }
+    
+    if (currentOAT !== null && highlightTemp < currentOAT) {
+        msg += ` · ❗ 温度超限 (${bestRow.temp} < ${currentOAT}°C)`;
+        matchStatus.className = 'info-item status-badge status-danger';
+    } else {
+        matchStatus.className = 'info-item status-badge status-success';
+    }
+    matchStatus.innerHTML = msg;
+} else {
+    // 无满足条件
+    console.log('无满足条件，当前状态:', {
+        weight: currentWeight,
+        qnhWeight: qnhData?.correctedWeight,
+        windIndex: windIndex,
+        rows: rows.map(row => ({
+            temp: row.temp,
+            cell: row.cells[windIndex],
+            isImproved: isImprovedClimbLimit(row.cells[windIndex]),
+            limitWeight: extractLimitWeight(row.cells[windIndex])
+        }))
+    });
+    
+    let qnhText = '';
+    if (qnhData) {
+        const diff = qnhData.qnhDiff;
+        const correctionValue = qnhData.correction;
+        const sign = correctionValue > 0 ? '+' : '';
+        qnhText = ` · Q修:<strong>${qnhData.correctedWeight.toFixed(1)}kg</strong> (${sign}${correctionValue.toFixed(1)})`;
+    }
+    
+    let antiIceText = currentAntiIce === 'on' ? ' · 防冰ON' : '';
+    let modeText = currentImprovedClimb === 'on' ? ' · 改进爬升' : '';
+    
+    matchStatus.innerHTML = `⚠️ 无满足条件 · 输入:<strong>${currentWeight?.toFixed(1) || '--'}kg</strong>${qnhText}${antiIceText}${modeText}`;
+    matchStatus.className = 'info-item status-badge status-warning';
+}
 }
 
 // ---------- 初始化 ----------
@@ -533,13 +787,10 @@ async function init() {
     surfaceDisplay.textContent = '干跑道';
     qnhDisplay.textContent = '未输入';
     antiIceDisplay.textContent = 'OFF';
+    improvedClimbDisplay.textContent = 'OFF';
     
-    // 加载ZSHC数据
-    airportData = await loadAirportData('ZSHC');
-    if (airportData) {
-        dataStatus.innerHTML = '✅ 已加载: ZSHC';
-        resetRunwayButtons();
-    }
+    // 不自动加载数据，等待用户选择飞机
+    dataStatus.innerHTML = '⏳ 请选择飞机和机场';
     
     initEvents();
     renderTable();
