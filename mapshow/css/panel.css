@@ -1,0 +1,254 @@
+/* 航图控制面板样式 */
+#image-overlay-panel {
+    position: fixed;
+    top: 80px;
+    right: 10px;
+    width: 320px;
+    background: rgba(30, 30, 40, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    font-size: 13px;
+    color: #eee;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+.image-panel-header {
+    padding: 12px 15px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 12px 12px 0 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    background: rgba(30, 30, 40, 0.98);
+    z-index: 1;
+}
+
+.image-panel-content {
+    padding: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.image-panel-content.collapsed {
+    display: none;
+}
+
+/* 上传区域 */
+.upload-area {
+    margin-bottom: 12px;
+}
+
+.upload-label {
+    display: block;
+    background: #4CAF50;
+    padding: 8px;
+    text-align: center;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background 0.2s;
+}
+
+.upload-label:hover {
+    background: #45a049;
+}
+
+#jeppesenImageInput {
+    display: none;
+}
+
+/* 坐标输入区域 */
+.coords-input {
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.coord-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 8px;
+    align-items: center;
+}
+
+.coord-row span {
+    width: 45px;
+    font-size: 12px;
+}
+
+.coord-row input {
+    width: 80px;
+    flex: none;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid #555;
+    padding: 6px 6px;
+    border-radius: 4px;
+    color: white;
+    font-size: 12px;
+}
+
+.coord-row input:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+/* 透明度控制 */
+.opacity-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.opacity-control input {
+    flex: 1;
+}
+
+/* 按钮 */
+.panel-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.btn-primary,
+.btn-secondary {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background: #2196F3;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #0b7dda;
+}
+
+.btn-secondary {
+    background: #f44336;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #da190b;
+}
+
+/* 航图列表 */
+.image-list {
+    margin-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 12px;
+}
+
+.image-list-title {
+    font-size: 11px;
+    color: #aaa;
+    margin-bottom: 8px;
+}
+
+.image-item {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 6px;
+    padding: 8px;
+    margin-bottom: 8px;
+    font-size: 11px;
+}
+
+.image-item-name {
+    font-weight: bold;
+    margin-bottom: 6px;
+    word-break: break-all;
+    font-size: 11px;
+}
+
+.image-item-bounds {
+    font-size: 10px;
+    color: #aaa;
+    margin-bottom: 6px;
+    font-family: monospace;
+}
+
+.image-item-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.image-item-controls input {
+    flex: 1;
+    height: 4px;
+}
+
+.image-item-controls button {
+    background: #f44336;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+    font-size: 10px;
+}
+
+.image-item-controls button:hover {
+    background: #da190b;
+}
+
+/* 提示 */
+.hint {
+    font-size: 10px;
+    color: #aaa;
+    text-align: center;
+    margin-top: 8px;
+}
+
+.panel-toggle {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    #image-overlay-panel {
+        width: 280px;
+        top: 70px;
+        right: 5px;
+        font-size: 11px;
+        max-height: 70vh;
+    }
+
+    .coord-row input {
+        width: 70px;
+    }
+}
+
+/* 编辑按钮 */
+.edit-item {
+    background: #2196F3;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+    font-size: 10px;
+}
+
+.edit-item:hover {
+    background: #0b7dda;
+}

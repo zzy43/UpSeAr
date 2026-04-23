@@ -1,0 +1,221 @@
+/* 节点添加面板样式 */
+#marker-panel {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 320px;
+    background: rgba(30, 30, 40, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    z-index: 1000;
+    font-size: 12px;
+    color: #eee;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.marker-panel-header {
+    padding: 10px 12px;
+    background: rgba(0,0,0,0.5);
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.marker-panel-content {
+    padding: 10px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.marker-panel-content.collapsed {
+    display: none;
+}
+
+.marker-input-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 12px;
+    align-items: center;
+}
+
+.time-input {
+    width: 55px;
+    background: rgba(0,0,0,0.6);
+    border: 1px solid #555;
+    padding: 6px;
+    border-radius: 5px;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+}
+
+.time-input:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+/* 参数选择区域 */
+.params-section {
+    margin-bottom: 12px;
+    padding: 8px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 6px;
+}
+
+.params-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-size: 11px;
+    color: #aaa;
+    font-weight: bold;
+}
+
+.params-header:hover {
+    color: #ddd;
+}
+
+.params-toggle {
+    background: none;
+    border: none;
+    color: #aaa;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.params-toggle:hover {
+    color: #fff;
+}
+
+.params-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.params-grid.collapsed {
+    display: none;
+}
+
+.param-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.param-checkbox input {
+    cursor: pointer;
+    width: 14px;
+    height: 14px;
+}
+
+.apply-markers-btn {
+    background: #4CAF50;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.apply-markers-btn:hover {
+    background: #45a049;
+}
+
+.clear-markers-btn {
+    background: #555;
+    border: none;
+    padding: 6px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 11px;
+    width: 100%;
+}
+
+.clear-markers-btn:hover {
+    background: #666;
+}
+
+.marker-list {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.marker-list-title {
+    font-size: 10px;
+    color: #aaa;
+    margin-bottom: 6px;
+}
+
+.marker-item {
+    background: rgba(0,0,0,0.4);
+    border-radius: 5px;
+    padding: 5px 8px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+}
+
+.marker-item-time {
+    font-family: monospace;
+}
+
+.marker-item-remove {
+    background: #f44336;
+    border: none;
+    padding: 3px 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+    font-size: 9px;
+}
+
+.marker-item-remove:hover {
+    background: #da190b;
+}
+
+.hint-text {
+    font-size: 9px;
+    color: #aaa;
+    text-align: center;
+    margin-top: 8px;
+}
+
+.panel-toggle {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    #marker-panel {
+        width: 300px;
+        bottom: 10px;
+        left: 10px;
+    }
+    .time-input {
+        width: 50px;
+        font-size: 11px;
+        padding: 5px;
+    }
+}

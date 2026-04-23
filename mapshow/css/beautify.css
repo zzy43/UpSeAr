@@ -1,0 +1,123 @@
+/* 美化面板样式 */
+.beautify-panel {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 280px;
+    background: rgba(30, 30, 40, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    z-index: 1001;
+    font-size: 13px;
+    color: #eee;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.beautify-panel-header {
+    padding: 12px 15px;
+    background: rgba(0,0,0,0.5);
+    border-radius: 12px 12px 0 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+.beautify-panel-content {
+    padding: 12px;
+}
+
+.beautify-section {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.beautify-title {
+    font-size: 12px;
+    font-weight: bold;
+    color: #ff9800;
+    margin-bottom: 10px;
+}
+
+.beautify-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.beautify-row label {
+    width: 40px;
+    font-size: 12px;
+}
+
+.beautify-row input[type="color"] {
+    width: 50px;
+    height: 30px;
+    border: 1px solid #555;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #1a1a1e;
+}
+
+.beautify-row input[type="range"] {
+    flex: 1;
+    height: 4px;
+    cursor: pointer;
+}
+
+.beautify-row span {
+    width: 40px;
+    font-size: 11px;
+    text-align: right;
+}
+
+.beautify-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.apply-btn, .reset-btn {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
+    transition: all 0.2s;
+}
+
+.apply-btn {
+    background: #4CAF50;
+    color: white;
+}
+
+.apply-btn:hover {
+    background: #45a049;
+}
+
+.reset-btn {
+    background: #555;
+    color: white;
+}
+
+.reset-btn:hover {
+    background: #666;
+}
+
+.panel-close {
+    background: none;
+    border: none;
+    color: #aaa;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.panel-close:hover {
+    color: #f44336;
+}

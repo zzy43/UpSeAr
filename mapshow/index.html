@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>圆通FDR飞行轨迹 - 安全监察部</title>
+    <link rel="icon" type="image/jpg" href="logo.png">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.fullscreen/2.0.0/Control.FullScreen.css" />
+    
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/panel.css" />
+    <link rel="stylesheet" href="css/marker.css" />
+    <link rel="stylesheet" href="css/markerUI.css" />
+    <link rel="stylesheet" href="css/beautify.css" />
+    <link rel="stylesheet" href="css/profileChart.css" />
+</head>
+<body>
+    <div id="header">
+        <div class="logo">
+    <img src="logo.png" alt="Logo" class="logo-icon" style="width: 40px; height: 40px; object-fit: contain;">
+    <span>圆通可视化FDR飞行轨迹 <small style="font-size: 0.7em; opacity: 0.8;">| 安全监察部</small></span>
+</div>
+        <div class="controls">
+    <div class="map-source-selector">
+        <label>🗺️ 底图：</label>
+        <select id="baseMapSelect">
+            <option value="esriTopo" selected>🏔️ 地形图（推荐）</option>
+            <option value="esriImagery">🛰️ 卫星影像</option>
+            <option value="openTopoMap">🗺️ 地形图（外网）</option>    
+            <option value="cartodb">🗺️ 淡色图（很慢）</option>
+        </select>
+    </div>
+    <button id="fileSelectBtn" class="btn-file">📁 选择文件</button>
+    <input type="file" id="fileInput" accept=".xlsx, .xls, .csv" style="display: none;" />
+    <button id="addMarkerBtn">📍 添加节点</button>
+    <button id="toggleImagePanelBtn">🗺️ 叠加航图</button>   <!-- 新增 -->
+    <button id="beautifyBtn" class="btn-beautify">🎨 美化轨迹</button>
+    <button id="toggleChartBtn" class="btn-chart">📊 高度剖面</button>
+</div>
+        <div class="info" id="info">等待加载数据...</div>
+    </div>
+    
+    <div id="map"></div>
+    
+    <div class="status" id="status">
+        <span>📁 请选择 test.xlsx 文件，或点击「示例数据」</span>
+    </div>
+
+<!-- 第三方库 -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.fullscreen/2.0.0/Control.FullScreen.js"></script>
+<script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+
+
+<script src="js/map.js"></script>
+<script src="js/dataParser.js"></script>
+<script src="js/trackDrawer.js"></script>
+<script src="js/ui/fileParser.js"></script>
+<script src="js/ui/status.js"></script>
+<script src="js/ui/panel/coordinates.js"></script>
+<script src="js/ui/panel/imageList.js"></script>
+<script src="js/ui/panel/styles.js"></script>
+<script src="js/ui/panel.js"></script>
+<script src="js/markers/markerManager.js"></script>
+<script src="js/markers/markerUI.js"></script>
+<script src="js/ui/profileChart/chartCore.js"></script>
+<script src="js/ui/profileChart/chartEvents.js"></script>
+<script src="js/ui/profileChart/chartControls.js"></script>
+<script src="js/ui/profileChart.js"></script>
+<script src="js/ui/beautifyPanel.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
