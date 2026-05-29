@@ -1,0 +1,252 @@
+/* ========== style.css - IOSA ORG Ed 18 Rev 1 主题 ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    background: #eef2ea;
+    color: #1e2f2c;
+    line-height: 1.5;
+}
+
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* 侧边导航栏 — 深橄榄绿 */
+.sidebar {
+    width: 320px;
+    background-color: #4e148c;
+    color: #e2f0e6;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow-y: auto;
+    box-shadow: 2px 0 12px rgba(0,0,0,0.1);
+    z-index: 10;
+}
+
+.nav-header {
+    padding: 1.5rem 1.2rem 1rem 1.2rem;
+    border-bottom: 1px solid #3d6b58;
+}
+
+.nav-header h2 {
+    font-weight: 600;
+    font-size: 1.4rem;
+    letter-spacing: -0.5px;
+    color: #efcba1;
+}
+
+.nav-sub {
+    font-size: 0.7rem;
+    color: #bdd4cb;
+    margin-top: 0.3rem;
+}
+
+.nav-menu {
+    list-style: none;
+    padding: 0.5rem 0 2rem 0;
+    margin: 0;
+}
+
+.nav-group {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-group-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 1.2rem;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    color: #efcba1;
+    background: rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: all 0.2s;
+    border-left: 3px solid transparent;
+}
+
+.nav-group-header:hover {
+    background: rgba(0,0,0,0.35);
+    color: #f5e2c1;
+}
+
+.nav-group-header .toggle-icon {
+    font-size: 0.65rem;
+    transition: transform 0.2s;
+    color: #c4b5a0;
+}
+
+.nav-group-header.collapsed .toggle-icon {
+    transform: rotate(-90deg);
+}
+
+.nav-group-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.nav-group-items.collapsed {
+    display: none;
+}
+
+.nav-item {
+    margin: 0;
+}
+
+.nav-link {
+    display: block;
+    padding: 0.45rem 1.2rem 0.45rem 2rem;
+    color: #dcf0e8;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+    border-left: 3px solid transparent;
+}
+
+.nav-link:hover {
+    background-color: #2b5a48;
+    color: white;
+    border-left-color: #efcba1;
+}
+
+.nav-link.active {
+    background-color: #2f6b55;
+    border-left-color: #efcba1;
+    color: white;
+    font-weight: 500;
+}
+
+.nav-footer {
+    padding: 1rem 1.2rem;
+    font-size: 0.6rem;
+    color: #8db3a3;
+    border-top: 1px solid #2a5a48;
+    margin-top: 1rem;
+}
+
+/* 右侧主内容区 */
+.main-content {
+    flex: 1;
+    margin-left: 320px;
+    padding: 2rem 2rem 3rem 2rem;
+    background: #fafcf8;
+    min-height: 100vh;
+}
+
+.chapter-card {
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.03), 0 2px 8px rgba(0,0,0,0.05);
+    padding: 2rem 2rem;
+    margin-bottom: 2rem;
+}
+
+.chapter-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    border-left: 5px solid #c49a6c;
+    padding-left: 1rem;
+    margin-bottom: 1.5rem;
+    color: #1f4a3a;
+}
+
+.section-block {
+    margin-bottom: 2rem;
+}
+
+.section-sub {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 1.2rem 0 0.6rem 0;
+    color: #2c6b55;
+    border-bottom: 2px solid #e2efe8;
+    padding-bottom: 0.3rem;
+}
+
+.eng-text {
+    color: #2c4a3e;
+    font-weight: 500;
+    background: #f6fbf8;
+    padding: 0.7rem 1rem;
+    border-radius: 12px;
+    margin: 0.6rem 0;
+    border-left: 4px solid #bfdfd0;
+    font-size: 0.9rem;
+    white-space: pre-wrap;
+}
+
+.zh-text {
+    color: #1f5440;
+    background: #ffffff;
+    padding: 0.7rem 1rem;
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    border: 1px solid #e2f0e6;
+    white-space: pre-wrap;
+}
+
+.footer-note {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.7rem;
+    color: #6a8f7c;
+    border-top: 1px solid #dfece4;
+    padding-top: 1.2rem;
+}
+
+/* 表格样式 */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+    margin: 1rem 0;
+    background: white;
+    border: 1px solid #d0ddd4;
+}
+
+.data-table th,
+.data-table td {
+    border: 1px solid #cbd5d0;
+    padding: 8px 10px;
+    vertical-align: top;
+}
+
+.data-table th {
+    background: #e2efe8;
+    font-weight: 600;
+    text-align: center;
+}
+
+.data-table td:first-child {
+    text-align: left;
+}
+
+/* 响应式 */
+@media (max-width: 760px) {
+    .sidebar {
+        transform: translateX(-100%);
+        position: fixed;
+        width: 280px;
+    }
+    .main-content {
+        margin-left: 0;
+        padding: 1rem;
+    }
+}
