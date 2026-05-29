@@ -1,0 +1,187 @@
+/* ========== style.css - IOSA培训样式表 ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    background: #f0f2f5;
+    color: #1e2a3e;
+    line-height: 1.5;
+}
+
+/* 双栏布局 */
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* 侧边导航栏 */
+.sidebar {
+    width: 280px;
+    background: linear-gradient(180deg, #0b2b3b 0%, #123e4e 100%);
+    color: #eef4ff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow-y: auto;
+    box-shadow: 2px 0 12px rgba(0,0,0,0.08);
+    z-index: 10;
+    transition: transform 0.2s ease;
+}
+
+.nav-header {
+    padding: 1.8rem 1.5rem 1rem 1.5rem;
+    border-bottom: 1px solid #2c6b7c;
+}
+
+.nav-header h2 {
+    font-weight: 600;
+    font-size: 1.6rem;
+    letter-spacing: -0.3px;
+    color: #ffd966;
+}
+
+.nav-sub {
+    font-size: 0.75rem;
+    color: #bdd4db;
+    margin-top: 0.4rem;
+}
+
+.nav-menu {
+    list-style: none;
+    padding: 1.2rem 0 2rem 0;
+    margin: 0;
+}
+
+.nav-item {
+    margin: 0.25rem 0;
+}
+
+.nav-link {
+    display: block;
+    padding: 0.7rem 1.8rem;
+    color: #e2edf2;
+    text-decoration: none;
+    font-weight: 450;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    border-left: 3px solid transparent;
+}
+
+.nav-link:hover {
+    background-color: #1f5568;
+    color: white;
+    border-left-color: #ffb347;
+}
+
+.nav-link.active {
+    background-color: #1c657c;
+    border-left-color: #ffb347;
+    color: white;
+    font-weight: 500;
+}
+
+.nav-footer {
+    padding: 1rem 1.5rem;
+    font-size: 0.7rem;
+    color: #8ab3c2;
+    border-top: 1px solid #2c6b7c;
+    margin-top: 1rem;
+}
+
+/* 右侧主内容区 */
+.main-content {
+    flex: 1;
+    margin-left: 280px;
+    padding: 2rem 2.2rem 3rem 2.2rem;
+    background: #f8fafc;
+    min-height: 100vh;
+}
+
+/* 文章卡片风格 */
+.chapter-card {
+    background: white;
+    border-radius: 28px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.03), 0 2px 6px rgba(0,0,0,0.05);
+    padding: 2rem 2.2rem;
+    margin-bottom: 2rem;
+}
+
+.chapter-title {
+    font-size: 1.9rem;
+    font-weight: 700;
+    border-left: 6px solid #ffb347;
+    padding-left: 1rem;
+    margin-bottom: 1.8rem;
+    color: #0b3b4a;
+}
+
+.section-block {
+    margin-bottom: 2rem;
+}
+
+.section-sub {
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.8rem 0;
+    color: #2c5a6e;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 0.3rem;
+}
+
+.eng-text {
+    color: #2d3e50;
+    font-weight: 500;
+    background: #f8fafd;
+    padding: 0.5rem 1rem;
+    border-radius: 14px;
+    margin: 0.8rem 0;
+    border-left: 4px solid #b9d8e5;
+    font-size: 0.95rem;
+}
+
+.zh-text {
+    color: #1f4e64;
+    background: #ffffff;
+    padding: 0.6rem 1rem;
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    font-size: 0.96rem;
+    line-height: 1.5;
+    border: 1px solid #e9edf2;
+}
+
+.highlight {
+    background: #fff7e5;
+    padding: 0.75rem 1rem;
+    border-radius: 16px;
+    margin: 1rem 0;
+}
+
+.footer-note {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #6c86a3;
+    border-top: 1px solid #e2edf2;
+    padding-top: 1.8rem;
+}
+
+@media (max-width: 760px) {
+    .sidebar {
+        transform: translateX(-100%);
+        position: fixed;
+        width: 260px;
+    }
+    .main-content {
+        margin-left: 0;
+        padding: 1.2rem;
+    }
+    .chapter-card {
+        padding: 1.2rem;
+    }
+}
