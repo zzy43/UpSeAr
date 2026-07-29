@@ -3,14 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>1000题互动练习 - 10页版</title>
+<title>1000题</title>
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; font-size: 12px; color: #222; background: #e8e8e8; line-height: 1.5; }
-    .header { position: sticky; top: 0; z-index: 100; background: #fff; border-bottom: 1px solid #ccc; padding: 6px 16px; display: flex; align-items: center; justify-content: space-between; font-size: 12px; flex-wrap: wrap; gap: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-    .header-title { font-size: 14px; font-weight: bold; color: #333; }
-    .header-stats { display: flex; gap: 12px; align-items: center; }
-    .header-stats span { white-space: nowrap; }
+
     .sc { color: #16a34a; font-weight: 600; }
     .sw { color: #dc2626; font-weight: 600; }
     .page-wrap { max-width: 820px; margin: 0 auto; padding: 10px; }
@@ -36,16 +33,7 @@
 </style>
 </head>
 <body>
-<div class="header">
-  <div class="header-title">📝 1000题互动练习 <span style="font-weight:400;font-size:12px;color:#666;">点击选项即可作答</span></div>
-  <div class="header-stats">
-    <span>✅ <span class="sc" id="hCor">0</span></span>
-    <span>❌ <span class="sw" id="hWro">0</span></span>
-    <span>📊 <span id="hAcc">0%</span></span>
-    <span id="hProg">0/1000</span>
-    <button class="btn" onclick="resetAll()">🔄 重置</button>
-  </div>
-</div>
+
 <div class="page-wrap">
 <div class="page" id="page0">
 <div class="page-title">第1页 / 共10页（1-100题）</div>
@@ -4079,19 +4067,18 @@
 </div>
 </div>
 <script>
-let stats = JSON.parse(localStorage.getItem("q1000_stats") || "{}");
-// stats = { "0": true, "1": false, ... }  true=correct false=wrong
+// 已答题标记（不保存，刷新即重置）
+let answered = {};
 
 function clickOpt(el) {
   const qidx = parseInt(el.dataset.q);
-  if (qidx in stats) return;  // already answered
+  if (answered[qidx]) return;
+
   const userAns = el.dataset.label;
   const correctAns = el.dataset.ans;
   const isCorrect = userAns === correctAns;
-  stats[qidx] = isCorrect;
-  saveStats();
+  answered[qidx] = true;
 
-  // mark all options for this question
   const parent = el.parentElement;
   parent.querySelectorAll(".opt-btn").forEach(b => {
     if (b.dataset.label === correctAns) {
@@ -4101,68 +4088,9 @@ function clickOpt(el) {
     }
   });
 
-  // show answer marker
   const ansEl = parent.querySelector(".q-answer");
   if (ansEl) ansEl.classList.add("show");
-
-  updateHeader();
 }
-
-function saveStats() {
-  localStorage.setItem("q1000_stats", JSON.stringify(stats));
-}
-
-function updateHeader() {
-  let cor = 0, wro = 0;
-  for (const k in stats) {
-    if (stats[k] === true) cor++;
-    else if (stats[k] === false) wro++;
-  }
-  const total = cor + wro;
-  document.getElementById("hCor").textContent = cor;
-  document.getElementById("hWro").textContent = wro;
-  document.getElementById("hAcc").textContent = total > 0 ? Math.round(cor/total*100) + "%" : "0%";
-  document.getElementById("hProg").textContent = total + "/1000";
-}
-
-function resetAll() {
-  if (!confirm("确定重置所有答题记录？")) return;
-  stats = {};
-  saveStats();
-  document.querySelectorAll(".opt-btn").forEach(b => {
-    b.classList.remove("correct","wrong");
-  });
-  document.querySelectorAll(".q-answer").forEach(a => {
-    a.classList.remove("show");
-  });
-  updateHeader();
-}
-
-// Restore previously answered questions
-window.addEventListener("DOMContentLoaded", function() {
-  for (const qidxStr in stats) {
-    const qidx = parseInt(qidxStr);
-    const isCorrect = stats[qidxStr];
-    const qi = document.getElementById("qi" + qidx);
-    if (!qi) continue;
-    const opts = qi.querySelector(".q-opts");
-    if (!opts) continue;
-    const correctAns = opts.querySelector(".opt-btn")?.dataset.ans;
-    opts.querySelectorAll(".opt-btn").forEach(b => {
-      if (b.dataset.label === correctAns) {
-        b.classList.add("correct");
-      } else if (b.dataset.label !== correctAns && b.dataset.label === (userAnswerFor(qidx))) {
-        b.classList.add("wrong");
-      }
-    });
-    const ansEl = opts.querySelector(".q-answer");
-    if (ansEl) ansEl.classList.add("show");
-  }
-  updateHeader();
-});
-
-// We lost user answer info, just show correct
-// Better: store user answer too
 </script>
 </body>
 </html>
