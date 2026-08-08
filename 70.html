@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B757 题库285（70题）</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; font-size: 12px; color: #222; background: #e8e8e8; line-height: 1.5; }
+
+    .sc { color: #16a34a; font-weight: 600; }
+    .sw { color: #dc2626; font-weight: 600; }
+    .page-wrap { max-width: 820px; margin: 0 auto; padding: 10px; }
+    .page { background: #fff; padding: 12mm 14mm; margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.12); border-radius: 4px; }
+    .page-title { font-size: 13px; font-weight: bold; text-align: center; padding-bottom: 5px; margin-bottom: 6px; border-bottom: 2px solid #333; }
+    .q-item { padding: 3px 0; border-bottom: 1px dashed #ddd; }
+    .q-header { font-weight: 600; font-size: 11.5px; }
+    .q-opts { margin-left: 16px; display: flex; flex-wrap: wrap; gap: 2px 6px; font-size: 11px; }
+    .opt-btn { cursor: pointer; padding: 1px 6px; border-radius: 3px; border: 1px solid #d0d0d0; background: #fafafa; color: #333; white-space: nowrap; transition: all 0.15s; user-select: none; }
+    .opt-btn:hover { border-color: #888; background: #f0f0f0; }
+    .opt-btn.correct { border-color: #16a34a; background: #dcfce7; color: #166534; }
+    .opt-btn.wrong { border-color: #dc2626; background: #fee2e2; color: #991b1b; }
+    .opt-btn.show-correct { border-color: #16a34a; background: #dcfce7; color: #166534; }
+    .q-answer { margin-left: 16px; font-size: 10px; color: #999; display: none; }
+    .q-answer.show { display: inline; color: #16a34a; font-weight: 500; }
+    .tag-correct, .tag-wrong { font-size: 10px; margin-left: 4px; font-weight: 600; }
+    .tag-correct { color: #16a34a; }
+    .tag-wrong { color: #dc2626; }
+    .btn { cursor: pointer; padding: 2px 10px; border: 1px solid #ccc; border-radius: 3px; background: #fff; font-size: 11px; }
+    .btn:hover { background: #f5f5f5; }
+    .btn-primary { background: #2563eb; color: #fff; border-color: #2563eb; }
+    .btn-primary:hover { background: #1d4ed8; }
+</style>
+</head>
+<body>
+
+<div class="page-wrap">
+<div class="page" id="page0">
+<div class="page-title">共70题</div>
+<div class="q-item" id="qi0">
+  <div class="q-header">1. EGPWS 之所以被称为“增强型”，是因为它能通过比较以下哪组数据来预测潜在的地形冲突？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="0" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 无线电高度变化率与起落架构型</span> <span class="opt-btn" data-q="0" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 飞机位置数据（如GPS）与内部地形、障碍物及机场数据库</span> <span class="opt-btn" data-q="0" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 气象雷达回波强度与飞行计划</span> <span class="opt-btn" data-q="0" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 仅依靠气压高度与预设的最小越障高度</span> <span class="q-answer" id="ans0">✓ B</span></div>
+</div>
+<div class="q-item" id="qi1">
+  <div class="q-header">2. EGPWS在计算几何高度（Geometric Altitude）时，系统主要使用哪项数据作为基准来对气压高度进行修正？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="1" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 惯导的垂直速度</span> <span class="opt-btn" data-q="1" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 无线电高度表的实时读数</span> <span class="opt-btn" data-q="1" data-ans="C" data-label="C" onclick="clickOpt(this)">C. GPS 高度</span> <span class="opt-btn" data-q="1" data-ans="C" data-label="D" onclick="clickOpt(this)">D. VOR/DME 的测距信息</span> <span class="q-answer" id="ans1">✓ C</span></div>
+</div>
+<div class="q-item" id="qi2">
+  <div class="q-header">3. 在GPS信号受干扰导致位置误差较大的情况下，EGPWS的“前视地形警报”（Look-Ahead Alert）功能会受到什么影响？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="2" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 前视距离自动增加以补偿误差</span> <span class="opt-btn" data-q="2" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 系统会发出“TERRAIN AHEAD”的虚假警告</span> <span class="opt-btn" data-q="2" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 前视功能依赖于精确的位置信息，位置不准可能导致报警失效或地形显示错误</span> <span class="opt-btn" data-q="2" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 系统自动切换为仅使用VOR/DME进行前视计算</span> <span class="q-answer" id="ans2">✓ C</span></div>
+</div>
+<div class="q-item" id="qi3">
+  <div class="q-header">4. RNP（所需导航性能）与RNAV（区域导航）的核心区别在于RNP要求具备什么功能？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="3" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 更高的导航精度（如RNP 0.3）</span> <span class="opt-btn" data-q="3" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 必须使用GPS作为唯一导航源</span> <span class="opt-btn" data-q="3" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 机载性能监视与告警功能（OBPMA）</span> <span class="opt-btn" data-q="3" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 必须包含垂直导航（VNAV）能力</span> <span class="q-answer" id="ans3">✓ C</span></div>
+</div>
+<div class="q-item" id="qi4">
+  <div class="q-header">5. 当飞机在RNP进近过程中，如果机载系统检测到总系统误差（TSE）超过2倍RNP值，且未发出告警的概率大于十万分之一，这违反了PBN的哪项性能要求？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="4" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 精确性要求</span> <span class="opt-btn" data-q="4" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 完好性要求</span> <span class="opt-btn" data-q="4" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 连续性要求</span> <span class="opt-btn" data-q="4" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 功能性要求</span> <span class="q-answer" id="ans4">✓ B</span></div>
+</div>
+<div class="q-item" id="qi5">
+  <div class="q-header">6. 如果航空器在RNP运行期间失去了机载性能监视与告警功能（OBPMA），机组应当如何处置？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="5" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 继续飞行，依靠ATC雷达监控</span> <span class="opt-btn" data-q="5" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 立即转为目视飞行规则（VFR）</span> <span class="opt-btn" data-q="5" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 通知ATC并可能需要中断RNP程序，转为传统导航或复飞</span> <span class="opt-btn" data-q="5" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 可以暂时忽略告警，因为RNP系统有冗余</span> <span class="q-answer" id="ans5">✓ C</span></div>
+</div>
+<div class="q-item" id="qi6">
+  <div class="q-header">7. 如果在飞行前发现RAIM（接收机自主完好性监视）预测显示在进近期间不可用，机组应采取什么措施？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="6" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 继续飞行，依靠气压高度表</span> <span class="opt-btn" data-q="6" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 改变飞行计划，如延迟起飞、改航或改为传统导航运行</span> <span class="opt-btn" data-q="6" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 仅依靠ATC雷达引导进近</span> <span class="opt-btn" data-q="6" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 增加进近速度以补偿误差</span> <span class="q-answer" id="ans6">✓ B</span></div>
+</div>
+<div class="q-item" id="qi7">
+  <div class="q-header">8. 在机组资源管理（CRM）中，“威胁与差错管理（TEM）”模型中的“威胁”是指什么？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="7" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 机组成员操作失误导致的安全隐患</span> <span class="opt-btn" data-q="7" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 超出机组成员影响范围，但会增加运行复杂性的外部事件</span> <span class="opt-btn" data-q="7" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 飞机系统故障导致的非期望状态</span> <span class="opt-btn" data-q="7" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 机组成员之间的沟通障碍</span> <span class="q-answer" id="ans7">✓ B</span></div>
+</div>
+<div class="q-item" id="qi8">
+  <div class="q-header">9. “工作负荷管理（Workload Management）”的关键是？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="8" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 尽可能减少机组成员的操作任务</span> <span class="opt-btn" data-q="8" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 根据飞行阶段和机组能力，合理分配任务与优先级</span> <span class="opt-btn" data-q="8" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 由机长承担所有关键操作</span> <span class="opt-btn" data-q="8" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 在巡航阶段完全依赖自动驾驶</span> <span class="q-answer" id="ans8">✓ B</span></div>
+</div>
+<div class="q-item" id="qi9">
+  <div class="q-header">10. 当机上发生锂电池或含有锂电池设备有明显发热或欲燃趋势时，飞行机组应采取的行动是？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="9" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 立即使用水灭火器灭火，然后将其放入防爆箱</span> <span class="opt-btn" data-q="9" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 使用海伦灭火器灭火，无需冷却</span> <span class="opt-btn" data-q="9" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 进行冷却降温，必要时使用航空安全防护箱</span> <span class="opt-btn" data-q="9" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 将其扔出机外（如可能）</span> <span class="q-answer" id="ans9">✓ C</span></div>
+</div>
+<div class="q-item" id="qi10">
+  <div class="q-header">11. 在没有条件进行地面除冰/防冰的机场，若需起飞，必须在起飞前多少分钟内完成航空器外部检查？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="10" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 3分钟</span> <span class="opt-btn" data-q="10" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 5分钟</span> <span class="opt-btn" data-q="10" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 10分钟</span> <span class="opt-btn" data-q="10" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 15分钟</span> <span class="q-answer" id="ans10">✓ B</span></div>
+</div>
+<div class="q-item" id="qi11">
+  <div class="q-header">12. 当公司委托的地面代理机构执行除冰工作时，如果机长对除冰效果存疑，机长拥有的权力是？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="11" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 有权要求重复或再次进行除冰/防冰工作</span> <span class="opt-btn" data-q="11" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 只能接受地面人员的解释</span> <span class="opt-btn" data-q="11" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 必须滑回机位重新检查</span> <span class="opt-btn" data-q="11" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 向公司投诉</span> <span class="q-answer" id="ans11">✓ A</span></div>
+</div>
+<div class="q-item" id="qi12">
+  <div class="q-header">13. 关于除冰期间的襟翼位置，以下操作正确的是？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="12" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 必须始终保持在起飞位</span> <span class="opt-btn" data-q="12" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 必须始终保持在收上位，严禁移动</span> <span class="opt-btn" data-q="12" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 通常保持在收上位，如结冰严重，可听地面人员指令放下到着陆位置检查，但之后不要移动手柄</span> <span class="opt-btn" data-q="12" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 由机长随意决定</span> <span class="q-answer" id="ans12">✓ C</span></div>
+</div>
+<div class="q-item" id="qi13">
+  <div class="q-header">14. 在除冰/防冰工作完成后，地面指挥员向机组通报的关键信息不包括？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="13" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 使用的除冰/防冰液类型和厂家</span> <span class="opt-btn" data-q="13" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 混合比例</span> <span class="opt-btn" data-q="13" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 最后一步使用液体的开始时间</span> <span class="opt-btn" data-q="13" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 保持时间或许可时间</span> <span class="q-answer" id="ans13">✓ D</span></div>
+</div>
+<div class="q-item" id="qi14">
+  <div class="q-header">15. 关于“起飞前污染物检查（起飞前5分钟检查）”，以下说法正确的是？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="14" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 任何类型的除冰液都可以使用5分钟检查法</span> <span class="opt-btn" data-q="14" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 只有使用II、IV型液且保持时间≥20分钟时，才能采用此法</span> <span class="opt-btn" data-q="14" data-ans="B" data-label="C" onclick="clickOpt(this)">C. I型液才可以使用5分钟检查法</span> <span class="opt-btn" data-q="14" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 只要在保持时间内，就不需要做5分钟检查</span> <span class="q-answer" id="ans14">✓ B</span></div>
+</div>
+<div class="q-item" id="qi15">
+  <div class="q-header">16. 当机场出现“冰粒”或“小冰雹”天气，地面人员使用了IV型防冰液并给出了“许可时间（Allowance Time）”。如果飞机滑行时间过长导致超过了这个许可时间，以下哪种做法是符合手册规定？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="15" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 在起飞前5分钟内，由副驾驶在驾驶舱内对机翼典型表面进行目视检查，确认无冰后起飞</span> <span class="opt-btn" data-q="15" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 滑回停机位，由经过培训的地面人员在机外进行起飞前污染物检查，确认无冰后起飞</span> <span class="opt-btn" data-q="15" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 必须重新滑回进行地面除冰/防冰处理，或者根据附录A判断许可时间的有效性（如适用），严禁使用起飞前5分钟检查法</span> <span class="opt-btn" data-q="15" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 只要OAT（外界大气温度）没有明显下降，可以自行延长10%的许可时间继续起飞</span> <span class="q-answer" id="ans15">✓ C</span></div>
+</div>
+<div class="q-item" id="qi16">
+  <div class="q-header">17. 在执行非高高原航班任务前，关于饮用含酒精饮料的限制，以下哪项描述是准确的？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="16" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 起飞前8小时内不得饮用</span> <span class="opt-btn" data-q="16" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 起飞前12小时内不得饮用</span> <span class="opt-btn" data-q="16" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 起飞前24小时内不得饮用</span> <span class="opt-btn" data-q="16" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 只要呼气酒精浓度检测为0即可，无时间限制</span> <span class="q-answer" id="ans16">✓ B</span></div>
+</div>
+<div class="q-item" id="qi17">
+  <div class="q-header">18. 飞机上应急医疗设备的配备标准是？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="17" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 急救箱、应急医疗箱、卫生防疫包</span> <span class="opt-btn" data-q="17" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 仅配备急救箱</span> <span class="opt-btn" data-q="17" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 仅配备应急医疗箱</span> <span class="opt-btn" data-q="17" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 无需配备任何医疗设备</span> <span class="q-answer" id="ans17">✓ B</span></div>
+</div>
+<div class="q-item" id="qi18">
+  <div class="q-header">19. 在飞行中，谁有权决定打开急救箱？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="18" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 任何需要的机组成员</span> <span class="opt-btn" data-q="18" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 随机机务</span> <span class="opt-btn" data-q="18" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 机长</span> <span class="opt-btn" data-q="18" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 航医</span> <span class="q-answer" id="ans18">✓ C</span></div>
+</div>
+<div class="q-item" id="qi19">
+  <div class="q-header">20. 飞行员在就医或自行用药时，必须遵循严格的分类管理原则。关于用药管理，以下说法正确的是？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="19" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 非处方药（OTC）只要说明书未注明“影响驾驶”，即可自行服用后飞行</span> <span class="opt-btn" data-q="19" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 飞行员服用任何药物（包括处方药和非处方药）必须事先征得航空医师同意</span> <span class="opt-btn" data-q="19" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 只要停药24小时以上，即可恢复飞行，可以不经过航医确认</span> <span class="q-answer" id="ans19">✓ B</span></div>
+</div>
+<div class="q-item" id="qi20">
+  <div class="q-header">21. 机组在驻扎基地或过站基地过夜期间，如突发身体不适需就医，以下处置流程错误的是？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="20" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 立即暂停后续飞行任务，并通知航医处及同组机组</span> <span class="opt-btn" data-q="20" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 联系酒店方协助联系附近医疗机构送医，必要时由同组人员陪同</span> <span class="opt-btn" data-q="20" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 就诊后保留病历资料，并及时将病情报告航空医师</span> <span class="opt-btn" data-q="20" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 为不耽误航班，自行前往药店买药服用，症状缓解后继续执行任务</span> <span class="q-answer" id="ans20">✓ D</span></div>
+</div>
+<div class="q-item" id="qi21">
+  <div class="q-header">22. 关于“污染跑道”的定义，以下哪种情况不属于污染跑道？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="21" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 跑道表面25%以上覆盖有超过3毫米深的积水</span> <span class="opt-btn" data-q="21" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 跑道表面有压实的雪</span> <span class="opt-btn" data-q="21" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 跑道表面有积水，深度为2毫米</span> <span class="opt-btn" data-q="21" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 跑道表面有冰</span> <span class="q-answer" id="ans21">✓ C</span></div>
+</div>
+<div class="q-item" id="qi22">
+  <div class="q-header">23. 当跑道表面有超过13毫米（1/2英寸）深的积水或当量厚度的雪浆时，或者跑道状况代码（RWYCC）为多少及以下时，禁止起降？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="22" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 1</span> <span class="opt-btn" data-q="22" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 2</span> <span class="opt-btn" data-q="22" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 3</span> <span class="opt-btn" data-q="22" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 0</span> <span class="q-answer" id="ans22">✓ A</span></div>
+</div>
+<div class="q-item" id="qi23">
+  <div class="q-header">24. 进行到达时的着陆距离评估时，计算出的运行着陆距离（OLD）应当再加上多少安全余量，且结果不得大于可用着陆距离（LDA）？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="23" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 0.1</span> <span class="opt-btn" data-q="23" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 0.15</span> <span class="opt-btn" data-q="23" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 0.18</span> <span class="opt-btn" data-q="23" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 0.2</span> <span class="q-answer" id="ans23">✓ B</span></div>
+</div>
+<div class="q-item" id="qi24">
+  <div class="q-header">25. 到达时的着陆距离评估要求不仅适用于湿/污染跑道，也适用于干跑道。在干跑道情况下，何时需要重新评估？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="24" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 不需要额外评估</span> <span class="opt-btn" data-q="24" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 在侧风超过15节时</span> <span class="opt-btn" data-q="24" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 当实际使用的跑道、实况风、飞机实际着陆重量/构型等与放行时相比变差时</span> <span class="opt-btn" data-q="24" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 在夜间运行时</span> <span class="q-answer" id="ans24">✓ C</span></div>
+</div>
+<div class="q-item" id="qi25">
+  <div class="q-header">26. (FCTM)滑行时，除非转弯角度小于30度，否则在进入转弯前建议将滑行速度降低至：</div>
+  <div class="q-opts"><span class="opt-btn" data-q="25" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 5节或以下</span> <span class="opt-btn" data-q="25" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 15节或以下</span> <span class="opt-btn" data-q="25" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 10节或以下</span> <span class="opt-btn" data-q="25" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 8节或以下</span> <span class="q-answer" id="ans25">✓ C</span></div>
+</div>
+<div class="q-item" id="qi26">
+  <div class="q-header">27. 飞机在滑入机位前，机组需主动确认机位安全线内无障碍物。机位安全线通常采用什么颜色？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="26" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 蓝色</span> <span class="opt-btn" data-q="26" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 红色</span> <span class="opt-btn" data-q="26" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 黄色</span> <span class="opt-btn" data-q="26" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 白色</span> <span class="q-answer" id="ans26">✓ B</span></div>
+</div>
+<div class="q-item" id="qi27">
+  <div class="q-header">28. 关于地面引导车（Follow-me car）的使用风险防控，下列说法正确的是：</div>
+  <div class="q-opts"><span class="opt-btn" data-q="27" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 只要有引导车，机组就不必担心滑行路线出错</span> <span class="opt-btn" data-q="27" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 引导车脱离后，机组可以凭感觉加速滑入机位</span> <span class="opt-btn" data-q="27" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 引导车仅作为辅助参考，机组应始终以管制指令和标示为依据</span> <span class="opt-btn" data-q="27" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 若引导车与管制指令冲突，应优先听从引导车</span> <span class="q-answer" id="ans27">✓ C</span></div>
+</div>
+<div class="q-item" id="qi28">
+  <div class="q-header">29. 在飞机推出过程中，建议飞行机组双脚不要放置在刹车踏板上的主要原因是：</div>
+  <div class="q-opts"><span class="opt-btn" data-q="28" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 防止无意制动导致牵引杆剪切或设备损坏</span> <span class="opt-btn" data-q="28" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 避免干扰发动机起动程序</span> <span class="opt-btn" data-q="28" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 降低轮胎胎面磨损</span> <span class="opt-btn" data-q="28" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 防止刹车系统过热</span> <span class="q-answer" id="ans28">✓ A</span></div>
+</div>
+<div class="q-item" id="qi29">
+  <div class="q-header">30. 在距离跑道末端多少米范围内的跑道边灯应显示为黄色？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="29" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 300m</span> <span class="opt-btn" data-q="29" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 600m</span> <span class="opt-btn" data-q="29" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 900m</span> <span class="opt-btn" data-q="29" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 400m</span> <span class="q-answer" id="ans29">✓ B</span></div>
+</div>
+<div class="q-item" id="qi30">
+  <div class="q-header">31. 跑道中线灯在距离跑道末端最后300米范围内显示的颜色是？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="30" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 白色</span> <span class="opt-btn" data-q="30" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 红白相间</span> <span class="opt-btn" data-q="30" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 红色</span> <span class="opt-btn" data-q="30" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 黄色</span> <span class="q-answer" id="ans30">✓ C</span></div>
+</div>
+<div class="q-item" id="qi31">
+  <div class="q-header">32. 在ILS临界/敏感区边界以内的出口滑行道中线灯，其颜色显示应为？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="31" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 恒定绿色</span> <span class="opt-btn" data-q="31" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 恒定黄色</span> <span class="opt-btn" data-q="31" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 绿色与黄色相间</span> <span class="opt-btn" data-q="31" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 红色与白色相间</span> <span class="q-answer" id="ans31">✓ C</span></div>
+</div>
+<div class="q-item" id="qi32">
+  <div class="q-header">33. 在夜间或降雨天气下，沥青道面可能导致机组产生什么错觉？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="32" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 跑道比实际宽</span> <span class="opt-btn" data-q="32" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 跑道比实际窄</span> <span class="opt-btn" data-q="32" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 产生“黑洞”效应或距离判断失误</span> <span class="opt-btn" data-q="32" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 跑道灯光过亮</span> <span class="q-answer" id="ans32">✓ C</span></div>
+</div>
+<div class="q-item" id="qi33">
+  <div class="q-header">34. 放行时，应确保飞机在目的地机场着陆时，允许的着陆距离限制是？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="33" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 可用着陆距离的50%以内</span> <span class="opt-btn" data-q="33" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 可用着陆距离的55%以内</span> <span class="opt-btn" data-q="33" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 可用着陆距离的60%以内</span> <span class="opt-btn" data-q="33" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 可用着陆距离的65%以内</span> <span class="q-answer" id="ans33">✓ C</span></div>
+</div>
+<div class="q-item" id="qi34">
+  <div class="q-header">35. 关于飞行记录本（TLB）的保存要求，公司在飞机上应保存哪部分记录？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="34" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 最近3次飞行的记录</span> <span class="opt-btn" data-q="34" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 最近5次飞行的记录</span> <span class="opt-btn" data-q="34" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 最近10次飞行的记录</span> <span class="opt-btn" data-q="34" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 尽可能所有的历史记录</span> <span class="q-answer" id="ans34">✓ A</span></div>
+</div>
+<div class="q-item" id="qi35">
+  <div class="q-header">36. 在起飞性能计算中，预定净起飞飞行轨迹在超越所有障碍物时，垂直余度要求至少为：</div>
+  <div class="q-opts"><span class="opt-btn" data-q="35" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 30英尺</span> <span class="opt-btn" data-q="35" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 35英尺</span> <span class="opt-btn" data-q="35" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 50英尺</span> <span class="opt-btn" data-q="35" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 100英尺</span> <span class="q-answer" id="ans35">✓ B</span></div>
+</div>
+<div class="q-item" id="qi36">
+  <div class="q-header">37. 公司不可预期燃油不得低于飞机以等待速度在目的地机场上空多少高度上在标准条件下飞行多少分钟所需燃油量。</div>
+  <div class="q-opts"><span class="opt-btn" data-q="36" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 450米，15分钟</span> <span class="opt-btn" data-q="36" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 550米，30分钟</span> <span class="opt-btn" data-q="36" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 1500米，15分钟</span> <span class="opt-btn" data-q="36" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 1500米，30分钟</span> <span class="q-answer" id="ans36">✓ A</span></div>
+</div>
+<div class="q-item" id="qi37">
+  <div class="q-header">38. 除防冰程序中，起飞前污染物检查是针对什么表面污染进行检查?</div>
+  <div class="q-opts"><span class="opt-btn" data-q="37" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 关键表面</span> <span class="opt-btn" data-q="37" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 典型表面</span> <span class="opt-btn" data-q="37" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 主要操纵面</span> <span class="opt-btn" data-q="37" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 次要操纵面</span> <span class="q-answer" id="ans37">✓ A</span></div>
+</div>
+<div class="q-item" id="qi38">
+  <div class="q-header">39. 许可时间是针对什么天气类型的防冰液预计持续有效时间？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="38" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 冰晶</span> <span class="opt-btn" data-q="38" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 冻雾，冻雨</span> <span class="opt-btn" data-q="38" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 冰粒和小冰雹</span> <span class="opt-btn" data-q="38" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 雪夹冻雾</span> <span class="q-answer" id="ans38">✓ C</span></div>
+</div>
+<div class="q-item" id="qi39">
+  <div class="q-header">40. 直接影响飞机的飞机性能、安全性以及操控性，由制造商在航空器适航手册中确定的表面是什么表面？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="39" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 关键表面</span> <span class="opt-btn" data-q="39" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 典型表面</span> <span class="opt-btn" data-q="39" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 主要操纵表面</span> <span class="opt-btn" data-q="39" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 所有操纵表面</span> <span class="q-answer" id="ans39">✓ A</span></div>
+</div>
+<div class="q-item" id="qi40">
+  <div class="q-header">41. 在白天或者夜间运行时能够被飞行机组容易并清楚地观察到，且适用于判断关键表面是否被污染的航空器表面是什么？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="40" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 关键表面</span> <span class="opt-btn" data-q="40" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 典型表面</span> <span class="opt-btn" data-q="40" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 主要操纵表面</span> <span class="opt-btn" data-q="40" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 所有操纵表面</span> <span class="q-answer" id="ans40">✓ B</span></div>
+</div>
+<div class="q-item" id="qi41">
+  <div class="q-header">42. 除防冰后，许可时间对于起飞前多久污染物检查？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="41" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 起飞前5分钟污染物检查</span> <span class="opt-btn" data-q="41" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 起飞前10分钟污染物检查</span> <span class="opt-btn" data-q="41" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 不适用起飞前污染物检查</span> <span class="q-answer" id="ans41">✓ C</span></div>
+</div>
+<div class="q-item" id="qi42">
+  <div class="q-header">43. 下列哪个机场不是复杂机场</div>
+  <div class="q-opts"><span class="opt-btn" data-q="42" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 昆明</span> <span class="opt-btn" data-q="42" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 拉合尔</span> <span class="opt-btn" data-q="42" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 孟买</span> <span class="opt-btn" data-q="42" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 达卡</span> <span class="q-answer" id="ans42">✓ B</span></div>
+</div>
+<div class="q-item" id="qi43">
+  <div class="q-header">44. 炎热天气是指机场气象报告温度大于等于（）摄氏度，小于等于（）摄氏度， 风速小于（）米/秒的天气</div>
+  <div class="q-opts"><span class="opt-btn" data-q="43" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 30，50，8</span> <span class="opt-btn" data-q="43" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 35，50，7</span> <span class="opt-btn" data-q="43" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 35，50，8</span> <span class="opt-btn" data-q="43" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 30，55，7</span> <span class="q-answer" id="ans43">✓ C</span></div>
+</div>
+<div class="q-item" id="qi44">
+  <div class="q-header">45. 高温运行需要控制最短过站时间不少于多少分钟</div>
+  <div class="q-opts"><span class="opt-btn" data-q="44" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 40</span> <span class="opt-btn" data-q="44" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 50</span> <span class="opt-btn" data-q="44" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 60</span> <span class="opt-btn" data-q="44" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 75</span> <span class="q-answer" id="ans44">✓ A</span></div>
+</div>
+<div class="q-item" id="qi45">
+  <div class="q-header">46. 除非温度低于()摄氏度SAT(大气静温),否则在空中当存。在或预计会出现结冰情况时所有操作中都必须将发动机防冰接通(ON)</div>
+  <div class="q-opts"><span class="opt-btn" data-q="45" data-ans="D" data-label="A" onclick="clickOpt(this)">A. -10</span> <span class="opt-btn" data-q="45" data-ans="D" data-label="B" onclick="clickOpt(this)">B. -20</span> <span class="opt-btn" data-q="45" data-ans="D" data-label="C" onclick="clickOpt(this)">C. -35</span> <span class="opt-btn" data-q="45" data-ans="D" data-label="D" onclick="clickOpt(this)">D. -40</span> <span class="q-answer" id="ans45">✓ D</span></div>
+</div>
+<div class="q-item" id="qi46">
+  <div class="q-header">47. 着陆后，在襟翼区域经检查没有污染物之前，不要将襟翼收到小于襟翼（ ）的位置。</div>
+  <div class="q-opts"><span class="opt-btn" data-q="46" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 5</span> <span class="opt-btn" data-q="46" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 20</span> <span class="opt-btn" data-q="46" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 25</span> <span class="opt-btn" data-q="46" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 30</span> <span class="q-answer" id="ans46">✓ B</span></div>
+</div>
+<div class="q-item" id="qi47">
+  <div class="q-header">48. 在结冰条件下进近，推荐在五边进近前使用（ ）分钟机翼防冰</div>
+  <div class="q-opts"><span class="opt-btn" data-q="47" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 5~15</span> <span class="opt-btn" data-q="47" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 10~15</span> <span class="opt-btn" data-q="47" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 5~10</span> <span class="opt-btn" data-q="47" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 10~20</span> <span class="q-answer" id="ans47">✓ C</span></div>
+</div>
+<div class="q-item" id="qi48">
+  <div class="q-header">49. 对于1类精密进近，跑道中线灯光不工作时，当正侧风（ ），方可使用RVR小于800米的标准</div>
+  <div class="q-opts"><span class="opt-btn" data-q="48" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 小于等于10节</span> <span class="opt-btn" data-q="48" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 小于等于15节</span> <span class="opt-btn" data-q="48" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 小于等于20节</span> <span class="opt-btn" data-q="48" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 小于等于35节</span> <span class="q-answer" id="ans48">✓ B</span></div>
+</div>
+<div class="q-item" id="qi49">
+  <div class="q-header">50. 下列哪个不是RVSM运行的飞机机载设备</div>
+  <div class="q-opts"><span class="opt-btn" data-q="49" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 两套独立的高度测量系统</span> <span class="opt-btn" data-q="49" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 一套自动高度控制系统</span> <span class="opt-btn" data-q="49" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 一套ADS-B设备</span> <span class="opt-btn" data-q="49" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 一套二次雷达高度报告的应答机</span> <span class="q-answer" id="ans49">✓ C</span></div>
+</div>
+<div class="q-item" id="qi50">
+  <div class="q-header">51. RVSM空域运行，飞行机组应对两个主用高度表进行交叉检查，差值不得超过（ ）英尺或者相应机型规定的更小值</div>
+  <div class="q-opts"><span class="opt-btn" data-q="50" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 100</span> <span class="opt-btn" data-q="50" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 150</span> <span class="opt-btn" data-q="50" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 200</span> <span class="opt-btn" data-q="50" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 300</span> <span class="q-answer" id="ans50">✓ C</span></div>
+</div>
+<div class="q-item" id="qi51">
+  <div class="q-header">52. 公司低能见起飞最低标准是：</div>
+  <div class="q-opts"><span class="opt-btn" data-q="51" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 100米</span> <span class="opt-btn" data-q="51" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 150米</span> <span class="opt-btn" data-q="51" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 200米</span> <span class="opt-btn" data-q="51" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 300米</span> <span class="q-answer" id="ans51">✓ B</span></div>
+</div>
+<div class="q-item" id="qi52">
+  <div class="q-header">53. 下列选项哪个不是低能见运行（二类运行）的限制：</div>
+  <div class="q-opts"><span class="opt-btn" data-q="52" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 着陆机场预报有风切变</span> <span class="opt-btn" data-q="52" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 高原机场</span> <span class="opt-btn" data-q="52" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 污染跑道</span> <span class="opt-btn" data-q="52" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 顶风30节</span> <span class="q-answer" id="ans52">✓ B</span></div>
+</div>
+<div class="q-item" id="qi53">
+  <div class="q-header">54. 针对B757和B767机型的非精密进近和有垂直引导的进近最低标准：  1）公司放行及运行标准在上述确定的标准基础上，MDA(H)/DA(H)增加——，RVR/VIS增加——</div>
+  <div class="q-opts"><span class="opt-btn" data-q="53" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 100英尺，600米</span> <span class="opt-btn" data-q="53" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 100米，100米</span> <span class="opt-btn" data-q="53" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 200英尺，600米</span> <span class="opt-btn" data-q="53" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 100英尺，150米</span> <span class="q-answer" id="ans53">✓ A</span></div>
+</div>
+<div class="q-item" id="qi54">
+  <div class="q-header">55. 按高度和操纵特点，复飞分类不包含以下哪项？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="54" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 高高度复飞</span> <span class="opt-btn" data-q="54" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 正常高度复飞</span> <span class="opt-btn" data-q="54" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 低高度复飞</span> <span class="opt-btn" data-q="54" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 接地复飞</span> <span class="q-answer" id="ans54">✓ D</span></div>
+</div>
+<div class="q-item" id="qi55">
+  <div class="q-header">56. 100 英尺以下至接地的低高度复飞，最大风险是（）。</div>
+  <div class="q-opts"><span class="opt-btn" data-q="55" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 失速</span> <span class="opt-btn" data-q="55" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 擦机尾</span> <span class="opt-btn" data-q="55" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 偏出跑道</span> <span class="opt-btn" data-q="55" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 超速</span> <span class="q-answer" id="ans55">✓ B</span></div>
+</div>
+<div class="q-item" id="qi56">
+  <div class="q-header">57. 100 英尺以下至接地前中断着陆，未脱离低高度风险前不应改变飞机（）。</div>
+  <div class="q-opts"><span class="opt-btn" data-q="56" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 推力</span> <span class="opt-btn" data-q="56" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 航向</span> <span class="opt-btn" data-q="56" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 构型</span> <span class="opt-btn" data-q="56" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 速度</span> <span class="q-answer" id="ans56">✓ C</span></div>
+</div>
+<div class="q-item" id="qi57">
+  <div class="q-header">58. 以下哪些属于飞机复飞状态稳定的表现？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="57" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 无触地风险</span> <span class="opt-btn" data-q="57" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 姿态稳定</span> <span class="opt-btn" data-q="57" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 高度表和垂直速度表建立正上升率</span> <span class="opt-btn" data-q="57" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 以上都是</span> <span class="q-answer" id="ans57">✓ D</span></div>
+</div>
+<div class="q-item" id="qi58">
+  <div class="q-header">59. 100ft以下复飞后，收襟翼前的标准喊话（）。</div>
+  <div class="q-opts"><span class="opt-btn" data-q="58" data-ans="C" data-label="A" onclick="clickOpt(this)">A. “正上升”</span> <span class="opt-btn" data-q="58" data-ans="C" data-label="B" onclick="clickOpt(this)">B. “正上升率”</span> <span class="opt-btn" data-q="58" data-ans="C" data-label="C" onclick="clickOpt(this)">C. “状态稳定”</span> <span class="opt-btn" data-q="58" data-ans="C" data-label="D" onclick="clickOpt(this)">D. “高度表正上升”</span> <span class="q-answer" id="ans58">✓ C</span></div>
+</div>
+<div class="q-item" id="qi59">
+  <div class="q-header">60. 当遇到严重颠簸时，如不能避开，建议将高度下降至最佳高度以下多少英尺，可获得抖振裕度。</div>
+  <div class="q-opts"><span class="opt-btn" data-q="59" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 1000</span> <span class="opt-btn" data-q="59" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 2000</span> <span class="opt-btn" data-q="59" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 3000</span> <span class="opt-btn" data-q="59" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 4000</span> <span class="q-answer" id="ans59">✓ D</span></div>
+</div>
+<div class="q-item" id="qi60">
+  <div class="q-header">61. 当遇到严重颠簸时，在爬升或者下降过程中，推荐使用什么垂直方式？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="60" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 高度层改变</span> <span class="opt-btn" data-q="60" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 垂直导航</span> <span class="opt-btn" data-q="60" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 垂直速度</span> <span class="opt-btn" data-q="60" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 高度保持</span> <span class="q-answer" id="ans60">✓ C</span></div>
+</div>
+<div class="q-item" id="qi61">
+  <div class="q-header">62. 下列哪项不属于MAYDAY发布的条件</div>
+  <div class="q-opts"><span class="opt-btn" data-q="61" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 飞机结构严重损坏</span> <span class="opt-btn" data-q="61" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 紧急油量</span> <span class="opt-btn" data-q="61" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 机组必需成员失能</span> <span class="opt-btn" data-q="61" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 燃油泄露</span> <span class="q-answer" id="ans61">✓ D</span></div>
+</div>
+<div class="q-item" id="qi62">
+  <div class="q-header">63. 如果在外部检查时需检查刹车磨损指示器，停留刹车应：</div>
+  <div class="q-opts"><span class="opt-btn" data-q="62" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 刹上</span> <span class="opt-btn" data-q="62" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 松开</span> <span class="q-answer" id="ans62">✓ A</span></div>
+</div>
+<div class="q-item" id="qi63">
+  <div class="q-header">64. 当滑油温度低于多少摄氏度，不得起动发动机</div>
+  <div class="q-opts"><span class="opt-btn" data-q="63" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 0</span> <span class="opt-btn" data-q="63" data-ans="D" data-label="B" onclick="clickOpt(this)">B. -20</span> <span class="opt-btn" data-q="63" data-ans="D" data-label="C" onclick="clickOpt(this)">C. -30</span> <span class="opt-btn" data-q="63" data-ans="D" data-label="D" onclick="clickOpt(this)">D. -40</span> <span class="q-answer" id="ans63">✓ D</span></div>
+</div>
+<div class="q-item" id="qi64">
+  <div class="q-header">65. 巡航过程中，建议在运行不繁忙阶段每间隔多久检查一次液压油量、座舱增压、燃油</div>
+  <div class="q-opts"><span class="opt-btn" data-q="64" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 5~10分钟</span> <span class="opt-btn" data-q="64" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 10~15分钟</span> <span class="opt-btn" data-q="64" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 15~20分钟</span> <span class="opt-btn" data-q="64" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 20~30分钟</span> <span class="q-answer" id="ans64">✓ B</span></div>
+</div>
+<div class="q-item" id="qi65">
+  <div class="q-header">66. 通讯失效时，应答机设置7602的意图是：</div>
+  <div class="q-opts"><span class="opt-btn" data-q="65" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 返回起飞机场</span> <span class="opt-btn" data-q="65" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 飞至起飞备降场</span> <span class="opt-btn" data-q="65" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 继续飞往目的地机场</span> <span class="opt-btn" data-q="65" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 飞往航路备降场</span> <span class="q-answer" id="ans65">✓ B</span></div>
+</div>
+<div class="q-item" id="qi66">
+  <div class="q-header">67. 目视盘旋进近，自动驾驶最晚脱开时机，不晚于DA/DH，MDA/H，( )三者较低值</div>
+  <div class="q-opts"><span class="opt-btn" data-q="66" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 300ftAFE</span> <span class="opt-btn" data-q="66" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 500ftAFE</span> <span class="opt-btn" data-q="66" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 1000ftAFE</span> <span class="opt-btn" data-q="66" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 800ftFAFE</span> <span class="q-answer" id="ans66">✓ B</span></div>
+</div>
+<div class="q-item" id="qi67">
+  <div class="q-header">68. 当着陆航道多少距离和复飞航道多少距离范围内有雷雨活动时，禁止进近和着陆？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="67" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 5公里，3公里</span> <span class="opt-btn" data-q="67" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 5海里，3海里</span> <span class="opt-btn" data-q="67" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 10公里，20公里</span> <span class="opt-btn" data-q="67" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 10海里，20海里</span> <span class="q-answer" id="ans67">✓ A</span></div>
+</div>
+<div class="q-item" id="qi68">
+  <div class="q-header">69. 飞机已经以自身动力移动后，至设置起飞推力前出现的故障或缺陷，若适用的DDG/MEL条款有“M”程序，通常应当如何处置？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="68" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 机长确认后可以继续飞行</span> <span class="opt-btn" data-q="68" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 一般情况下不得继续飞行，除非确认“M”程序已完成</span> <span class="opt-btn" data-q="68" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 执行完相关检查单就可以继续飞行</span> <span class="opt-btn" data-q="68" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 通知签派后即可继续飞行</span> <span class="q-answer" id="ans68">✓ B</span></div>
+</div>
+<div class="q-item" id="qi69">
+  <div class="q-header">70. 飞行机组使用氧气的规定，当飞机座舱高度高于多少（ ）时，每一位值勤的飞行机组成员必须使用氧气？</div>
+  <div class="q-opts"><span class="opt-btn" data-q="69" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 8000英尺</span> <span class="opt-btn" data-q="69" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 10000英尺</span> <span class="opt-btn" data-q="69" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 14000英尺</span> <span class="opt-btn" data-q="69" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 15000英尺</span> <span class="q-answer" id="ans69">✓ B</span></div>
+</div>
+</div>
+</div>
+<script>
+// 已答题标记（不保存，刷新即重置）
+let answered = {};
+
+function clickOpt(el) {
+  const qidx = parseInt(el.dataset.q);
+  if (answered[qidx]) return;
+
+  const userAns = el.dataset.label;
+  const correctAns = el.dataset.ans;
+  const isCorrect = userAns === correctAns;
+  answered[qidx] = true;
+
+  const parent = el.parentElement;
+  parent.querySelectorAll(".opt-btn").forEach(b => {
+    if (b.dataset.label === correctAns) {
+      b.classList.add("correct");
+    } else if (b === el && !isCorrect) {
+      b.classList.add("wrong");
+    }
+  });
+
+  const ansEl = parent.querySelector(".q-answer");
+  if (ansEl) ansEl.classList.add("show");
+}
+</script>
+</body>
+</html>
