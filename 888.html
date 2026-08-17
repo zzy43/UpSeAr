@@ -1,0 +1,2986 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>757 复习题（300题）</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; font-size: 12px; color: #222; background: #e8e8e8; line-height: 1.5; }
+
+    .sc { color: #16a34a; font-weight: 600; }
+    .sw { color: #dc2626; font-weight: 600; }
+    .page-wrap { max-width: 820px; margin: 0 auto; padding: 10px; }
+    .page { background: #fff; padding: 12mm 14mm; margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.12); border-radius: 4px; }
+    .page-title { font-size: 13px; font-weight: bold; text-align: center; padding-bottom: 5px; margin-bottom: 6px; border-bottom: 2px solid #333; }
+    .q-item { padding: 3px 0; border-bottom: 1px dashed #ddd; }
+    .q-header { font-weight: 600; font-size: 11.5px; }
+    .q-opts { margin-left: 16px; display: flex; flex-wrap: wrap; gap: 2px 6px; font-size: 11px; }
+    .opt-btn { cursor: pointer; padding: 1px 6px; border-radius: 3px; border: 1px solid #d0d0d0; background: #fafafa; color: #333; white-space: nowrap; transition: all 0.15s; user-select: none; }
+    .opt-btn:hover { border-color: #888; background: #f0f0f0; }
+    .opt-btn.correct { border-color: #16a34a; background: #dcfce7; color: #166534; }
+    .opt-btn.wrong { border-color: #dc2626; background: #fee2e2; color: #991b1b; }
+    .opt-btn.show-correct { border-color: #16a34a; background: #dcfce7; color: #166534; }
+    .q-answer { margin-left: 16px; font-size: 10px; color: #999; display: none; }
+    .q-answer.show { display: inline; color: #16a34a; font-weight: 500; }
+    .tag-correct, .tag-wrong { font-size: 10px; margin-left: 4px; font-weight: 600; }
+    .tag-correct { color: #16a34a; }
+    .tag-wrong { color: #dc2626; }
+    .btn { cursor: pointer; padding: 2px 10px; border: 1px solid #ccc; border-radius: 3px; background: #fff; font-size: 11px; }
+    .btn:hover { background: #f5f5f5; }
+    .btn-primary { background: #2563eb; color: #fff; border-color: #2563eb; }
+    .btn-primary:hover { background: #1d4ed8; }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+<div class="page" id="page0">
+<div class="page-title">第1页 / 共3页（1-100题）</div>
+<div class="q-item" id="qi0">
+  <div class="q-header">1. 【机型题】右偏航阻尼器电门上的“INOP”灯亮，表示：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="0" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 失去偏航阻尼功效</span>
+    <span class="opt-btn" data-q="0" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 系统被关断</span>
+    <span class="opt-btn" data-q="0" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 右偏航阻尼器不工作</span>
+    <span class="opt-btn" data-q="0" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 右偏航阻尼器开始工作</span>
+    <span class="q-answer" id="ans0">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi1">
+  <div class="q-header">2. 【机型题】马赫/速度配平在下列哪种情况下不工作？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="1" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 起落架放下</span>
+    <span class="opt-btn" data-q="1" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 襟翼收上</span>
+    <span class="opt-btn" data-q="1" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 自动驾驶接通</span>
+    <span class="opt-btn" data-q="1" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 襟翼放下</span>
+    <span class="q-answer" id="ans1">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi2">
+  <div class="q-header">3. 【机型题】当襟翼位置在25度时，此时缝翼的位置是：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="2" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 着陆位</span>
+    <span class="opt-btn" data-q="2" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 起飞机动位</span>
+    <span class="opt-btn" data-q="2" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 收上位</span>
+    <span class="q-answer" id="ans2">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi3">
+  <div class="q-header">4. 【机型题】地面服务汇流条通常由谁供电？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="3" data-ans="B" data-label="A" onclick="clickOpt(this)">A. APU发电机</span>
+    <span class="opt-btn" data-q="3" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 右主汇流条</span>
+    <span class="opt-btn" data-q="3" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 左主汇流条</span>
+    <span class="opt-btn" data-q="3" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 外部电源</span>
+    <span class="q-answer" id="ans3">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi4">
+  <div class="q-header">5. 【机型题】在无线电高度为( )英尺或更低时，若减速板放出则会显示EICAS注意信息SPEEDBRAKES EXT(减速板放出)且SPEEDBRAKES灯亮。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="4" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 1000</span>
+    <span class="opt-btn" data-q="4" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 500</span>
+    <span class="opt-btn" data-q="4" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 1500</span>
+    <span class="opt-btn" data-q="4" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 800</span>
+    <span class="q-answer" id="ans4">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi5">
+  <div class="q-header">6. 【机型题】方向舵比改变器接受( )的空速信号，并向一个由( )液压系统驱动的作动筒提供操纵指令。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="5" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 惯导；中</span>
+    <span class="opt-btn" data-q="5" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 飞行管理计算机；左</span>
+    <span class="opt-btn" data-q="5" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 大气数据计算机；左</span>
+    <span class="opt-btn" data-q="5" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 大气数据计算机，右</span>
+    <span class="q-answer" id="ans5">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi6">
+  <div class="q-header">7. 【机型题】燃油流量通常如何显示？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="6" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 数字和指针</span>
+    <span class="opt-btn" data-q="6" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 仅有指针</span>
+    <span class="opt-btn" data-q="6" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 仅有数字读数</span>
+    <span class="q-answer" id="ans6">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi7">
+  <div class="q-header">8. 【机型题】飞机上的油量表显示的油量有没有经过密度修正：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="7" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 有</span>
+    <span class="opt-btn" data-q="7" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 没有</span>
+    <span class="q-answer" id="ans7">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi8">
+  <div class="q-header">9. 【机型题】在什么情况下，液压面板上的“OVHT”灯会亮？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="8" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 仅当相应的液压泵散热的液压油过热时</span>
+    <span class="opt-btn" data-q="8" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 仅当相应的液压泵过热时</span>
+    <span class="opt-btn" data-q="8" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 相应的液压泵过热或用于相应的液压泵散热的液压油过热时</span>
+    <span class="opt-btn" data-q="8" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 相应的液压泵和用于泵体散热的液压油都过热时</span>
+    <span class="q-answer" id="ans8">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi9">
+  <div class="q-header">10. 【机型题】液压系统压力是指：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="9" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 泵达到最大压力时所对应的液压压力</span>
+    <span class="opt-btn" data-q="9" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 单个液压系统所有泵的液压压力之和</span>
+    <span class="opt-btn" data-q="9" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 单个液压系统所有泵的液压压力的平均值</span>
+    <span class="q-answer" id="ans9">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi10">
+  <div class="q-header">11. 【机型题】右液压油箱液压油量需要补充时会有怎样的显示：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="10" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 紫色的RF显示于下EICAS</span>
+    <span class="opt-btn" data-q="10" data-ans="D" data-label="B" onclick="clickOpt(this)">B. EICAS信息L HYD QTY</span>
+    <span class="opt-btn" data-q="10" data-ans="D" data-label="C" onclick="clickOpt(this)">C. EICAS信息L HYD QTY和主警告</span>
+    <span class="opt-btn" data-q="10" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 洋红色的RF显示于下EICAS</span>
+    <span class="q-answer" id="ans10">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi11">
+  <div class="q-header">12. 【机型题】刹车源灯亮说明什么?</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="11" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 正常和备用刹车系统都没有压力</span>
+    <span class="opt-btn" data-q="11" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 中央和左液压系统压力低</span>
+    <span class="opt-btn" data-q="11" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 正常和备用刹车系统都有压力</span>
+    <span class="q-answer" id="ans11">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi12">
+  <div class="q-header">13. 【机型题】正常情况下，打开或关掉发动机防冰电门时，电门下面的“VALVE”灯：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="12" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 保持灭</span>
+    <span class="opt-btn" data-q="12" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 保持亮</span>
+    <span class="opt-btn" data-q="12" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 亮一下就灭</span>
+    <span class="opt-btn" data-q="12" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 闪亮5秒后灭</span>
+    <span class="q-answer" id="ans12">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi13">
+  <div class="q-header">14. 【机型题】将风挡雨刷选钮放到“OFF“位时，风挡雨刷停留在什么位置？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="13" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 风挡的顶部</span>
+    <span class="opt-btn" data-q="13" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 当时移动到的位置</span>
+    <span class="opt-btn" data-q="13" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 风挡的底部</span>
+    <span class="q-answer" id="ans13">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi14">
+  <div class="q-header">15. 【机型题】机翼防冰电门在ON位时，最大EPR限制会：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="14" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 不变</span>
+    <span class="opt-btn" data-q="14" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 增大</span>
+    <span class="opt-btn" data-q="14" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 减小</span>
+    <span class="q-answer" id="ans14">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi15">
+  <div class="q-header">16. 【机型题】ADI上的跑道符号何时开始上升？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="15" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 当截获了LOC，且无线电高度有效时</span>
+    <span class="opt-btn" data-q="15" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 当按压复位电门时</span>
+    <span class="opt-btn" data-q="15" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 当无线电高度低于决断高度时</span>
+    <span class="opt-btn" data-q="15" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 当无线电高度低于200英尺离地高度时</span>
+    <span class="q-answer" id="ans15">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi16">
+  <div class="q-header">17. 【机型题】飞机上安装有两套独立的HF通讯系统，每个HF使用一个专门的控制面板调谐且使用各自的HF天线。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="16" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 对</span>
+    <span class="opt-btn" data-q="16" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 错</span>
+    <span class="q-answer" id="ans16">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi17">
+  <div class="q-header">18. 【机型题】当一套HF无线电正在发射时，可用另一部HF接收另一频率的信号。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="17" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 对</span>
+    <span class="opt-btn" data-q="17" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 错</span>
+    <span class="q-answer" id="ans17">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi18">
+  <div class="q-header">19. 【机型题】驾驶舱内的话音记录器什么时候开始工作？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="18" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 双发起动好</span>
+    <span class="opt-btn" data-q="18" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 只要飞机有电</span>
+    <span class="opt-btn" data-q="18" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 任一发动机起动好</span>
+    <span class="opt-btn" data-q="18" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 惯导校准完成</span>
+    <span class="q-answer" id="ans18">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi19">
+  <div class="q-header">20. 【机型题】备用磁罗盘灯光的亮度由谁控制？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="19" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 左或右面板灯光控制选钮</span>
+    <span class="opt-btn" data-q="19" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 左面板灯光控制选钮</span>
+    <span class="opt-btn" data-q="19" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 右面板灯光控制选钮</span>
+    <span class="opt-btn" data-q="19" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 中央操纵台面板灯光外侧控制选钮</span>
+    <span class="q-answer" id="ans19">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi20">
+  <div class="q-header">21. 【机型题】如何判断驾驶舱二号风挡完全关好。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="20" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 风挡锁手柄在向前位。</span>
+    <span class="opt-btn" data-q="20" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 风挡完全关紧（看不见“WINDOW NOT CLOSED”的标识）</span>
+    <span class="opt-btn" data-q="20" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 风挡锁手柄在锁住位。</span>
+    <span class="opt-btn" data-q="20" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 风挡曲柄无法再向前转动。</span>
+    <span class="q-answer" id="ans20">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi21">
+  <div class="q-header">22. 【机型题】机组氧气面罩的正常（N）100%电门在正常位时，提供( )。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="21" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 空气/氧气的混合气（比例依据座舱高度而定）</span>
+    <span class="opt-btn" data-q="21" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 空气/氧气的混合气（固定比例）</span>
+    <span class="opt-btn" data-q="21" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 100%的正压力的氧气</span>
+    <span class="q-answer" id="ans21">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi22">
+  <div class="q-header">23. 【机型题】如果要在驾驶舱区域内释放灭火瓶，所有机组成员：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="22" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 都必须戴上氧气面罩并选择紧急方式以获得100%的氧气</span>
+    <span class="opt-btn" data-q="22" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 都必须戴上氧气面罩并选择100%的氧气</span>
+    <span class="opt-btn" data-q="22" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 仅都必须戴上氧气面罩</span>
+    <span class="q-answer" id="ans22">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi23">
+  <div class="q-header">24. 【机型题】如何正确地从风挡紧急出口脱离。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="23" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 面向内部，先头部后臀部，最后是脚部</span>
+    <span class="opt-btn" data-q="23" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 面向外部，先头部，然后是脚部，后臀部</span>
+    <span class="opt-btn" data-q="23" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 面向内部，先是脚部，然后是臀部，最后是头部。</span>
+    <span class="q-answer" id="ans23">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi24">
+  <div class="q-header">25. 【机型题】当灯光超控电门在开位时，以下哪些灯的亮度变为最大。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="24" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 其它选项都对</span>
+    <span class="opt-btn" data-q="24" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 中央操纵台泛光灯</span>
+    <span class="opt-btn" data-q="24" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 所有的显示器灯</span>
+    <span class="opt-btn" data-q="24" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 前面板泛光灯、遮光板泛光灯</span>
+    <span class="q-answer" id="ans24">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi25">
+  <div class="q-header">26. 【机型题】按压空调面板上的“组件复位”电门：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="25" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 可以复位故障的组件</span>
+    <span class="opt-btn" data-q="25" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 不论组件温度如何，都可以复位组件</span>
+    <span class="opt-btn" data-q="25" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 只有当组件的温度已经下降到低于过热水平时，才可以复位过热的组件</span>
+    <span class="opt-btn" data-q="25" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 无论组件温度如何，无法复位故障的组件</span>
+    <span class="q-answer" id="ans25">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi26">
+  <div class="q-header">27. 【机型题】地面操作汇流条通常由谁供电</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="26" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 左主汇流条</span>
+    <span class="opt-btn" data-q="26" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 右主汇流条</span>
+    <span class="opt-btn" data-q="26" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 地面服务汇流条</span>
+    <span class="opt-btn" data-q="26" data-ans="D" data-label="D" onclick="clickOpt(this)">D. APU发电机或外部电源</span>
+    <span class="q-answer" id="ans26">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi27">
+  <div class="q-header">28. 【机型题】空中或地面，“高高度”电门上的“INOP”灯亮说明：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="27" data-ans="B" data-label="A" onclick="clickOpt(this)">A. “高高度”电门在“OFF”位</span>
+    <span class="opt-btn" data-q="27" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 高高度着陆系统失效</span>
+    <span class="opt-btn" data-q="27" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 高高度着陆系统没有工作电源</span>
+    <span class="q-answer" id="ans27">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi28">
+  <div class="q-header">29. 【机型题】在起飞中如果遇到风切变，为什么要按下TO/GA电门？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="28" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 为了脱开起飞方式</span>
+    <span class="opt-btn" data-q="28" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 为了消除任何减推力的方式,并获得风切变指引指令</span>
+    <span class="opt-btn" data-q="28" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 为了获得风切变指引指令</span>
+    <span class="q-answer" id="ans28">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi29">
+  <div class="q-header">30. 【机型题】MCP可以提供对哪些系统的控制？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="29" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 自动驾驶、飞行指引、</span>
+    <span class="opt-btn" data-q="29" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 自动驾驶、飞行指引、自动油门、推力管理</span>
+    <span class="opt-btn" data-q="29" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 自动驾驶、飞行指引、自动油门、高度警戒</span>
+    <span class="q-answer" id="ans29">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi30">
+  <div class="q-header">31. 【机型题】自动着陆状态信号牌在多少英尺无线电高度以下，ASA显示不会改变？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="30" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 1500英尺</span>
+    <span class="opt-btn" data-q="30" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 450英尺</span>
+    <span class="opt-btn" data-q="30" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 200英尺</span>
+    <span class="q-answer" id="ans30">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi31">
+  <div class="q-header">32. 【机型题】ROLLOUT（滑跑）方式低于多少无线电高度时预位，低于多少无线电高度时接通？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="31" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 200英尺，65英尺</span>
+    <span class="opt-btn" data-q="31" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 400英尺，5英尺</span>
+    <span class="opt-btn" data-q="31" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 1500英尺，5英尺</span>
+    <span class="opt-btn" data-q="31" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 1500英尺，400英尺</span>
+    <span class="q-answer" id="ans31">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi32">
+  <div class="q-header">33. 【机型题】在起飞滑跑中飞机速度为多少时，自动油门信号牌变为“THR HOLD”？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="32" data-ans="C" data-label="A" onclick="clickOpt(this)">A. V1</span>
+    <span class="opt-btn" data-q="32" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 64海里</span>
+    <span class="opt-btn" data-q="32" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 80海里</span>
+    <span class="q-answer" id="ans32">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi33">
+  <div class="q-header">34. 【机型题】如果两套自动驾驶失效了，自动着陆状态牌将显示：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="33" data-ans="A" data-label="A" onclick="clickOpt(this)">A. NO AUTOLAND</span>
+    <span class="opt-btn" data-q="33" data-ans="A" data-label="B" onclick="clickOpt(this)">B. LAND 2</span>
+    <span class="opt-btn" data-q="33" data-ans="A" data-label="C" onclick="clickOpt(this)">C. NO LAND3</span>
+    <span class="q-answer" id="ans33">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi34">
+  <div class="q-header">35. 【机型题】外部电源电门上的“ON”灯亮，表明：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="34" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 外部电源的电压和频率满足使用要求</span>
+    <span class="opt-btn" data-q="34" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 外部电源已经插上</span>
+    <span class="opt-btn" data-q="34" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 仅表明“外部电源”电门在“接通”位，至于是否向汇流条供电，则取决于外部电源的质量</span>
+    <span class="opt-btn" data-q="34" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 外部电源正在向汇流条供电</span>
+    <span class="q-answer" id="ans34">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi35">
+  <div class="q-header">36. 【机型题】什么情况会导致“发电机驱动脱开”电门上的“DRIVE”灯亮？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="35" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 发电机驱动的滑油高温或低压</span>
+    <span class="opt-btn" data-q="35" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 发电机超负荷</span>
+    <span class="opt-btn" data-q="35" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 发电机驱动滑油压力低或发电机超负荷</span>
+    <span class="opt-btn" data-q="35" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 发电机驱动滑油温度高或发电机超负荷</span>
+    <span class="q-answer" id="ans35">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi36">
+  <div class="q-header">37. 【机型题】俯仰限制符号的位置是哪种计算机的功能？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="36" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 失速警告计算机</span>
+    <span class="opt-btn" data-q="36" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 推力管理计算机</span>
+    <span class="opt-btn" data-q="36" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 飞行管理计算机</span>
+    <span class="opt-btn" data-q="36" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 符号发生器</span>
+    <span class="q-answer" id="ans36">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi37">
+  <div class="q-header">38. 【机型题】ADI上升起的跑道何时显示？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="37" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 当显示航道指针且无线电高度低于500英尺时显示</span>
+    <span class="opt-btn" data-q="37" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 当显示航道指针且无线电高度低于2500英尺时显示</span>
+    <span class="opt-btn" data-q="37" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 当显示航道指针且无线电高度低于200英尺时显示</span>
+    <span class="opt-btn" data-q="37" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 当显示航道指针且无线电高度低于1500英尺时显示</span>
+    <span class="q-answer" id="ans37">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi38">
+  <div class="q-header">39. 【机型题】使用前轮转弯手轮时，前轮的最大转弯角多大（向任意一边）？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="38" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 7度</span>
+    <span class="opt-btn" data-q="38" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 55度</span>
+    <span class="opt-btn" data-q="38" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 67度</span>
+    <span class="opt-btn" data-q="38" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 65度</span>
+    <span class="q-answer" id="ans38">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi39">
+  <div class="q-header">40. 【机型题】使用备用放轮系统时，起落架通过什么力放下？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="39" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 液压力</span>
+    <span class="opt-btn" data-q="39" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 电动力</span>
+    <span class="opt-btn" data-q="39" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 机械力</span>
+    <span class="opt-btn" data-q="39" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 重力</span>
+    <span class="q-answer" id="ans39">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi40">
+  <div class="q-header">41. 【机型题】在进/离场目录页面，既可以选择目的地机场的进场，也可以选择起飞机场的进场。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="40" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 对</span>
+    <span class="opt-btn" data-q="40" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 错</span>
+    <span class="q-answer" id="ans40">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi41">
+  <div class="q-header">42. 【机型题】下面哪个方法可预位或接通LVAV:</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="41" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 直飞至一航路点或切入至一航路点的航道</span>
+    <span class="opt-btn" data-q="41" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 当飞机在现用航路的2.5海里之外但在现用航段的切入航向时，按压LNAV电门</span>
+    <span class="opt-btn" data-q="41" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 其它选项都对</span>
+    <span class="opt-btn" data-q="41" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 当飞机在现用航路的2.5海里之内时，按压LNAV电门</span>
+    <span class="q-answer" id="ans41">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi42">
+  <div class="q-header">43. 【机型题】航路偏置的输入范围为：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="42" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 0~99海里</span>
+    <span class="opt-btn" data-q="42" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 0~10海里</span>
+    <span class="opt-btn" data-q="42" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 0~20海里</span>
+    <span class="opt-btn" data-q="42" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 0~30海里</span>
+    <span class="q-answer" id="ans42">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi43">
+  <div class="q-header">44. 【机型题】关于气象雷达以下正确的是：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="43" data-ans="D" data-label="A" onclick="clickOpt(this)">A. CAL卡位提供自动增益控制，最佳回波接收</span>
+    <span class="opt-btn" data-q="43" data-ans="D" data-label="B" onclick="clickOpt(this)">B. WX+T显示雷达回波和颠簸。距离为40海里或更少时才显示颠簸</span>
+    <span class="opt-btn" data-q="43" data-ans="D" data-label="C" onclick="clickOpt(this)">C. IDNT(或GCS)抑制地面杂波以增强地面特征识别,也可能抑制气象回波</span>
+    <span class="opt-btn" data-q="43" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 其它选项都对</span>
+    <span class="q-answer" id="ans43">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi44">
+  <div class="q-header">45. 【机型题】何时显示信息“IRS POS/ORIGIN DISAGREE”？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="44" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 如果人工输入的位置没能通过IRS的内部检查</span>
+    <span class="opt-btn" data-q="44" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 如果IRS完成初始校准前没有输入</span>
+    <span class="opt-btn" data-q="44" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 如果所输入的位置不在FMC起飞机场位置的6海里以内</span>
+    <span class="opt-btn" data-q="44" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 探测到IRS有故障</span>
+    <span class="q-answer" id="ans44">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi45">
+  <div class="q-header">46. 【机型题】在EPR指示器上面的琥珀色反推符号“REV”的含义是什么？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="45" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 反喷完全打开</span>
+    <span class="opt-btn" data-q="45" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 反喷过大</span>
+    <span class="opt-btn" data-q="45" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 反喷不工作</span>
+    <span class="opt-btn" data-q="45" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 反喷过渡中</span>
+    <span class="q-answer" id="ans45">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi46">
+  <div class="q-header">47. 【机型题】前推或收回推力手柄时，在EPR指示器上会出现一段扇形，该扇形指示的是什么？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="46" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 目前发动机状态下，EPR允许的最大变化范围</span>
+    <span class="opt-btn" data-q="46" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 指令EPR值</span>
+    <span class="opt-btn" data-q="46" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 现用EPR值</span>
+    <span class="opt-btn" data-q="46" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 现用EPR与指令EPR之间的差异</span>
+    <span class="q-answer" id="ans46">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi47">
+  <div class="q-header">48. 【机型题】备用发动机指示器选择器放在“AUTO”位时，什么情况下可以看到发动机备用指示？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="47" data-ans="C" data-label="A" onclick="clickOpt(this)">A. AC电源失去时</span>
+    <span class="opt-btn" data-q="47" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 在地面，任一EICAS显示屏失效且选择了状态页面时</span>
+    <span class="opt-btn" data-q="47" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 其它选项都对</span>
+    <span class="opt-btn" data-q="47" data-ans="C" data-label="D" onclick="clickOpt(this)">D. EICAS失效时</span>
+    <span class="q-answer" id="ans47">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi48">
+  <div class="q-header">49. 【机型题】将发动机起动电门扳到“GRD”位有什么作用？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="48" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 打开起动活门向起动机供气、预位选择的点火器并向燃烧室供油</span>
+    <span class="opt-btn" data-q="48" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 预位选择的点火器并向燃烧室供油</span>
+    <span class="opt-btn" data-q="48" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 打开起动活门向起动机供气并接通选择的点火器</span>
+    <span class="opt-btn" data-q="48" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 打开起动活门向起动机供气并预位选择的点火器</span>
+    <span class="q-answer" id="ans48">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi49">
+  <div class="q-header">50. 【机型题】在正常工作中，HSI上的航向基准数据是由下面哪个提供的？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="49" data-ans="C" data-label="A" onclick="clickOpt(this)">A. TMC(推力管理计算机)</span>
+    <span class="opt-btn" data-q="49" data-ans="C" data-label="B" onclick="clickOpt(this)">B. ADC(大气数据计算机)</span>
+    <span class="opt-btn" data-q="49" data-ans="C" data-label="C" onclick="clickOpt(this)">C. IRS（惯导）</span>
+    <span class="opt-btn" data-q="49" data-ans="C" data-label="D" onclick="clickOpt(this)">D. FCC（飞行操纵计算机）</span>
+    <span class="q-answer" id="ans49">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi50">
+  <div class="q-header">51. 【机型题】若HSI上显示信息“WXR/MAP RANGE DISGREE(气象雷达/地图距离圈不一致)”时，表示：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="50" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 气象雷达的姿态稳定系统故障</span>
+    <span class="opt-btn" data-q="50" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 气象雷达失效</span>
+    <span class="opt-btn" data-q="50" data-ans="C" data-label="C" onclick="clickOpt(this)">C. FMC和气象雷达的距离圈与HSI控制面板上选择的距离圈不一致</span>
+    <span class="opt-btn" data-q="50" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 大气数据计算机发送来的数据失效</span>
+    <span class="q-answer" id="ans50">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi51">
+  <div class="q-header">52. 【机型题】正常起飞时，抬机头速率不应大于几度/秒？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="51" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 1度/秒</span>
+    <span class="opt-btn" data-q="51" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 2-2.5度/秒</span>
+    <span class="opt-btn" data-q="51" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 4度/秒</span>
+    <span class="opt-btn" data-q="51" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 1.5度/秒</span>
+    <span class="q-answer" id="ans51">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi52">
+  <div class="q-header">53. 【机型题】V1 应该________Vmcg。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="52" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 小于或等于</span>
+    <span class="opt-btn" data-q="52" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 大于或等于</span>
+    <span class="opt-btn" data-q="52" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 以上情况都有可能</span>
+    <span class="q-answer" id="ans52">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi53">
+  <div class="q-header">54. 【机型题】当有新的状态信息出现时，在EICAS下显示屏的左上角会出现怎样的提示符？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="53" data-ans="D" data-label="A" onclick="clickOpt(this)">A. “PAGE”</span>
+    <span class="opt-btn" data-q="53" data-ans="D" data-label="B" onclick="clickOpt(this)">B. “VVVVV”</span>
+    <span class="opt-btn" data-q="53" data-ans="D" data-label="C" onclick="clickOpt(this)">C. “NEW”</span>
+    <span class="opt-btn" data-q="53" data-ans="D" data-label="D" onclick="clickOpt(this)">D. “STATUS”</span>
+    <span class="q-answer" id="ans53">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi54">
+  <div class="q-header">55. 【机型题】在EICAS显示屏上，最新的警戒信息显示在什么位置？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="54" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 第一页同等级别信息的最上面</span>
+    <span class="opt-btn" data-q="54" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 当前页面同等级别信息的最上面</span>
+    <span class="opt-btn" data-q="54" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 每一页的最上面</span>
+    <span class="opt-btn" data-q="54" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 当前页面的最上面</span>
+    <span class="q-answer" id="ans54">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi55">
+  <div class="q-header">56. 【机型题】什么级别的警戒会有音响警戒？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="55" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 紧急警告、警告和注意警戒</span>
+    <span class="opt-btn" data-q="55" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 紧急警告和部分咨询警戒</span>
+    <span class="opt-btn" data-q="55" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 仅紧急警告</span>
+    <span class="opt-btn" data-q="55" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 警告、注意警戒和部分咨询警戒</span>
+    <span class="q-answer" id="ans55">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi56">
+  <div class="q-header">57. 【机型题】警戒的定义是：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="56" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 要求机组注意并一定要求机组采取动作的视觉，触觉或音响的警戒。</span>
+    <span class="opt-btn" data-q="56" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 要求机组注意并可能要求机组采取动作的视觉或音响的警戒。</span>
+    <span class="opt-btn" data-q="56" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 要求机组注意并一定要求机组采取动作的视觉和音响的警戒。</span>
+    <span class="opt-btn" data-q="56" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 要求机组注意并可能要求机组采取动作的视觉，触觉和/或音响的警戒。</span>
+    <span class="q-answer" id="ans56">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi57">
+  <div class="q-header">58. 【机型题】标准海平面气压760mm（汞高）相当于多少英寸（汞高）和多少毫巴？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="57" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 29 英寸、1013mb</span>
+    <span class="opt-btn" data-q="57" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 30 英寸、1000mb</span>
+    <span class="opt-btn" data-q="57" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 29.29 英寸、1103.2mb</span>
+    <span class="opt-btn" data-q="57" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 29.92 英寸、1013.2mb</span>
+    <span class="q-answer" id="ans57">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi58">
+  <div class="q-header">59. 【机型题】航线仪表飞行的最低安全高度是：飞机距航线两侧各 ___ KM地带内最高障碍物，平【机型题】原地区不得低于___ 米，丘陵和山区不得低于 ___ 米</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="58" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 25400600</span>
+    <span class="opt-btn" data-q="58" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 20600900</span>
+    <span class="opt-btn" data-q="58" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 10150300</span>
+    <span class="opt-btn" data-q="58" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 30300600</span>
+    <span class="q-answer" id="ans58">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi59">
+  <div class="q-header">60. 【机型题】飞机发生危急情况的二次雷达特殊编码是：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="59" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 7700</span>
+    <span class="opt-btn" data-q="59" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 7500</span>
+    <span class="opt-btn" data-q="59" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 7600</span>
+    <span class="q-answer" id="ans59">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi60">
+  <div class="q-header">61. 【运行手册】当起飞最低标准中公布云底高标准时，云底高至少应高出控制障碍物多少米？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="60" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 30米</span>
+    <span class="opt-btn" data-q="60" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 45米</span>
+    <span class="opt-btn" data-q="60" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 60米</span>
+    <span class="opt-btn" data-q="60" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 75米</span>
+    <span class="q-answer" id="ans60">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi61">
+  <div class="q-header">62. 【运行手册】对于至少有一套可用进近设施的备降机场，签派放行标准应在最低运行标准上增加多少？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="61" data-ans="C" data-label="A" onclick="clickOpt(this)">A. MDH增加60米，VIS增加800米</span>
+    <span class="opt-btn" data-q="61" data-ans="C" data-label="B" onclick="clickOpt(this)">B. MDH增加90米，VIS增加1200米</span>
+    <span class="opt-btn" data-q="61" data-ans="C" data-label="C" onclick="clickOpt(this)">C. MDH/DH增加120米，VIS增加1600米</span>
+    <span class="opt-btn" data-q="61" data-ans="C" data-label="D" onclick="clickOpt(this)">D. MDH/DH增加150米，VIS增加2000米</span>
+    <span class="q-answer" id="ans61">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi62">
+  <div class="q-header">63. 【运行手册】在湿跑道或污染跑道上起飞，签派员应与机组共同决定修正的起飞重量，该重量不得大于什么条件下的最大起飞重量？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="62" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 相同条件下湿跑道的最大起飞重量</span>
+    <span class="opt-btn" data-q="62" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 相同条件下干跑道的最大起飞重量</span>
+    <span class="opt-btn" data-q="62" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 结构限制最大起飞全重</span>
+    <span class="opt-btn" data-q="62" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 场长限制最大起飞重量</span>
+    <span class="q-answer" id="ans62">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi63">
+  <div class="q-header">64. 【运行手册】下列关于跨水运行表述错误的是</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="63" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 离应急着陆机场距离不超过400NM的跨水航路运行，此运行须配备救生筏</span>
+    <span class="opt-btn" data-q="63" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 飞机距最近水域或者海域岸基线的水平距离不超过延伸跨水运行标准</span>
+    <span class="opt-btn" data-q="63" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 机场起飞或者着陆时，其起飞或者进近航迹处于水面上空，在发生不正常情况时可能实施水上迫降</span>
+    <span class="opt-btn" data-q="63" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 距最近水域或者海岸基线的水平距离超过其滑翔距离</span>
+    <span class="q-answer" id="ans63">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi64">
+  <div class="q-header">65. 【运行手册】如预计在边缘天气条件下着陆，放行时中间段RVR值不应低于着陆标准所要求接地端RVR值的( )？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="64" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 0.6</span>
+    <span class="opt-btn" data-q="64" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 0.7</span>
+    <span class="opt-btn" data-q="64" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 0.8</span>
+    <span class="opt-btn" data-q="64" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 0.9</span>
+    <span class="q-answer" id="ans64">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi65">
+  <div class="q-header">66. 【运行手册】RVSM运行前，在标高5000尺的机场，两侧主高度表最大误差不得超过多少</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="65" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 50尺</span>
+    <span class="opt-btn" data-q="65" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 40尺</span>
+    <span class="opt-btn" data-q="65" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 45尺</span>
+    <span class="opt-btn" data-q="65" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 75尺</span>
+    <span class="q-answer" id="ans65">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi66">
+  <div class="q-header">67. 【运行手册】公司的PBN运行导航规范不包含以下哪个</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="66" data-ans="B" data-label="A" onclick="clickOpt(this)">A. RNP-1</span>
+    <span class="opt-btn" data-q="66" data-ans="B" data-label="B" onclick="clickOpt(this)">B. RNP-2</span>
+    <span class="opt-btn" data-q="66" data-ans="B" data-label="C" onclick="clickOpt(this)">C. RNP-4</span>
+    <span class="opt-btn" data-q="66" data-ans="B" data-label="D" onclick="clickOpt(this)">D. RNAV-10</span>
+    <span class="q-answer" id="ans66">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi67">
+  <div class="q-header">68. 【运行手册】公司的特殊运行不包含以下哪个</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="67" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 跨水运行</span>
+    <span class="opt-btn" data-q="67" data-ans="D" data-label="B" onclick="clickOpt(this)">B. PBN运行</span>
+    <span class="opt-btn" data-q="67" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 低能见运行</span>
+    <span class="opt-btn" data-q="67" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 寒冷天气运行</span>
+    <span class="q-answer" id="ans67">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi68">
+  <div class="q-header">69. 【运行手册】对于1类精密进近，跑道中线灯光不工作时，当正侧风（ ），方可使用RVR小于800米的标准</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="68" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 小于等于35节</span>
+    <span class="opt-btn" data-q="68" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 小于等于10节</span>
+    <span class="opt-btn" data-q="68" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 小于等于15节</span>
+    <span class="opt-btn" data-q="68" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 小于等于20节</span>
+    <span class="q-answer" id="ans68">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi69">
+  <div class="q-header">70. 【运行手册】实施非精密进近时，如果机场没有公布CDFA程序，飞行员应在( )之前建立目视参考以继续进近？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="69" data-ans="C" data-label="A" onclick="clickOpt(this)">A. FAF点</span>
+    <span class="opt-btn" data-q="69" data-ans="C" data-label="B" onclick="clickOpt(this)">B. MDA/H</span>
+    <span class="opt-btn" data-q="69" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 复飞点（MAPt）</span>
+    <span class="opt-btn" data-q="69" data-ans="C" data-label="D" onclick="clickOpt(this)">D. DDA/H</span>
+    <span class="q-answer" id="ans69">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi70">
+  <div class="q-header">71. 【运行手册】在RVSM空域，飞行机组应每多长时间做一次主用高度表之间、主用高度表和备用高度表之间的交叉检查？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="70" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 每30分钟</span>
+    <span class="opt-btn" data-q="70" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 每小时</span>
+    <span class="opt-btn" data-q="70" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 每10～15分钟</span>
+    <span class="opt-btn" data-q="70" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 每个航路点</span>
+    <span class="q-answer" id="ans70">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi71">
+  <div class="q-header">72. 【运行手册】在只具有IALS灯光系统的机场执行类精密进近，(757机型)RVR/VIS不得低于：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="71" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 550</span>
+    <span class="opt-btn" data-q="71" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 800</span>
+    <span class="opt-btn" data-q="71" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 1200</span>
+    <span class="opt-btn" data-q="71" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 1600</span>
+    <span class="q-answer" id="ans71">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi72">
+  <div class="q-header">73. 【运行手册】在执行RNP1运行时，正常情况下FTE要求应控制在（ ）偏离范围之内？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="72" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 1倍的RNP</span>
+    <span class="opt-btn" data-q="72" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 0.15NM</span>
+    <span class="opt-btn" data-q="72" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 0.3NM</span>
+    <span class="opt-btn" data-q="72" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 0.5NM</span>
+    <span class="q-answer" id="ans72">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi73">
+  <div class="q-header">74. 【运行手册】关于保持时间和许可时间的区别，以下描述正确的是：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="73" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 保持时间适用所有天气，许可时间仅适用干燥天气</span>
+    <span class="opt-btn" data-q="73" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 许可时间不适用冰粒和小冰雹天气，保持时间针对冰粒和小冰雹天气</span>
+    <span class="opt-btn" data-q="73" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 保持时间不适用冰粒和小冰雹天气，许可时间针对冰粒和小冰雹天气</span>
+    <span class="opt-btn" data-q="73" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 许可时间是保持时间的两倍</span>
+    <span class="q-answer" id="ans73">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi74">
+  <div class="q-header">75. 【运行手册】根据公司规定，严禁机组成员饮用含酒精饮料_小时内或出于酒精作用下参加执勤，执勤高高原航线机组成员饮用酒精限制为_小时</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="74" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 8,8</span>
+    <span class="opt-btn" data-q="74" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 12,24</span>
+    <span class="opt-btn" data-q="74" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 8，24</span>
+    <span class="opt-btn" data-q="74" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 8,12</span>
+    <span class="q-answer" id="ans74">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi75">
+  <div class="q-header">76. 【SOP】以下哪个不是平行跑道的仪表运行模式</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="75" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 独立平行仪表进近</span>
+    <span class="opt-btn" data-q="75" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 隔离平行仪表进近</span>
+    <span class="opt-btn" data-q="75" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 独立平行离场</span>
+    <span class="opt-btn" data-q="75" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 隔离平行运行</span>
+    <span class="q-answer" id="ans75">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi76">
+  <div class="q-header">77. 【SOP】以下哪项不属于驾驶舱内部检查程序</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="76" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 适航文件</span>
+    <span class="opt-btn" data-q="76" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 应急设备</span>
+    <span class="opt-btn" data-q="76" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 氧气压力、液压油量、滑油量</span>
+    <span class="opt-btn" data-q="76" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 机载检查单、正常检查单、简令卡</span>
+    <span class="q-answer" id="ans76">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi77">
+  <div class="q-header">78. 【SOP】驾驶舱灯光测试应在什么程序前完成</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="77" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 驾驶舱内部检查</span>
+    <span class="opt-btn" data-q="77" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 飞行前初始准备程序</span>
+    <span class="opt-btn" data-q="77" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 飞行前程序</span>
+    <span class="opt-btn" data-q="77" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 起动前程序</span>
+    <span class="q-answer" id="ans77">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi78">
+  <div class="q-header">79. 【SOP】如果机翼防冰不工作且前缘襟翼部分有明显积冰，在原有目标速度上增加多少节以确保有足够的操纵性能</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="78" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 5</span>
+    <span class="opt-btn" data-q="78" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 10</span>
+    <span class="opt-btn" data-q="78" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 15</span>
+    <span class="opt-btn" data-q="78" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 20</span>
+    <span class="q-answer" id="ans78">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi79">
+  <div class="q-header">80. 【SOP】脱离着陆跑到后，757机型建议发动机冷却时间为：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="79" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 1分钟</span>
+    <span class="opt-btn" data-q="79" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 3分钟</span>
+    <span class="opt-btn" data-q="79" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 5分钟</span>
+    <span class="opt-btn" data-q="79" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 无需冷却</span>
+    <span class="q-answer" id="ans79">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi80">
+  <div class="q-header">81. 【SOP】正常复飞中单发，在获得安全高度前，襟翼应设置为：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="80" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 保留30位置</span>
+    <span class="opt-btn" data-q="80" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 收到20位置</span>
+    <span class="opt-btn" data-q="80" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 尽快收到5位置</span>
+    <span class="opt-btn" data-q="80" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 尽快收上</span>
+    <span class="q-answer" id="ans80">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi81">
+  <div class="q-header">82. 【SOP】RNP APCH进近过程中，在FAF点核实两个主高度表差值不得大于多少英尺</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="81" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 50英尺</span>
+    <span class="opt-btn" data-q="81" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 75英尺</span>
+    <span class="opt-btn" data-q="81" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 100英尺</span>
+    <span class="opt-btn" data-q="81" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 150英尺</span>
+    <span class="q-answer" id="ans81">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi82">
+  <div class="q-header">83. 【SOP】RNP APCH进近期间，出现以下哪个信息不是必须立即中止进近或者复飞</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="82" data-ans="C" data-label="A" onclick="clickOpt(this)">A. unable rnp</span>
+    <span class="opt-btn" data-q="82" data-ans="C" data-label="B" onclick="clickOpt(this)">B. verify position</span>
+    <span class="opt-btn" data-q="82" data-ans="C" data-label="C" onclick="clickOpt(this)">C. TERR POS</span>
+    <span class="opt-btn" data-q="82" data-ans="C" data-label="D" onclick="clickOpt(this)">D. IRS FAULT</span>
+    <span class="q-answer" id="ans82">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi83">
+  <div class="q-header">84. 【SOP】当盲降进近到高于决断高度100英尺时，PM喊话是：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="83" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 差100</span>
+    <span class="opt-btn" data-q="83" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 100到minimums</span>
+    <span class="opt-btn" data-q="83" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 100到决断高</span>
+    <span class="opt-btn" data-q="83" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 100到决断高度</span>
+    <span class="q-answer" id="ans83">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi84">
+  <div class="q-header">85. 【SOP】ICAO标准下，目视盘旋绕场进近，757属于什么类型</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="84" data-ans="D" data-label="A" onclick="clickOpt(this)">A. B类型</span>
+    <span class="opt-btn" data-q="84" data-ans="D" data-label="B" onclick="clickOpt(this)">B. C类型</span>
+    <span class="opt-btn" data-q="84" data-ans="D" data-label="C" onclick="clickOpt(this)">C. D类型</span>
+    <span class="opt-btn" data-q="84" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 类型随速度不同而不同</span>
+    <span class="q-answer" id="ans84">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi85">
+  <div class="q-header">86. 【SOP】当出现GPWS“pull up”警告，PF喊话：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="85" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 地形改出</span>
+    <span class="opt-btn" data-q="85" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 地形避让</span>
+    <span class="opt-btn" data-q="85" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 机动改出</span>
+    <span class="opt-btn" data-q="85" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 机动避让</span>
+    <span class="q-answer" id="ans85">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi86">
+  <div class="q-header">87. 【SOP】最终进近和着陆阶段期间以下哪个属于进阶的人工飞行</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="86" data-ans="C" data-label="A" onclick="clickOpt(this)">A. AP关，FD开，AT关</span>
+    <span class="opt-btn" data-q="86" data-ans="C" data-label="B" onclick="clickOpt(this)">B. AP关, FD关，AT开</span>
+    <span class="opt-btn" data-q="86" data-ans="C" data-label="C" onclick="clickOpt(this)">C. AP关，FD关，AT关</span>
+    <span class="opt-btn" data-q="86" data-ans="C" data-label="D" onclick="clickOpt(this)">D. AP开，FD关，AT关</span>
+    <span class="q-answer" id="ans86">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi87">
+  <div class="q-header">88. 【SOP】起飞滑跑过程中，当在Vr时候遭遇风切变，PF应：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="87" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 增速到性能限制全重的抬轮速度</span>
+    <span class="opt-btn" data-q="87" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 增速到不超过Vr+20节</span>
+    <span class="opt-btn" data-q="87" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 一直保持到跑道末端2000尺再抬轮</span>
+    <span class="opt-btn" data-q="87" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 立即抬轮</span>
+    <span class="q-answer" id="ans87">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi88">
+  <div class="q-header">89. 【SOP】低于1000英尺离地高度，正常的稳定状态飞行条件发生了不可控制的变化，即表明飞机处于风切变中，以下哪个不属于：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="88" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 超过10海里/小时指示空速</span>
+    <span class="opt-btn" data-q="88" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 超过500英尺/分钟垂直速度</span>
+    <span class="opt-btn" data-q="88" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 超过5°俯仰姿态</span>
+    <span class="opt-btn" data-q="88" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 偏离超过下滑道1个点</span>
+    <span class="q-answer" id="ans88">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi89">
+  <div class="q-header">90. 【SOP】跑道状况代码RWYCC为“1”，起降规定</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="89" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 可以起降</span>
+    <span class="opt-btn" data-q="89" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 禁止起降</span>
+    <span class="opt-btn" data-q="89" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 由C2及以上的机长操纵起降</span>
+    <span class="opt-btn" data-q="89" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 由C3及以上的机长操纵起降</span>
+    <span class="q-answer" id="ans89">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi90">
+  <div class="q-header">91. 【SOP】当着陆航道多少距离和复飞航道多少距离范围内有雷雨活动时，禁止进近和着陆？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="90" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 10海里，20海里</span>
+    <span class="opt-btn" data-q="90" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 10公里，20公里</span>
+    <span class="opt-btn" data-q="90" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 5公里，3公里</span>
+    <span class="opt-btn" data-q="90" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 5海里，3海里</span>
+    <span class="q-answer" id="ans90">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi91">
+  <div class="q-header">92. 【SOP】平衡跑道定义:</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="91" data-ans="D" data-label="A" onclick="clickOpt(this)">A. ASDA=LDA</span>
+    <span class="opt-btn" data-q="91" data-ans="D" data-label="B" onclick="clickOpt(this)">B. TORA=LDA</span>
+    <span class="opt-btn" data-q="91" data-ans="D" data-label="C" onclick="clickOpt(this)">C. TORA=ASDA</span>
+    <span class="opt-btn" data-q="91" data-ans="D" data-label="D" onclick="clickOpt(this)">D. TODA=ASDA</span>
+    <span class="q-answer" id="ans91">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi92">
+  <div class="q-header">93. 【SOP】757座舱最大压差是多少</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="92" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 8.6psi</span>
+    <span class="opt-btn" data-q="92" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 7.8psi</span>
+    <span class="opt-btn" data-q="92" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 9.1psi</span>
+    <span class="opt-btn" data-q="92" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 9.6psi</span>
+    <span class="q-answer" id="ans92">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi93">
+  <div class="q-header">94. 【SOP】如需穿越跑道，PF标准喊话：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="93" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 无影响，穿越跑道</span>
+    <span class="opt-btn" data-q="93" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 跑道无影响</span>
+    <span class="opt-btn" data-q="93" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 可以穿越跑道</span>
+    <span class="opt-btn" data-q="93" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 五边无影响</span>
+    <span class="q-answer" id="ans93">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi94">
+  <div class="q-header">95. 【SOP】下降程序，选择自动刹车是属于谁的职责</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="94" data-ans="A" data-label="A" onclick="clickOpt(this)">A. PF</span>
+    <span class="opt-btn" data-q="94" data-ans="A" data-label="B" onclick="clickOpt(this)">B. PM</span>
+    <span class="opt-btn" data-q="94" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 机长</span>
+    <span class="opt-btn" data-q="94" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 副驾驶</span>
+    <span class="q-answer" id="ans94">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi95">
+  <div class="q-header">96. 图一为某机场起飞最低标准，你作为具备低能见运行资质的机组，准备在此机场起飞，以下哪项决策是正确的？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="95" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 机场仅报告了MID-RVR400，你发现目测能见度值RVV够400米，白天、只有跑道边灯工作，你决定起飞</span>
+    <span class="opt-btn" data-q="95" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 报告TDZ-RVR和MID-RVR都为300米，白天、只有跑道边灯工作&amp;有中线标志，你决定起飞</span>
+    <span class="opt-btn" data-q="95" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 报告TDZ-RVR和MID-RVR都为300米，夜间、只有跑道边灯工作&amp;和中线灯工作，你决定起飞</span>
+    <span class="opt-btn" data-q="95" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 报告TDZ-RVR和MID-RVR都为200米，白天、只有跑道边灯工作&amp;和中线灯工作，你决定起飞</span>
+    <span class="q-answer" id="ans95">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi96">
+  <div class="q-header">97. 图二中展示的标识为？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="96" data-ans="B" data-label="A" onclick="clickOpt(this)">A. VOR台</span>
+    <span class="opt-btn" data-q="96" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 强制报告VORDME台</span>
+    <span class="opt-btn" data-q="96" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 强制报告VOR台</span>
+    <span class="opt-btn" data-q="96" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 强制报告VORTAC台</span>
+    <span class="q-answer" id="ans96">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi97">
+  <div class="q-header">98. 图三为某机场机场平面图，其中标记为“9”的区域为？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="97" data-ans="A" data-label="A" onclick="clickOpt(this)">A. HOT SPOT需要关注容易存在冲突的热点区域</span>
+    <span class="opt-btn" data-q="97" data-ans="A" data-label="B" onclick="clickOpt(this)">B. LAHSO等待线</span>
+    <span class="opt-btn" data-q="97" data-ans="A" data-label="C" onclick="clickOpt(this)">C. HIGH SPEED高速通过区域</span>
+    <span class="opt-btn" data-q="97" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 施工区域</span>
+    <span class="q-answer" id="ans97">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi98">
+  <div class="q-header">99. 图三为某机场机场平面图，其中标记为“18”的区域为？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="98" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 塔台管制盲区</span>
+    <span class="opt-btn" data-q="98" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 关闭区域</span>
+    <span class="opt-btn" data-q="98" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 施工区域</span>
+    <span class="opt-btn" data-q="98" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 敏感保护区</span>
+    <span class="q-answer" id="ans98">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi99">
+  <div class="q-header">100. 图四为某机场的进近最低标准，其中C类飞机直线进近的最低能见度要求有关描述不正确的是？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="99" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 报告了VIS，转换成RVR与航图标准比较</span>
+    <span class="opt-btn" data-q="99" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 报告了RVR，与航图标准直接比较</span>
+    <span class="opt-btn" data-q="99" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 报告了RVR，转换成能见度与航图比较</span>
+    <span class="opt-btn" data-q="99" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 报告了VIS，转换成CMV与航图比较</span>
+    <span class="q-answer" id="ans99">✓ C</span>
+  </div>
+</div>
+</div>
+<div class="page" id="page1">
+<div class="page-title">第2页 / 共3页（101-200题）</div>
+<div class="q-item" id="qi100">
+  <div class="q-header">101. 外部电源电门上的“ON”灯亮，表明：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="100" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 外部电源正在向汇流条供电</span>
+    <span class="opt-btn" data-q="100" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 外部电源已经插上</span>
+    <span class="opt-btn" data-q="100" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 外部电源的电压和频率满足使用要求</span>
+    <span class="opt-btn" data-q="100" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 仅表明“外部电源”电门在“接通”位，至于是否向汇流条供电，则取决于外部电源的质量</span>
+    <span class="q-answer" id="ans100">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi101">
+  <div class="q-header">102. 正常起飞时，抬机头速率不应大于几度/秒？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="101" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 2-2.5度/秒</span>
+    <span class="opt-btn" data-q="101" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 1.5度/秒</span>
+    <span class="opt-btn" data-q="101" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 4度/秒</span>
+    <span class="opt-btn" data-q="101" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 1度/秒</span>
+    <span class="q-answer" id="ans101">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi102">
+  <div class="q-header">103. 何时显示信息“IRS POS/ORIGIN DISAGREE”？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="102" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 探测到IRS有故障</span>
+    <span class="opt-btn" data-q="102" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 如果IRS完成初始校准前没有输入</span>
+    <span class="opt-btn" data-q="102" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 如果所输入的位置不在FMC起飞机场位置的6海里以内</span>
+    <span class="opt-btn" data-q="102" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 如果人工输入的位置没能通过IRS的内部检查</span>
+    <span class="q-answer" id="ans102">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi103">
+  <div class="q-header">104. 目前公司飞机具有的ADS-B能力是？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="103" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 暂不具备ADS-B能力</span>
+    <span class="opt-btn" data-q="103" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 仅有ADS-B OUT功能</span>
+    <span class="opt-btn" data-q="103" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 仅有ADS-B IN功能</span>
+    <span class="opt-btn" data-q="103" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 同时具有OUT和IN功能</span>
+    <span class="q-answer" id="ans103">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi104">
+  <div class="q-header">105. 地面操作汇流条通常由谁供电：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="104" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 左主汇流条</span>
+    <span class="opt-btn" data-q="104" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 外部电源</span>
+    <span class="opt-btn" data-q="104" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 右主汇流条</span>
+    <span class="opt-btn" data-q="104" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 地面服务汇流条</span>
+    <span class="q-answer" id="ans104">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi105">
+  <div class="q-header">106. 燃油流量通常如何显示？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="105" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 仅有数字读数</span>
+    <span class="opt-btn" data-q="105" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 数字和指针</span>
+    <span class="opt-btn" data-q="105" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 仅有指针</span>
+    <span class="q-answer" id="ans105">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi106">
+  <div class="q-header">107. 如果飞机无意中超出了哪些条件通常被定义为进入复杂姿态</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="106" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 飞机上仰姿态超过20度 飞机低头姿态超过10度 坡度超过45度 以不适当的空速飞行</span>
+    <span class="opt-btn" data-q="106" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 飞机上仰姿态超过10度 飞机低头姿态超过25度 坡度超过45度 以不适当的空速飞行</span>
+    <span class="opt-btn" data-q="106" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 飞机上仰姿态超过25度 飞机低头姿态超过10度 坡度超过45度 以不适当的空速飞行</span>
+    <span class="opt-btn" data-q="106" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 飞机上仰姿态超过35度 飞机低头姿态超过10度 坡度超过35度 以不适当的空速飞行</span>
+    <span class="q-answer" id="ans106">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi107">
+  <div class="q-header">108. 在多少高度RA以下，下滑道偏离多少个点即触发“GLIDE SLOPE”警告</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="107" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 1500尺，1.5</span>
+    <span class="opt-btn" data-q="107" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 500尺，1.5</span>
+    <span class="opt-btn" data-q="107" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 1000尺，1.5</span>
+    <span class="opt-btn" data-q="107" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 1000尺，1.3</span>
+    <span class="q-answer" id="ans107">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi108">
+  <div class="q-header">109. 机翼防冰电门在ON位时，最大EPR限制会：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="108" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 增大</span>
+    <span class="opt-btn" data-q="108" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 不变</span>
+    <span class="opt-btn" data-q="108" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 减小</span>
+    <span class="q-answer" id="ans108">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi109">
+  <div class="q-header">110. RVSM运行前，在标高5000尺的机场，两侧主高度表最大误差不得超过多少</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="109" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 50尺</span>
+    <span class="opt-btn" data-q="109" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 40尺</span>
+    <span class="opt-btn" data-q="109" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 45尺</span>
+    <span class="opt-btn" data-q="109" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 75尺</span>
+    <span class="q-answer" id="ans109">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi110">
+  <div class="q-header">111. 机组氧气面罩的正常（N）100%电门在正常位时，提供( )。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="110" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 空气/氧气的混合气（比例依据座舱高度而定）</span>
+    <span class="opt-btn" data-q="110" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 空气/氧气的混合气（固定比例）</span>
+    <span class="opt-btn" data-q="110" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 100%的正压力的氧气</span>
+    <span class="q-answer" id="ans110">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi111">
+  <div class="q-header">112. V1 应该________Vmcg。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="111" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 小于或等于</span>
+    <span class="opt-btn" data-q="111" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 大于或等于</span>
+    <span class="opt-btn" data-q="111" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 以上情况都有可能</span>
+    <span class="q-answer" id="ans111">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi112">
+  <div class="q-header">113. 在什么情况下，液压面板上的“OVHT”灯会亮？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="112" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 相应的液压泵过热或用于相应的液压泵散热的液压油过热时</span>
+    <span class="opt-btn" data-q="112" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 相应的液压泵和用于泵体散热的液压油都过热时</span>
+    <span class="opt-btn" data-q="112" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 仅当相应的液压泵散热的液压油过热时</span>
+    <span class="opt-btn" data-q="112" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 仅当相应的液压泵过热时</span>
+    <span class="q-answer" id="ans112">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi113">
+  <div class="q-header">114. 根据公司规定，严禁机组成员饮用含酒精饮料_小时内或出于酒精作用下参加执勤，执勤高高原航线机组成员饮用酒精限制为_小时</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="113" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 8.24</span>
+    <span class="opt-btn" data-q="113" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 8,8</span>
+    <span class="opt-btn" data-q="113" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 12,24</span>
+    <span class="opt-btn" data-q="113" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 8,12</span>
+    <span class="q-answer" id="ans113">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi114">
+  <div class="q-header">115. 当遇到严重颠簸时，在爬升或者下降过程中，推荐使用什么垂直方式？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="114" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 高度保持</span>
+    <span class="opt-btn" data-q="114" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 垂直速度</span>
+    <span class="opt-btn" data-q="114" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 高度层改变</span>
+    <span class="opt-btn" data-q="114" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 垂直导航</span>
+    <span class="q-answer" id="ans114">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi115">
+  <div class="q-header">116. ADI上的跑道符号何时开始上升？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="115" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 当按压复位电门时</span>
+    <span class="opt-btn" data-q="115" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 当截获了LOC，且无线电高度有效时</span>
+    <span class="opt-btn" data-q="115" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 当无线电高度低于决断高度时</span>
+    <span class="opt-btn" data-q="115" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 当无线电高度低于200英尺离地高度时</span>
+    <span class="q-answer" id="ans115">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi116">
+  <div class="q-header">117. 若HSI上显示信息“WXR/MAP RANGE DISGREE(气象雷达/地图距离圈不一致)”时，表示：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="116" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 大气数据计算机发送来的数据失效</span>
+    <span class="opt-btn" data-q="116" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 气象雷达的姿态稳定系统故障</span>
+    <span class="opt-btn" data-q="116" data-ans="C" data-label="C" onclick="clickOpt(this)">C. FMC和气象雷达的距离圈与HSI控制面板上选择的距离圈不一致</span>
+    <span class="opt-btn" data-q="116" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 气象雷达失效</span>
+    <span class="q-answer" id="ans116">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi117">
+  <div class="q-header">118. 在起飞中如果遇到风切变，为什么要按下TO/GA电门？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="117" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 为了消除任何减推力的方式,并获得风切变指引指令</span>
+    <span class="opt-btn" data-q="117" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 为了获得风切变指引指令</span>
+    <span class="opt-btn" data-q="117" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 为了脱开起飞方式</span>
+    <span class="q-answer" id="ans117">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi118">
+  <div class="q-header">119. 方向舵比改变器接受( )的空速信号，并向一个由( )液压系统驱动的作动筒提供操纵指令。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="118" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 飞行管理计算机；左</span>
+    <span class="opt-btn" data-q="118" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 大气数据计算机，右</span>
+    <span class="opt-btn" data-q="118" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 惯导；中</span>
+    <span class="opt-btn" data-q="118" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 大气数据计算机；左</span>
+    <span class="q-answer" id="ans118">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi119">
+  <div class="q-header">120. 侧风大于多少节时建议使用滑跑起飞程序？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="119" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 10节</span>
+    <span class="opt-btn" data-q="119" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 25节</span>
+    <span class="opt-btn" data-q="119" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 15节</span>
+    <span class="opt-btn" data-q="119" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 20节</span>
+    <span class="q-answer" id="ans119">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi120">
+  <div class="q-header">121. 以下哪个属于简单气象条件</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="120" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 机场的最新气象报告中的气象条件小于所使用进近类型天气标准的1.5 倍</span>
+    <span class="opt-btn" data-q="120" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 所用跑道的刹车效应依据报告为“中”的水平</span>
+    <span class="opt-btn" data-q="120" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 所用跑道的侧风分量为6米/秒；</span>
+    <span class="opt-btn" data-q="120" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 在机场附近据报告有风切变</span>
+    <span class="q-answer" id="ans120">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi121">
+  <div class="q-header">122. 公司的PBN运行导航规范不包含以下哪个</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="121" data-ans="B" data-label="A" onclick="clickOpt(this)">A. RNP-1</span>
+    <span class="opt-btn" data-q="121" data-ans="B" data-label="B" onclick="clickOpt(this)">B. RNP-2</span>
+    <span class="opt-btn" data-q="121" data-ans="B" data-label="C" onclick="clickOpt(this)">C. RNP-4</span>
+    <span class="opt-btn" data-q="121" data-ans="B" data-label="D" onclick="clickOpt(this)">D. RNAV-5</span>
+    <span class="q-answer" id="ans121">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi122">
+  <div class="q-header">123. 前推或收回推力手柄时，在EPR指示器上会出现一段扇形，该扇形指示的是什么？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="122" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 现用EPR值</span>
+    <span class="opt-btn" data-q="122" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 目前发动机状态下，EPR允许的最大变化范围</span>
+    <span class="opt-btn" data-q="122" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 指令EPR值</span>
+    <span class="opt-btn" data-q="122" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 现用EPR与指令EPR之间的差异</span>
+    <span class="q-answer" id="ans122">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi123">
+  <div class="q-header">124. 公司的特殊运行不包含以下哪个：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="123" data-ans="D" data-label="A" onclick="clickOpt(this)">A. RVSM运行</span>
+    <span class="opt-btn" data-q="123" data-ans="D" data-label="B" onclick="clickOpt(this)">B. PBN运行</span>
+    <span class="opt-btn" data-q="123" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 低能见运行</span>
+    <span class="opt-btn" data-q="123" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 寒冷天气运行</span>
+    <span class="q-answer" id="ans123">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi124">
+  <div class="q-header">125. 地面服务汇流条通常由谁供电？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="124" data-ans="B" data-label="A" onclick="clickOpt(this)">A. APU发电机</span>
+    <span class="opt-btn" data-q="124" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 右主汇流条</span>
+    <span class="opt-btn" data-q="124" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 左主汇流条</span>
+    <span class="opt-btn" data-q="124" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 外部电源</span>
+    <span class="q-answer" id="ans124">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi125">
+  <div class="q-header">126. 刹车源灯亮说明什么?</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="125" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 中央和左液压系统压力低</span>
+    <span class="opt-btn" data-q="125" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 正常和备用刹车系统都没有压力</span>
+    <span class="opt-btn" data-q="125" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 正常和备用刹车系统都有压力</span>
+    <span class="q-answer" id="ans125">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi126">
+  <div class="q-header">127. 关于气象雷达以下正确的是：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="126" data-ans="B" data-label="A" onclick="clickOpt(this)">A. IDNT(或GCS)抑制地面杂波以增强地面特征识别,也可能抑制气象回波</span>
+    <span class="opt-btn" data-q="126" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 其它选项都对</span>
+    <span class="opt-btn" data-q="126" data-ans="B" data-label="C" onclick="clickOpt(this)">C. WX+T显示雷达回波和颠簸。距离为40海里或更少时才显示颠簸</span>
+    <span class="opt-btn" data-q="126" data-ans="B" data-label="D" onclick="clickOpt(this)">D. CAL卡位提供自动增益控制，最佳回波接收</span>
+    <span class="q-answer" id="ans126">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi127">
+  <div class="q-header">128. 使用前轮转弯手轮时，前轮的最大转弯角多大（向任意一边）？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="127" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 67度</span>
+    <span class="opt-btn" data-q="127" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 65度</span>
+    <span class="opt-btn" data-q="127" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 55度</span>
+    <span class="opt-btn" data-q="127" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 7度</span>
+    <span class="q-answer" id="ans127">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi128">
+  <div class="q-header">129. 警戒的定义是：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="128" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 要求机组注意并一定要求机组采取动作的视觉和音响的警戒。</span>
+    <span class="opt-btn" data-q="128" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 要求机组注意并可能要求机组采取动作的视觉，触觉和/或音响的警戒。</span>
+    <span class="opt-btn" data-q="128" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 要求机组注意并可能要求机组采取动作的视觉或音响的警戒。</span>
+    <span class="opt-btn" data-q="128" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 要求机组注意并一定要求机组采取动作的视觉，触觉或音响的警戒。</span>
+    <span class="q-answer" id="ans128">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi129">
+  <div class="q-header">130. RVSM空域中，两个主用高度表飞行中交叉检查的差值不得超过？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="129" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 60 米（200 英尺）</span>
+    <span class="opt-btn" data-q="129" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 150 米（500 英尺）</span>
+    <span class="opt-btn" data-q="129" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 23 米（75 英尺）</span>
+    <span class="opt-btn" data-q="129" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 90 米（300 英尺）</span>
+    <span class="q-answer" id="ans129">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi130">
+  <div class="q-header">131. 757航前准备，滑油量最低不得低于以下标准</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="130" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 16</span>
+    <span class="opt-btn" data-q="130" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 19</span>
+    <span class="opt-btn" data-q="130" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 20</span>
+    <span class="opt-btn" data-q="130" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 17</span>
+    <span class="q-answer" id="ans130">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi131">
+  <div class="q-header">132. 单发飘降使用 VNAV 方式，当下降率减缓到多少时，FMC 保持这个下降率到截获单发巡航高度</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="131" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 300ft/min</span>
+    <span class="opt-btn" data-q="131" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 250ft/min</span>
+    <span class="opt-btn" data-q="131" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 150ft/min</span>
+    <span class="opt-btn" data-q="131" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 200ft/min</span>
+    <span class="q-answer" id="ans131">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi132">
+  <div class="q-header">133. 当灯光超控电门在开位时，以下哪些灯的亮度变为最大。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="132" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 其它选项都对</span>
+    <span class="opt-btn" data-q="132" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 前面板泛光灯、遮光板泛光灯</span>
+    <span class="opt-btn" data-q="132" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 中央操纵台泛光灯</span>
+    <span class="opt-btn" data-q="132" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 所有的显示器灯</span>
+    <span class="q-answer" id="ans132">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi133">
+  <div class="q-header">134. RNP APCH进近期间，出现以下哪个信息不是必须立即中止进近或者复飞</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="133" data-ans="C" data-label="A" onclick="clickOpt(this)">A. unable rnp</span>
+    <span class="opt-btn" data-q="133" data-ans="C" data-label="B" onclick="clickOpt(this)">B. verify position</span>
+    <span class="opt-btn" data-q="133" data-ans="C" data-label="C" onclick="clickOpt(this)">C. TERR POS</span>
+    <span class="opt-btn" data-q="133" data-ans="C" data-label="D" onclick="clickOpt(this)">D. GPS</span>
+    <span class="q-answer" id="ans133">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi134">
+  <div class="q-header">135. 危险品运输，公司规定757主货舱最大干冰限重</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="134" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 1000kg</span>
+    <span class="opt-btn" data-q="134" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 2000kg</span>
+    <span class="opt-btn" data-q="134" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 1500kg</span>
+    <span class="opt-btn" data-q="134" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 1300kg</span>
+    <span class="q-answer" id="ans134">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi135">
+  <div class="q-header">136. 右偏航阻尼器电门上的“INOP”灯亮，表示：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="135" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 系统被关断</span>
+    <span class="opt-btn" data-q="135" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 右偏航阻尼器不工作</span>
+    <span class="opt-btn" data-q="135" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 右偏航阻尼器开始工作</span>
+    <span class="opt-btn" data-q="135" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 失去偏航阻尼功效</span>
+    <span class="q-answer" id="ans135">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi136">
+  <div class="q-header">137. 起飞形态警告信息包括哪些？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="136" data-ans="D" data-label="A" onclick="clickOpt(this)">A. “FLAP”、“SLATS”、“SPOILERS”和“STABILIZER”</span>
+    <span class="opt-btn" data-q="136" data-ans="D" data-label="B" onclick="clickOpt(this)">B. “FLAP”、“SPOILERS”和“STABILIZER”</span>
+    <span class="opt-btn" data-q="136" data-ans="D" data-label="C" onclick="clickOpt(this)">C. “FLAP”和“STABILIZER”</span>
+    <span class="opt-btn" data-q="136" data-ans="D" data-label="D" onclick="clickOpt(this)">D. “FLAP”、“SPOILERS”、“PARKINGBRAKE”和 “STABILIZER”</span>
+    <span class="q-answer" id="ans136">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi137">
+  <div class="q-header">138. 在白天或者夜间运行时能够被飞行机组容易并清楚地观察到，且适用于判断关键表面是否被污染的航空器表面是什么？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="137" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 所有操纵表面</span>
+    <span class="opt-btn" data-q="137" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 关键表面</span>
+    <span class="opt-btn" data-q="137" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 典型表面</span>
+    <span class="opt-btn" data-q="137" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 主要操纵表面</span>
+    <span class="q-answer" id="ans137">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi138">
+  <div class="q-header">139. 什么情况会导致“发电机驱动脱开”电门上的“DRIVE”灯亮？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="138" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 发电机驱动的滑油高温或低压</span>
+    <span class="opt-btn" data-q="138" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 发电机驱动滑油温度高或发电机超负荷</span>
+    <span class="opt-btn" data-q="138" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 发电机超负荷</span>
+    <span class="opt-btn" data-q="138" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 发电机驱动滑油压力低或发电机超负荷</span>
+    <span class="q-answer" id="ans138">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi139">
+  <div class="q-header">140. MCP可以提供对哪些系统的控制？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="139" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 自动驾驶、飞行指引、自动油门、推力管理</span>
+    <span class="opt-btn" data-q="139" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 自动驾驶、飞行指引、自动油门、高度警戒</span>
+    <span class="opt-btn" data-q="139" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 自动驾驶、飞行指引、</span>
+    <span class="q-answer" id="ans139">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi140">
+  <div class="q-header">141. 驾驶舱内的话音记录器什么时候开始工作？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="140" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 任一发动机起动好</span>
+    <span class="opt-btn" data-q="140" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 只要飞机有电</span>
+    <span class="opt-btn" data-q="140" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 双发起动好</span>
+    <span class="opt-btn" data-q="140" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 惯导校准完成</span>
+    <span class="q-answer" id="ans140">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi141">
+  <div class="q-header">142. 切入航向道最大角度为（）度</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="141" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 120</span>
+    <span class="opt-btn" data-q="141" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 150</span>
+    <span class="opt-btn" data-q="141" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 90</span>
+    <span class="opt-btn" data-q="141" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 60</span>
+    <span class="q-answer" id="ans141">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi142">
+  <div class="q-header">143. 当一套HF无线电正在发射时，可用另一部HF接收另一频率的信号。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="142" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 对</span>
+    <span class="opt-btn" data-q="142" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 错</span>
+    <span class="q-answer" id="ans142">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi143">
+  <div class="q-header">144. RNP（所需导航性能）与RNAV（区域导航）的核心区别在于RNP要求具备什么功能？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="143" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 机载性能监视与告警功能（OBPMA）</span>
+    <span class="opt-btn" data-q="143" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 必须包含垂直导航（VNAV）能力</span>
+    <span class="opt-btn" data-q="143" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 必须使用GPS作为唯一导航源</span>
+    <span class="opt-btn" data-q="143" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 更高的导航精度（如RNP 0.3）</span>
+    <span class="q-answer" id="ans143">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi144">
+  <div class="q-header">145. 右液压油箱液压油量需要补充时会有怎样的显示：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="144" data-ans="C" data-label="A" onclick="clickOpt(this)">A. EICAS信息L HYD QTY</span>
+    <span class="opt-btn" data-q="144" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 紫色的RF显示于下EICAS</span>
+    <span class="opt-btn" data-q="144" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 洋红色的RF显示于下EICAS</span>
+    <span class="opt-btn" data-q="144" data-ans="C" data-label="D" onclick="clickOpt(this)">D. EICAS信息L HYD QTY和主警告</span>
+    <span class="q-answer" id="ans144">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi145">
+  <div class="q-header">146. 将发动机起动电门扳到“GRD”位有什么作用？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="145" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 打开起动活门向起动机供气、预位选择的点火器并向燃烧室供油</span>
+    <span class="opt-btn" data-q="145" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 打开起动活门向起动机供气并预位选择的点火器</span>
+    <span class="opt-btn" data-q="145" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 预位选择的点火器并向燃烧室供油</span>
+    <span class="opt-btn" data-q="145" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 打开起动活门向起动机供气并接通选择的点火器</span>
+    <span class="q-answer" id="ans145">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi146">
+  <div class="q-header">147. 飞机发生危急情况的二次雷达特殊编码是：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="146" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 7600</span>
+    <span class="opt-btn" data-q="146" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 7700</span>
+    <span class="opt-btn" data-q="146" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 7500</span>
+    <span class="q-answer" id="ans146">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi147">
+  <div class="q-header">148. 当襟翼位置在25度时，此时缝翼的位置是：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="147" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 起飞机动位</span>
+    <span class="opt-btn" data-q="147" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 着陆位</span>
+    <span class="opt-btn" data-q="147" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 收上位</span>
+    <span class="q-answer" id="ans147">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi148">
+  <div class="q-header">149. 正常放襟翼时，出现后缘不一致信息，此时，继续将手柄放至下一档位：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="148" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 襟翼位置保持不变</span>
+    <span class="opt-btn" data-q="148" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 缝翼会不对称放出，以抵消襟翼造成的不对称</span>
+    <span class="opt-btn" data-q="148" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 不对称将进一步扩大</span>
+    <span class="opt-btn" data-q="148" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 不对称将逐渐减少</span>
+    <span class="q-answer" id="ans148">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi149">
+  <div class="q-header">150. 平衡跑道定义</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="149" data-ans="D" data-label="A" onclick="clickOpt(this)">A. ASDA=LDA</span>
+    <span class="opt-btn" data-q="149" data-ans="D" data-label="B" onclick="clickOpt(this)">B. TORA=LDA</span>
+    <span class="opt-btn" data-q="149" data-ans="D" data-label="C" onclick="clickOpt(this)">C. TORA=ASDA</span>
+    <span class="opt-btn" data-q="149" data-ans="D" data-label="D" onclick="clickOpt(this)">D. TODA=ASDA</span>
+    <span class="q-answer" id="ans149">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi150">
+  <div class="q-header">151. 许可时间是针对什么天气类型的防冰液预计持续有效时间？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="150" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 冰粒和小冰雹</span>
+    <span class="opt-btn" data-q="150" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 冻雾，冻雨</span>
+    <span class="opt-btn" data-q="150" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 冰晶</span>
+    <span class="opt-btn" data-q="150" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 雪夹冻雾</span>
+    <span class="q-answer" id="ans150">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi151">
+  <div class="q-header">152. 飞机上的油量表显示的油量有没有经过密度修正：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="151" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 没有</span>
+    <span class="opt-btn" data-q="151" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 有</span>
+    <span class="q-answer" id="ans151">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi152">
+  <div class="q-header">153. 下列哪个机场不是复杂机场</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="152" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 拉合尔</span>
+    <span class="opt-btn" data-q="152" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 达卡</span>
+    <span class="opt-btn" data-q="152" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 孟买</span>
+    <span class="opt-btn" data-q="152" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 昆明</span>
+    <span class="q-answer" id="ans152">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi153">
+  <div class="q-header">154. 如果两套自动驾驶失效了，自动着陆状态牌将显示：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="153" data-ans="C" data-label="A" onclick="clickOpt(this)">A. NO LAND3</span>
+    <span class="opt-btn" data-q="153" data-ans="C" data-label="B" onclick="clickOpt(this)">B. LAND 2</span>
+    <span class="opt-btn" data-q="153" data-ans="C" data-label="C" onclick="clickOpt(this)">C. NO AUTOLAND</span>
+    <span class="q-answer" id="ans153">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi154">
+  <div class="q-header">155. 对于1类精密进近，跑道中线灯光不工作时，当正侧风（ ），方可使用RVR小于800米的标准</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="154" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 小于等于35节</span>
+    <span class="opt-btn" data-q="154" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 小于等于10节</span>
+    <span class="opt-btn" data-q="154" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 小于等于15节</span>
+    <span class="opt-btn" data-q="154" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 小于等于20节</span>
+    <span class="q-answer" id="ans154">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi155">
+  <div class="q-header">156. 在进/离场目录页面，既可以选择目的地机场的进场，也可以选择起飞机场的进场。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="155" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 错</span>
+    <span class="opt-btn" data-q="155" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 对</span>
+    <span class="q-answer" id="ans155">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi156">
+  <div class="q-header">157. 着陆距离评估应保证至少多少百分比的安全余量？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="156" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 0.2</span>
+    <span class="opt-btn" data-q="156" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 0.05</span>
+    <span class="opt-btn" data-q="156" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 0.15</span>
+    <span class="opt-btn" data-q="156" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 0.1</span>
+    <span class="q-answer" id="ans156">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi157">
+  <div class="q-header">158. Ⅰ类精密进近灯光系统全长最低不低于</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="157" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 720m</span>
+    <span class="opt-btn" data-q="157" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 900m</span>
+    <span class="opt-btn" data-q="157" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 600m</span>
+    <span class="opt-btn" data-q="157" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 1200m</span>
+    <span class="q-answer" id="ans157">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi158">
+  <div class="q-header">159. 当着陆航道多少距离和复飞航道多少距离范围内有雷雨活动时，禁止进近和着陆？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="158" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 10海里，20海里</span>
+    <span class="opt-btn" data-q="158" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 10公里，20公里</span>
+    <span class="opt-btn" data-q="158" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 5公里，3公里</span>
+    <span class="opt-btn" data-q="158" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 5海里，3海里</span>
+    <span class="q-answer" id="ans158">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi159">
+  <div class="q-header">160. 什么级别的警戒会有音响警戒？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="159" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 紧急警告和部分咨询警戒</span>
+    <span class="opt-btn" data-q="159" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 警告、注意警戒和部分咨询警戒</span>
+    <span class="opt-btn" data-q="159" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 紧急警告、警告和注意警戒</span>
+    <span class="opt-btn" data-q="159" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 仅紧急警告</span>
+    <span class="q-answer" id="ans159">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi160">
+  <div class="q-header">161. 炎热天气运行中，最短过站时间不少于多少分钟？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="160" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 20分钟</span>
+    <span class="opt-btn" data-q="160" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 40分钟</span>
+    <span class="opt-btn" data-q="160" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 30分钟</span>
+    <span class="opt-btn" data-q="160" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 60分钟</span>
+    <span class="q-answer" id="ans160">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi161">
+  <div class="q-header">162. 航线仪表飞行的最低安全高度是：飞机距航线两侧各 ___ KM地带内最高障碍物，平原地区不得低于___ 米，丘陵和山区不得低于 ___ 米</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="161" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 25400600</span>
+    <span class="opt-btn" data-q="161" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 20600900</span>
+    <span class="opt-btn" data-q="161" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 10150300</span>
+    <span class="opt-btn" data-q="161" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 30300600</span>
+    <span class="q-answer" id="ans161">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi162">
+  <div class="q-header">163. 当在低温（0°C以下）机场降落，或在低温并且最低安全高度高于多少英尺的航路上运行时，需要对高度表进行低温修正？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="162" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 10000英尺</span>
+    <span class="opt-btn" data-q="162" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 15000英尺</span>
+    <span class="opt-btn" data-q="162" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 8000英尺</span>
+    <span class="opt-btn" data-q="162" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 5000英尺</span>
+    <span class="q-answer" id="ans162">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi163">
+  <div class="q-header">164. 757当重量大于快速过站重量，过站时间不少于多少分钟：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="163" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 40</span>
+    <span class="opt-btn" data-q="163" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 60</span>
+    <span class="opt-btn" data-q="163" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 45</span>
+    <span class="opt-btn" data-q="163" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 75</span>
+    <span class="q-answer" id="ans163">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi164">
+  <div class="q-header">165. 在起飞滑跑中飞机速度为多少时，自动油门信号牌变为“THR HOLD”？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="164" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 64海里</span>
+    <span class="opt-btn" data-q="164" data-ans="C" data-label="B" onclick="clickOpt(this)">B. V1</span>
+    <span class="opt-btn" data-q="164" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 80海里</span>
+    <span class="q-answer" id="ans164">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi165">
+  <div class="q-header">166. 标准海平面气压760mm（汞高）相当于多少英寸（汞高）和多少毫巴？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="165" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 29.29 英寸、1103.2mb</span>
+    <span class="opt-btn" data-q="165" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 29.92 英寸、1013.2mb</span>
+    <span class="opt-btn" data-q="165" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 30 英寸、1000mb</span>
+    <span class="opt-btn" data-q="165" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 29 英寸、1013mb</span>
+    <span class="q-answer" id="ans165">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi166">
+  <div class="q-header">167. 备用发动机指示器选择器放在“AUTO”位时，什么情况下可以看到发动机备用指示？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="166" data-ans="C" data-label="A" onclick="clickOpt(this)">A. EICAS失效时</span>
+    <span class="opt-btn" data-q="166" data-ans="C" data-label="B" onclick="clickOpt(this)">B. AC电源失去时</span>
+    <span class="opt-btn" data-q="166" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 其它选项都对</span>
+    <span class="opt-btn" data-q="166" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 在地面，任一EICAS显示屏失效且选择了状态页面时</span>
+    <span class="q-answer" id="ans166">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi167">
+  <div class="q-header">168. 下列关于跨水运行表述错误的是</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="167" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 距最近水域或者海岸基线的水平距离超过其滑翔距离</span>
+    <span class="opt-btn" data-q="167" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 距海岸线740KM/400NM</span>
+    <span class="opt-btn" data-q="167" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 机场起飞或者着陆时，其起飞或者进近航迹处于水面上空，在发生不正常情况时可能实施水上迫降</span>
+    <span class="opt-btn" data-q="167" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 飞机距最近水域或者海域岸基线的水平距离不超过延伸跨水运行标准</span>
+    <span class="q-answer" id="ans167">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi168">
+  <div class="q-header">169. 使用备用放轮系统时，起落架通过什么力放下？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="168" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 液压力</span>
+    <span class="opt-btn" data-q="168" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 重力</span>
+    <span class="opt-btn" data-q="168" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 机械力</span>
+    <span class="opt-btn" data-q="168" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 电动力</span>
+    <span class="q-answer" id="ans168">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi169">
+  <div class="q-header">170. 接地区RVR 500米（开始起飞滑跑）或驾驶员目测估算跑道方向能见度(RVV)400米时，跑道视程(RVR)报告可用且至少一种目视辅助可用。以下哪种不属于可用的目视辅助？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="169" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 进近灯光系统(ALS)</span>
+    <span class="opt-btn" data-q="169" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 跑道边灯(REDL)</span>
+    <span class="opt-btn" data-q="169" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 跑道中线标志(RCLM)</span>
+    <span class="opt-btn" data-q="169" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 跑道中线灯(RCLL)</span>
+    <span class="q-answer" id="ans169">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi170">
+  <div class="q-header">171. 通讯失效时，应答机设置7602的意图是：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="170" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 飞至起飞备降场</span>
+    <span class="opt-btn" data-q="170" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 继续飞往目的地机场</span>
+    <span class="opt-btn" data-q="170" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 飞往航路备降场</span>
+    <span class="opt-btn" data-q="170" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 返回起飞机场</span>
+    <span class="q-answer" id="ans170">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi171">
+  <div class="q-header">172. 马赫/速度配平在下列哪种情况下不工作？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="171" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 起落架放下</span>
+    <span class="opt-btn" data-q="171" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 襟翼收上</span>
+    <span class="opt-btn" data-q="171" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 自动驾驶接通</span>
+    <span class="opt-btn" data-q="171" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 襟翼放下</span>
+    <span class="q-answer" id="ans171">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi172">
+  <div class="q-header">173. 在EICAS显示屏上，最新的警戒信息显示在什么位置？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="172" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 当前页面的最上面</span>
+    <span class="opt-btn" data-q="172" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 第一页同等级别信息的最上面</span>
+    <span class="opt-btn" data-q="172" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 每一页的最上面</span>
+    <span class="opt-btn" data-q="172" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 当前页面同等级别信息的最上面</span>
+    <span class="q-answer" id="ans172">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi173">
+  <div class="q-header">174. 正常情况下，打开或关掉发动机防冰电门时，电门下面的“VALVE”灯：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="173" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 保持灭</span>
+    <span class="opt-btn" data-q="173" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 保持亮</span>
+    <span class="opt-btn" data-q="173" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 亮一下就灭</span>
+    <span class="opt-btn" data-q="173" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 闪亮5秒后灭</span>
+    <span class="q-answer" id="ans173">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi174">
+  <div class="q-header">175. 在无线电高度为( )英尺或更低时，若减速板放出则会显示EICAS注意信息SPEEDBRAKES EXT(减速板放出)且SPEEDBRAKES灯亮。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="174" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 500</span>
+    <span class="opt-btn" data-q="174" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 1000</span>
+    <span class="opt-btn" data-q="174" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 1500</span>
+    <span class="opt-btn" data-q="174" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 800</span>
+    <span class="q-answer" id="ans174">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi175">
+  <div class="q-header">176. EGPWS在计算几何高度（Geometric Altitude）时，系统主要使用哪项数据作为基准来对气压高度进行修正？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="175" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 惯导的垂直速度</span>
+    <span class="opt-btn" data-q="175" data-ans="B" data-label="B" onclick="clickOpt(this)">B. GPS 高度</span>
+    <span class="opt-btn" data-q="175" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 无线电高度表的实时读数</span>
+    <span class="opt-btn" data-q="175" data-ans="B" data-label="D" onclick="clickOpt(this)">D. VOR/DME 的测距信息</span>
+    <span class="q-answer" id="ans175">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi176">
+  <div class="q-header">177. 最终进近和着陆阶段期间以下哪个属于进阶的人工飞行</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="176" data-ans="C" data-label="A" onclick="clickOpt(this)">A. AP关，FD开，AT关</span>
+    <span class="opt-btn" data-q="176" data-ans="C" data-label="B" onclick="clickOpt(this)">B. AP关, FD关，AT开</span>
+    <span class="opt-btn" data-q="176" data-ans="C" data-label="C" onclick="clickOpt(this)">C. AP关，FD关，AT关</span>
+    <span class="opt-btn" data-q="176" data-ans="C" data-label="D" onclick="clickOpt(this)">D. AP开，FD关，AT关</span>
+    <span class="q-answer" id="ans176">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi177">
+  <div class="q-header">178. 在EPR指示器上面的琥珀色反推符号“REV”的含义是什么？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="177" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 反喷过渡中</span>
+    <span class="opt-btn" data-q="177" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 反喷完全打开</span>
+    <span class="opt-btn" data-q="177" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 反喷过大</span>
+    <span class="opt-btn" data-q="177" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 反喷不工作</span>
+    <span class="q-answer" id="ans177">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi178">
+  <div class="q-header">179. 航路偏置的输入范围为：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="178" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 0~20海里</span>
+    <span class="opt-btn" data-q="178" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 0~99海里</span>
+    <span class="opt-btn" data-q="178" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 0~30海里</span>
+    <span class="opt-btn" data-q="178" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 0~10海里</span>
+    <span class="q-answer" id="ans178">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi179">
+  <div class="q-header">180. 双发失效处置注意事项表述错误的是</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="179" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 飘降时，大约下降 3000ft，前进 5NM 的距离</span>
+    <span class="opt-btn" data-q="179" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 在 30000ft 以下使用高度和较大的空速，可以提高再起动的成功率</span>
+    <span class="opt-btn" data-q="179" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 双发失效尝试再起动过程中，如果 EICAS 有电，应使用 EICAS EGT 限制</span>
+    <span class="opt-btn" data-q="179" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 应尽快起动 APU，在随后的发动机起动中提供电源</span>
+    <span class="q-answer" id="ans179">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi180">
+  <div class="q-header">181. 下面哪个方法可预位或接通LVAV:</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="180" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 当飞机在现用航路的2.5海里之内时，按压LNAV电门</span>
+    <span class="opt-btn" data-q="180" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 其它选项都对</span>
+    <span class="opt-btn" data-q="180" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 当飞机在现用航路的2.5海里之外但在现用航段的切入航向时，按压LNAV电门</span>
+    <span class="opt-btn" data-q="180" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 直飞至一航路点或切入至一航路点的航道</span>
+    <span class="q-answer" id="ans180">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi181">
+  <div class="q-header">182. 757在空中起动发动机EGT温度限制</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="181" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 795</span>
+    <span class="opt-btn" data-q="181" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 570</span>
+    <span class="opt-btn" data-q="181" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 850</span>
+    <span class="opt-btn" data-q="181" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 535</span>
+    <span class="q-answer" id="ans181">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi182">
+  <div class="q-header">183. 飞机上安装有两套独立的HF通讯系统，每个HF使用一个专门的控制面板调谐且使用各自的HF天线。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="182" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 错</span>
+    <span class="opt-btn" data-q="182" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 对</span>
+    <span class="q-answer" id="ans182">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi183">
+  <div class="q-header">184. 巡航过程中，建议在运行不繁忙阶段每间隔多久检查一次液压油量、座舱增压、燃油</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="183" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 20~30分钟</span>
+    <span class="opt-btn" data-q="183" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 5~10分钟</span>
+    <span class="opt-btn" data-q="183" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 15~20分钟</span>
+    <span class="opt-btn" data-q="183" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 10~15分钟</span>
+    <span class="q-answer" id="ans183">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi184">
+  <div class="q-header">185. 俯仰限制符号的位置是哪种计算机的功能？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="184" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 飞行管理计算机</span>
+    <span class="opt-btn" data-q="184" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 符号发生器</span>
+    <span class="opt-btn" data-q="184" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 推力管理计算机</span>
+    <span class="opt-btn" data-q="184" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 失速警告计算机</span>
+    <span class="q-answer" id="ans184">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi185">
+  <div class="q-header">186. 自动着陆状态信号牌在多少英尺无线电高度以下，ASA显示不会改变？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="185" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 450英尺</span>
+    <span class="opt-btn" data-q="185" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 1500英尺</span>
+    <span class="opt-btn" data-q="185" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 200英尺</span>
+    <span class="q-answer" id="ans185">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi186">
+  <div class="q-header">187. 如何正确地从风挡紧急出口脱离。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="186" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 面向外部，先头部，然后是脚部，后臀部</span>
+    <span class="opt-btn" data-q="186" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 面向内部，先是脚部，然后是臀部，最后是头部。</span>
+    <span class="opt-btn" data-q="186" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 面向内部，先头部后臀部，最后是脚部</span>
+    <span class="q-answer" id="ans186">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi187">
+  <div class="q-header">188. 如果要在驾驶舱区域内释放灭火瓶，所有机组成员：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="187" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 都必须戴上氧气面罩并选择紧急方式以获得100%的氧气</span>
+    <span class="opt-btn" data-q="187" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 仅都必须戴上氧气面罩</span>
+    <span class="opt-btn" data-q="187" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 都必须戴上氧气面罩并选择100%的氧气</span>
+    <span class="q-answer" id="ans187">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi188">
+  <div class="q-header">189. ROLLOUT（滑跑）方式低于多少无线电高度时预位，低于多少无线电高度时接通？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="188" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 1500英尺，400英尺</span>
+    <span class="opt-btn" data-q="188" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 200英尺，65英尺</span>
+    <span class="opt-btn" data-q="188" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 1500英尺，5英尺</span>
+    <span class="opt-btn" data-q="188" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 400英尺，5英尺</span>
+    <span class="q-answer" id="ans188">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi189">
+  <div class="q-header">190. ADI上升起的跑道何时显示？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="189" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 当显示航道指针且无线电高度低于1500英尺时显示</span>
+    <span class="opt-btn" data-q="189" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 当显示航道指针且无线电高度低于200英尺时显示</span>
+    <span class="opt-btn" data-q="189" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 当显示航道指针且无线电高度低于500英尺时显示</span>
+    <span class="opt-btn" data-q="189" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 当显示航道指针且无线电高度低于2500英尺时显示</span>
+    <span class="q-answer" id="ans189">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi190">
+  <div class="q-header">191. 按压空调面板上的“组件复位”电门：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="190" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 不论组件温度如何，都可以复位组件</span>
+    <span class="opt-btn" data-q="190" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 只有当组件的温度已经下降到低于过热水平时，才可以复位过热的组件</span>
+    <span class="opt-btn" data-q="190" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 可以复位故障的组件</span>
+    <span class="opt-btn" data-q="190" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 无论组件温度如何，无法复位故障的组件</span>
+    <span class="q-answer" id="ans190">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi191">
+  <div class="q-header">192. 能见度可以使用的最低数值是：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="191" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 150m</span>
+    <span class="opt-btn" data-q="191" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 800m</span>
+    <span class="opt-btn" data-q="191" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 550m</span>
+    <span class="opt-btn" data-q="191" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 400m</span>
+    <span class="q-answer" id="ans191">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi192">
+  <div class="q-header">193. 在正常工作中，HSI上的航向基准数据是由下面哪个提供的？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="192" data-ans="D" data-label="A" onclick="clickOpt(this)">A. FCC（飞行操纵计算机）</span>
+    <span class="opt-btn" data-q="192" data-ans="D" data-label="B" onclick="clickOpt(this)">B. TMC(推力管理计算机)</span>
+    <span class="opt-btn" data-q="192" data-ans="D" data-label="C" onclick="clickOpt(this)">C. ADC(大气数据计算机)</span>
+    <span class="opt-btn" data-q="192" data-ans="D" data-label="D" onclick="clickOpt(this)">D. IRS（惯导）</span>
+    <span class="q-answer" id="ans192">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi193">
+  <div class="q-header">194. 对于RVR 500米以下的运行，至少需要几个工作的RVR报告？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="193" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 2个</span>
+    <span class="opt-btn" data-q="193" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 4个</span>
+    <span class="opt-btn" data-q="193" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 1个</span>
+    <span class="opt-btn" data-q="193" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 3个</span>
+    <span class="q-answer" id="ans193">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi194">
+  <div class="q-header">195. 如果预测到计划飞行的任何阶段将失去RAIM持续超过多少分钟，则此飞行应推迟或取消？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="194" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 15分钟</span>
+    <span class="opt-btn" data-q="194" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 10分钟</span>
+    <span class="opt-btn" data-q="194" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 3分钟</span>
+    <span class="opt-btn" data-q="194" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 5分钟</span>
+    <span class="q-answer" id="ans194">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi195">
+  <div class="q-header">196. 下图为国内航图进近图中的标识，图 12-38 中的 180 表示为：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="195" data-ans="B" data-label="A" onclick="clickOpt(this)">A. MSL 1800 米</span>
+    <span class="opt-btn" data-q="195" data-ans="B" data-label="B" onclick="clickOpt(this)">B. MSL 180 米</span>
+    <span class="opt-btn" data-q="195" data-ans="B" data-label="C" onclick="clickOpt(this)">C. AGL 180 米</span>
+    <span class="opt-btn" data-q="195" data-ans="B" data-label="D" onclick="clickOpt(this)">D. MSL 1800 英尺</span>
+    <span class="q-answer" id="ans195">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi196">
+  <div class="q-header">197. 在中国民航高空航路图中，图 12-22 被红色圈出的部分所表示的R2 的意义是：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="196" data-ans="A" data-label="A" onclick="clickOpt(this)">A. RNAV 导航规范</span>
+    <span class="opt-btn" data-q="196" data-ans="A" data-label="B" onclick="clickOpt(this)">B. RNP 导航规范</span>
+    <span class="opt-btn" data-q="196" data-ans="A" data-label="C" onclick="clickOpt(this)">C. PBCS 要求</span>
+    <span class="opt-btn" data-q="196" data-ans="A" data-label="D" onclick="clickOpt(this)">D. RVSM 要求</span>
+    <span class="q-answer" id="ans196">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi197">
+  <div class="q-header">198. 在中国民航高空航路图中，图 12-25 被红色圈出部分示高度的含义为：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="197" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 最低扇区高度</span>
+    <span class="opt-btn" data-q="197" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 网格最低安全高度</span>
+    <span class="opt-btn" data-q="197" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 最高障碍物高度</span>
+    <span class="opt-btn" data-q="197" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 航路最低安全高度</span>
+    <span class="q-answer" id="ans197">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi198">
+  <div class="q-header">199. 图 12-6 为虹桥机场仪表进场图，图中SS207 处的等待航线的出航限制为：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="198" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 1 海里</span>
+    <span class="opt-btn" data-q="198" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 1 分钟</span>
+    <span class="opt-btn" data-q="198" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 1.5 分钟</span>
+    <span class="opt-btn" data-q="198" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 1.5 海里</span>
+    <span class="q-answer" id="ans198">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi199">
+  <div class="q-header">200. 在仪表进近图 12-8 中此标识所展示的是什么：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="199" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 仪表着陆系统中的航向道</span>
+    <span class="opt-btn" data-q="199" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 指点信标台</span>
+    <span class="opt-btn" data-q="199" data-ans="A" data-label="C" onclick="clickOpt(this)">C. ADF 指针</span>
+    <span class="opt-btn" data-q="199" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 仪表着陆系统中的下滑道</span>
+    <span class="q-answer" id="ans199">✓ A</span>
+  </div>
+</div>
+</div>
+<div class="page" id="page2">
+<div class="page-title">第3页 / 共3页（201-300题）</div>
+<div class="q-item" id="qi200">
+  <div class="q-header">201. 交通咨询预测冲突飞机将在大约( )秒内进入冲突空域;决断咨询预测冲突飞机将在大约( )秒内进入冲突空域;</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="200" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 40至60;20至30</span>
+    <span class="opt-btn" data-q="200" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 35至45;20至30</span>
+    <span class="opt-btn" data-q="200" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 40至60;35至45</span>
+    <span class="opt-btn" data-q="200" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 35至40;20至30</span>
+    <span class="q-answer" id="ans200">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi201">
+  <div class="q-header">202. 在GPS信号受干扰导致位置误差较大的情况下，EGPWS的“前视地形警报”（Look-Ahead Alert）功能会受到什么影响？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="201" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 前视距离自动增加以补偿误差</span>
+    <span class="opt-btn" data-q="201" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 系统会发出“TERRAIN AHEAD”的虚假警告</span>
+    <span class="opt-btn" data-q="201" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 前视功能依赖于精确的位置信息，位置不准可能导致报警失效或地形显示错误</span>
+    <span class="opt-btn" data-q="201" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 系统自动切换为仅使用VOR/DME进行前视计算</span>
+    <span class="q-answer" id="ans201">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi202">
+  <div class="q-header">203. 翼梁活门由:</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="202" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 115伏交流电动马达驱动</span>
+    <span class="opt-btn" data-q="202" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 电磁线圈控制燃油压力带动</span>
+    <span class="opt-btn" data-q="202" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 28伏直流电动马达驱动</span>
+    <span class="opt-btn" data-q="202" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 机械性连接到机舱内的燃油控制手柄</span>
+    <span class="q-answer" id="ans202">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi203">
+  <div class="q-header">204. 在什么资料中可以查询到当次航班所需的RAIM预测信息？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="203" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 签派放行单</span>
+    <span class="opt-btn" data-q="203" data-ans="D" data-label="B" onclick="clickOpt(this)">B. EFB通告</span>
+    <span class="opt-btn" data-q="203" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 技术通告</span>
+    <span class="opt-btn" data-q="203" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 运行通告</span>
+    <span class="q-answer" id="ans203">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi204">
+  <div class="q-header">205. 除防冰程序中，起飞前污染物检查是针对什么表面污染进行检查？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="204" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 次要操纵表面</span>
+    <span class="opt-btn" data-q="204" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 关键表面</span>
+    <span class="opt-btn" data-q="204" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 主要操纵表面</span>
+    <span class="opt-btn" data-q="204" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 典型表面</span>
+    <span class="q-answer" id="ans204">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi205">
+  <div class="q-header">206. 冲压空气涡轮何时自动放出？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="205" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 中央液压系统压力低于正常的任何时候</span>
+    <span class="opt-btn" data-q="205" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 飞行中双发失效时</span>
+    <span class="opt-btn" data-q="205" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 双发关车的任何时候</span>
+    <span class="q-answer" id="ans205">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi206">
+  <div class="q-header">207. 炎热天气运行中，滑行最大限制速度？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="206" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 20节</span>
+    <span class="opt-btn" data-q="206" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 30节</span>
+    <span class="opt-btn" data-q="206" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 15节</span>
+    <span class="opt-btn" data-q="206" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 10节</span>
+    <span class="q-answer" id="ans206">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi207">
+  <div class="q-header">208. 地面操作汇流条通常由谁供电：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="207" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 左主汇流条</span>
+    <span class="opt-btn" data-q="207" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 右主汇流条</span>
+    <span class="opt-btn" data-q="207" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 地面服务汇流条</span>
+    <span class="opt-btn" data-q="207" data-ans="D" data-label="D" onclick="clickOpt(this)">D. APU发电机或外部电源</span>
+    <span class="q-answer" id="ans207">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi208">
+  <div class="q-header">209. 应当确保航空器落地剩余可用燃油不低于机型标准40分钟的油量。对于B757机型，该燃油决策参考值为多少？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="208" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 2000KG</span>
+    <span class="opt-btn" data-q="208" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 2700KG</span>
+    <span class="opt-btn" data-q="208" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 2400KG</span>
+    <span class="opt-btn" data-q="208" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 3200KG</span>
+    <span class="q-answer" id="ans208">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi209">
+  <div class="q-header">210. 液压油流至发动机驱动泵前，须通过由发动机灭火手柄控制的关断活门，拔起灭火手柄，会切断至发动机泵的液压油并使泵释压。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="209" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 错误</span>
+    <span class="opt-btn" data-q="209" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 正确</span>
+    <span class="q-answer" id="ans209">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi210">
+  <div class="q-header">211. 当风挡加温电门在ON位时，只有发动机起动好以后，风挡加温才开始工作。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="210" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 错</span>
+    <span class="opt-btn" data-q="210" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 对</span>
+    <span class="q-answer" id="ans210">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi211">
+  <div class="q-header">212. 如果方向舵比系统失效，那么：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="211" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 应该避免在高速时，粗猛使用方向舵</span>
+    <span class="opt-btn" data-q="211" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 方向舵的行程受到限制，无法偏转到最大位置</span>
+    <span class="opt-btn" data-q="211" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 左液压系统的作动筒自动释压，但方向舵的偏转不受限制</span>
+    <span class="opt-btn" data-q="211" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 方向舵的控制将全部丧失</span>
+    <span class="q-answer" id="ans211">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi212">
+  <div class="q-header">213. RVSM运行前，主高度表与机场标高的差值不得大于？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="212" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 45尺</span>
+    <span class="opt-btn" data-q="212" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 50尺</span>
+    <span class="opt-btn" data-q="212" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 40尺</span>
+    <span class="opt-btn" data-q="212" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 75尺</span>
+    <span class="q-answer" id="ans212">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi213">
+  <div class="q-header">214. 当“AUTO SPD BRK”灯亮时，表示：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="213" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 所有减速板自动放出</span>
+    <span class="opt-btn" data-q="213" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 自动减速板系统启动</span>
+    <span class="opt-btn" data-q="213" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 地面减速板自动放出</span>
+    <span class="opt-btn" data-q="213" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 自动减速板系统探测到有故障存在</span>
+    <span class="q-answer" id="ans213">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi214">
+  <div class="q-header">215. 下面关于襟翼使用的叙述哪一句是错误的？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="214" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 若襟翼的正常控制失效可以使用备用控制</span>
+    <span class="opt-btn" data-q="214" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 备用襟翼操作是靠电动马达来完成的</span>
+    <span class="opt-btn" data-q="214" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 要使用备用襟翼，首先应接通备用襟翼电门，然后由备用襟翼选择器来控制</span>
+    <span class="opt-btn" data-q="214" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 备用襟翼使用襟翼控制手柄来控制襟翼位置</span>
+    <span class="q-answer" id="ans214">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi215">
+  <div class="q-header">216. 关于水(H2O)灭火瓶的使用，下列说法哪一项是不正确的：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="215" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 灭火瓶能用作织物、电气或油脂类型的灭火</span>
+    <span class="opt-btn" data-q="215" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 装置由二氧化碳气瓶供压。</span>
+    <span class="opt-btn" data-q="215" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 水灭火瓶含有一种混有防冰剂的水溶液。</span>
+    <span class="opt-btn" data-q="215" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 所有说法都错</span>
+    <span class="q-answer" id="ans215">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi216">
+  <div class="q-header">217. 如果在驾驶舱区域内释放灭火瓶，所有机组成员都必须戴上氧气面罩并选择紧急方式以获得100%的纯氧。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="216" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 对</span>
+    <span class="opt-btn" data-q="216" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 错</span>
+    <span class="q-answer" id="ans216">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi217">
+  <div class="q-header">218. 低能见起飞的定义是指报告的能见度小于（ ）时的起飞运行？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="217" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 300米</span>
+    <span class="opt-btn" data-q="217" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 400米</span>
+    <span class="opt-btn" data-q="217" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 500米</span>
+    <span class="opt-btn" data-q="217" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 550米</span>
+    <span class="q-answer" id="ans217">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi218">
+  <div class="q-header">219. 各种情况下，舱温不工作灯（琥珀色）亮，表示：①区域温度控制故障 ②舱温控制关 ③调整空气电门关</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="218" data-ans="D" data-label="A" onclick="clickOpt(this)">A. ①或②</span>
+    <span class="opt-btn" data-q="218" data-ans="D" data-label="B" onclick="clickOpt(this)">B. ①或③</span>
+    <span class="opt-btn" data-q="218" data-ans="D" data-label="C" onclick="clickOpt(this)">C. ②或③</span>
+    <span class="opt-btn" data-q="218" data-ans="D" data-label="D" onclick="clickOpt(this)">D. ①、②或③</span>
+    <span class="q-answer" id="ans218">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi219">
+  <div class="q-header">220. 当襟翼放出或当下滑道截获时，复飞方式预位</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="219" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 对</span>
+    <span class="opt-btn" data-q="219" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 错</span>
+    <span class="q-answer" id="ans219">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi220">
+  <div class="q-header">221. 将A/T预位电门关断，会发生什么现象?</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="220" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 任何方式都可以接通</span>
+    <span class="opt-btn" data-q="220" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 只有VNAV可以接通</span>
+    <span class="opt-btn" data-q="220" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 使自动油门断开，且不能接通</span>
+    <span class="q-answer" id="ans220">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi221">
+  <div class="q-header">222. 方向舵比不工作时，当侧风限制为（ ）</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="221" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 小于等于35节</span>
+    <span class="opt-btn" data-q="221" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 小于等于20节</span>
+    <span class="opt-btn" data-q="221" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 小于等于15节</span>
+    <span class="opt-btn" data-q="221" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 小于等于10节</span>
+    <span class="q-answer" id="ans221">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi222">
+  <div class="q-header">223. 正常起飞时，抬机头速率不应大于几度/秒？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="222" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 1.5度/秒</span>
+    <span class="opt-btn" data-q="222" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 2-2.5度/秒</span>
+    <span class="opt-btn" data-q="222" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 4度/秒</span>
+    <span class="opt-btn" data-q="222" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 1度/秒</span>
+    <span class="q-answer" id="ans222">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi223">
+  <div class="q-header">224. 除防冰后，许可时间对于起飞前多久污染物检查？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="223" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 起飞前5分钟污染物检查</span>
+    <span class="opt-btn" data-q="223" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 起飞前10分钟污染物检查</span>
+    <span class="opt-btn" data-q="223" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 不适用起飞前污染物检查</span>
+    <span class="opt-btn" data-q="223" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 起飞前15分钟污染物检查</span>
+    <span class="q-answer" id="ans223">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi224">
+  <div class="q-header">225. 以下哪个不是EGPWS的前视语音警告？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="224" data-ans="D" data-label="A" onclick="clickOpt(this)">A. CAUTION TERRAIN</span>
+    <span class="opt-btn" data-q="224" data-ans="D" data-label="B" onclick="clickOpt(this)">B. TOO LOW TERRAIN</span>
+    <span class="opt-btn" data-q="224" data-ans="D" data-label="C" onclick="clickOpt(this)">C. TERRAIN PULLUP</span>
+    <span class="opt-btn" data-q="224" data-ans="D" data-label="D" onclick="clickOpt(this)">D. TOO LOW PLAPS</span>
+    <span class="q-answer" id="ans224">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi225">
+  <div class="q-header">226. 在B/CRS方式进近时，能否接通多部自动驾驶？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="225" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 不能</span>
+    <span class="opt-btn" data-q="225" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 能</span>
+    <span class="q-answer" id="ans225">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi226">
+  <div class="q-header">227. 在空中，要起动ＡＰＵ，是否需要接通电瓶电门？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="226" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 必须接通</span>
+    <span class="opt-btn" data-q="226" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 不需要</span>
+    <span class="opt-btn" data-q="226" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 接通不接通都可以</span>
+    <span class="q-answer" id="ans226">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi227">
+  <div class="q-header">228. 如果航空器在RNP运行期间失去了机载性能监视与告警功能（OBPMA），机组应当如何处置？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="227" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 继续飞行，依靠ATC雷达监控</span>
+    <span class="opt-btn" data-q="227" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 立即转为目视飞行规则（VFR）</span>
+    <span class="opt-btn" data-q="227" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 通知ATC并可能需要中断RNP程序，转为传统导航或复飞</span>
+    <span class="opt-btn" data-q="227" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 可以暂时忽略告警，因为RNP系统有冗余</span>
+    <span class="q-answer" id="ans227">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi228">
+  <div class="q-header">229. 根据公司规定，严禁机组成员饮用含酒精饮料_小时内或出于酒精作用下参加执勤，执勤高高原航线机组成员饮用酒精限制为_小时</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="228" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 8,8</span>
+    <span class="opt-btn" data-q="228" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 12,24</span>
+    <span class="opt-btn" data-q="228" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 8.24</span>
+    <span class="opt-btn" data-q="228" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 8,12</span>
+    <span class="q-answer" id="ans228">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi229">
+  <div class="q-header">230. 电气系统可以自动探测和隔离电气故障。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="229" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 对</span>
+    <span class="opt-btn" data-q="229" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 错</span>
+    <span class="q-answer" id="ans229">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi230">
+  <div class="q-header">231. 整个飞机的交流电源可以由_____提供：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="230" data-ans="B" data-label="A" onclick="clickOpt(this)">A. APU发电机和地面电源中的任何一个</span>
+    <span class="opt-btn" data-q="230" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 任何一个主飞机交流电源</span>
+    <span class="opt-btn" data-q="230" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 任何一个发动机发电机</span>
+    <span class="q-answer" id="ans230">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi231">
+  <div class="q-header">232. 当“UNSCHED STAB TRIM”灯亮时，表示：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="231" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 系统探测到安定面配平的速率为正常的一半</span>
+    <span class="opt-btn" data-q="231" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 系统探测到安定面开始工作</span>
+    <span class="opt-btn" data-q="231" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 系统探测到安定面不工作</span>
+    <span class="opt-btn" data-q="231" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 系统探测到非指令性的安定面运动</span>
+    <span class="q-answer" id="ans231">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi232">
+  <div class="q-header">233. 飞行记录器电门在NORM位，自动工作的条件是:</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="232" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 任何时候，只要有交流电源</span>
+    <span class="opt-btn" data-q="232" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 地面任一发动机工作或飞机在空中</span>
+    <span class="opt-btn" data-q="232" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 在地面停留刹车且有交流电电源</span>
+    <span class="opt-btn" data-q="232" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 在地面，飞机已经建立电源；在空中，备用电源在AUTO位</span>
+    <span class="q-answer" id="ans232">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi233">
+  <div class="q-header">234. 以下哪种刹车系统可提供防滞保护：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="233" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 正常、备用和储备刹车系统</span>
+    <span class="opt-btn" data-q="233" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 储备刹车系统</span>
+    <span class="opt-btn" data-q="233" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 蓄压瓶刹车</span>
+    <span class="opt-btn" data-q="233" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 正常和备用刹车系统</span>
+    <span class="q-answer" id="ans233">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi234">
+  <div class="q-header">235. 下列关于跨水运行表述错误的是</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="234" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 距海岸线740KM/400NM</span>
+    <span class="opt-btn" data-q="234" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 飞机距最近水域或者海域岸基线的水平距离不超过延伸跨水运行标准</span>
+    <span class="opt-btn" data-q="234" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 机场起飞或者着陆时，其起飞或者进近航迹处于水面上空，在发生不正常情况时可能实施水上迫降</span>
+    <span class="opt-btn" data-q="234" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 距最近水域或者海岸基线的水平距离超过其滑翔距离</span>
+    <span class="q-answer" id="ans234">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi235">
+  <div class="q-header">236. 757航前准备，液压油量最低不得低于以下标准</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="235" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 0.75</span>
+    <span class="opt-btn" data-q="235" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 0.8</span>
+    <span class="opt-btn" data-q="235" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 0.85</span>
+    <span class="opt-btn" data-q="235" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 0.9</span>
+    <span class="q-answer" id="ans235">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi236">
+  <div class="q-header">237. 以下不会造成起飞形态警告原因？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="236" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 配平不在绿区</span>
+    <span class="opt-btn" data-q="236" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 停留刹车设置</span>
+    <span class="opt-btn" data-q="236" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 襟翼不在起飞位</span>
+    <span class="opt-btn" data-q="236" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 自动刹车不在RTO</span>
+    <span class="q-answer" id="ans236">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi237">
+  <div class="q-header">238. 双发飞机起飞性能第三阶段要求的最低高度为（），第四阶段要求的最小爬升梯度能力为（）？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="237" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 400英尺；3.3%</span>
+    <span class="opt-btn" data-q="237" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 400英尺；2.4%</span>
+    <span class="opt-btn" data-q="237" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 400英尺；1.2%</span>
+    <span class="opt-btn" data-q="237" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 450英尺；1.2%</span>
+    <span class="q-answer" id="ans237">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi238">
+  <div class="q-header">239. 在着落过程中自动刹车何时开始工作：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="238" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 姿态减小到1°</span>
+    <span class="opt-btn" data-q="238" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 两个油门杆都被收回到慢车，且轮子已开始转动</span>
+    <span class="opt-btn" data-q="238" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 主、前起落架已放下，空/地逻辑电门接通</span>
+    <span class="q-answer" id="ans238">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi239">
+  <div class="q-header">240. 着陆滑跑过程中，自动刹车工作正常，此时如人工转动自动刹车旋钮会导致：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="239" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 禁止此操作（极有可能导致爆胎）</span>
+    <span class="opt-btn" data-q="239" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 自动刹车系统脱开，自动跳回DISARM位</span>
+    <span class="opt-btn" data-q="239" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 可改变减速等级，不会使系统解除预位</span>
+    <span class="q-answer" id="ans239">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi240">
+  <div class="q-header">241. 可利用哪个刹车系统刹上停留刹车：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="240" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 正常/储备或备用刹车液压系统</span>
+    <span class="opt-btn" data-q="240" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 蓄压器</span>
+    <span class="opt-btn" data-q="240" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 正常/储备或备用刹车液压系统或蓄压器均可</span>
+    <span class="q-answer" id="ans240">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi241">
+  <div class="q-header">242. 在性能起始页面显示的燃油量来源包括：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="241" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 其它选项都对</span>
+    <span class="opt-btn" data-q="241" data-ans="A" data-label="B" onclick="clickOpt(this)">B. FMC计算的燃油量</span>
+    <span class="opt-btn" data-q="241" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 人工输入燃油量</span>
+    <span class="opt-btn" data-q="241" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 总加器提供的燃油量</span>
+    <span class="q-answer" id="ans241">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi242">
+  <div class="q-header">243. 单发巡航页面的单发速度在改平后为：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="242" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 单发远程巡航速度</span>
+    <span class="opt-btn" data-q="242" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 最小阻力速度</span>
+    <span class="opt-btn" data-q="242" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 限制速度</span>
+    <span class="opt-btn" data-q="242" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 经济速度</span>
+    <span class="q-answer" id="ans242">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi243">
+  <div class="q-header">244. 如果进近中预位三套自动驾驶，截获航道或下滑道后( )改变被抑制。航道截获后所选的( )被锁定以防改变。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="243" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 跑道背台航道 , 频率</span>
+    <span class="opt-btn" data-q="243" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 跑道向台航道 , 频率</span>
+    <span class="opt-btn" data-q="243" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 频率, 跑道向台航道</span>
+    <span class="opt-btn" data-q="243" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 频率, 跑道背台航道</span>
+    <span class="q-answer" id="ans243">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi244">
+  <div class="q-header">245. FMC从燃油计量系统接收燃油数据或由人工输入，通常使用( )值进行性能计算。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="244" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 计算</span>
+    <span class="opt-btn" data-q="244" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 人工输入</span>
+    <span class="opt-btn" data-q="244" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 传感</span>
+    <span class="q-answer" id="ans244">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi245">
+  <div class="q-header">246. 下列哪本手册可以查询到复杂机场信息？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="245" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 运行规范</span>
+    <span class="opt-btn" data-q="245" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 运行手册</span>
+    <span class="opt-btn" data-q="245" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 航线运行概要</span>
+    <span class="opt-btn" data-q="245" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 航路指南手册</span>
+    <span class="q-answer" id="ans245">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi246">
+  <div class="q-header">247. 单发巡航高度 ，单发最大高度 。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="246" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 两者都可以人工输入</span>
+    <span class="opt-btn" data-q="246" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 禁止人工输入；可以人工输入</span>
+    <span class="opt-btn" data-q="246" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 可以人工输入；禁止人工输入</span>
+    <span class="opt-btn" data-q="246" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 两者都禁止人工输入</span>
+    <span class="q-answer" id="ans246">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi247">
+  <div class="q-header">248. 等待航段时间：默认在14000以下为( )分钟；高于14000英尺为( )分钟。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="247" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 2；1.5</span>
+    <span class="opt-btn" data-q="247" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 1；2</span>
+    <span class="opt-btn" data-q="247" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 1；1.5</span>
+    <span class="opt-btn" data-q="247" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 2；2</span>
+    <span class="q-answer" id="ans247">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi248">
+  <div class="q-header">249. 在发动机的各种慢车中，什么慢车的推力最大？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="248" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 进近慢车</span>
+    <span class="opt-btn" data-q="248" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 空中最小慢车</span>
+    <span class="opt-btn" data-q="248" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 地面慢车</span>
+    <span class="q-answer" id="ans248">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi249">
+  <div class="q-header">250. 起动期间，若EGT达到起动极限值，EGT指示会不会变为红色？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="249" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 会</span>
+    <span class="opt-btn" data-q="249" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 不会</span>
+    <span class="q-answer" id="ans249">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi250">
+  <div class="q-header">251. 当飞机下降到多少英尺以下，方式控制板的APP电门在ON位时，ILS航道和下滑道偏离就受到监控？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="250" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 900英尺</span>
+    <span class="opt-btn" data-q="250" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 决断高度</span>
+    <span class="opt-btn" data-q="250" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 500英尺</span>
+    <span class="opt-btn" data-q="250" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 1800英尺</span>
+    <span class="q-answer" id="ans250">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi251">
+  <div class="q-header">252. 接地区RVR 500米（开始起飞滑跑）或驾驶员目测估算跑道方向能见度(RVV)400米时，跑道视程(RVR)报告可用且至少一种目视辅助可用。以下哪种不属于可用的目视辅助？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="251" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 跑道边灯(REDL)</span>
+    <span class="opt-btn" data-q="251" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 跑道中线灯(RCLL)</span>
+    <span class="opt-btn" data-q="251" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 跑道中线标志(RCLM)</span>
+    <span class="opt-btn" data-q="251" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 进近灯光系统(ALS)</span>
+    <span class="q-answer" id="ans251">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi252">
+  <div class="q-header">253. 通讯失效时，应答机设置7601的意图是：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="252" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 飞往航路备降场</span>
+    <span class="opt-btn" data-q="252" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 飞至起飞备降场</span>
+    <span class="opt-btn" data-q="252" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 继续飞往目的地机场</span>
+    <span class="opt-btn" data-q="252" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 返回起飞机场</span>
+    <span class="q-answer" id="ans252">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi253">
+  <div class="q-header">254. 领航计划报第十项设备中，公司关于ADS-B能力的标示是？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="253" data-ans="A" data-label="A" onclick="clickOpt(this)">A. B1</span>
+    <span class="opt-btn" data-q="253" data-ans="A" data-label="B" onclick="clickOpt(this)">B. B2</span>
+    <span class="opt-btn" data-q="253" data-ans="A" data-label="C" onclick="clickOpt(this)">C. E</span>
+    <span class="opt-btn" data-q="253" data-ans="A" data-label="D" onclick="clickOpt(this)">D. I</span>
+    <span class="q-answer" id="ans253">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi254">
+  <div class="q-header">255. HSI的哪种显示方式中的计划航路是以真北定向，与飞机的航向无关？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="254" data-ans="C" data-label="A" onclick="clickOpt(this)">A. VOR方式</span>
+    <span class="opt-btn" data-q="254" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 地图方式</span>
+    <span class="opt-btn" data-q="254" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 计划方式</span>
+    <span class="opt-btn" data-q="254" data-ans="C" data-label="D" onclick="clickOpt(this)">D. ILS方式</span>
+    <span class="q-answer" id="ans254">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi255">
+  <div class="q-header">256. RB211发动机起飞/复飞功率使用限制时间为？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="255" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 3 min</span>
+    <span class="opt-btn" data-q="255" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 5 min</span>
+    <span class="opt-btn" data-q="255" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 8 min</span>
+    <span class="opt-btn" data-q="255" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 10 min</span>
+    <span class="q-answer" id="ans255">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi256">
+  <div class="q-header">257. 以下故障中没有QRH记忆项目检查单的是？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="256" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 空速不可靠</span>
+    <span class="opt-btn" data-q="256" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 发动机超限</span>
+    <span class="opt-btn" data-q="256" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 发动机过热</span>
+    <span class="opt-btn" data-q="256" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 发动机中止起动</span>
+    <span class="q-answer" id="ans256">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi257">
+  <div class="q-header">258. 公司未获批的特殊运行为以下哪个：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="257" data-ans="D" data-label="A" onclick="clickOpt(this)">A. RVSM运行</span>
+    <span class="opt-btn" data-q="257" data-ans="D" data-label="B" onclick="clickOpt(this)">B. PBN运行</span>
+    <span class="opt-btn" data-q="257" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 低能见运行</span>
+    <span class="opt-btn" data-q="257" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 管制员-飞行员数据链通讯</span>
+    <span class="q-answer" id="ans257">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi258">
+  <div class="q-header">259. 燃油流量通常如何显示？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="258" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 数字和指针</span>
+    <span class="opt-btn" data-q="258" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 仅有数字读数</span>
+    <span class="opt-btn" data-q="258" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 仅有指针</span>
+    <span class="q-answer" id="ans258">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi259">
+  <div class="q-header">260. 如果在EFIS控制面板上的决断高度基准窗选择了负的决断高度后，ADI上决断高度的显示为：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="259" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 负的决断高度</span>
+    <span class="opt-btn" data-q="259" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 虚线</span>
+    <span class="opt-btn" data-q="259" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 空白</span>
+    <span class="q-answer" id="ans259">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi260">
+  <div class="q-header">261. 地面服务汇流条通常由谁供电？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="260" data-ans="D" data-label="A" onclick="clickOpt(this)">A. APU发电机</span>
+    <span class="opt-btn" data-q="260" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 外部电源</span>
+    <span class="opt-btn" data-q="260" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 左主汇流条</span>
+    <span class="opt-btn" data-q="260" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 右主汇流条</span>
+    <span class="q-answer" id="ans260">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi261">
+  <div class="q-header">262. EFIS控制面板上的地图电门“NAV AID”在“ON”位，当HSI距离圈放在下面哪个位时，可显示所有的VHF导航台。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="261" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 80</span>
+    <span class="opt-btn" data-q="261" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 320</span>
+    <span class="opt-btn" data-q="261" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 160</span>
+    <span class="opt-btn" data-q="261" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 40</span>
+    <span class="q-answer" id="ans261">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi262">
+  <div class="q-header">263. 巡航过程中，建议在运行不繁忙阶段每间隔多久检查一次液压油量、座舱增压、燃油</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="262" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 10~15分钟</span>
+    <span class="opt-btn" data-q="262" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 15~20分钟</span>
+    <span class="opt-btn" data-q="262" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 5~10分钟</span>
+    <span class="opt-btn" data-q="262" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 20~30分钟</span>
+    <span class="q-answer" id="ans262">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi263">
+  <div class="q-header">264. 在多少海里以上马赫/空速表显示空速？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="263" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 20</span>
+    <span class="opt-btn" data-q="263" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 30</span>
+    <span class="opt-btn" data-q="263" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 50</span>
+    <span class="opt-btn" data-q="263" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 80</span>
+    <span class="q-answer" id="ans263">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi264">
+  <div class="q-header">265. 以下不会造成发动机过热警告ENG OVHT的是：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="264" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 发动机吊架探测超温</span>
+    <span class="opt-btn" data-q="264" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 发动机短舱探测超温</span>
+    <span class="opt-btn" data-q="264" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 发动机涡轮冷却探测超温</span>
+    <span class="q-answer" id="ans264">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi265">
+  <div class="q-header">266. 在什么仪表上可以显示ADF方位信号？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="265" data-ans="D" data-label="A" onclick="clickOpt(this)">A. HSI</span>
+    <span class="opt-btn" data-q="265" data-ans="D" data-label="B" onclick="clickOpt(this)">B. ADI</span>
+    <span class="opt-btn" data-q="265" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 无线电距离磁指示器</span>
+    <span class="opt-btn" data-q="265" data-ans="D" data-label="D" onclick="clickOpt(this)">D. HSI和无线电距离磁指示器</span>
+    <span class="q-answer" id="ans265">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi266">
+  <div class="q-header">267. 哪个组件提供发动机超压保护</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="266" data-ans="C" data-label="A" onclick="clickOpt(this)">A. FMC</span>
+    <span class="opt-btn" data-q="266" data-ans="C" data-label="B" onclick="clickOpt(this)">B. TMC</span>
+    <span class="opt-btn" data-q="266" data-ans="C" data-label="C" onclick="clickOpt(this)">C. EEC监控通道</span>
+    <span class="opt-btn" data-q="266" data-ans="C" data-label="D" onclick="clickOpt(this)">D. ELC</span>
+    <span class="q-answer" id="ans266">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi267">
+  <div class="q-header">268. 需要对高度表进行低温修正的情况有？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="267" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 在雷达管制下</span>
+    <span class="opt-btn" data-q="267" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 保持ATC指令的飞行高度</span>
+    <span class="opt-btn" data-q="267" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 报告温度高于0摄氏度或高于使用程序公布的最低温度</span>
+    <span class="opt-btn" data-q="267" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 在报告的温度低于0摄氏度的机场降落</span>
+    <span class="q-answer" id="ans267">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi268">
+  <div class="q-header">269. 当着陆航道多少距离和复飞航道多少距离范围内有雷雨活动时，禁止进近和着陆？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="268" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 5公里，3公里</span>
+    <span class="opt-btn" data-q="268" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 5海里，3海里</span>
+    <span class="opt-btn" data-q="268" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 10公里，20公里</span>
+    <span class="opt-btn" data-q="268" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 10海里，20海里</span>
+    <span class="q-answer" id="ans268">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi269">
+  <div class="q-header">270. 757在空中起动发动机EGT温度限制</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="269" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 570</span>
+    <span class="opt-btn" data-q="269" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 535</span>
+    <span class="opt-btn" data-q="269" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 795</span>
+    <span class="opt-btn" data-q="269" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 850</span>
+    <span class="q-answer" id="ans269">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi270">
+  <div class="q-header">271. 发动机燃油系统允许的最高燃油温度为:</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="270" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 59℃</span>
+    <span class="opt-btn" data-q="270" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 51℃</span>
+    <span class="opt-btn" data-q="270" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 49℃</span>
+    <span class="opt-btn" data-q="270" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 65℃</span>
+    <span class="q-answer" id="ans270">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi271">
+  <div class="q-header">272. 飞行区指标代码是根据不同飞机的翼展来分类，对跑道、滑行道、机坪、机位、登机口等设计的接受能力做出区分和规范，757机型的代码是？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="271" data-ans="C" data-label="A" onclick="clickOpt(this)">A. B</span>
+    <span class="opt-btn" data-q="271" data-ans="C" data-label="B" onclick="clickOpt(this)">B. C</span>
+    <span class="opt-btn" data-q="271" data-ans="C" data-label="C" onclick="clickOpt(this)">C. D</span>
+    <span class="opt-btn" data-q="271" data-ans="C" data-label="D" onclick="clickOpt(this)">D. E</span>
+    <span class="q-answer" id="ans271">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi272">
+  <div class="q-header">273. 当遇到严重颠簸时，在爬升或者下降过程中，推荐使用什么垂直方式？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="272" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 高度层改变</span>
+    <span class="opt-btn" data-q="272" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 垂直导航</span>
+    <span class="opt-btn" data-q="272" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 高度保持</span>
+    <span class="opt-btn" data-q="272" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 垂直速度</span>
+    <span class="q-answer" id="ans272">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi273">
+  <div class="q-header">274. 在下列哪个区域飞行时，导航与显示系统不支持？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="273" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 高于南、北纬83°</span>
+    <span class="opt-btn" data-q="273" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 高于南、北纬73°</span>
+    <span class="opt-btn" data-q="273" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 高于南、北纬87°</span>
+    <span class="opt-btn" data-q="273" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 高于南、北纬70°</span>
+    <span class="q-answer" id="ans273">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi274">
+  <div class="q-header">275. “关于备用推力调置的起飞性能，不允许使用改进爬升性能程序和假设温度减推力运行。”这种说法对吗</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="274" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 正确</span>
+    <span class="opt-btn" data-q="274" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 不正确</span>
+    <span class="q-answer" id="ans274">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi275">
+  <div class="q-header">276. EGPWS在计算几何高度（Geometric Altitude）时，系统主要使用哪项数据作为基准来对气压高度进行修正？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="275" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 惯导的垂直速度</span>
+    <span class="opt-btn" data-q="275" data-ans="C" data-label="B" onclick="clickOpt(this)">B. VOR/DME 的测距信息</span>
+    <span class="opt-btn" data-q="275" data-ans="C" data-label="C" onclick="clickOpt(this)">C. GPS 高度</span>
+    <span class="opt-btn" data-q="275" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 无线电高度表的实时读数</span>
+    <span class="q-answer" id="ans275">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi276">
+  <div class="q-header">277. 切入角在航道（）范围内可以截获下滑道</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="276" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 60</span>
+    <span class="opt-btn" data-q="276" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 70</span>
+    <span class="opt-btn" data-q="276" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 90</span>
+    <span class="opt-btn" data-q="276" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 80</span>
+    <span class="q-answer" id="ans276">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi277">
+  <div class="q-header">278. 关闭空调系统有助增加起飞限重。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="277" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 错误</span>
+    <span class="opt-btn" data-q="277" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 正确</span>
+    <span class="q-answer" id="ans277">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi278">
+  <div class="q-header">279. 如果飞机无意中超出了哪些条件通常被定义为进入复杂姿态</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="278" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 飞机上仰姿态超过25度 飞机低头姿态超过10度 坡度超过45度 以不适当的空速飞行</span>
+    <span class="opt-btn" data-q="278" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 飞机上仰姿态超过35度 飞机低头姿态超过10度 坡度超过35度 以不适当的空速飞行</span>
+    <span class="opt-btn" data-q="278" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 飞机上仰姿态超过10度 飞机低头姿态超过25度 坡度超过45度 以不适当的空速飞行</span>
+    <span class="opt-btn" data-q="278" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 飞机上仰姿态超过20度 飞机低头姿态超过10度 坡度超过45度 以不适当的空速飞行</span>
+    <span class="q-answer" id="ans278">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi279">
+  <div class="q-header">280. 使用飞行员目测能见度值RVV起飞的最低RVR要求是？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="279" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 350米</span>
+    <span class="opt-btn" data-q="279" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 400米</span>
+    <span class="opt-btn" data-q="279" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 450米</span>
+    <span class="opt-btn" data-q="279" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 500米</span>
+    <span class="q-answer" id="ans279">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi280">
+  <div class="q-header">281. 高原机场海拔高，空气密度变小，发动机进气量减少，发动机推力因此而减小。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="280" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 错误</span>
+    <span class="opt-btn" data-q="280" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 正确</span>
+    <span class="q-answer" id="ans280">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi281">
+  <div class="q-header">282. 在飞行中，谁有权决定打开急救箱？？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="281" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 任何需要的机组成员</span>
+    <span class="opt-btn" data-q="281" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 随机机务</span>
+    <span class="opt-btn" data-q="281" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 机长</span>
+    <span class="opt-btn" data-q="281" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 航医</span>
+    <span class="q-answer" id="ans281">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi282">
+  <div class="q-header">283. 如果没有选择TFC，则在存在TA或RA条件时，会不会显示“TRAFFIC（交通）”警戒信息？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="282" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 会</span>
+    <span class="opt-btn" data-q="282" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 不会</span>
+    <span class="q-answer" id="ans282">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi283">
+  <div class="q-header">284. 干跑道运行所需着陆距离至少是审定着陆距离除以（）系数？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="283" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 0.3</span>
+    <span class="opt-btn" data-q="283" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 0.15</span>
+    <span class="opt-btn" data-q="283" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 0.5</span>
+    <span class="opt-btn" data-q="283" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 0.6</span>
+    <span class="q-answer" id="ans283">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi284">
+  <div class="q-header">285. 飞行中应遵守“”的优先顺序？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="284" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 飞行-通讯-导航</span>
+    <span class="opt-btn" data-q="284" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 导航-飞行-通讯</span>
+    <span class="opt-btn" data-q="284" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 飞行-导航-通讯</span>
+    <span class="opt-btn" data-q="284" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 通讯-导航-飞行</span>
+    <span class="q-answer" id="ans284">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi285">
+  <div class="q-header">286. .757/767机型实施的不可预期燃油的政策是？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="285" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 航程燃油的10%的油量</span>
+    <span class="opt-btn" data-q="285" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 航程燃油的5%的油量</span>
+    <span class="opt-btn" data-q="285" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 航程时间10%的油量</span>
+    <span class="opt-btn" data-q="285" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 航程时间5%的油量</span>
+    <span class="q-answer" id="ans285">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi286">
+  <div class="q-header">287. 起飞期间，咨询信息什么时候被抑制？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="286" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 从滑跑速度超过V1开始，到抬轮后20秒为止，先到为准</span>
+    <span class="opt-btn" data-q="286" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 从抬轮开始，到400英尺的无线电高度或抬轮后20秒为止，后到为准</span>
+    <span class="opt-btn" data-q="286" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 从加油门滑跑开始，到400英尺的无线电高度或抬轮后20秒为止，先到为准</span>
+    <span class="opt-btn" data-q="286" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 从建立起飞滑跑速度开始，到抬轮后20秒为止，先到为准</span>
+    <span class="q-answer" id="ans286">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi287">
+  <div class="q-header">288. 音响警戒中的警笛声由交替的高音和低音组成，下列什么情况下不发出警笛声：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="287" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 座舱高度</span>
+    <span class="opt-btn" data-q="287" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 自动驾驶脱开</span>
+    <span class="opt-btn" data-q="287" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 火警</span>
+    <span class="opt-btn" data-q="287" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 形态警告和超速</span>
+    <span class="q-answer" id="ans287">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi288">
+  <div class="q-header">289. DESCEND决断咨询在约＿英尺无线电高度以下被抑制。</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="288" data-ans="B" data-label="A" onclick="clickOpt(this)">A. 1450</span>
+    <span class="opt-btn" data-q="288" data-ans="B" data-label="B" onclick="clickOpt(this)">B. 1100</span>
+    <span class="opt-btn" data-q="288" data-ans="B" data-label="C" onclick="clickOpt(this)">C. 1000</span>
+    <span class="opt-btn" data-q="288" data-ans="B" data-label="D" onclick="clickOpt(this)">D. 500</span>
+    <span class="q-answer" id="ans288">✓ B</span>
+  </div>
+</div>
+<div class="q-item" id="qi289">
+  <div class="q-header">290. 近地/形态起落架超控电门可抑制：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="289" data-ans="C" data-label="A" onclick="clickOpt(this)">A. TOO LOW GEAR；TOO LOW TERRAIN注意信息</span>
+    <span class="opt-btn" data-q="289" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 可抑制着陆形态警告警笛</span>
+    <span class="opt-btn" data-q="289" data-ans="C" data-label="C" onclick="clickOpt(this)">C. A和B</span>
+    <span class="q-answer" id="ans289">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi290">
+  <div class="q-header">291. Ⅰ类精密进近灯光系统全长最低不低于</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="290" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 600m</span>
+    <span class="opt-btn" data-q="290" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 900m</span>
+    <span class="opt-btn" data-q="290" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 720m</span>
+    <span class="opt-btn" data-q="290" data-ans="C" data-label="D" onclick="clickOpt(this)">D. 1200m</span>
+    <span class="q-answer" id="ans290">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi291">
+  <div class="q-header">292. 当探测到风切变条件WINDSHEAR（红色）灯亮时，不是所有其它GPWS紧急警告方式都被抑制：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="291" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 错</span>
+    <span class="opt-btn" data-q="291" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 对</span>
+    <span class="q-answer" id="ans291">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi292">
+  <div class="q-header">293. 警告系统包括：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="292" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 发动机指示和机组警戒系统、警告系统</span>
+    <span class="opt-btn" data-q="292" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 近地警告系统</span>
+    <span class="opt-btn" data-q="292" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 包含其它两项内容</span>
+    <span class="q-answer" id="ans292">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi293">
+  <div class="q-header">294. 按压任一主警告/注意复位电门可以熄灭或停止：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="293" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 主注意灯、警笛、火警铃、咨询信息</span>
+    <span class="opt-btn" data-q="293" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 主注意灯、主警告灯、自动驾驶脱开警告</span>
+    <span class="opt-btn" data-q="293" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 主注意灯、主警告灯、警笛、火警铃</span>
+    <span class="q-answer" id="ans293">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi294">
+  <div class="q-header">295. 飞机失去通信联络的二次雷达特殊编码是：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="294" data-ans="C" data-label="A" onclick="clickOpt(this)">A. 7500</span>
+    <span class="opt-btn" data-q="294" data-ans="C" data-label="B" onclick="clickOpt(this)">B. 7700</span>
+    <span class="opt-btn" data-q="294" data-ans="C" data-label="C" onclick="clickOpt(this)">C. 7600</span>
+    <span class="q-answer" id="ans294">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi295">
+  <div class="q-header">296. 图 12-14 为中国民航航路图，其中红色圈出部分表示为：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="295" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 航路最低高度 1426 米</span>
+    <span class="opt-btn" data-q="295" data-ans="A" data-label="B" onclick="clickOpt(this)">B. 航路最低高度 14260 英尺</span>
+    <span class="opt-btn" data-q="295" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 最低偏航高度 1426 米</span>
+    <span class="opt-btn" data-q="295" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 最低偏航高度 14260 英尺</span>
+    <span class="q-answer" id="ans295">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi296">
+  <div class="q-header">297. 在仪表进近图 12-9 中此标识所展示的是什么：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="296" data-ans="A" data-label="A" onclick="clickOpt(this)">A. 仪表着陆系统中的下滑道</span>
+    <span class="opt-btn" data-q="296" data-ans="A" data-label="B" onclick="clickOpt(this)">B. ADF 指针</span>
+    <span class="opt-btn" data-q="296" data-ans="A" data-label="C" onclick="clickOpt(this)">C. 指点信标台</span>
+    <span class="opt-btn" data-q="296" data-ans="A" data-label="D" onclick="clickOpt(this)">D. 仪表着陆系统中的航向道</span>
+    <span class="q-answer" id="ans296">✓ A</span>
+  </div>
+</div>
+<div class="q-item" id="qi297">
+  <div class="q-header">298. 如图 12-64 所示，航图中此标识代表的含义是：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="297" data-ans="D" data-label="A" onclick="clickOpt(this)">A. 最低的高度是 3000</span>
+    <span class="opt-btn" data-q="297" data-ans="D" data-label="B" onclick="clickOpt(this)">B. 最高的高度是 3000</span>
+    <span class="opt-btn" data-q="297" data-ans="D" data-label="C" onclick="clickOpt(this)">C. 建议的高度是 3000</span>
+    <span class="opt-btn" data-q="297" data-ans="D" data-label="D" onclick="clickOpt(this)">D. 强制的高度是 3000</span>
+    <span class="q-answer" id="ans297">✓ D</span>
+  </div>
+</div>
+<div class="q-item" id="qi298">
+  <div class="q-header">299. 在航图中，图 12-4 中所表示的导航设备为？</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="298" data-ans="C" data-label="A" onclick="clickOpt(this)">A. VOR</span>
+    <span class="opt-btn" data-q="298" data-ans="C" data-label="B" onclick="clickOpt(this)">B. NDB</span>
+    <span class="opt-btn" data-q="298" data-ans="C" data-label="C" onclick="clickOpt(this)">C. DME</span>
+    <span class="opt-btn" data-q="298" data-ans="C" data-label="D" onclick="clickOpt(this)">D. ADF</span>
+    <span class="q-answer" id="ans298">✓ C</span>
+  </div>
+</div>
+<div class="q-item" id="qi299">
+  <div class="q-header">300. 如果将图 12-1 中 103 号停机位置坐标输入飞行管理计算机中，正确的应该是：</div>
+  <div class="q-opts">
+    <span class="opt-btn" data-q="299" data-ans="A" data-label="A" onclick="clickOpt(this)">A. N 40 04.9 E 116 35</span>
+    <span class="opt-btn" data-q="299" data-ans="A" data-label="B" onclick="clickOpt(this)">B. N 40 04.3 E 116 35.1</span>
+    <span class="opt-btn" data-q="299" data-ans="A" data-label="C" onclick="clickOpt(this)">C. N 40.00845 E 114.58383</span>
+    <span class="opt-btn" data-q="299" data-ans="A" data-label="D" onclick="clickOpt(this)">D. N 40.24190 E 114.93000</span>
+    <span class="q-answer" id="ans299">✓ A</span>
+  </div>
+</div>
+</div>
+</div>
+<script>
+// 已答题标记（不保存，刷新即重置）
+let answered = {};
+
+function clickOpt(el) {
+  const qidx = parseInt(el.dataset.q);
+  if (answered[qidx]) return;
+
+  const userAns = el.dataset.label;
+  const correctAns = el.dataset.ans;
+  const isCorrect = userAns === correctAns;
+  answered[qidx] = true;
+
+  const parent = el.parentElement;
+  parent.querySelectorAll(".opt-btn").forEach(b => {
+    if (b.dataset.label === correctAns) {
+      b.classList.add("correct");
+    } else if (b === el && !isCorrect) {
+      b.classList.add("wrong");
+    }
+  });
+
+  const ansEl = parent.querySelector(".q-answer");
+  if (ansEl) ansEl.classList.add("show");
+}
+</script>
+</body>
+</html>
