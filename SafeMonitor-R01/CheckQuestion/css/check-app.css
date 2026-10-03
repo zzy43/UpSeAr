@@ -1,0 +1,642 @@
+/**
+ * 法定自查系统样式（3/4）业务层
+ * 左边「受检单位」栏、右边「问题库」和「审核计划总览」
+ */
+
+/* ================================
+   整体两栏布局
+   ================================ */
+.wrap {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  gap: 14px;
+  padding: 14px 18px 18px;
+}
+
+/* ================================
+   左边：受检单位
+   ================================ */
+.side {
+  flex: 0 0 var(--side-w);
+  width: var(--side-w);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--panel);
+  overflow: hidden;
+}
+
+.side-head {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 14px 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.side-title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.side-count {
+  font-size: 12px;
+  color: var(--text-faint);
+}
+
+.unit-list {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.side-foot {
+  flex: 0 0 auto;
+  padding: 10px 12px 12px;
+  border-top: 1px solid var(--line);
+}
+
+.side-add {
+  width: 100%;
+  justify-content: center;
+  border-style: dashed;
+  color: var(--text-dim);
+}
+
+/* 一个受检单位 */
+.unit {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  text-align: left;
+  transition: background 0.14s ease, border-color 0.14s ease;
+}
+
+.unit:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* 当前正在看的那个单位 */
+.unit.is-on {
+  border-color: rgba(236, 173, 41, 0.7);
+  background: rgba(236, 173, 41, 0.16);
+}
+
+.unit-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.unit-name {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.unit-plan {
+  display: block;
+  margin-top: 2px;
+  font-size: 11.5px;
+  color: var(--text-faint);
+}
+
+/* 计划月份已经到了 / 很近 */
+.unit-plan.is-soon {
+  color: var(--soon-ink);
+}
+
+.unit-plan.is-over {
+  color: var(--over-ink);
+}
+
+/* 这个单位的审核已经做完了 */
+.unit-plan.is-done {
+  color: var(--ok-ink);
+}
+
+/* 问题条数徽标 */
+.unit-badge {
+  flex: 0 0 auto;
+  min-width: 26px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  font-size: 12px;
+  text-align: center;
+  color: var(--text-dim);
+}
+
+.unit-badge.has {
+  color: #cfe0ff;
+  border-color: rgba(91, 143, 249, 0.5);
+  background: rgba(91, 143, 249, 0.14);
+}
+
+/* ================================
+   右边：主区外壳
+   ================================ */
+.main {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--panel);
+  overflow: hidden;
+}
+
+.pane {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.pane-head {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.pane-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.pane-sub {
+  margin-left: 8px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-faint);
+}
+
+.pane-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search {
+  width: 210px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.search:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* 统计那一行。
+   2026-09-21 用户要求：所有单位的副标题全部取消，把原来单独一栏的统计挪到
+   标题后面（`is-inline`），标题和统计并成一行 —— 省掉一整栏的高度。
+   所以这里分两块：`.stat-row` 是它自己的基础尺寸，`.is-inline` 把它收成行内。 */
+.stat-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 14.5px;
+  color: var(--text-dim);
+}
+
+/* 行内版：跟在标题后面。
+   ⚠ 它是嵌在 <h2> 里的，所以要自己把字体和粗细拉回来（不然会继承标题的大字号+粗体）。
+   也保留 .stat-row 这个类名 —— `renderIssuesList()` 靠 `pane.querySelector('.stat-row')`
+   定位它，搜索时只换它的内容。 */
+.stat-row.is-inline {
+  display: inline-flex;
+  margin-left: 16px;
+  font-size: 14.5px;
+  font-weight: 400;
+  vertical-align: middle;
+}
+
+.stat-row b {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.stat-sep {
+  color: var(--text-faint);
+}
+
+/* ================================
+   问题卡片列表
+   ================================ */
+/* 待审核 / 已完成 之间的分割线（2026-09-21 用户要求）：
+   中间一句小字，两边各一条横线 —— 比一条光秃巴巴的线看得明白 */
+.issue-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 8px 2px 2px;
+  font-size: 12px;
+  color: var(--text-faint);
+  user-select: none;
+}
+
+.issue-divider::before,
+.issue-divider::after {
+  content: "";
+  flex: 1 1 auto;
+  height: 1px;
+  background: var(--line-strong);
+}
+
+.issue-list {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  padding: 12px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.issue {
+  padding: 13px 16px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.035);
+  /* 左边一条色条：颜色跟问题级别走 */
+  border-left: 3px solid var(--line-strong);
+}
+
+.issue[data-level="一般"] {
+  border-left-color: var(--lv-1);
+}
+
+.issue[data-level="重要"] {
+  border-left-color: var(--lv-2);
+}
+
+.issue[data-level="严重"] {
+  border-left-color: var(--lv-3);
+}
+
+/* 已完成：左边色条改成**绿色**（2026-09-21 用户要求）——
+   一眼就是「这条已经处理过了」，比按级别上色更说明问题。
+   ⚠ 这条必须放在上面三条级别后面：选择器权重一样，靠顺序决出胜负 */
+.issue[data-status="done"] {
+  border-left-color: var(--done);
+}
+
+/* 已经纳入审核的整张卡片压淡一点，跟待办区分开 */
+.issue[data-status="done"] {
+  opacity: 0.62;
+}
+
+.issue-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+/* 卡片头上那排小牌子也大一号（和详情框的处理一致） */
+.issue .chip {
+  font-size: 14px;
+  padding: 4px 12px;
+}
+
+.issue-date {
+  font-size: 14.5px;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.issue-unit {
+  font-size: 14px;
+  color: var(--text-dim);
+}
+
+.issue-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ico {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-faint);
+  font-size: 13px;
+  line-height: 1;
+}
+
+.ico:hover {
+  color: var(--text);
+  border-color: var(--line-strong);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* 勾选 / 删除那两个图标按钮的 hover 色，也走状态色变量（亮色下才会是深色） */
+.ico.ok:hover {
+  color: var(--ok-ink);
+  border-color: rgba(52, 199, 89, 0.5);
+}
+
+.ico.del:hover {
+  color: var(--over-ink);
+  border-color: rgba(255, 69, 58, 0.5);
+}
+
+/* 问题内容：这是卡片上最该看清的一句 —— 加粗（2026-09-21 用户要求） */
+.issue-text {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/*
+ * 详细说明：小一号、压暗，**最多 6 行**，超过就用「…」收尾。
+ * ⚠ 行数为什么从 3 改成 6（2026-09-21 用户要求「宽度占满整个 div 之后再用 … 缩写」）：
+ *   详细说明里段落之间通常是**空行**（录入时敲了两下回车），而 pre-wrap 下
+ *   空行也占一行 —— 于是 3 行的额度被空行吃掉一半，实际只显示一个半段落
+ *   就被截掉了，看着像「没填满宽度就缩写」。放到 6 行刚好容下三个段落
+ *   （三个段落 + 两个空行 = 6 行）。改这一个数字就能调，不用动 JS。
+ */
+.issue-detail {
+  margin: 8px 0 0;
+  font-size: 16.5px;
+  line-height: 1.6;
+  color: var(--text);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 审核情况说明（去审核完之后回来填的那段）：卡片上最多 4 行，看全文点开卡片 */
+.issue-note {
+  margin: 8px 0 0;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--done);
+  background: rgba(52, 199, 89, 0.1);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.issue-note b {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ================================
+   取证附件（卡片底部那几个文件）
+   ================================ */
+.issue-files {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--line);
+}
+
+.issue-files .file-name {
+  flex: 0 1 auto;
+  max-width: 100%;
+  font-size: 14.5px;
+}
+
+/* 卡片右上角那个「附件 N」小牌子。
+   原来用的是 📎 这个 emoji —— 它是自带颜色的表情字形，在暗底上就是一团深灰，
+   根本看不清（2026-09-21 用户反馈「这个标记换一下，看不清」），
+   所以改成能跟着主题变色的文字 + 紫色小牌子。 */
+.chip.file-n {
+  color: #ded2ff;
+  background: rgba(140, 110, 255, 0.22);
+  border: 1px solid rgba(140, 110, 255, 0.55);
+}
+
+/* 空状态 */
+.empty {
+  margin: 40px auto;
+  max-width: 460px;
+  text-align: center;
+  font-size: 13.5px;
+  line-height: 1.8;
+  color: var(--text-faint);
+}
+
+/* ================================
+   审核计划总览（一张表）
+   ================================ */
+.plan-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  padding: 14px 16px 18px;
+}
+
+/* 这一页内容少（就一张表），所以字号给得比问题库那边大一号
+   —— 2026-09-21 用户要求「内容比较少，字体再大一些」 */
+.plan-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+.plan-table th,
+.plan-table td {
+  padding: 13px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+
+.plan-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--panel-solid);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+/* 表里的小牌子（审核员 / 未指定）也跟着大一点，不然跟旁边 16px 的字不搭 */
+.plan-table .chip {
+  font-size: 13.5px;
+  padding: 4px 12px;
+}
+
+/* 表里那两个 ✎ ✕ 图标按钮 */
+.plan-table .ico {
+  width: 30px;
+  height: 30px;
+  font-size: 15px;
+}
+
+/* 备注列里跟在文字后面的「附件 N」小牌子，要和文字隔开一点 */
+.plan-table td .chip.file-n {
+  margin-left: 8px;
+}
+
+.plan-table tr:hover td {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.plan-table .num {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.plan-table .cell-actions {
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* 距今那一列：快到期的用暖色 */
+.plan-table .is-soon {
+  color: var(--soon-ink);
+}
+
+.plan-table .is-over {
+  color: var(--over-ink);
+}
+
+/* 已完成的单位沉到表底，前面插一条分割线（和问题库那条一个样式思路：
+   两边细线夹一句小字，比光秃秃一条线看得明白） */
+.plan-divider td {
+  padding: 16px 16px 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.plan-divider span {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--text-faint);
+}
+
+.plan-divider span::before,
+.plan-divider span::after {
+  content: "";
+  flex: 1 1 auto;
+  height: 1px;
+  background: var(--line-strong);
+}
+
+/* 「已过期未完成」那条：小字用过期色（亮色下是深红），
+   一眼就知道下面这几行是要盯的（2026-09-21 加） */
+.plan-divider.is-over span {
+  color: var(--over-ink);
+}
+
+/* 已完成的那几行整体压淡一点，跟待办区分开 */
+.plan-table tr.is-audited td {
+  opacity: 0.72;
+}
+
+.plan-table tr.is-audited:hover td {
+  opacity: 1;
+}
+
+/* 计划表整行都能点（弹出这个单位的内容页），鼠标移上去给个手型 */
+.plan-table tbody tr[data-unit-view] {
+  cursor: pointer;
+}
+
+/* 行里那对 ✎ ✕ 还是普通按钮的手型 */
+.plan-table tbody tr[data-unit-view] .cell-actions button {
+  cursor: pointer;
+}
+
+/* 受检单位那一列：就是一行加粗文字，**不做成链接的样子** ——
+   点整行任意位置都能弹出这个单位的内容页，所以也不需要“只有这里可点”的暗示
+   （2026-09-21 用户要求去掉那个虚线链接） */
+.plan-unit-name {
+  color: var(--text);
+  font-size: 17px;
+  font-weight: 600;
+}
+
+/* 还没加单位时那段提示：这一页就它一段字，也给大一点 */
+.plan-body .empty {
+  margin-top: 32px;
+  font-size: 15.5px;
+  line-height: 1.9;
+}
+
+/* 小屏幕：左边那栏挪到上面，两栏变上下 */
+@media (max-width: 900px) {
+  .wrap {
+    flex-direction: column;
+    overflow: auto;
+  }
+
+  .side {
+    flex: 0 0 auto;
+    width: 100%;
+    max-height: 40vh;
+  }
+
+  .main {
+    flex: 1 1 auto;
+    min-height: 60vh;
+  }
+
+  .search {
+    width: 140px;
+  }
+}

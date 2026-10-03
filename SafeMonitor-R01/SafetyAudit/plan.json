@@ -1,0 +1,16 @@
+{
+  "theme": "Safety Audit",
+  "title": "安全审核 · 工作计划",
+  "updated": "2026-09-19",
+  "items": [
+    { "id": "plan", "name": "年度审核计划编制与发布", "subtitle": "" },
+    { "id": "prep", "name": "审核准备会 / 进场会", "subtitle": "" },
+    { "id": "doc", "name": "文件审查", "subtitle": "" },
+    { "id": "onsite", "name": "现场观察 / 访谈 / 实操验证", "subtitle": "" },
+    { "id": "report", "name": "末次会与审核报告评审", "subtitle": "" },
+    { "id": "rectify", "name": "整改通知下发与验证关闭", "subtitle": "" },
+    { "id": "ledger", "name": "台账维护与统计分析（重复率、整改及时率）", "subtitle": "" },
+    { "id": "committee", "name": "向安委会报告体系监督情况", "subtitle": "" }
+  ],
+  "tasks": []
+}

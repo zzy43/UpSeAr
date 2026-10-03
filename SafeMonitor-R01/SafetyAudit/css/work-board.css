@@ -1,0 +1,1028 @@
+/**
+ * 工作系统样式（2/4）表格层
+ * ==================================================================
+ * 结构（从外到里，父级 → 子级）：
+ *   .board-wrap                        滚动容器
+ *     .board                           网格（第 1 列是工作项目，后面 N 列是日期）
+ *       .corner / .col-head …          左上角那一格 + 日期表头（吸顶）
+ *       .row-head                      工作项目行头（吸左，可拖动排序）
+ *         .rh-grip                     左侧拖动把手
+ *         .rh-main > .rh-name / .rh-sub
+ *         .rh-actions > .ico           ✎ / ✕（悬浮才出现）
+ *       .cell                          单元格
+ *         .cell-inner                  内容层：内容全放这里，压暗时整块透明就行
+ *           .cell-add                   空格子上的「＋」
+ *           .cell-top > .cell-dot       有内容时最上面那行：小圆点 +（完成时）标记
+ *             .cell-done                「（已完成）」绿色标记（完成的格才有）
+ *           .cell-text
+ *           .cell-owners > .cell-owner
+ *         .cell-link                   「今天 → 工作日」的 2px 细线（一格一人一条，本行居中）
+ *           .cell-link-line            线本身（颜色 = 责任人牌子的颜色）
+ *           .cell-link-date            相隔 ≥ 3 天时，线中点上的预计完成日期（无底色）
+ *
+ * 状态统一写进 data-state（空格分隔），不再往元素上挂一串 class：
+ *   .col-head   weekend / past / today
+ *   .row-head   dim                                   只看某人时和他无关的行
+ *   .cell       weekend / past / today / task / owner / done / overdue / hit / dim
+ *   .row-head   is-finished / .cell finished           整个项目做完了（沉到最下面 + 压暗）
+ *   .row-head   is-empty / .cell empty                 整个项目还没排活（提到上端 + 暖色底）
+ *   .rh-done / .cell-done                              「（已完成）」标记（绿字，不要删除线）
+ * 只有临时交互态才用 class：
+ *   is-drop-target（拖名字经过格子）/ is-dragging / is-drop-before / is-drop-after（行头拖动排序）
+ *
+ * 父级开关：.board.is-filtered = 正在「只看某个人」，它的影响集中写在第 ⑤ 段
+ *
+ * 分段：① 容器  ② 吸顶表头  ③ 行头  ④ 单元格  ⑤ 只看某人  ⑥ 空表  ⑦ 小屏
+ * ==================================================================
+ */
+
+/* ================================
+   ① 表格容器
+   ================================ */
+.board-wrap {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 auto;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: rgba(255, 255, 255, 0.22) transparent;
+}
+
+.board-wrap::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.board-wrap::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 99px;
+}
+
+.board-wrap::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* 矩阵本体：第 1 列是工作项目，后面 N 列是日期 */
+.board {
+  display: grid;
+  grid-template-columns: var(--head-w) repeat(var(--cols), var(--col-w));
+  /* 第一行是日期表头，单独给它一个高度；其余行用 --row-h */
+  grid-template-rows: var(--head-h);
+  grid-auto-rows: var(--row-h);
+  min-width: max-content;
+  padding: 14px 24px 22px;
+  gap: 0;
+  /* 半透明底板：海报能透出来，但表格区域底色一致，文字才看得清。
+     这张表看得清不清楚，主要看这个值（越小越透、越好看不清）
+     ⚠ 想「海报再淡一点」改这个最有效：表格区域基本被这块板盖住，
+       光调 .bg::after 只看得出顶栏/底栏那几条窄边。2026-09-21 从 0.55 抬到 0.68 */
+  background: rgba(11, 13, 16, 0.68);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+/* ================================
+   ② 左上角 + 日期表头（吸顶）
+   ================================ */
+.corner,
+.col-head {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background: var(--panel-solid);
+  border-bottom: 1px solid var(--line-strong);
+  /* 这里原来有 backdrop-filter: blur()，已删。表头有一二十个吸顶元素，
+     每个都要在每一帧重新采样背景做模糊，横向拖动/滚动时会明显掉帧；
+     底色本来就不透明，模糊根本看不出来，删掉零视觉损失。 */
+}
+
+.corner {
+  left: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 40px 0 16px;   /* 右边留出「＋」的位置 */
+  border-right: 1px solid var(--line-strong);
+}
+
+/* 左上角那一格右边的「＋」：点一下加工作项目（平时藏着，鼠标移到这一格才出现） */
+.corner-add {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: 1px solid var(--line-strong);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-dim);
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  /* 看不见的时候不接鼠标，免得误点 */
+  pointer-events: none;
+  transition: opacity 0.15s ease, color 0.12s ease, border-color 0.12s ease;
+}
+
+/* 鼠标移到左上角那一格上（或键盘 Tab 到它）才露出来 */
+.corner:hover .corner-add,
+.corner-add:focus-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.corner-add:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.corner-title {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.corner-sub {
+  font-size: 16px;
+  color: var(--text-faint);
+}
+
+.col-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  border-right: 1px solid var(--line);
+  color: var(--text-dim);
+  user-select: none;
+  /* 按住表头左右拖 = 横向滚动 */
+  cursor: grab;
+}
+
+/* 正在拖表头时整张表用抓手光标 */
+.board.is-panning,
+.board.is-panning .col-head {
+  cursor: grabbing;
+}
+
+/* 字号是按“常规字体”定的。以前用魔兽圆体时是 15 / 21，现在抬到 18 / 26：
+   同样 px 下常规字体的数字看着比圆体小一点，而且表头是整个表的导航，
+   大一点更好认。觉得过火就往下调，--head-h 经验值 = 日期字号 + 50。
+   星期那行 2026-09-21 改成全写「星期一」+ 加粗（600，别用 700，用户嫌太粗）：
+   颜色跟正文一致，用 --text（深色模式是略带蓝的 #bed3ff）；
+   亮色模式的黑字在 work-light.css 里覆盖 */
+.col-head .ch-week {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+.col-head .ch-day {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--text);
+}
+
+/* 注意：星期那行现在所有日子都是同一个颜色，周末不再单独压暗
+   （用户要求「都用同一个颜色」），所以这里没有 .ch-week 的覆盖规则了 */
+
+.col-head[data-state~="past"] {
+  opacity: 0.55;
+}
+
+/* ---- 双休日 / 法定放假（2026-09-21 用户要求：用日历模式那一套颜色标出来）----
+   这里用 background-image 叠一层淡色，而不是改 background ——
+   表头本来那个不透明底色（--panel-solid）要留着，吸顶时不能透出底下的格子；
+   格子那边同理（past 的暗底在 background-color 上，两层能同时生效） */
+.col-head[data-state~="weekend"] {
+  background-image: linear-gradient(rgba(52, 199, 89, 0.13), rgba(52, 199, 89, 0.13));
+}
+
+/* 法定放假：亮粉色（2026-09-21 用户要求「用亮一点的粉色」，原来是大红） */
+.col-head[data-state~="off"] {
+  background-image: linear-gradient(rgba(255, 122, 178, 0.16), rgba(255, 122, 178, 0.16));
+}
+
+/* 节日名 / 「XX调班」那一行（颜色和日历里那行一致） */
+.ch-hol {
+  max-width: 100%;
+  font-size: 11px;
+  line-height: 1.1;
+  color: rgba(255, 158, 200, 0.95);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.col-head[data-state~="makeup"] .ch-hol {
+  color: #ffc46b;
+}
+
+/* 「今天」那列已经有今天徽标了，再加一行会把 78px 的表头挤爆，就不显示了
+   （它的放假底色还在） */
+.col-head[data-state~="today"] .ch-hol {
+  display: none;
+}
+
+/* 今天的表头高亮 */
+.col-head[data-state~="today"] {
+  background: linear-gradient(180deg, rgba(33, 150, 243, 0.32) 0%, rgba(33, 150, 243, 0.12) 100%);
+  color: #d8ecff;
+  opacity: 1;
+  box-shadow: inset 0 3px 0 0 var(--today);
+}
+
+.col-head[data-state~="today"] .ch-day {
+  color: #ffffff;
+}
+
+.ch-flag {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--today);
+  color: #fff;
+}
+
+/* ================================
+   ③ 行头（工作项目，吸左）
+   ================================ */
+.row-head {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px 0 8px;
+  background: var(--row-head-bg);
+  border-right: 1px solid var(--line-strong);
+  border-bottom: 1px solid var(--line);
+  /* 同上：吸左的行头也是每行一个，blur 已删；--row-head-bg 本来就不透明 */
+  cursor: pointer;
+}
+
+.row-head:hover {
+  background: var(--row-head-bg-hover);
+}
+
+/* 左侧拖动把手：按住上下拖，可以调整这一行在工作项目里的位置 */
+.rh-grip {
+  flex: 0 0 auto;
+  width: 14px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1;
+  color: var(--text-faint);
+  opacity: 0.45;
+  cursor: grab;
+  user-select: none;
+  transition: opacity 0.15s ease;
+}
+
+.row-head:hover .rh-grip {
+  opacity: 1;
+}
+
+.row-head:active .rh-grip {
+  cursor: grabbing;
+}
+
+/* 项目名 */
+.rh-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.rh-name {
+  display: -webkit-box;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.35;
+  /* 字大了容易超出，允许折成两行，最多两行 */
+  white-space: normal;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 副标题（项目弹层里填的）：没填就完全不占位置 */
+.rh-sub {
+  display: block;
+  font-size: 14px;
+  color: var(--text-faint);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 右侧的 ✎ / ✕：悬浮在行的右端，不占项目名的宽度，所以列可以更窄 */
+.rh-actions {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 4px;
+  padding-left: 12px;
+  /* 左侧渐变遮底：文字也不会穿透到按钮下面 */
+  background: linear-gradient(90deg, transparent 0, var(--row-head-bg) 45%);
+  opacity: 0;
+  /* 不可见时不接受点击，避免误删（触屏没有 hover 尤其要注意） */
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.row-head:hover .rh-actions {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.rh-actions .ico {
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: 1px solid var(--line-strong);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-dim);
+  font-size: 13px;
+}
+
+.rh-actions .ico:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.rh-actions .ico.del:hover {
+  color: #ffb4ae;
+  border-color: rgba(255, 69, 58, 0.5);
+  background: rgba(255, 69, 58, 0.14);
+}
+
+/* 已置顶的那个 ▲ 按钮：亮起来，一眼能看出这行是钉住的 */
+.rh-actions .ico.is-on {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.16);
+  opacity: 1;
+  font-size: 11px;
+}
+
+/* 已置顶的行：项目名前那个 ▲
+   （用字库里的字符而不是 📌 那个 emoji —— emoji 自带颜色、改不了，
+    这个能跟着主题走，见下面 color；2026-09-21 用户要求換掉） */
+.rh-pin {
+  margin-right: 6px;
+  font-size: 12px;
+  line-height: 1;
+  vertical-align: 2px;
+  color: var(--accent);
+}
+
+/* ---- 拖动排序时的临时态 ---- */
+/* 正在被拖的那一行淡一点 */
+.row-head.is-dragging {
+  opacity: 0.4;
+}
+
+/* 松手会插到这条线的位置 */
+.row-head.is-drop-before::before,
+.row-head.is-drop-after::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.row-head.is-drop-before::before {
+  top: -1px;
+}
+
+.row-head.is-drop-after::after {
+  bottom: -1px;
+}
+
+/* ---- 空白行（首行留的新工作占位，见 work-edit.js 的 materializeBlank）
+   不拖、没有 ✎/✕，左边一条虚线竖边 + 右上角一个「待填写」小胶囊，
+   一眼能看出它不是真项目 ---- */
+.row-head.is-blank {
+  border-left: 3px dashed rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+}
+
+/* 先别跟真行一样鼠标一扫就变底色，它本来就是空的 */
+.row-head.is-blank:hover {
+  background: var(--row-head-bg-hover);
+}
+
+.rh-grip.is-off {
+  opacity: 0.18;
+  cursor: default;
+}
+
+.row-head.is-blank .rh-name {
+  color: var(--text-faint);
+  font-weight: 500;
+  font-style: italic;
+}
+
+.row-head.is-blank .rh-sub {
+  font-style: italic;
+  opacity: 0.8;
+}
+
+/* 右上角「待填写」：和真行那两个 ✎/✕ 不一样，这个不是按钮 */
+.rh-flag {
+  padding: 2px 9px;
+  border-radius: 999px;
+  border: 1px dashed var(--line-strong);
+  color: var(--text-faint);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* ---- 已完成的工作项目（名下安排全部勾了完成）
+   顺序上自动沉到表格最下面（在 work-edit.js 的 reorder 里定），
+   底色也和未完成的行分开，一眼扫得出「哪些收尾了」。
+   ★ 只改这两个变量就够了：--row-head-bg / --row-head-bg-hover 本来就是
+     .row-head 的底色，连 .rh-actions 那条渐变遮底都会跟着变。
+   亮色模式在 work-light.css 里覆盖（和双休日 / 法定假期一个规矩）。 ---- */
+.row-head.is-finished {
+  --row-head-bg: #20242c;
+  --row-head-bg-hover: #262b34;
+}
+
+.row-head.is-finished .rh-name {
+  color: var(--text-dim);
+}
+
+/* 「（已完成）」这个说明标记，跟在项目名后面。
+   ⚠ **不要用删除线**（用户 2026-09-21 明确要求：「完成的工作，不要在工作项目添加删除线，
+     而是添加一个（已完成）的说明标记」）；字号用 em，跟着项目名的字号缩放 */
+.rh-done {
+  margin-left: 4px;
+  font-size: 0.68em;
+  font-weight: 500;
+  color: var(--done);
+  white-space: nowrap;
+}
+
+.row-head.is-finished .rh-sub {
+  opacity: 0.7;
+}
+
+/* ---- 还没排活的工作项目（一条安排都没有）
+   顺序上自动提到上端（紧跟在置顶区后面，见 work-edit.js 的 reorder），
+   用**暖色底 + 左边一条金线 +「待安排」小胶囊**标出来 —— 
+   和上面那条「已完成」（冷灰）一眼就能分开。 ---- */
+.row-head.is-empty {
+  --row-head-bg: #2a2417;
+  --row-head-bg-hover: #332c1c;
+  border-left: 3px solid rgba(236, 173, 41, 0.55);
+}
+
+.row-head.is-empty .rh-name {
+  color: var(--text-dim);
+}
+
+/* 空白行上的格子：里面那个「＋」淡一点，整行看着就是「还没实体」 */
+.cell[data-state~="blank"] .cell-add {
+  opacity: 0.22;
+}
+
+/* ================================
+   ④ 单元格
+   ================================ */
+.cell {
+  position: relative;
+  padding: 8px 10px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+/* 内层父级：内容都在它里面 */
+.cell-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  height: 100%;
+}
+
+/* 悬停底色：用 background-color（不能用 background 简写！）
+   —— 简写会把双休日/假期那层 background-image 一并清掉，颜色一闪就没了 */
+.cell:hover {
+  background-color: var(--panel-hover);
+}
+
+/* ---- 按日期的底色 ---- */
+/* 双休日：淡绿（和日历模式同一套颜色）。
+   用 background-image 叠一层而不是 background —— 这样下面 past 的暗底
+   （写在 background-color 上）依然生效，两层颜色同时看得到 */
+.cell[data-state~="weekend"] {
+  background-image: linear-gradient(rgba(52, 199, 89, 0.12), rgba(52, 199, 89, 0.12));
+}
+
+/* 法定放假：淡粉（同上，只是叠的颜色不同）；调休上班不染色，跟工作日一样 */
+.cell[data-state~="off"] {
+  background-image: linear-gradient(rgba(255, 122, 178, 0.15), rgba(255, 122, 178, 0.15));
+}
+
+/* ⚠ past / today 只能用 background-color：用 background 简写会把上面那两层
+   双休日/放假底色（写在 background-image 上）清掉 */
+.cell[data-state~="past"] {
+  background-color: rgba(0, 0, 0, 0.18);
+}
+
+.cell[data-state~="today"] {
+  background-color: rgba(33, 150, 243, 0.09);
+}
+
+.cell[data-state~="today"]:hover {
+  background-color: rgba(33, 150, 243, 0.16);
+}
+
+/* ---- 内容元素 ---- */
+/* 空单元格上的「＋」 */
+.cell-add {
+  align-self: center;
+  font-size: 20px;
+  color: var(--text-faint);
+  opacity: 0.35;
+  transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+.cell:hover .cell-add {
+  opacity: 1;
+  color: var(--accent);
+}
+
+/* 有内容的格子最上面那一行：小圆点 +（完成的格子）「（已完成）」标记。
+   圆点单独包一层是为了让标记能**紧跟在圆点旁边**（cell-inner 是竖排 flex，
+   不包的话标记会掉到下一行去） */
+.cell-top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* 有内容的格子前面的小圆点 */
+.cell-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex: 0 0 auto;
+}
+
+/* 完成的这一格：内容压淡 + 那行小圆点后面跟一个绿色的「（已完成）」标记
+   ⚠ **不要用删除线**（2026-09-21 用户要求：「表格模式的已完成的具体工作，
+     也不要使用删除线，同样添加（已完成）标记」→「加在上面，小绿点旁边」——
+     和行头那个 .rh-done 一个规矩） */
+.cell[data-state~="done"] .cell-text {
+  color: var(--text-dim);
+}
+
+.cell-done {
+  font-size: 12px;
+  line-height: 1.3;
+  color: var(--done);
+}
+
+.cell[data-state~="done"] .cell-dot {
+  background: var(--done);
+}
+
+/* 这天要做什么 */
+.cell-text {
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--text);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ---- 责任人小牌子（格子里和弹层里共用同一个样子） ---- */
+.cell-owners {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-self: flex-start;
+  max-width: 100%;
+  max-height: 42px;   /* 最多露两行，再多就裁掉，别把格子撑破 */
+  overflow: hidden;
+}
+
+.cell-owner {
+  display: inline-block;
+  max-width: 100%;
+  padding: 1px 7px;
+  border-radius: 999px;
+  /* 字色见 :root 里的 --chip-ink（亮蓝色） */
+  color: var(--chip-ink);
+  font-size: 12px;
+  line-height: 1.45;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* 有责任人时内容行数收紧一点，保证整格放得下 */
+.cell[data-state~="owner"] .cell-text {
+  -webkit-line-clamp: 2;
+}
+
+/* ---- 有安排 / 已完成 / 逾期：左侧色条 ---- */
+.cell[data-state~="task"] {
+  border-left: 2px solid rgba(236, 173, 41, 0.55);
+}
+
+.cell[data-state~="done"] {
+  border-left-color: rgba(52, 199, 89, 0.6);
+}
+
+/* 逾期：未完成且日期已过 */
+.cell[data-state~="overdue"] {
+  border-left-color: var(--danger);
+}
+
+.cell[data-state~="overdue"] .cell-dot {
+  background: var(--danger);
+}
+
+.cell[data-state~="overdue"] .cell-text {
+  color: #ffb4ae;
+}
+
+/* ---- 整个工作项目都做完了：行里每一格都压暗一点，跟未完成的行分开
+   （行的顺序在 work-edit.js 的 reorder 里沉到最下面） ---- */
+.cell[data-state~="finished"] {
+  background-color: rgba(255, 255, 255, 0.025);
+}
+
+/* ⚠ 上面那条和 .cell:hover 特异性一样，写在后面会把悬停底色盖掉 —— 
+   所以悬停单独给一条更具体的（否则已完成的行点上去像点不动） */
+.cell[data-state~="finished"]:hover {
+  background-color: rgba(255, 255, 255, 0.065);
+}
+
+.cell[data-state~="finished"] .cell-inner {
+  opacity: 0.62;
+}
+
+/* ---- 还没排活的项目：整行格子也压一层很淡的暖色
+   ⚠ 写在 finished 这一块（past / hover 之后）—— empty 和 past 特异性一样，
+     写前面的话整行的过去格子会被 past 的暗底盖掉，一行里颜色就不统一了。
+     hover 单独给一条更具体的（和 finished 一个道理） ---- */
+.cell[data-state~="empty"] {
+  background-color: rgba(236, 173, 41, 0.045);
+}
+
+.cell[data-state~="empty"]:hover {
+  background-color: rgba(236, 173, 41, 0.09);
+}
+
+/* ---- 拖着责任人名字经过格子时高亮，明确告诉用户可以松手 ---- */
+.cell.is-drop-target {
+  outline: 2px dashed var(--accent);
+  outline-offset: -3px;
+}
+
+/* 里面有详细内容 / 附件：右上角标小记号（可能两个都有，排成一行） */
+.cell-mores {
+  position: absolute;
+  top: 4px;
+  right: 5px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  pointer-events: none;
+}
+
+.cell-more {
+  font-size: 11px;
+  line-height: 1;
+  color: var(--text-faint);
+}
+
+/* ---- 从今天连到工作日的细线 ----
+   线挂在格子里的位置（top / left / width）由 js/work-board.js 的 buildRowLinks + linkHtml 算好，
+   同一行里好几条线时，各自占一条垂直轨道，不会叠在一起 */
+.cell-link {
+  position: absolute;
+  display: flex;
+  flex-direction: column-reverse;   /* 主责任人的线在最下面 */
+  gap: 13px;                        /* 一格多人时的间距（要跟 js 里的 LINK_GAP 一致） */
+  /* 只是看的东西，别挡着点格子（线上的日期牌单独开了可点） */
+  pointer-events: none;
+}
+
+.cell-link-line {
+  position: relative;
+  z-index: 0;
+  display: block;
+  height: 2px;
+  border-radius: 2px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.35);
+}
+
+/* 应该完成的日期：不带底色，压在线上，层级比线高，同样在行高度里垂直居中 */
+.cell-link-date {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  /* 线整条是不接鼠标的，但日期牌要能点（点一下编辑这条安排） */
+  pointer-events: auto;
+  cursor: pointer;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
+}
+
+.cell-link-date:hover {
+  color: var(--accent);
+}
+
+/* ================================
+   ⑤ 只看某个人（父级开关：.board.is-filtered）
+   ================================ */
+/* 这段只负责「剩下的东西长什么样」：
+   别人的工作项目行、别人的格子内容，都是在 js/work-board.js 里**直接不画**的
+   （行是整行不画；格子必须留一个空格占位，否则整张网格会错位）。
+   所以这里已经没有「压暗」类规则了。 */
+
+/* 属于这个人的格子：亮起来，一眼看到活在哪几天
+   （用 background-color，好让双休日/假期那层 background-image 还在） */
+.board.is-filtered .cell[data-state~="hit"] {
+  background-color: rgba(91, 143, 249, 0.17);
+  box-shadow: inset 0 0 0 1px rgba(91, 143, 249, 0.45);
+}
+
+.board.is-filtered .cell[data-state~="hit"]:hover {
+  background-color: rgba(91, 143, 249, 0.26);
+}
+
+/* 别人的活：格子是空的（内容没画），鼠标移上去也别亮，
+   别让人以为空着就可以点 */
+.board.is-filtered .cell[data-state~="hidden"] {
+  cursor: default;
+}
+
+.board.is-filtered .cell[data-state~="hidden"]:hover {
+  background: transparent;
+}
+
+/* ================================
+   ⑥ 「工作查询」视图（同一块区域里换掉表格）
+   ================================ */
+.board.is-query {
+  display: block;
+  padding: 18px 24px 26px;
+  /* 表格布局里 .board 是 min-width:max-content，长文本会把宽度擑爆，
+     查询视图改成跟容器一样宽 */
+  min-width: 0;
+}
+
+.query-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+/* 右上角：日期范围 + 两个按钮 */
+.query-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.query-range {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+.query-range input {
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-strong);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13px;
+  color-scheme: dark;
+}
+
+.query-range .q-tilde {
+  color: var(--text-faint);
+}
+
+.query-title {
+  margin: 0 0 6px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.query-sum {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-dim);
+}
+
+.query-table {
+  /* 固定列宽：前面几列定死，后面不写宽度的「详细内容」把剩下的宽度全占了 */
+  table-layout: fixed;
+  width: 100%;
+  /* 窗口很窄时保底宽度，不够就横向滚动 */
+  min-width: 1180px;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+.query-table .c-date {
+  width: 96px;
+}
+
+.query-table .c-state {
+  width: 104px;
+}
+
+.query-table .c-item {
+  width: 190px;
+}
+
+.query-table .c-text {
+  width: 190px;
+}
+
+.query-table .c-files {
+  width: 200px;
+}
+
+/* 详细内容不写宽度 → 自动拿剩下的全部（宽屏时会把屏幕铺满） */
+
+.query-table th,
+.query-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.query-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--panel-solid);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+/* 日期列窄一点，详细内容列给它最宽 */
+.query-table .q-date {
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.query-table .q-week {
+  margin-left: 6px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-faint);
+}
+
+.query-table .q-item {
+  max-width: 220px;
+}
+
+.query-table .q-sub {
+  display: block;
+  font-size: 13px;
+  color: var(--text-faint);
+}
+
+.query-table .q-text {
+  max-width: 220px;
+}
+
+/* 详细内容里换行原样保留，长单词/长路径也能折断 */
+.query-table .q-detail {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: var(--text-dim);
+}
+
+/* 相关文件：每个文件各自一行 */
+.query-file {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 13px;
+  color: var(--text);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.query-file:last-child {
+  margin-bottom: 0;
+}
+
+.query-file:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.query-table .q-none {
+  color: var(--text-faint);
+}
+
+.query-table .q-state {
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.query-table tr[data-state="done"] .q-state {
+  color: var(--done);
+}
+
+.query-table tr[data-state="overdue"] .q-state {
+  color: var(--danger);
+}
+
+.query-table tr[data-state="today"] .q-state {
+  color: var(--today);
+}
+
+.query-empty {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-dim);
+}
+
+/* ================================
+   ⑦ 空表提示
+   ================================ */.empty {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--line);
+}
+
+/* ================================
+   ⑦ 小屏适配
+   ================================ */
+@media (max-width: 768px) {
+  .topbar {
+    padding: 14px 14px 10px;
+  }
+
+  .brand-title {
+    font-size: 20px;
+  }
+
+  .board {
+    padding: 10px 12px 18px;
+  }
+
+  /* 底部那条 .footbar 已经去掉了（见 work-base.css 里的说明） */
+}

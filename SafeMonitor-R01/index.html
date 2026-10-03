@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--
+  Vanilla CardSlider - Material Design 内容展示组件
+  作者：Riad Kilani (@SyntaxSidekick)
+  作品集：https://riadkilani.com
+  GitHub：https://github.com/SyntaxSidekick
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#1a1a1a">
+  <title>圆通安全审核系统</title>
+  <!--
+    图标用内联 SVG，不再引 Google 的 Material Icons 字体：
+    那个字体来自 fonts.googleapis.com，国内打不开，图标会变成 chevron_left 这种文字。
+    内联 SVG 不需要任何外网请求，断网也能正常显示。
+    字体走系统字体（见 css/styles.css 里的 --font-sans）。
+  -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="progress-indicator" role="progressbar" aria-label="Slide transition indicator"></div>
+
+    <main role="main">
+      <div id="slide-carousel" aria-label="Content showcase carousel">
+        <!-- 幻灯片元素将由脚本动态生成 -->
+      </div>
+    </main>
+
+    <aside class="slide-info" id="slide-info-primary">
+      <div class="genre-box">
+        <div class="genre-text" id="current-genre-primary"></div>
+      </div>
+      <div class="title-box-top">
+        <div class="title-top" id="current-title-top-primary"></div>
+      </div>
+      <div class="title-box-bottom">
+        <div class="title-bottom" id="current-title-bottom-primary"></div>
+      </div>
+      <div class="synopsis" id="current-synopsis-primary"></div>
+    </aside>
+
+    <aside class="slide-info" id="slide-info-secondary">
+      <div class="genre-box">
+        <div class="genre-text" id="current-genre-secondary"></div>
+      </div>
+      <div class="title-box-top">
+        <div class="title-top" id="current-title-top-secondary"></div>
+      </div>
+      <div class="title-box-bottom">
+        <div class="title-bottom" id="current-title-bottom-secondary"></div>
+      </div>
+      <div class="synopsis" id="current-synopsis-secondary"></div>
+    </aside>
+
+    <!-- Material Design 控制栏 -->
+    <div class="material-controls" id="slide-controls" role="navigation" aria-label="Slide navigation">
+      <!-- 内联布局的导航控件 -->
+      <div class="material-inline-controls">
+        <button class="material-fab" data-action="prev" aria-label="Previous slide">
+          <span class="material-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+          </span>
+          <div class="material-ripple"></div>
+        </button>
+        
+        <div class="slide-info">
+          <div class="slide-counter">
+            <span class="current-slide">1</span>
+            <span class="slide-separator">/</span>
+            <span class="total-slides">7</span>
+          </div>
+          
+          <!-- 计数器下方的进度条 -->
+          <div class="material-progress">
+            <div class="progress-track">
+              <div class="progress-fill" id="carousel-progress-bar"></div>
+            </div>
+          </div>
+        </div>
+        
+        <button class="material-fab" data-action="play-pause" aria-label="Play carousel">
+          <span class="material-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+          <div class="material-ripple"></div>
+        </button>
+        
+        <button class="material-fab" data-action="next" aria-label="Next slide">
+          <span class="material-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+          </span>
+          <div class="material-ripple"></div>
+        </button>
+      </div>
+    </div>
+
+    <div class="loading-screen" id="loading-screen">
+      <div class="spinner"></div>
+      <p>Loading content...</p>
+    </div>
+
+    <!-- 配置文件必须最先加载 -->
+    <script src="js/config.js"></script>
+    <script src="js/scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,718 @@
+/**
+ * 法定自查系统样式（2/4）组件层
+ * 弹层、表单、轻提示
+ */
+
+/* ================================
+   弹层
+   ================================ */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  /* 不用 backdrop-filter：每敲一个字都要重画整屏模糊，打字会卡 */
+  background: rgba(0, 0, 0, 0.66);
+  opacity: 0;
+  transition: opacity 0.16s ease;
+}
+
+.modal.show {
+  opacity: 1;
+}
+
+.modal[hidden] {
+  display: none;
+}
+
+.modal-card {
+  width: min(620px, 100%);
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--panel-solid);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+  transform: translateY(10px) scale(0.98);
+  transition: transform 0.16s ease;
+}
+
+/* 大一号的弹层（现在只有「问题详情」用）：宽给到 620 的 1.5 倍，
+   高也随之放宽 —— 2026-09-21 用户要求「内容框整个框体大到原来的 1.5 倍」 */
+.modal-card.is-wide {
+  width: min(930px, 100%);
+  max-height: 92vh;
+}
+
+/* 再大一号：现在「记录 / 编辑问题」和「问题详情」都用它
+   （620 × 1.6 = 992，2026-09-21 用户要求；之后又要求在此基础上再加宽 1.5 倍 → 1488。
+    1488 已经接近常见笔记本整屏宽，所以窗口不够宽时就是「铺满窗口」）
+   里面整套字号也都放大，不然光框大、字小更不搭。 */
+.modal-card.is-xl {
+  width: min(1488px, 100%);
+  max-height: 92vh;
+}
+
+.modal-card.is-xl .modal-title {
+  font-size: 19px;
+}
+
+.modal-card.is-xl .field-label {
+  font-size: 13.5px;
+  margin-bottom: 7px;
+}
+
+.modal-card.is-xl .field input[type="text"],
+.modal-card.is-xl .field input[type="month"],
+.modal-card.is-xl .field input[type="date"],
+.modal-card.is-xl .field select,
+.modal-card.is-xl .field textarea {
+  padding: 11px 14px;
+  font-size: 15.5px;
+}
+
+.modal-card.is-xl .field textarea {
+  min-height: 100px;
+}
+
+.modal-card.is-xl .field textarea.tall {
+  min-height: 175px;
+}
+
+.modal-card.is-xl .check {
+  font-size: 14.5px;
+}
+
+.modal-card.is-xl .hint {
+  font-size: 13px;
+}
+
+/* 附件那几行也跟着放大 */
+.modal-card.is-xl .file-name {
+  font-size: 14.5px;
+}
+
+.modal-card.is-xl .file-size {
+  font-size: 12.5px;
+}
+
+.modal-card.is-xl .file-row {
+  padding: 9px 12px;
+}
+
+.modal-card.is-xl .drop-zone {
+  padding: 22px;
+  font-size: 14px;
+}
+
+.modal-card.is-xl .modal-body {
+  padding: 18px 22px;
+}
+
+.modal.show .modal-card {
+  transform: none;
+}
+
+.modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.modal-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.modal-x {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--text-dim);
+}
+
+.modal-x:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.modal-body {
+  padding: 16px 18px;
+  overflow: auto;
+}
+
+.modal-foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 18px 16px;
+  border-top: 1px solid var(--line);
+}
+
+/* 左对齐的那种「删除」按钮丢到左边去 */
+.modal-foot .spacer {
+  flex: 1 1 auto;
+}
+
+/* ================================
+   表单
+   ================================ */
+.field {
+  display: block;
+  margin-bottom: 14px;
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.field input[type="text"],
+.field input[type="month"],
+.field input[type="date"],
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-strong);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.field textarea {
+  min-height: 84px;
+  resize: vertical;
+}
+
+.field textarea.tall {
+  min-height: 150px;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* 「日期 + 级别」这种两三个字段并排 */
+.field-row {
+  display: flex;
+  gap: 12px;
+}
+
+.field-row > .field {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* 选择框在暗底下的下拉列表 */
+.field select option {
+  background: var(--panel-solid);
+  color: var(--text);
+}
+
+/* ================================
+   审核员多选（单位弹层里）
+   ================================ */
+.who-pick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* 一个小牌子 = 一个人。没选中的是空框，选中的就填上那个人的颜色 */
+.who-opt {
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-dim);
+  font-size: 13px;
+  transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+}
+
+.who-opt:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+}
+
+.who-opt.is-on {
+  background: var(--who, #6b7280);
+  border-color: transparent;
+  /* 字色：没自定义过就用 :root 里的 --chip-ink（亮蓝色），
+     在「⋯ → 🎨 编辑样式」里给某人定了字色就是 --ink（由 JS 写在 style 上） */
+  color: var(--ink, var(--chip-ink));
+  font-weight: 600;
+}
+
+.who-opt.is-on::after {
+  content: " ✓";
+  font-size: 11px;
+}
+
+/* 表格里一行摆多个审核员小牌子 */
+.who-list {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-dim);
+  cursor: pointer;
+  user-select: none;
+}
+
+.check input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--done);
+}
+
+.hint {
+  margin: 10px 0 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-faint);
+}
+
+.hint code {
+  color: var(--accent);
+  font-family: "Consolas", "Courier New", monospace;
+}
+
+/* ================================
+   取证附件（上传区 + 附件列表）
+   和安全审核那套长得一样，用法也一致
+   ================================ */
+.file-list {
+  margin-bottom: 10px;
+}
+
+.file-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  margin-bottom: 6px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.file-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text);
+  font-size: 13px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.file-name:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.file-size {
+  flex: 0 0 auto;
+  font-size: 11px;
+  color: var(--text-faint);
+}
+
+.file-del {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border-radius: 6px;
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.file-del:hover {
+  color: var(--over-ink);
+  border-color: rgba(255, 69, 58, 0.5);
+  background: rgba(255, 69, 58, 0.14);
+}
+
+.drop-zone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  border: 1px dashed var(--line-strong);
+  color: var(--text-dim);
+  font-size: 13px;
+  text-align: center;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.drop-zone.is-over {
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* 鼠标停在图片附件上，浮出来看图片本身 */
+.image-tip {
+  position: fixed;
+  z-index: 65;
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-strong);
+  background: var(--panel-solid);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+.image-tip[hidden] {
+  display: none;
+}
+
+.image-tip img {
+  display: block;
+  max-width: 420px;
+  max-height: 320px;
+  border-radius: 4px;
+}
+
+/* ================================
+   「问题详情」只读框（点卡片弹的那个）
+   里面一个输入框都没有，只有看的和链的。
+   ⚠ 框体跟「编辑问题」一样是 .modal-card.is-xl（1488px），
+     2026-09-21 用户要求「和编辑页一样大小」。
+     字号也跟着放大了一轮，不然宽框里字小很空。
+   ================================ */
+.view-head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* 头部那排小牌子（级别 / 来源 / 记录人 / 状态）也大一号 */
+.view-head .chip {
+  font-size: 13.5px;
+  padding: 4px 12px;
+}
+
+.view-date {
+  font-size: 15px;
+  color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+.view-unit {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* 问题描述：框里最该看清的一句，比卡片上再大一点 */
+.view-text {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* 详细说明：整段都显示（不像卡片上只给三行），保留换行。
+   2026-09-21 用户要求「字体再大一点，深一点」：13.5px/--text-dim → 17px/--text */
+.view-detail {
+  margin: 12px 0 0;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.03);
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--text);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: 46vh;
+  overflow-y: auto;
+}
+
+.view-files {
+  margin-top: 16px;
+}
+
+/* 单位内容页里的「问题库共 N 条」和备注那两行 */
+.unit-view-count {
+  margin: 12px 0 0;
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--text-dim);
+}
+
+.unit-view-count b {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.unit-view-note {
+  margin: 8px 0 0;
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--text);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.view-files .file-list {
+  margin-top: 8px;
+}
+
+/* 审核情况说明（详情框里整段显示，带绿色左边框，和「已完成」一个色系） */
+.view-note {
+  margin-top: 16px;
+}
+
+.view-note .field-label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.view-note-body {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--done);
+  background: rgba(52, 199, 89, 0.1);
+  font-size: 15.5px;
+  line-height: 1.75;
+  color: var(--text);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* 图片缩略图：点开是原图，鼠标停上去还有个大预览 */
+.view-thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.view-thumb {
+  display: block;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-strong);
+  overflow: hidden;
+  line-height: 0;
+  transition: border-color 0.15s ease;
+}
+
+.view-thumb:hover {
+  border-color: var(--accent);
+}
+
+.view-thumb img {
+  display: block;
+  width: 150px;
+  height: 112px;
+  object-fit: cover;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* ================================
+   「编辑样式」弹层（改审核员牌子的底色 / 字色）
+   ================================ */
+.style-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* 左边那个实时预览的牌子：宽度固定，改颜色时不会左右跳 */
+/* 左边那个实时预览的牌子：宽度固定，改单字时不会左右跳
+   （牌子上显示的是**安全审核日历格子里那个字**，所以内容窄） */
+.style-row .chip.who {
+  flex: 0 0 auto;
+  min-width: 44px;
+  justify-content: center;
+  font-size: 14px;
+}
+
+/* 审核员全名固定一个宽度，后面几列就对齐了 */
+.style-full {
+  flex: 0 0 auto;
+  min-width: 66px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.style-pick {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  color: var(--text-dim);
+}
+
+/* 「单字」那个小输入框：一个字，居中 */
+.style-pick input[type="text"] {
+  width: 48px;
+  padding: 5px 6px;
+  border-radius: 8px;
+  border: 1px solid var(--line-strong);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 15px;
+  text-align: center;
+}
+
+.style-pick input[type="color"] {
+  width: 46px;
+  height: 30px;
+  padding: 1px;
+  border-radius: 8px;
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  cursor: pointer;
+}
+
+/* 文字色和十六进制值，方便对着抄 */
+.style-hex {
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 11.5px;
+  color: var(--text-faint);
+}
+
+/* ================================
+   「新增审核员」弹层：取色器 + 几个常用色块
+   ================================ */
+.color-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.color-row input[type="color"] {
+  width: 52px;
+  height: 34px;
+  padding: 1px;
+  border-radius: 8px;
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  cursor: pointer;
+}
+
+.color-dot {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  transition: transform 0.12s ease;
+}
+
+.color-dot:hover {
+  transform: scale(1.14);
+}
+
+/* ================================
+   「删除审核员」弹层：一排名字，点后面的 ✕ 删掉
+   ================================ */
+.chips {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.owner-del {
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.owner-del:hover {
+  transform: translateY(-1px) scale(1.04);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.owner-del .owner-x {
+  margin-left: 6px;
+  font-size: 12px;
+  font-style: normal;
+  opacity: 0.85;
+}
+
+.owner-del:hover .owner-x {
+  opacity: 1;
+}
+
+/* ================================
+   轻提示
+   ================================ */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 40px;
+  z-index: 60;
+  max-width: min(560px, calc(100vw - 48px));
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(20, 23, 29, 0.96);
+  border: 1px solid var(--line-strong);
+  color: var(--text);
+  font-size: 13px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 12px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}

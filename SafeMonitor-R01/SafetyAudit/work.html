@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!--
+  工作系统 - 按「日期 × 工作项目」排期的任务矩阵
+  · 从轮播页点击当前主题的信息面板进入，URL 参数带上海报、主题、标题
+  · 数据从阿里云 OSS 上的 JSON 读取，页面上的改动会自动传回 OSS
+-->
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0f1114">
+  <title>工作系统</title>
+  <!-- 样式按功能拆分：基础层 / 表格层 / 日历模式 / 组件层 / 亮色模式 -->
+  <link rel="stylesheet" href="css/work-base.css">
+  <link rel="stylesheet" href="css/work-board.css">
+  <link rel="stylesheet" href="css/work-calendar.css">
+  <link rel="stylesheet" href="css/work-parts.css">
+  <link rel="stylesheet" href="css/work-light.css">
+  <script>
+    // 提前套用上次选的亮/暗模式，避免刷新时先闪一下暗色
+    try {
+      if (localStorage.getItem('safemonitor:work:theme') === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    } catch (e) { /* 隐私模式下忽略 */ }
+  </script>
+</head>
+<body>
+  <!-- 海报背景：由 URL 参数 poster 传入，沿用轮播页当前主题的海报 -->
+  <div class="bg" id="bg"></div>
+
+  <header class="topbar">
+    <!-- 左边：标题 / 主题 / 时间轴信息 -->
+    <div class="brand">
+      <span class="brand-genre" id="brand-genre">WORK SYSTEM</span>
+      <h1 class="brand-title" id="brand-title">工作计划</h1>
+      <span class="brand-meta" id="brand-meta">加载中…</span>
+    </div>
+
+    <!-- 右边：上面是「工作查询 + 责任人」，下面是工具按钮一行 -->
+    <div class="topbar-side">
+      <div class="people-row">
+        <!-- 把责任人名字拖到这里，就在表格区域列出他的全部工作 -->
+        <span class="query-box" id="work-query" title="把责任人名字拖进来，看他的全部工作">🔍 工作查询</span>
+
+        <!-- 责任人一排：默认展开，点工具栏「👤 责任人」可以收起；名字拖到某天的格子上就是给他排活 -->
+        <div class="assignee-bar" id="assignee-bar">
+          <div class="chips" id="assignee-chips"></div>
+        </div>
+      </div>
+
+      <!-- 工具按钮一行 -->
+      <div class="tools">
+        <span class="badge" id="source-badge">加载中…</span>
+        <span class="badge save-state" id="save-state" hidden></span>
+        <button class="btn primary" id="btn-today">◎ 回到今天</button>
+        <button class="btn" id="btn-calendar">▤ 日历模式</button>
+        <button class="btn" id="btn-blankrow">▤ 空白行</button>
+        <button class="btn" id="btn-hidedone">✓ 已完成项</button>
+        <button class="btn" id="btn-assignee">👤 责任人</button>
+        <button class="btn" id="btn-theme" title="切换亮色模式">☀ 亮色</button>
+        <a class="btn" id="btn-home" href="../index.html" title="回到轮播首页">⌂ 返回首页</a>
+
+        <!-- 低频操作（新增项目 / 导入导出 / 重新载入）收进这个「⋯」里，
+             「⋯」固定放到最右边 -->
+        <div class="tool-group">
+          <button class="btn icon-btn" id="btn-more" title="更多操作">⋯</button>
+          <div class="popover more-menu" id="more-menu" hidden>
+            <button class="menu-item" id="btn-add-item">＋ 工作项目</button>
+            <button class="menu-item" id="btn-export-csv">⤓ 导出 CSV</button>
+            <button class="menu-item" id="btn-export">⤓ 导出 JSON</button>
+            <button class="menu-item" id="btn-import">⇪ 导入 JSON</button>
+            <button class="menu-item" id="btn-reload">⟳ 重新载入</button>
+            <!-- 节假日表是一份快照（国家通知每年才发一次），不自动联网，用户自己点 -->
+            <button class="menu-item" id="btn-holidays">↻ 更新节假日</button>
+            <button class="menu-item" id="btn-style-assignee">⟳ 编辑样式</button>
+            <button class="menu-item" id="btn-del-assignee">🗑 删除责任人</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 表格本体：日期为列，工作项目为行，横向滚动，自动停在今天 -->
+  <main class="board-wrap" id="board-wrap">
+    <div class="board" id="board"></div>
+  </main>
+
+  <!-- 底部那条（统计 + 操作提示）已经去掉了（2026-09-21 用户要求：和上面的信息重复）。
+       想加回来：把那两个 span 贴在此处，css/work-base.css 里「底部统计」那段也一起恢复 -->
+
+  <!-- 通用弹层：填安排 / 编辑项目 / 导入 JSON 都用它 -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true">
+      <header class="modal-head">
+        <h2 class="modal-title" id="modal-title">编辑</h2>
+        <button class="modal-x" id="modal-x" aria-label="关闭">✕</button>
+      </header>
+      <div class="modal-body" id="modal-body"></div>
+      <div class="modal-foot" id="modal-foot"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- 鼠标停在有详细内容的格子上浮出来的预览小窗 -->
+  <div class="hover-tip" id="hover-tip" hidden></div>
+
+  <!-- 鼠标停在图片附件链接上浮出来的图片预览 -->
+  <div class="image-tip" id="image-tip" hidden><img id="image-tip-img" alt=""></div>
+
+  <!-- 逻辑按功能拆分：节假日数据 / 配置 / 基础层 / 表格层 / 编辑层 / 数据进出层 / 日历模式 / 启动
+       （顺序不能乱：日历模式要在启动之前挂好） -->
+  <script src="js/work-holidays.js"></script>
+  <script src="js/work-config.js"></script>
+  <script src="js/work-core.js"></script>
+  <script src="js/work-board.js"></script>
+  <script src="js/work-edit.js"></script>
+  <script src="js/work-io.js"></script>
+  <script src="js/work-calendar.js"></script>
+  <script src="js/work-main.js"></script>
+</body>
+</html>

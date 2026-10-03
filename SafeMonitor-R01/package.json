@@ -1,0 +1,48 @@
+{
+  "name": "vanilla-cardslider",
+  "version": "1.0.0",
+  "description": "Vanilla CardSlider - Customizable Material Design card carousel for showcasing content",
+  "main": "scripts.js",
+  "files": [
+    "index.html",
+    "example-custom.html",
+    "config.js",
+    "scripts.js",
+    "styles.css",
+    "README.md"
+  ],
+  "keywords": [
+    "vanilla-cardslider",
+    "cardslider",
+    "carousel",
+    "slider",
+    "material-design",
+    "showcase",
+    "responsive",
+    "customizable",
+    "vanilla-js",
+    "cards"
+  ],
+  "author": {
+    "name": "Riad Kilani",
+    "url": "https://riadkilani.com"
+  },
+  "contributors": [
+    {
+      "name": "Riad Kilani",
+      "url": "https://riadkilani.com"
+    }
+  ],
+  "homepage": "https://github.com/SyntaxSidekick/vanilla-cardSlider",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SyntaxSidekick/vanilla-cardSlider.git"
+  },
+  "scripts": {
+    "demo": "start index.html",
+    "example": "start example-custom.html"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}
