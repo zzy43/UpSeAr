@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>等待航线三种进入方式</title>
+<style>
+  body {
+    font-family: "Microsoft YaHei", Arial, sans-serif;
+    max-width: 780px;
+    margin: 30px auto;
+    padding: 0 16px;
+    color: #222;
+    line-height: 1.7;
+  }
+  h1 { font-size: 21px; margin-bottom: 6px; }
+  h2 { font-size: 16px; margin-top: 28px; border-left: 4px solid #0d6efd; padding-left: 8px; }
+
+  .nav { float: right; font-size: 13px; margin: 0 0 8px 12px; }
+  .nav span {
+    display: inline-block; padding: 6px 16px;
+    color: #0a4f9e; background: #e8f1ff; border: 1px solid #93c5fd;
+    border-radius: 5px; cursor: pointer; user-select: none;
+  }
+  .nav span:hover { background: #d3e6ff; }
+  .nav span:active { background: #bcd9ff; }
+
+  .inputs {
+    border: 1px solid #ccc;
+    background: #f7f7f7;
+    border-radius: 6px;
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+  .inputs label { display: inline-block; margin: 4px 18px 4px 0; }
+  .inputs input[type=number] {
+    width: 80px;
+    padding: 4px 6px;
+    font-size: 14px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+  }
+  .inputs select {
+    padding: 4px 6px;
+    font-size: 14px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+  }
+  .summary { font-size: 13px; color: #555; margin-top: 10px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 12px 0; }
+  th, td { border: 1px solid #ccc; padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #f2f2f2; font-weight: 600; }
+  td.n { font-family: Consolas, monospace; white-space: nowrap; }
+
+  .rng { font-size: 16px; font-weight: 700; color: #111; }
+  .k1 { color: #0d6efd; font-weight: 700; }
+  .k2 { color: #b91c1c; font-weight: 700; }
+  .k3 { color: #15803d; font-weight: 700; }
+
+  .svgbox { text-align: center; }
+  svg { max-width: 100%; height: auto; }
+  .cap { font-size: 12.5px; color: #666; text-align: center; margin-top: 6px; }
+
+  /* 可拖拽的等待航线椭圆 */
+  #pattern { cursor: move; touch-action: none; }
+  .btn {
+    margin-top: 8px; padding: 6px 14px; font-size: 13px; font-family: inherit;
+    color: #333; background: #f7f7f7; border: 1px solid #bbb; border-radius: 5px;
+    cursor: pointer;
+  }
+  .btn:hover { background: #eef4ff; border-color: #93c5fd; }
+</style>
+</head>
+<body>
+
+<p class="nav"><span onclick="location.href='downwind.html'">三边修正</span></p>
+<h1>等待航线三种进入方式</h1>
+
+<div class="inputs">
+  <label>入航航迹 <input type="number" id="ic" value="249" min="0" max="360" step="1"> °</label>
+  <label>等待方向
+    <select id="turn">
+      <option value="left">左等待（左转弯）</option>
+      <option value="right">右等待（右转弯）</option>
+    </select>
+  </label>
+  <label>等待高度 <input type="number" id="alt" value="1500" min="0" step="10"> 米</label>
+  <div class="summary" id="summary"></div>
+</div>
+
+<h2>一、结论：三种进入方式的航向范围</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:100px">进入方式</th>
+      <th style="width:132px">到达等待点时的航向</th>
+      <th style="width:62px">扇区宽度</th>
+      <th>操作要点</th>
+    </tr>
+  </thead>
+  <tbody id="tbody"></tbody>
+</table>
+
+<h2>二、示意图（俯视，等待点为中心）</h2>
+
+<div class="svgbox">
+  <svg id="chart" viewBox="0 0 480 610" width="480" height="610" role="img" aria-label="等待航线进入扇区示意图"></svg>
+  <p class="cap"></p>
+  <button id="patReset" class="btn" type="button">椭圆复位</button>
+</div>
+
+<script>
+(function () {
+  var icEl = document.getElementById('ic');
+  var turnEl = document.getElementById('turn');
+  var altEl = document.getElementById('alt');
+  var chart = document.getElementById('chart');
+
+  function norm(a) { return ((a % 360) + 360) % 360; }
+  function pad3(a) { return ('00' + Math.round(norm(a))).slice(-3); }
+  function range(a, b) { return pad3(a) + '° ～ ' + pad3(b) + '°'; }
+
+  // 航向 x 是否位于从 s1 顺时针到 e1 的弧（弧长 ≤ 180°）内
+  function inArc(x, s1, e1) {
+    return norm(x - s1) <= norm(e1 - s1) + 1e-9;
+  }
+
+  var CX = 240, CY = 200, R = 150;
+
+  // 可拖拽的等待航线椭圆
+  var PAT_HOME = { x: 240, y: 490 };
+  var patPos = { x: PAT_HOME.x, y: PAT_HOME.y };
+  var patRot = 0;
+
+  function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+
+  // 航向角 -> 屏幕坐标（0° 向上，顺时针增大）
+  function pt(a, r) {
+    var rad = a * Math.PI / 180;
+    return [CX + r * Math.sin(rad), CY - r * Math.cos(rad)];
+  }
+
+  // 扇形路径：从 a1 顺时针扫到 a2（a2 应在 a1 顺时针方向，跨度 <= 220°）
+  function sector(a1, a2, fill) {
+    var p1 = pt(a1, R), p2 = pt(a2, R);
+    var span = ((a2 - a1) % 360 + 360) % 360;
+    var la = span > 180 ? 1 : 0;
+    return '<path d="M' + CX + ',' + CY +
+           ' L' + p1[0].toFixed(1) + ',' + p1[1].toFixed(1) +
+           ' A' + R + ',' + R + ' 0 ' + la + ',1 ' +
+           p2[0].toFixed(1) + ',' + p2[1].toFixed(1) + ' Z" fill="' + fill + '"/>';
+  }
+
+  function sectorLabel(a, r1, r2, color, name, rng) {
+    var p1 = pt(a, r1), p2 = pt(a, r2);
+    return '<text font-size="12.5" fill="' + color + '" text-anchor="middle">' +
+           '<tspan x="' + p1[0].toFixed(1) + '" y="' + p1[1].toFixed(1) + '">' + name + '</tspan>' +
+           '<tspan x="' + p2[0].toFixed(1) + '" y="' + p2[1].toFixed(1) + '">' + rng + '</tspan>' +
+           '</text>';
+  }
+
+  function edgeLabel(a, text, color, size) {
+    var p = pt(a, R * 1.14);
+    return '<text x="' + p[0].toFixed(1) + '" y="' + p[1].toFixed(1) +
+           '" font-size="' + (size || 12.5) + '" fill="' + color +
+           '" text-anchor="middle">' + text + '</text>';
+  }
+
+  // 转弯起始处的小箭头：(x, y) 为箭头中心，(dx, dy) 为指向
+  function arrow(x, y, dx, dy) {
+    var tip = (x + dx * 10).toFixed(1) + ',' + (y + dy * 10).toFixed(1);
+    var b1 = (x - dx * 5 - dy * 7).toFixed(1) + ',' + (y - dy * 5 + dx * 7).toFixed(1);
+    var b2 = (x - dx * 5 + dy * 7).toFixed(1) + ',' + (y - dy * 5 - dx * 7).toFixed(1);
+    return '<polygon points="' + tip + ' ' + b1 + ' ' + b2 + '" fill="#0d6efd"/>';
+  }
+
+  function render() {
+    var IC = norm(parseFloat(icEl.value) || 0);
+    var OC = norm(IC + 180);
+    var left = turnEl.value === 'left';
+    // s = +1：偏置扇区沿航向增大方向（顺时针）位于出航航迹之后（左等待）
+    var s = left ? 1 : -1;
+
+    // 以出航航迹为基准：偏置扇区 70°（等待一侧），平行扇区 110°（非等待一侧）
+    var b1 = norm(OC + s * 70);    // 偏置扇区外分界线
+    var b2 = norm(OC - s * 110);   // 平行扇区外分界线
+
+    // 三个扇区（均按顺时针方向表示）
+    var teardrop = left ? [OC, b1] : [b1, OC];
+    var parallel = left ? [b2, OC] : [OC, b2];
+    // 直接进入扇区：剩余 180°，取包含入航航迹的那一段
+    var direct = inArc(IC, b1, b2) ? [b1, b2] : [b2, b1];
+
+    // 偏置航向：出航航迹向等待一侧偏 30°
+    var tdHdg = norm(OC + s * 30);
+
+    /* ---------- 边长时间（按高度） ---------- */
+    var altM = parseFloat(altEl.value) || 0;
+    var altFt = altM * 3.28084;
+    var leg = altFt <= 14000 ? '1 分钟' : '1.5 分钟';
+
+    /* ---------- 操作要点 ---------- */
+    var turnName = left ? '左转' : '右转';   // 等待方向
+    var backTurn = left ? '右转' : '左转';   // 平行进入返回时向等待一侧转
+    var OCs = pad3(OC) + '°';
+    var ICs = pad3(IC) + '°';
+
+    var OPS = {
+      direct: '过 VOR 台上空后，' + turnName + '飞 ' + OCs + ' 出航边 ' + leg + '。',
+      parallel: '过 VOR 台上空后，反向 ' + OCs + ' 飞 ' + leg + '，' + backTurn +
+                '重新飞 VOR 台上空；再次过 VOR 台后，' + turnName + '飞 ' + OCs + ' 出航边 ' + leg + '。',
+      teardrop: '过 VOR 台上空后，向等待一侧偏置 30°，即转至航向 ' + pad3(tdHdg) + '°，飞 ' + leg +
+                '，再' + turnName + '切入入航航迹 ' + ICs + '；再次过 VOR 台后，' + turnName +
+                '飞 ' + OCs + ' 出航边 ' + leg + '。'
+    };
+
+    /* ---------- 表格：按 000° → 360° 顺序排列，便于按航向查阅 ---------- */
+    var KIND = {
+      direct:   { name: '直接进入<br>Direct',   plain: '直接进入', cls: 'k1', width: '180°' },
+      teardrop: { name: '偏置进入<br>Teardrop', plain: '偏置进入', cls: 'k3', width: '70°'  },
+      parallel: { name: '平行进入<br>Parallel', plain: '平行进入', cls: 'k2', width: '110°' }
+    };
+
+    var bounds = [];
+    [0, b1, b2, OC].forEach(function (v) {
+      v = Math.round(norm(v));
+      if (bounds.indexOf(v) < 0) { bounds.push(v); }
+    });
+    bounds.sort(function (x, y) { return x - y; });
+
+    var seen = {}, rows = '';
+    for (var i = 0; i < bounds.length; i++) {
+      var a = bounds[i];
+      var b = (i + 1 < bounds.length) ? bounds[i + 1] : bounds[0] + 360;
+      var mid = norm((a + b) / 2);
+      var kind = inArc(mid, direct[0], direct[1]) ? 'direct'
+               : (inArc(mid, teardrop[0], teardrop[1]) ? 'teardrop' : 'parallel');
+      var k = KIND[kind];
+      var ops = OPS[kind];
+      if (seen[kind]) { ops = '（操作要点与前面「' + k.plain + '」相同）'; }
+      seen[kind] = true;
+      rows += '<tr>' +
+        '<td class="' + k.cls + '">' + k.name + '</td>' +
+        '<td class="n rng">' + range(a, b) + '</td>' +
+        '<td class="n">' + k.width + '</td>' +
+        '<td>' + ops + '</td>' +
+        '</tr>';
+    }
+    document.getElementById('tbody').innerHTML = rows;
+
+    document.getElementById('summary').textContent =
+      '出航航迹 = ' + pad3(IC) + '° + 180° = ' + pad3(OC) + '°；' +
+      '等待高度 ' + altM + ' 米（≈' + Math.round(altFt) + ' 英尺），入航边标准时间 ' + leg + '。';
+
+    /* ---------- 绘图（扇区按“来向”绘制，即航向角转 180°） ---------- */
+    var midDirect = norm(direct[0] + 90 + 180);
+    var midPar    = norm(parallel[0] + 55 + 180);
+    var midTear   = norm(teardrop[0] + 35 + 180);
+
+    var svg = '';
+    svg += '<circle cx="' + CX + '" cy="' + CY + '" r="' + R + '" fill="#fff"/>';
+    svg += sector(direct[0] + 180, direct[1] + 180, '#dbeeff');
+    svg += sector(parallel[0] + 180, parallel[1] + 180, '#ffe1e1');
+    svg += sector(teardrop[0] + 180, teardrop[1] + 180, '#dcf5e4');
+
+    // 分界线（出航航迹那条用虚线，同时表示出/入航航迹线）
+    svg += '<line x1="' + CX + '" y1="' + CY + '" x2="' + pt(b2, R)[0].toFixed(1) + '" y2="' + pt(b2, R)[1].toFixed(1) + '" stroke="#888" stroke-width="1.5"/>';
+    svg += '<line x1="' + CX + '" y1="' + CY + '" x2="' + pt(b1, R)[0].toFixed(1) + '" y2="' + pt(b1, R)[1].toFixed(1) + '" stroke="#888" stroke-width="1.5"/>';
+    svg += '<line x1="' + pt(IC, R)[0].toFixed(1) + '" y1="' + pt(IC, R)[1].toFixed(1) +
+           '" x2="' + pt(OC, R)[0].toFixed(1) + '" y2="' + pt(OC, R)[1].toFixed(1) +
+           '" stroke="#333" stroke-width="2" stroke-dasharray="7 5"/>';
+
+    // 等待点
+    svg += '<circle cx="' + CX + '" cy="' + CY + '" r="5" fill="#fff" stroke="#333" stroke-width="2.5"/>';
+
+    // 扇区标注
+    svg += sectorLabel(midDirect, R * 0.66, R * 0.82, '#0a4f9e', '直接进入', range(direct[0], direct[1]));
+    svg += sectorLabel(midPar, R * 0.60, R * 0.76, '#b91c1c', '平行进入', range(parallel[0], parallel[1]));
+    svg += sectorLabel(midTear, R * 0.60, R * 0.76, '#15803d', '偏置进入', range(teardrop[0], teardrop[1]));
+
+    // 角度标注
+    svg += edgeLabel(b1, pad3(b1) + '°', '#555');
+    svg += edgeLabel(b2, pad3(b2) + '°', '#555');
+    svg += edgeLabel(OC, pad3(OC) + '°（出航）', '#333', 14);
+    svg += edgeLabel(IC, pad3(IC) + '°（入航）', '#333', 14);
+
+    // 底部演示区：可拖拽的等待航线椭圆（实线、中间透明、转弯处带转向箭头）
+    svg += '<rect x="110" y="375" width="260" height="220" rx="10" fill="#fafafa" ' +
+           'stroke="#ddd" stroke-dasharray="6 5"/>';
+    svg += '<text x="240" y="393" font-size="12" fill="#aaa" text-anchor="middle">按住椭圆可拖到图上演示</text>';
+
+    var LEN = 50, RAD = 30;        // 直边半长、转弯半径
+    var yS = left ? 1 : -1;        // 左等待/右等待时，转弯起始点位于直边的哪一侧
+
+    patRot = OC - 90;              // 椭圆长轴与等待航迹平行
+    svg += '<g id="pattern" transform="translate(' + patPos.x + ',' + patPos.y +
+           ') rotate(' + patRot + ')">' +
+           '<path d="M-' + LEN + ',-' + RAD + ' H' + LEN +
+           ' A' + RAD + ',' + RAD + ' 0 0 1 ' + LEN + ',' + RAD +
+           ' H-' + LEN + ' A' + RAD + ',' + RAD + ' 0 0 1 -' + LEN + ',-' + RAD + ' Z" ' +
+           'fill="none" stroke="#0d6efd" stroke-width="2.5"/>' +
+           arrow(LEN, yS * RAD, 1, 0) + arrow(-LEN, -yS * RAD, -1, 0) +
+           '<text x="0" y="5" font-size="13" text-anchor="middle" fill="#0a4f9e" ' +
+           'transform="rotate(' + (-patRot) + ')">等待航线</text>' +
+           '</g>';
+
+    chart.innerHTML = svg;
+    bindDrag();
+  }
+
+  // 把屏幕坐标换算成 SVG 用户坐标
+  function toSvg(evt) {
+    var p = chart.createSVGPoint();
+    p.x = evt.clientX;
+    p.y = evt.clientY;
+    var q = p.matrixTransform(chart.getScreenCTM().inverse());
+    return { x: q.x, y: q.y };
+  }
+
+  // 椭圆拖拽
+  function bindDrag() {
+    var g = document.getElementById('pattern');
+    if (!g) { return; }
+    var drag = false, offX = 0, offY = 0;
+
+    g.addEventListener('pointerdown', function (e) {
+      drag = true;
+      var p = toSvg(e);
+      offX = p.x - patPos.x;
+      offY = p.y - patPos.y;
+      if (g.setPointerCapture) { g.setPointerCapture(e.pointerId); }
+      e.preventDefault();
+    });
+
+    g.addEventListener('pointermove', function (e) {
+      if (!drag) { return; }
+      var p = toSvg(e);
+      patPos.x = clamp(p.x - offX, 0, 480);
+      patPos.y = clamp(p.y - offY, 0, 610);
+      g.setAttribute('transform', 'translate(' + patPos.x + ',' + patPos.y +
+                     ') rotate(' + patRot + ')');
+      e.preventDefault();
+    });
+
+    function stop(e) {
+      drag = false;
+      if (g.releasePointerCapture) {
+        try { g.releasePointerCapture(e.pointerId); } catch (err) { /* 忽略 */ }
+      }
+    }
+    g.addEventListener('pointerup', stop);
+    g.addEventListener('pointercancel', stop);
+  }
+
+  icEl.addEventListener('input', render);
+  turnEl.addEventListener('change', render);
+  altEl.addEventListener('input', render);
+
+  document.getElementById('patReset').addEventListener('click', function () {
+    patPos.x = PAT_HOME.x;
+    patPos.y = PAT_HOME.y;
+    render();
+  });
+
+  render();
+})();
+</script>
+
+</body>
+</html>

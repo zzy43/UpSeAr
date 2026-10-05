@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三边计时风修正</title>
+<style>
+  body {
+    font-family: "Microsoft YaHei", Arial, sans-serif;
+    max-width: 620px;
+    margin: 30px auto;
+    padding: 0 16px;
+    color: #222;
+    line-height: 1.7;
+  }
+  h1 { font-size: 20px; margin-bottom: 6px; }
+  .sub { color: #666; font-size: 13px; margin-top: 0; }
+
+  .formula {
+    border: 1px solid #ccc;
+    background: #f7f7f7;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+
+  .row { margin-bottom: 16px; }
+  label { display: block; font-size: 14px; margin-bottom: 6px; }
+  input[type=number], input[type=text] {
+    width: 130px;
+    padding: 6px 8px;
+    font-size: 15px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+  }
+  input[type=range] { width: 100%; max-width: 320px; vertical-align: middle; }
+
+  .out {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+  }
+  .out b { font-weight: 600; font-size: 14px; }
+  .out span { font-size: 22px; font-weight: 700; color: #0056b3; }
+  .out span em { font-size: 13px; font-weight: 400; color: #666; font-style: normal; }
+
+  .note { font-size: 13px; color: #555; margin-top: 14px; }
+
+  .nav { float: right; font-size: 13px; margin: 0 0 8px 12px; }
+  .nav span {
+    display: inline-block; padding: 6px 16px;
+    color: #0a4f9e; background: #e8f1ff; border: 1px solid #93c5fd;
+    border-radius: 5px; cursor: pointer; user-select: none;
+  }
+  .nav span:hover { background: #d3e6ff; }
+  .nav span:active { background: #bcd9ff; }
+</style>
+</head>
+<body>
+
+<p class="nav"><span onclick="location.href='hold.html'">等待进入</span></p>
+<h1>三边计时风修正</h1>
+<p class="sub">切跑道头计时与放轮时机</p>
+
+<div class="formula">
+  T = (ALT ÷ 100) × 3 ± ½ × WC　　　T′ = T − 15
+  <div class="sub" style="margin:6px 0 0">WC 为三边顺风分量，由“五边航迹 + 风”自动算出</div>
+</div>
+
+<div class="row">
+  <label>三边高度 ALT（英尺 AGL）</label>
+  <input type="number" id="alt" value="2000" min="0" max="10000" step="50">
+  <input type="range" id="altRange" value="2000" min="500" max="4000" step="50">
+</div>
+
+<div class="row">
+  <label>五边航迹（度）</label>
+  <input type="text" id="trk" value="069">
+</div>
+
+<div class="row">
+  <label>风（风向 / 风速，节）—— 如 070/30</label>
+  <input type="text" id="wind" value="070/30">
+</div>
+
+<div class="out">
+  <b>三边航向</b>
+  <span><span id="outHdg">249</span><em> °</em></span>
+</div>
+
+<div class="out">
+  <b>三边顺风分量 WC</b>
+  <span><span id="outWc">30</span><em> 节</em></span>
+</div>
+
+<div class="out">
+  <b>T′　放轮时机</b>
+  <span><span id="outTp">30</span><em> 秒</em></span>
+</div>
+
+<div class="out">
+  <b>T　切跑道头 → 三转弯</b>
+  <span><span id="outT">45</span><em> 秒</em></span>
+</div>
+
+<p class="note" id="note"></p>
+
+<script>
+(function () {
+  var alt = document.getElementById('alt');
+  var altRange = document.getElementById('altRange');
+  var trk = document.getElementById('trk');
+  var wind = document.getElementById('wind');
+  var outHdg = document.getElementById('outHdg');
+  var outWc = document.getElementById('outWc');
+  var outT = document.getElementById('outT');
+  var outTp = document.getElementById('outTp');
+  var note = document.getElementById('note');
+
+  // 解析风，接受 070/30、70 30 等写法
+  function parseWind(s) {
+    var m = String(s).match(/\d+(?:\.\d+)?/g);
+    if (!m || m.length < 2) return null;
+    return {
+      dir: ((parseFloat(m[0]) % 360) + 360) % 360,
+      spd: Math.max(0, parseFloat(m[1]))
+    };
+  }
+
+  function round(n) {
+    var r = Math.round(n * 10) / 10;
+    return r === Math.round(r) ? Math.round(r) : r.toFixed(1);
+  }
+
+  function pad3(n) { return ('00' + Math.round(n)).slice(-3); }
+
+  function calc() {
+    var a = Math.max(0, parseFloat(alt.value) || 0);            // 三边高度 ft
+    var t = ((parseFloat(trk.value) || 0) % 360 + 360) % 360;   // 五边航迹
+    var w = parseWind(wind.value);
+
+    // 三边与五边反向
+    var hdg = (t + 180) % 360;
+    outHdg.textContent = pad3(hdg);
+
+    if (!w) {
+      outWc.textContent = '—';
+      outT.textContent = '—';
+      outTp.textContent = '—';
+      note.textContent = '风请输入“风向/风速”格式，例如 070/30。';
+      return;
+    }
+
+    // 风与三边航向的夹角（0~180°）
+    var diff = Math.abs(((w.dir - hdg + 540) % 360) - 180);
+    var head = w.spd * Math.cos(diff * Math.PI / 180);  // 逆风为正
+    var wc = -head;                                     // 顺风分量为正
+
+    var base = (a / 100) * 3;
+    var T = base - wc / 2;      // 核心公式
+    var Tp = T - 15;            // 放轮时机
+
+    outWc.textContent = round(wc);
+    outT.textContent = round(T);
+    outTp.textContent = round(Tp);
+
+    var label = Math.abs(wc) < 0.5 ? '风与三边基本平行，无顺逆风分量'
+              : (wc > 0 ? '顺风' : '逆风') + ' ' + round(Math.abs(wc)) + ' 节';
+    var expr = round(base) + (wc >= 0 ? ' − ' : ' + ') + round(Math.abs(wc / 2));
+
+    note.textContent = '风 ' + pad3(w.dir) + '/' + w.spd + '，三边航向 ' + pad3(hdg) +
+      '°：夹角 ' + Math.round(diff) + '°，' + label +
+      ' → T = ' + expr + ' = ' + round(T) + ' 秒，T′ = ' + round(T) + ' − 15 = ' +
+      round(Tp) + ' 秒。';
+  }
+
+  // 高度输入与滑块联动
+  function fromNumber() { altRange.value = alt.value; calc(); }
+  function fromRange()  { alt.value = altRange.value; calc(); }
+
+  alt.addEventListener('input', fromNumber);
+  altRange.addEventListener('input', fromRange);
+  trk.addEventListener('input', calc);
+  wind.addEventListener('input', calc);
+
+  calc();
+})();
+</script>
+
+</body>
+</html>
