@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<!--
+  安全隐患协同评估表 · 大字号查看器
+  用法：双击本文件 → 把 .xlsx 拖到页面上（或点“选择文件”）
+  依赖：同目录下的 xlsx.full.min.js（离线可用；缺失时自动走 CDN）
+  特点：只读「安全隐患报告导入模板」；每条隐患一张卡片，默认收起、点标题栏展开；
+        关键字段做成彩色标签，长文本（描述/原因/措施）整行铺开；
+        支持整体缩放、字号调节、搜索与打印。
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>安全隐患协同评估表 · 大字号查看器</title>
+<style>
+  /* ============ 主题变量（字号统一由 --fs 控制，方便一键缩放） ============ */
+  :root{
+    --fs: 17px;               /* 基础字号 */
+    --ink: #1b2430;
+    --ink-2: #55606e;
+    --line: #dde3ea;
+    --bg: #eef2f7;
+    --card: #ffffff;
+    --brand: #1f4e79;
+    --brand-soft: #eaf1f8;
+    --ok: #1e7a46;    --ok-bg: #e4f5ea;
+    --doing: #9a6100; --doing-bg: #fdf1da;
+    --bad: #b3261e;   --bad-bg: #fdeaea;
+    --info: #1f4e79;  --info-bg: #e8f0f8;
+    --plain: #55606e; --plain-bg: #eef1f5;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:"微软雅黑","Microsoft YaHei","Segoe UI",system-ui,sans-serif;
+    font-size:var(--fs); line-height:1.7;
+  }
+
+  /* ============ 通用控件 ============ */
+  button,select,input[type=search]{
+    font-family:inherit; font-size:.92em; color:var(--ink);
+    background:#fff; border:1.5px solid var(--line); border-radius:9px;
+    padding:7px 13px; cursor:pointer;
+  }
+  button:hover{border-color:var(--brand); color:var(--brand)}
+  button.primary{background:var(--brand); border-color:var(--brand); color:#fff}
+  button.primary:hover{background:#173d5e; color:#fff}
+  button.on{background:var(--brand-soft); border-color:var(--brand); color:var(--brand); font-weight:700}
+  input[type=search]{width:100%; cursor:text}
+  input[type=search]:focus{outline:none; border-color:var(--brand)}
+
+  /* 状态行 */
+  .status{
+    color:var(--ink-2); font-size:.84em; line-height:1.6;
+    padding:10px 4px; border-bottom:1px solid var(--line); margin-bottom:10px;
+  }
+
+  /* ============ 投放区 ============ */
+  #drop{
+    margin:16px auto; max-width:760px; padding:56px 28px; text-align:center;
+    background:#fff; border:3px dashed #b9c6d6; border-radius:20px;
+  }
+  body.hover #drop{border-color:var(--brand); background:var(--brand-soft)}
+  #drop h2{margin:0 0 10px; font-size:1.5em; color:var(--brand)}
+  #drop p{margin:6px 0; color:var(--ink-2); font-size:.95em}
+  .big{font-size:3em; line-height:1}
+
+  /* ============ 主体布局：左侧导航栏 + 右侧卡片 ============ */
+  .layout{
+    display:flex; gap:16px; align-items:flex-start;
+    max-width:1600px; margin:0 auto; padding:14px;
+  }
+  aside{
+    flex:0 0 238px; position:sticky; top:14px;
+    max-height:calc(100vh - 28px); overflow:auto;
+    background:#fff; border:1px solid var(--line); border-radius:14px;
+    padding:12px; box-shadow:0 3px 14px rgba(15,35,60,.06);
+  }
+  .side-title{
+    font-size:1.02em; font-weight:700; color:var(--brand); line-height:1.35;
+    padding:2px 4px 10px; border-bottom:2px solid var(--brand-soft); margin-bottom:12px;
+  }
+  .side-title .side-sub{display:block; font-size:.72em; font-weight:400; color:var(--ink-2); letter-spacing:.04em}
+  aside .nav-title{margin-top:2px; font-size:.84em; letter-spacing:.04em; border-bottom:1px solid var(--line)}
+  /* 侧栏里的控件：整行或两三列排布 */
+  .wide-btn{display:block; width:100%; margin-bottom:10px}
+  aside input[type=search]{margin-bottom:10px}
+  .tools{display:flex; gap:6px; margin-bottom:6px}
+  .tools button,.tools select{flex:1; min-width:0; padding:6px 4px; font-size:.85em; text-align:center}
+  .nav-item{
+    display:flex; align-items:center; gap:8px; justify-content:space-between;
+    padding:9px 10px; margin-bottom:4px; border-radius:9px;
+    font-size:.92em; color:var(--ink); cursor:pointer; line-height:1.4;
+  }
+  .nav-item:hover{background:var(--brand-soft)}
+  .nav-item.active{background:var(--brand); color:#fff; font-weight:700}
+  .nav-item .cnt{
+    flex:0 0 auto; min-width:1.9em; text-align:center; font-size:.8em;
+    padding:1px 7px; border-radius:999px; background:#eef1f5; color:var(--ink-2);
+  }
+  .nav-item.active .cnt{background:rgba(255,255,255,.25); color:#fff}
+  .nav-item .nname{flex:1; min-width:0; word-break:break-word}
+
+  /* ============ 记录卡片 ============ */
+  main{flex:1; min-width:0}
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    margin-bottom:22px; box-shadow:0 3px 14px rgba(15,35,60,.07); overflow:hidden;
+    break-inside:avoid;
+  }
+  .card-head{
+    display:flex; gap:14px; align-items:flex-start;
+    padding:16px 20px; background:linear-gradient(180deg,#f7fafd,#eef4fa);
+    cursor:pointer; user-select:none;
+  }
+  .card.open .card-head{border-bottom:1px solid var(--line)}
+  .card-head:hover{background:linear-gradient(180deg,#eff5fb,#e4eef8)}
+  /* 展开/收起指示三角 */
+  .caret{
+    flex:0 0 auto; width:1.6em; text-align:center; color:var(--brand);
+    font-size:1em; line-height:2.2; transition:transform .15s;
+  }
+  .card.open .caret{transform:rotate(90deg)}
+  .idx{
+    flex:0 0 auto; min-width:2.2em; height:2.2em; border-radius:10px;
+    background:var(--brand); color:#fff; font-weight:700;
+    display:flex; align-items:center; justify-content:center; font-size:1em;
+    padding:0 .3em;
+  }
+  .head-main{flex:1; min-width:0}
+  .card-title{
+    margin:0; font-size:1.28em; line-height:1.5; font-weight:700; color:#14212e;
+    white-space:pre-wrap; word-break:break-word;
+  }
+  .badges{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+  .badge{
+    font-size:.82em; font-weight:700; padding:3px 11px; border-radius:999px;
+    background:var(--plain-bg); color:var(--plain); white-space:nowrap;
+  }
+  .badge b{font-weight:700; opacity:.72; margin-right:4px}
+  .badge.ok{background:var(--ok-bg); color:var(--ok)}
+  .badge.doing{background:var(--doing-bg); color:var(--doing)}
+  .badge.bad{background:var(--bad-bg); color:var(--bad)}
+  .badge.info{background:var(--info-bg); color:var(--info)}
+
+  /* 字段区：默认收起，点标题栏后展开；宽屏两栏，长文本整行铺开 */
+  .fields{
+    display:none;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:0; padding:6px 20px 18px;
+  }
+  .card.open .fields{display:grid}
+  .field{padding:12px 16px 12px 0; border-bottom:1px dashed #eaeef3}
+  .field.wide{grid-column:1/-1}
+  .lbl{
+    font-size:.82em; font-weight:700; letter-spacing:.03em;
+    color:var(--brand); margin-bottom:4px;
+  }
+  .val{white-space:pre-wrap; word-break:break-word}
+  .field.wide .val{font-size:1.02em; line-height:1.85}
+  .val.blank{color:#a9b2bd; font-style:italic}
+
+  /* ============ 打印 ============ */
+  @media print{
+    :root{--fs:12pt}
+    body{background:#fff}
+    aside{display:none !important}
+    .layout{display:block; padding:0}
+    main{max-width:none; zoom:1 !important}
+    .card{box-shadow:none; border-color:#bbb; margin-bottom:14px}
+    .card-head{background:#f2f5f8}
+    .card .fields{display:grid !important}   /* 打印时总是展开全部内容 */
+    .caret{display:none}
+  }
+  @media (max-width:900px){
+    .layout{display:block; padding:12px}
+    aside{position:static; max-height:none; flex:none; margin-bottom:12px}
+    .nav{display:flex; flex-wrap:wrap; gap:8px}
+    .nav-item{margin:0}
+  }
+</style>
+</head>
+<body>
+
+<div class="layout">
+  <!-- ============ 左侧导航栏：工具区 + 按评估部门分组 ============ -->
+  <aside id="side">
+    <div class="side-title">安全隐患协同评估表<span class="side-sub">大字号查看器</span></div>
+
+    <button id="pick" class="primary wide-btn">选择 xlsx 文件</button>
+    <input id="file" type="file" accept=".xlsx,.xls,.csv" hidden>
+
+    <input id="q" type="search" placeholder="搜索：名称/部门/责任人…">
+
+    <div class="tools">
+      <select id="zoom" title="整体缩放">
+        <option>80%</option><option>90%</option><option selected>100%</option>
+        <option>110%</option><option>125%</option><option>150%</option><option>175%</option>
+      </select>
+      <button id="minus" title="缩小字号">A－</button>
+      <button id="plus" title="放大字号">A＋</button>
+    </div>
+    <div class="tools">
+      <button id="expand" title="展开/收起全部卡片">全部展开</button>
+      <button id="empty" title="是否显示空字段">显示空字段</button>
+    </div>
+    <div class="tools">
+      <button id="reset" title="恢复默认设置">重置</button>
+      <button id="print" title="打印 / 导出 PDF">打印</button>
+    </div>
+
+    <div class="status" id="status">尚未导入文件</div>
+
+    <div class="side-title nav-title" id="navTitle" hidden>按评估部门</div>
+    <div class="nav" id="nav"></div>
+  </aside>
+
+  <main id="out">
+    <div id="drop">
+      <div class="big">📋</div>
+      <h2>把 xlsx 文件拖到这里</h2>
+      <p>或点击左侧的「选择 xlsx 文件」按钮</p>
+      <p>读取「安全隐患报告导入模板」工作表，一条隐患一张卡片（点击卡片标题栏展开明细）</p>
+    </div>
+  </main>
+</div>
+
+<!-- 本地解析库；若同目录缺失则回退到 CDN -->
+<script src="xlsx.full.min.js"></script>
+<script>
+if (typeof XLSX === 'undefined') {
+  document.write('<script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"><\/script>');
+}
+</script>
+<script>
+(function () {
+  "use strict";
+
+  // ---------- 字段语义识别（决定标题、彩色标签、整行铺开的字段） ----------
+  var RE_NAME  = /名称|标题|问题|隐患(?!等级|类别|类型|分类|来源|描述)|概述|主题/;
+  var RE_LONG  = /描述|经过|原因|分析|措施|整改|验证|效果|预案|应急|后果|危险源|说明|内容/;
+  var RE_BADGE = /等级|级别|类别|类型|分类|进度|状态|来源|是否|关闭|部门|单位|责任人|主管|领导|处室/;
+  var RE_DEPT  = /评估部门|归属部门|责任部门|部门|处室/;   // 左侧导航的分组依据
+  var RE_NO_BADGE = /责任单位|上级单位|单位名称/;            // 这些字段不放 card-head 标签
+
+  var el = function (id) { return document.getElementById(id); };
+  var esc = function (s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  };
+
+  // ---------- 全局状态 ----------
+  var MAIN_SHEET = "安全隐患报告导入模板";  // 只展示这张表
+  var Wb = null;            // 当前工作簿
+  var sheetName = null;     // 当前工作表
+  var showEmpty = false;    // 是否显示空字段
+  var allOpen = false;      // 全局展开模式
+  var openSet = {};         // 单张卡片展开状态（key = 记录序号）
+  var curDept = "";         // 当前选中的评估部门（空 = 全部）
+  var fs = 17;              // 当前基础字号
+
+  // ---------- 取值/格式化 ----------
+  function isEmpty(v) {
+    return v === null || v === undefined || String(v).trim() === "";
+  }
+  function fmt(v) {
+    if (v === null || v === undefined) return "";
+    if (v instanceof Date && !isNaN(v)) {
+      var p = function (n) { return String(n).padStart(2, "0"); };
+      var d = v.getFullYear() + "-" + p(v.getMonth() + 1) + "-" + p(v.getDate());
+      if (v.getHours() || v.getMinutes() || v.getSeconds()) {
+        d += " " + p(v.getHours()) + ":" + p(v.getMinutes());
+      }
+      return d;
+    }
+    if (typeof v === "number" && !isFinite(v)) return "";
+    return String(v).trim();
+  }
+
+  // 表头行判定：非空单元格多、且大多为短文本
+  function looksLikeHeader(row) {
+    var ne = row.filter(function (v) { return !isEmpty(v); });
+    if (ne.length < 2) return false;
+    var textish = ne.filter(function (v) {
+      return typeof v === "string" && v.trim().length <= 20 && !/^\d+([.\-/]\d+)*$/.test(v.trim());
+    }).length;
+    return textish / ne.length >= 0.8;
+  }
+
+  // 徽标颜色：按语义 + 取值判断
+  function badgeClass(header, value) {
+    var h = header, v = value;
+    if (/等级|级别/.test(h)) return /重大/.test(v) ? "bad" : (/一般/.test(v) ? "doing" : "info");
+    if (/进度|状态|关闭/.test(h)) {
+      if (/已整改|已关闭|已完成|^是$|通过/.test(v)) return "ok";
+      if (/整改中|进行中|部分|待/.test(v)) return "doing";
+      if (/未整改|未关闭|逾期|^否$/.test(v)) return "bad";
+      return "plain";
+    }
+    if (/是否/.test(h)) {
+      if (/^是$/.test(v)) return "info";
+      if (/^否$/.test(v)) return "plain";
+      return "plain";
+    }
+    return "plain";
+  }
+
+  // ---------- 把一张工作表转成“记录数组” ----------
+  function parseSheet(ws) {
+    var rows = XLSX.utils.sheet_to_json(ws, { header: 1, raw: true, defval: "", blankrows: false });
+
+    // 找表头行（在前 10 行内）
+    var headerRow = -1;
+    for (var i = 0; i < Math.min(rows.length, 10); i++) {
+      if (looksLikeHeader(rows[i])) { headerRow = i; break; }
+    }
+
+    var headers = [], dataRows, usedGeneric = false;
+    if (headerRow >= 0) {
+      headers = rows[headerRow].map(function (v, c) {
+        var t = fmt(v);
+        return t || ("第" + (c + 1) + "列");
+      });
+      dataRows = rows.slice(headerRow + 1);
+    } else {
+      // 无表头：整表按数据行处理，列名自动生成
+      usedGeneric = true;
+      var width = rows.reduce(function (m, r) { return Math.max(m, r.length); }, 0);
+      for (var c2 = 0; c2 < width; c2++) headers.push("第" + (c2 + 1) + "列");
+      dataRows = rows;
+    }
+
+    // 丢掉整行全空的记录
+    dataRows = dataRows.filter(function (r) {
+      return r.some(function (v) { return !isEmpty(v); });
+    });
+
+    return buildRecords(headers, dataRows, usedGeneric);
+  }
+
+  // ---------- 组装“记录”对象（标题 / 标签 / 字段） ----------
+  function buildRecords(headers, dataRows, usedGeneric) {
+    var titleIdx = -1, badgeIdx = [], longIdx = [], deptIdx = -1;
+    headers.forEach(function (h, i) {
+      if (titleIdx < 0 && RE_NAME.test(h)) titleIdx = i;
+      if (RE_BADGE.test(h)) badgeIdx.push(i);
+      if (RE_LONG.test(h)) longIdx.push(i);
+      if (deptIdx < 0 && /评估部门/.test(h)) deptIdx = i;      // 优先“评估部门”
+      if (deptIdx < 0 && RE_DEPT.test(h)) deptIdx = i;          // 退而求其次
+    });
+
+    var recs = dataRows.map(function (row, ri) {
+      var fields = headers.map(function (h, i) {
+        return { header: h, value: fmt(row[i]), idx: i };
+      });
+
+      // 标题：优先“名称”类字段；否则取最长的文本字段
+      var title = "";
+      if (titleIdx >= 0 && !isEmpty(fields[titleIdx].value)) title = fields[titleIdx].value;
+      if (!title) {
+        var best = fields.reduce(function (a, f) {
+          return f.value.length > a.value.length ? f : a;
+        }, { value: "" });
+        title = best.value;
+      }
+      if (title.length > 160) title = title.slice(0, 160) + "…";
+
+      // 彩色标签：短取值的“等级/进度/部门/责任人”等
+      var badges = fields.filter(function (f) {
+        if (isEmpty(f.value)) return false;
+        if (badgeIdx.indexOf(f.idx) < 0) return false;
+        if (RE_NO_BADGE.test(f.header)) return false;      // 这类字段只放正文，不做标签
+        if (f.value.length > 12) return false;             // 太长的不做标签
+        if (f.idx === titleIdx) return false;              // 与标题重复的不做标签
+        return true;
+      }).slice(0, 8);
+
+      // 正文字段：去掉已做标签的，保留其余（含长文本）
+      var badgeSet = badges.map(function (b) { return b.idx; });
+      var body = fields.filter(function (f) {
+        return f.idx !== titleIdx && badgeSet.indexOf(f.idx) < 0;
+      });
+
+      // 归属部门（一个单元格里可能写多个部门，用、，/ 拆开）
+      var depts = [];
+      if (deptIdx >= 0) {
+        depts = fields[deptIdx].value.split(/[、,，/；;]+/).map(function (s) {
+          return s.trim();
+        }).filter(function (s) { return s; });
+      }
+
+      return { id: ri, title: title || "（无标题）", badges: badges, body: body, raw: fields, depts: depts };
+    });
+
+    return { headers: headers, records: recs, usedGeneric: usedGeneric };
+  }
+
+  // ---------- 渲染 ----------
+  function render() {
+    if (!sheetName) return;
+    var ws = Wb.Sheets[sheetName];
+    var parsed = parseSheet(ws);
+    var q = el("q").value.trim().toLowerCase();
+
+    renderNav(parsed.records);
+
+    var cards = parsed.records.filter(function (r) {
+      if (curDept && r.depts.indexOf(curDept) < 0) return false;   // 部门过滤
+      if (!q) return true;
+      var hay = r.raw.map(function (f) { return f.value; }).join(" ").toLowerCase();
+      return hay.indexOf(q) >= 0;
+    });
+
+    var html = cards.map(function (r, i) {
+      // 标签
+      var badges = r.badges.map(function (b) {
+        return '<span class="badge ' + badgeClass(b.header, b.value) + '">' +
+               "<b>" + esc(b.header) + "</b>" + esc(b.value) + "</span>";
+      }).join("");
+
+      // 正文：长文本整行铺开
+      var body = r.body.map(function (f) {
+        var blank = isEmpty(f.value);
+        if (blank && !showEmpty) return "";
+        var wide = RE_LONG.test(f.header) || f.value.length > 60;
+        return '<div class="field' + (wide ? " wide" : "") + '">' +
+                 '<div class="lbl">' + esc(f.header) + "</div>" +
+                 '<div class="val' + (blank ? " blank" : "") + '">' +
+                   (blank ? "（空）" : esc(f.value)) +
+                 "</div>" +
+               "</div>";
+      }).join("");
+
+      return '<article class="card" data-id="' + r.id + '">' +
+               '<div class="card-head">' +
+                 '<div class="caret">▶</div>' +
+                 '<div class="idx">' + (i + 1) + "</div>" +
+                 '<div class="head-main">' +
+                   '<h3 class="card-title">' + esc(r.title) + "</h3>" +
+                   (badges ? '<div class="badges">' + badges + "</div>" : "") +
+                 "</div>" +
+               "</div>" +
+               '<div class="fields">' + body + "</div>" +
+             "</article>";
+    }).join("");
+
+    el("out").innerHTML = cards.length
+      ? html
+      : '<div id="drop"><h2>没有匹配的记录</h2><p>试试换个关键词，或清空搜索框。</p></div>';
+
+    // 恢复每张卡片的展开/收起状态
+    Array.prototype.forEach.call(el("out").querySelectorAll(".card"), function (c) {
+      if (allOpen || openSet[c.getAttribute("data-id")]) c.classList.add("open");
+    });
+
+    el("status").textContent =
+      (curDept ? "【" + curDept + "】" : "") +
+      "共 " + parsed.records.length + " 条记录" +
+      (q || curDept ? "，显示 " + cards.length + " 条" : "") +
+      (parsed.usedGeneric ? "（未识别到表头）" : "");
+  }
+
+  // ---------- 左侧导航：按评估部门分组（按记录数从多到少） ----------
+  function renderNav(records) {
+    var map = {};
+    records.forEach(function (r) {
+      if (!r.depts.length) {
+        map["未填写"] = (map["未填写"] || 0) + 1;   // 部门为空时单独归类
+        return;
+      }
+      r.depts.forEach(function (d) { map[d] = (map[d] || 0) + 1; });
+    });
+
+    var names = Object.keys(map).sort(function (a, b) {
+      if (a === "未填写") return 1;
+      if (b === "未填写") return -1;
+      return map[b] - map[a] || a.localeCompare(b, "zh");
+    });
+
+    var html = '<div class="nav-item' + (curDept ? "" : " active") + '" data-dept="">' +
+                 '<span class="nname">全部</span><span class="cnt">' + records.length + "</span></div>";
+    html += names.map(function (n) {
+      return '<div class="nav-item' + (n === curDept ? " active" : "") + '" data-dept="' + esc(n) + '">' +
+               '<span class="nname">' + esc(n) + '</span><span class="cnt">' + map[n] + "</span></div>";
+    }).join("");
+
+    el("nav").innerHTML = html;
+    // 只有一个部门（或没有）时隐藏部门分组区
+    var multi = names.length > 1;
+    el("nav").hidden = !multi;
+    el("navTitle").hidden = !multi;
+  }
+
+  // ---------- 选择要展示的工作表（只认主表） ----------
+  function pickSheet(names) {
+    if (names.indexOf(MAIN_SHEET) >= 0) return MAIN_SHEET;
+    // 兜底：取第一个非“说明/字典”类辅助表
+    for (var i = 0; i < names.length; i++) {
+      if (!/说明|字典/.test(names[i])) return names[i];
+    }
+    return names[0];
+  }
+
+  // ---------- 读文件 ----------
+  function loadFile(file) {
+    var fr = new FileReader();
+    fr.onload = function (e) {
+      try {
+        // cellDates: 让 Excel 日期直接变成 Date，便于统一格式化
+        Wb = XLSX.read(new Uint8Array(e.target.result), { type: "array", cellDates: true });
+      } catch (err) {
+        alert("读取失败：文件可能不是有效的 xlsx。\n" + err.message);
+        return;
+      }
+      var names = Wb.SheetNames;
+      sheetName = pickSheet(names);
+      if (!Wb.Sheets[sheetName]) {
+        alert("未找到工作表「" + MAIN_SHEET + "」，且文件里也没有可展示的数据表。");
+        return;
+      }
+      el("drop") && (el("drop").style.display = "none");
+      render();
+    };
+    fr.readAsArrayBuffer(file);
+  }
+
+  // 记录顶栏高度，供左侧导航栏的 sticky 定位使用
+
+  // 左侧导航：点击切换部门筛选
+  el("nav").addEventListener("click", function (e) {
+    var item = e.target.closest ? e.target.closest(".nav-item") : null;
+    if (!item) return;
+    curDept = item.getAttribute("data-dept") || "";
+    openSet = {}; allOpen = false;          // 切部门时收起，保持清爽
+    el("expand").textContent = "全部展开"; el("expand").classList.remove("on");
+    render();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  // ---------- 事件绑定 ----------
+  el("pick").onclick = function () { el("file").click(); };
+  el("file").onchange = function () { if (this.files[0]) loadFile(this.files[0]); };
+  el("q").oninput = render;
+  el("zoom").onchange = function () { el("out").style.zoom = this.value; };   // 整体缩放
+  el("minus").onclick = function () { fs = Math.max(12, fs - 1); document.documentElement.style.setProperty("--fs", fs + "px"); };
+  el("plus").onclick = function () { fs = Math.min(34, fs + 1); document.documentElement.style.setProperty("--fs", fs + "px"); };
+  el("expand").onclick = function () {
+    allOpen = !allOpen;
+    openSet = {};
+    this.textContent = allOpen ? "全部收起" : "全部展开";
+    this.classList.toggle("on", allOpen);
+    render();
+  };
+  // 点击标题栏收起/展开单张卡片（不整页重绘）
+  el("out").addEventListener("click", function (e) {
+    var head = e.target.closest ? e.target.closest(".card-head") : null;
+    if (!head) return;
+    var card = head.parentNode;
+    var id = card.getAttribute("data-id");
+    var open = !card.classList.contains("open");
+    card.classList.toggle("open", open);
+    if (open) openSet[id] = true; else delete openSet[id];
+  });
+  el("reset").onclick = function () {
+    fs = 17; document.documentElement.style.setProperty("--fs", fs + "px");
+    el("out").style.zoom = "";
+    el("zoom").value = "100%";
+    showEmpty = false; el("empty").classList.remove("on");
+    allOpen = false; openSet = {};
+    el("expand").textContent = "全部展开"; el("expand").classList.remove("on");
+    curDept = "";
+    el("q").value = ""; render();
+  };
+  el("empty").onclick = function () {
+    showEmpty = !showEmpty; this.classList.toggle("on", showEmpty); render();
+  };
+  el("print").onclick = function () { window.print(); };
+
+  // 拖拽投放（拖到页面任意位置都行）
+  ["dragenter", "dragover"].forEach(function (ev) {
+    window.addEventListener(ev, function (e) { e.preventDefault(); document.body.classList.add("hover"); });
+  });
+  ["dragleave", "drop"].forEach(function (ev) {
+    window.addEventListener(ev, function (e) { e.preventDefault(); document.body.classList.remove("hover"); });
+  });
+  window.addEventListener("drop", function (e) {
+    var f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+    if (f) loadFile(f);
+  });
+})();
+</script>
+</body>
+</html>
