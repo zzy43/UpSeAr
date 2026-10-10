@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B757 题库 · 1000 题（2026-09）</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; font-size: 12px; color: #222; background: #e8e8e8; line-height: 1.5; }
+
+    .sc { color: #16a34a; font-weight: 600; }
+    .sw { color: #dc2626; font-weight: 600; }
+    .page-wrap { max-width: 820px; margin: 0 auto; padding: 10px; }
+    .page { background: #fff; padding: 12mm 14mm; margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.12); border-radius: 4px; }
+    .page-title { font-size: 13px; font-weight: bold; text-align: center; padding-bottom: 5px; margin-bottom: 6px; border-bottom: 2px solid #333; }
+    .q-item { padding: 3px 0; border-bottom: 1px dashed #ddd; }
+    .q-header { font-weight: 600; font-size: 11.5px; }
+    .q-opts { margin-left: 16px; display: flex; flex-wrap: wrap; gap: 2px 6px; font-size: 11px; }
+    .opt-btn { cursor: pointer; padding: 1px 6px; border-radius: 3px; border: 1px solid #d0d0d0; background: #fafafa; color: #333; white-space: nowrap; transition: all 0.15s; user-select: none; }
+    .opt-btn:hover { border-color: #888; background: #f0f0f0; }
+    .opt-btn.correct { border-color: #16a34a; background: #dcfce7; color: #166534; }
+    .opt-btn.wrong { border-color: #dc2626; background: #fee2e2; color: #991b1b; }
+    .opt-btn.show-correct { border-color: #16a34a; background: #dcfce7; color: #166534; }
+    .q-answer { margin-left: 16px; font-size: 10px; color: #999; display: none; }
+    .q-answer.show { display: inline; color: #16a34a; font-weight: 500; }
+    .tag-correct, .tag-wrong { font-size: 10px; margin-left: 4px; font-weight: 600; }
+    .tag-correct { color: #16a34a; }
+    .tag-wrong { color: #dc2626; }
+    .btn { cursor: pointer; padding: 2px 10px; border: 1px solid #ccc; border-radius: 3px; background: #fff; font-size: 11px; }
+    .btn:hover { background: #f5f5f5; }
+    .btn-primary { background: #2563eb; color: #fff; border-color: #2563eb; }
+    .btn-primary:hover { background: #1d4ed8; }
+    .btn:disabled { opacity: .45; cursor: not-allowed; }
+
+    /* ===== 翻页条（打印时隐藏） ===== */
+    .pager { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 6px 0 12px; font-size: 11.5px; color: #444; }
+    .pager .pg { display: inline-flex; align-items: center; gap: 4px; }
+    .pg-input { width: 54px; font-family: inherit; font-size: 11.5px; padding: 2px 4px; border: 1px solid #ccc; border-radius: 3px; text-align: center; }
+    .empty-tip { padding: 24px; text-align: center; color: #999; }
+    .err-tip { padding: 24px; text-align: center; color: #dc2626; }
+
+    @media print {
+        .pager { display: none !important; }
+        .page-wrap { padding: 0; max-width: none; }
+        .page { box-shadow: none; margin: 0; border-radius: 0; }
+    }
+</style>
+</head>
+<body>
+
+<div class="page-wrap">
+
+  <!-- 翻页条（上） -->
+  <div class="pager"></div>
+
+  <!-- 题目区 -->
+  <div class="page">
+    <div class="page-title" id="pageTitle"></div>
+    <div id="qlist"></div>
+  </div>
+
+  <!-- 翻页条（下） -->
+  <div class="pager"></div>
+
+</div>
+
+<script src="757_data.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var DATA_FILE = "757_data.js";
+  var BANK = window.QUESTIONS;
+  var el = function (id) { return document.getElementById(id); };
+
+  if (!BANK || !BANK.questions || !BANK.questions.length) {
+    el("qlist").innerHTML = '<div class="err-tip">未读取到题库数据，请确认 <b>' + DATA_FILE +
+      '</b> 与本页面放在同一目录下。</div>';
+    return;
+  }
+
+  var ALL = BANK.questions;
+  var PAGE_SIZE = 100;                              // 固定每页 100 题
+  var page = 1;
+  var picked = {};                                  // 题号 -> 所选选项字母（刷新即重置）
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  // ---------- 分页 ----------
+  function totalPages() { return Math.max(1, Math.ceil(ALL.length / PAGE_SIZE)); }
+
+  // ---------- 渲染 ----------
+  function render() {
+    var tp = totalPages();
+    if (page > tp) page = tp;
+    if (page < 1) page = 1;
+
+    var start = (page - 1) * PAGE_SIZE;
+    var view = ALL.slice(start, start + PAGE_SIZE);
+
+    el("qlist").innerHTML = view.length ? view.map(card).join("") :
+      '<div class="empty-tip">没有题目</div>';
+
+    el("pageTitle").textContent = BANK.title +
+      (view.length ? " · 第 " + (start + 1) + "–" + (start + view.length) + " 题" : "");
+    syncPager();
+  }
+
+  function card(q) {
+    var mine = picked[q.id];
+    var opts = q.opts.map(function (o) {
+      var cls = "opt-btn";
+      if (mine !== undefined) {
+        if (o[0] === q.a) cls += " correct";
+        else if (o[0] === mine) cls += " wrong";
+      }
+      return '<span class="' + cls + '" data-id="' + q.id + '" data-label="' + o[0] + '">' +
+             o[0] + ". " + esc(o[1]) + "</span>";
+    }).join(" ");
+
+    return '<div class="q-item" id="qi' + q.id + '">' +
+             '<div class="q-header">' + q.id + ". " + esc(q.q) + "</div>" +
+             '<div class="q-opts">' + opts +
+               '<span class="q-answer' + (mine !== undefined ? " show" : "") + '" id="ans' + q.id + '">✓ ' + q.a + "</span>" +
+             "</div>" +
+           "</div>";
+  }
+
+  // ---------- 翻页条：上一页 / 输入页码跳转 / 下一页 ----------
+  function buildPager() {
+    var html = '<button class="btn" data-act="prev">← 上一页</button>' +
+               '<span class="pg">第 <input class="pg-input" type="number" min="1" step="1"> / <b class="pg-total">1</b> 页</span>' +
+               '<button class="btn" data-act="next">下一页 →</button>';
+    var boxes = document.querySelectorAll(".pager");
+    for (var i = 0; i < boxes.length; i++) boxes[i].innerHTML = html;
+  }
+
+  function syncPager() {
+    var tp = totalPages();
+    var i, nodes;
+    nodes = document.querySelectorAll(".pg-total");
+    for (i = 0; i < nodes.length; i++) nodes[i].textContent = tp;
+    nodes = document.querySelectorAll(".pg-input");
+    for (i = 0; i < nodes.length; i++) { nodes[i].max = tp; nodes[i].value = page; }
+    nodes = document.querySelectorAll('[data-act="prev"]');
+    for (i = 0; i < nodes.length; i++) nodes[i].disabled = page <= 1;
+    nodes = document.querySelectorAll('[data-act="next"]');
+    for (i = 0; i < nodes.length; i++) nodes[i].disabled = page >= tp;
+  }
+
+  // 快速跳页：输入页码后回车（或移开焦点）即可
+  function goto(n) {
+    var tp = totalPages();
+    n = parseInt(n, 10);
+    if (isNaN(n)) n = page;
+    if (n < 1) n = 1;
+    if (n > tp) n = tp;
+    page = n;
+    render();
+  }
+
+  // ---------- 答题 ----------
+  function choose(btn) {
+    var id = parseInt(btn.getAttribute("data-id"), 10);
+    if (picked[id] !== undefined) return;                  // 同一题只判一次
+
+    var q = null;
+    for (var i = 0; i < ALL.length; i++) { if (ALL[i].id === id) { q = ALL[i]; break; } }
+    if (!q) return;
+
+    var label = btn.getAttribute("data-label");
+    picked[id] = label;
+
+    var box = btn.parentElement;
+    var btns = box.querySelectorAll(".opt-btn");
+    for (var j = 0; j < btns.length; j++) {
+      var b = btns[j];
+      if (b.getAttribute("data-label") === q.a) b.classList.add("correct");
+      else if (b === btn) b.classList.add("wrong");
+    }
+    var ansEl = box.querySelector(".q-answer");
+    if (ansEl) ansEl.classList.add("show");
+  }
+
+  // ---------- 事件 ----------
+  el("qlist").addEventListener("click", function (e) {
+    var btn = e.target.closest ? e.target.closest(".opt-btn") : null;
+    if (btn) choose(btn);
+  });
+
+  // 页码输入框：回车或移开焦点即跳页
+  document.addEventListener("change", function (e) {
+    if (e.target.classList && e.target.classList.contains("pg-input")) goto(e.target.value);
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" && e.target.classList && e.target.classList.contains("pg-input")) {
+      e.target.blur();
+      goto(e.target.value);
+    }
+  });
+  // 上一页 / 下一页（上下两条翻页条都生效）
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest ? e.target.closest("[data-act]") : null;
+    if (!b) return;
+    goto(b.getAttribute("data-act") === "prev" ? page - 1 : page + 1);
+    window.scrollTo(0, 0);
+  });
+
+  buildPager();
+  render();
+})();
+</script>
+</body>
+</html>
