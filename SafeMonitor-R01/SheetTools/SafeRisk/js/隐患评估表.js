@@ -1,238 +1,11 @@
-<!DOCTYPE html>
-<!--
-  安全隐患协同评估表 · 大字号查看器
-  用法：双击本文件 → 把 .xlsx 拖到页面上（或点“选择文件”）
-  依赖：同目录下的 xlsx.full.min.js（离线可用；缺失时自动走 CDN）
-  特点：只读「安全隐患报告导入模板」；每条隐患一张卡片，默认收起、点标题栏展开；
-        关键字段做成彩色标签，长文本（描述/原因/措施）整行铺开；
-        支持整体缩放、字号调节、搜索与打印。
--->
-<html lang="zh-CN">
-<head>
-<meta charset="utf-8">
-<title>安全隐患协同评估表 · 大字号查看器</title>
-<style>
-  /* ============ 主题变量（字号统一由 --fs 控制，方便一键缩放） ============ */
-  :root{
-    --fs: 17px;               /* 基础字号 */
-    --ink: #1b2430;
-    --ink-2: #55606e;
-    --line: #dde3ea;
-    --bg: #eef2f7;
-    --card: #ffffff;
-    --brand: #1f4e79;
-    --brand-soft: #eaf1f8;
-    --ok: #1e7a46;    --ok-bg: #e4f5ea;
-    --doing: #9a6100; --doing-bg: #fdf1da;
-    --bad: #b3261e;   --bad-bg: #fdeaea;
-    --info: #1f4e79;  --info-bg: #e8f0f8;
-    --plain: #55606e; --plain-bg: #eef1f5;
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0;padding:0}
-  body{
-    background:var(--bg); color:var(--ink);
-    font-family:"微软雅黑","Microsoft YaHei","Segoe UI",system-ui,sans-serif;
-    font-size:var(--fs); line-height:1.7;
-  }
+/* 安全隐患协同评估表 · 大字号查看器 —— 逻辑
+   结构在 ../隐患评估表查看器.html，样式在 ../css/隐患评估表.css
+   依赖 xlsx.full.min.js（SheetJS，由 HTML 里先加载）
 
-  /* ============ 通用控件 ============ */
-  button,select,input[type=search]{
-    font-family:inherit; font-size:.92em; color:var(--ink);
-    background:#fff; border:1.5px solid var(--line); border-radius:9px;
-    padding:7px 13px; cursor:pointer;
-  }
-  button:hover{border-color:var(--brand); color:var(--brand)}
-  button.primary{background:var(--brand); border-color:var(--brand); color:#fff}
-  button.primary:hover{background:#173d5e; color:#fff}
-  button.on{background:var(--brand-soft); border-color:var(--brand); color:var(--brand); font-weight:700}
-  input[type=search]{width:100%; cursor:text}
-  input[type=search]:focus{outline:none; border-color:var(--brand)}
-
-  /* 状态行 */
-  .status{
-    color:var(--ink-2); font-size:.84em; line-height:1.6;
-    padding:10px 4px; border-bottom:1px solid var(--line); margin-bottom:10px;
-  }
-
-  /* ============ 投放区 ============ */
-  #drop{
-    margin:16px auto; max-width:760px; padding:56px 28px; text-align:center;
-    background:#fff; border:3px dashed #b9c6d6; border-radius:20px;
-  }
-  body.hover #drop{border-color:var(--brand); background:var(--brand-soft)}
-  #drop h2{margin:0 0 10px; font-size:1.5em; color:var(--brand)}
-  #drop p{margin:6px 0; color:var(--ink-2); font-size:.95em}
-  .big{font-size:3em; line-height:1}
-
-  /* ============ 主体布局：左侧导航栏 + 右侧卡片 ============ */
-  .layout{
-    display:flex; gap:16px; align-items:flex-start;
-    max-width:1600px; margin:0 auto; padding:14px;
-  }
-  aside{
-    flex:0 0 238px; position:sticky; top:14px;
-    max-height:calc(100vh - 28px); overflow:auto;
-    background:#fff; border:1px solid var(--line); border-radius:14px;
-    padding:12px; box-shadow:0 3px 14px rgba(15,35,60,.06);
-  }
-  .side-title{
-    font-size:1.02em; font-weight:700; color:var(--brand); line-height:1.35;
-    padding:2px 4px 10px; border-bottom:2px solid var(--brand-soft); margin-bottom:12px;
-  }
-  .side-title .side-sub{display:block; font-size:.72em; font-weight:400; color:var(--ink-2); letter-spacing:.04em}
-  aside .nav-title{margin-top:2px; font-size:.84em; letter-spacing:.04em; border-bottom:1px solid var(--line)}
-  /* 侧栏里的控件：整行或两三列排布 */
-  .wide-btn{display:block; width:100%; margin-bottom:10px}
-  aside input[type=search]{margin-bottom:10px}
-  .tools{display:flex; gap:6px; margin-bottom:6px}
-  .tools button,.tools select{flex:1; min-width:0; padding:6px 4px; font-size:.85em; text-align:center}
-  .nav-item{
-    display:flex; align-items:center; gap:8px; justify-content:space-between;
-    padding:9px 10px; margin-bottom:4px; border-radius:9px;
-    font-size:.92em; color:var(--ink); cursor:pointer; line-height:1.4;
-  }
-  .nav-item:hover{background:var(--brand-soft)}
-  .nav-item.active{background:var(--brand); color:#fff; font-weight:700}
-  .nav-item .cnt{
-    flex:0 0 auto; min-width:1.9em; text-align:center; font-size:.8em;
-    padding:1px 7px; border-radius:999px; background:#eef1f5; color:var(--ink-2);
-  }
-  .nav-item.active .cnt{background:rgba(255,255,255,.25); color:#fff}
-  .nav-item .nname{flex:1; min-width:0; word-break:break-word}
-
-  /* ============ 记录卡片 ============ */
-  main{flex:1; min-width:0}
-  .card{
-    background:var(--card); border:1px solid var(--line); border-radius:14px;
-    margin-bottom:22px; box-shadow:0 3px 14px rgba(15,35,60,.07); overflow:hidden;
-    break-inside:avoid;
-  }
-  .card-head{
-    display:flex; gap:14px; align-items:flex-start;
-    padding:16px 20px; background:linear-gradient(180deg,#f7fafd,#eef4fa);
-    cursor:pointer; user-select:none;
-  }
-  .card.open .card-head{border-bottom:1px solid var(--line)}
-  .card-head:hover{background:linear-gradient(180deg,#eff5fb,#e4eef8)}
-  /* 展开/收起指示三角 */
-  .caret{
-    flex:0 0 auto; width:1.6em; text-align:center; color:var(--brand);
-    font-size:1em; line-height:2.2; transition:transform .15s;
-  }
-  .card.open .caret{transform:rotate(90deg)}
-  .idx{
-    flex:0 0 auto; min-width:2.2em; height:2.2em; border-radius:10px;
-    background:var(--brand); color:#fff; font-weight:700;
-    display:flex; align-items:center; justify-content:center; font-size:1em;
-    padding:0 .3em;
-  }
-  .head-main{flex:1; min-width:0}
-  .card-title{
-    margin:0; font-size:1.28em; line-height:1.5; font-weight:700; color:#14212e;
-    white-space:pre-wrap; word-break:break-word;
-  }
-  .badges{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
-  .badge{
-    font-size:.82em; font-weight:700; padding:3px 11px; border-radius:999px;
-    background:var(--plain-bg); color:var(--plain); white-space:nowrap;
-  }
-  .badge b{font-weight:700; opacity:.72; margin-right:4px}
-  .badge.ok{background:var(--ok-bg); color:var(--ok)}
-  .badge.doing{background:var(--doing-bg); color:var(--doing)}
-  .badge.bad{background:var(--bad-bg); color:var(--bad)}
-  .badge.info{background:var(--info-bg); color:var(--info)}
-
-  /* 字段区：默认收起，点标题栏后展开；宽屏两栏，长文本整行铺开 */
-  .fields{
-    display:none;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:0; padding:6px 20px 18px;
-  }
-  .card.open .fields{display:grid}
-  .field{padding:12px 16px 12px 0; border-bottom:1px dashed #eaeef3}
-  .field.wide{grid-column:1/-1}
-  .lbl{
-    font-size:.82em; font-weight:700; letter-spacing:.03em;
-    color:var(--brand); margin-bottom:4px;
-  }
-  .val{white-space:pre-wrap; word-break:break-word}
-  .field.wide .val{font-size:1.02em; line-height:1.85}
-  .val.blank{color:#a9b2bd; font-style:italic}
-
-  /* ============ 打印 ============ */
-  @media print{
-    :root{--fs:12pt}
-    body{background:#fff}
-    aside{display:none !important}
-    .layout{display:block; padding:0}
-    main{max-width:none; zoom:1 !important}
-    .card{box-shadow:none; border-color:#bbb; margin-bottom:14px}
-    .card-head{background:#f2f5f8}
-    .card .fields{display:grid !important}   /* 打印时总是展开全部内容 */
-    .caret{display:none}
-  }
-  @media (max-width:900px){
-    .layout{display:block; padding:12px}
-    aside{position:static; max-height:none; flex:none; margin-bottom:12px}
-    .nav{display:flex; flex-wrap:wrap; gap:8px}
-    .nav-item{margin:0}
-  }
-</style>
-</head>
-<body>
-
-<div class="layout">
-  <!-- ============ 左侧导航栏：工具区 + 按评估部门分组 ============ -->
-  <aside id="side">
-    <div class="side-title">安全隐患协同评估表<span class="side-sub">大字号查看器</span></div>
-
-    <button id="pick" class="primary wide-btn">选择 xlsx 文件</button>
-    <input id="file" type="file" accept=".xlsx,.xls,.csv" hidden>
-
-    <input id="q" type="search" placeholder="搜索：名称/部门/责任人…">
-
-    <div class="tools">
-      <select id="zoom" title="整体缩放">
-        <option>80%</option><option>90%</option><option selected>100%</option>
-        <option>110%</option><option>125%</option><option>150%</option><option>175%</option>
-      </select>
-      <button id="minus" title="缩小字号">A－</button>
-      <button id="plus" title="放大字号">A＋</button>
-    </div>
-    <div class="tools">
-      <button id="expand" title="展开/收起全部卡片">全部展开</button>
-      <button id="empty" title="是否显示空字段">显示空字段</button>
-    </div>
-    <div class="tools">
-      <button id="reset" title="恢复默认设置">重置</button>
-      <button id="print" title="打印 / 导出 PDF">打印</button>
-    </div>
-
-    <div class="status" id="status">尚未导入文件</div>
-
-    <div class="side-title nav-title" id="navTitle" hidden>按评估部门</div>
-    <div class="nav" id="nav"></div>
-  </aside>
-
-  <main id="out">
-    <div id="drop">
-      <div class="big">📋</div>
-      <h2>把 xlsx 文件拖到这里</h2>
-      <p>或点击左侧的「选择 xlsx 文件」按钮</p>
-      <p>读取「安全隐患报告导入模板」工作表，一条隐患一张卡片（点击卡片标题栏展开明细）</p>
-    </div>
-  </main>
-</div>
-
-<!-- 本地解析库；若同目录缺失则回退到 CDN -->
-<script src="xlsx.full.min.js"></script>
-<script>
-if (typeof XLSX === 'undefined') {
-  document.write('<script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"><\/script>');
-}
-</script>
-<script>
+   想换数据源 / 改字段识别规则，看下面两块就够了：
+   ① MAIN_SHEET —— 展示哪张工作表
+   ② RE_* 正则   —— 哪个列当标题、哪些列做彩色标签、哪些列整行铺开
+*/
 (function () {
   "use strict";
 
@@ -244,6 +17,9 @@ if (typeof XLSX === 'undefined') {
   var RE_NO_BADGE = /责任单位|上级单位|单位名称/;            // 这些字段不放 card-head 标签
 
   var el = function (id) { return document.getElementById(id); };
+  // 侧栏里「未填写」那一组用的内部值（不能直接用「未填写」当值，否则和“空的”对不上，点了会一条都不显示）
+  var NONE = "__none__";
+  var navLabel = function (k) { return k === NONE ? "未填写" : k; };
   var esc = function (s) {
     return String(s).replace(/[&<>"']/g, function (c) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
@@ -406,7 +182,10 @@ if (typeof XLSX === 'undefined') {
     renderNav(parsed.records);
 
     var cards = parsed.records.filter(function (r) {
-      if (curDept && r.depts.indexOf(curDept) < 0) return false;   // 部门过滤
+      // 部门过滤（curDept === NONE 就是“部门没填”的那批）
+      if (curDept) {
+        if (curDept === NONE ? r.depts.length > 0 : r.depts.indexOf(curDept) < 0) return false;
+      }
       if (!q) return true;
       var hay = r.raw.map(function (f) { return f.value; }).join(" ").toLowerCase();
       return hay.indexOf(q) >= 0;
@@ -419,7 +198,7 @@ if (typeof XLSX === 'undefined') {
                "<b>" + esc(b.header) + "</b>" + esc(b.value) + "</span>";
       }).join("");
 
-      // 正文：长文本整行铺开
+      // 正文：长文本整行铺开；一个可显示的字段都没有时给一句说明，别让卡片打开是空的
       var body = r.body.map(function (f) {
         var blank = isEmpty(f.value);
         if (blank && !showEmpty) return "";
@@ -431,6 +210,11 @@ if (typeof XLSX === 'undefined') {
                  "</div>" +
                "</div>";
       }).join("");
+      if (!body) {
+        body = '<div class="field wide"><div class="val blank">' +
+               "（这一行在表里只有标题那一列有字，其余列都是空的）" +
+               "</div></div>";
+      }
 
       return '<article class="card" data-id="' + r.id + '">' +
                '<div class="card-head">' +
@@ -455,7 +239,7 @@ if (typeof XLSX === 'undefined') {
     });
 
     el("status").textContent =
-      (curDept ? "【" + curDept + "】" : "") +
+      (curDept ? "【" + navLabel(curDept) + "】" : "") +
       "共 " + parsed.records.length + " 条记录" +
       (q || curDept ? "，显示 " + cards.length + " 条" : "") +
       (parsed.usedGeneric ? "（未识别到表头）" : "");
@@ -466,15 +250,15 @@ if (typeof XLSX === 'undefined') {
     var map = {};
     records.forEach(function (r) {
       if (!r.depts.length) {
-        map["未填写"] = (map["未填写"] || 0) + 1;   // 部门为空时单独归类
+        map[NONE] = (map[NONE] || 0) + 1;   // 部门为空时单独归类
         return;
       }
       r.depts.forEach(function (d) { map[d] = (map[d] || 0) + 1; });
     });
 
     var names = Object.keys(map).sort(function (a, b) {
-      if (a === "未填写") return 1;
-      if (b === "未填写") return -1;
+      if (a === NONE) return 1;
+      if (b === NONE) return -1;
       return map[b] - map[a] || a.localeCompare(b, "zh");
     });
 
@@ -482,7 +266,7 @@ if (typeof XLSX === 'undefined') {
                  '<span class="nname">全部</span><span class="cnt">' + records.length + "</span></div>";
     html += names.map(function (n) {
       return '<div class="nav-item' + (n === curDept ? " active" : "") + '" data-dept="' + esc(n) + '">' +
-               '<span class="nname">' + esc(n) + '</span><span class="cnt">' + map[n] + "</span></div>";
+               '<span class="nname">' + esc(navLabel(n)) + '</span><span class="cnt">' + map[n] + "</span></div>";
     }).join("");
 
     el("nav").innerHTML = html;
@@ -524,8 +308,6 @@ if (typeof XLSX === 'undefined') {
     };
     fr.readAsArrayBuffer(file);
   }
-
-  // 记录顶栏高度，供左侧导航栏的 sticky 定位使用
 
   // 左侧导航：点击切换部门筛选
   el("nav").addEventListener("click", function (e) {
@@ -589,6 +371,3 @@ if (typeof XLSX === 'undefined') {
     if (f) loadFile(f);
   });
 })();
-</script>
-</body>
-</html>

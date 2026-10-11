@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--
+  安全整顿挂图作战清单 · 大字号查看器
+  用法：双击本文件 → 把「挂图作战.xlsx」拖到页面上（或点“选择文件”）
+  结构：本文件（结构）+ css/挂图作战.css（样式）+ js/挂图作战.js（逻辑）
+  依赖：同目录下的 xlsx.full.min.js（离线可用；缺失时自动走 CDN）
+  特点：一项任务一张卡片，默认收起、点标题栏展开；
+        标题取「工作任务/工作事项」，进度、部门、责任人、时限做成彩色标签；
+        左侧可按「牵头部门」「完成状态」筛选；支持搜索、整体缩放、字号调节、打印。
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>安全整顿挂图作战清单 · 大字号查看器</title>
+<link rel="stylesheet" href="css/挂图作战.css">
+</head>
+<body>
+
+<div class="layout">
+  <!-- ============ 左侧导航栏：工具区 + 按牵头部门 / 完成状态分组 ============ -->
+  <aside id="side">
+    <div class="side-title">挂图作战清单<span class="side-sub">大字号查看器</span></div>
+
+    <button id="pick" class="primary wide-btn">选择 xlsx 文件</button>
+    <input id="file" type="file" accept=".xlsx,.xls,.csv" hidden>
+
+    <input id="q" type="search" placeholder="搜索：任务/部门/责任人…">
+
+    <div class="tools">
+      <select id="zoom" title="整体缩放">
+        <option>80%</option><option>90%</option><option selected>100%</option>
+        <option>110%</option><option>125%</option><option>150%</option><option>175%</option>
+      </select>
+      <button id="minus" title="缩小字号">A－</button>
+      <button id="plus" title="放大字号">A＋</button>
+    </div>
+    <div class="tools">
+      <button id="expand" title="展开/收起全部卡片">全部展开</button>
+      <button id="empty" title="是否显示空字段">显示空字段</button>
+    </div>
+    <div class="tools">
+      <button id="reset" title="恢复默认设置">重置</button>
+      <button id="print" title="打印 / 导出 PDF">打印</button>
+    </div>
+
+    <div class="status" id="status">尚未导入文件</div>
+
+    <div class="side-title nav-title" id="navTitle" hidden>按牵头部门</div>
+    <div class="nav" id="nav"></div>
+
+    <div class="side-title nav-title" id="statTitle" hidden>按完成状态</div>
+    <div class="nav" id="statNav" hidden></div>
+  </aside>
+
+  <main id="out">
+    <div id="drop">
+      <div class="big">🗺️</div>
+      <h2>把「挂图作战.xlsx」拖到这里</h2>
+      <p>或点击左侧的「选择 xlsx 文件」按钮</p>
+      <p>自动识别表头：一项任务一张卡片，点击卡片标题栏展开全部明细</p>
+    </div>
+  </main>
+</div>
+
+<!-- 本地解析库；若同目录缺失则回退到 CDN -->
+<script src="xlsx.full.min.js"></script>
+<script>
+if (typeof XLSX === 'undefined') {
+  document.write('<script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"><\/script>');
+}
+</script>
+<script src="js/挂图作战.js"></script>
+</body>
+</html>

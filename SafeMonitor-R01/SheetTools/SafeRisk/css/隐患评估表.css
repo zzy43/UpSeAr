@@ -1,0 +1,170 @@
+/* 安全隐患协同评估表 · 大字号查看器 —— 样式
+   配色 / 布局 / 卡片 / 打印都在这里；逻辑在 ../js/隐患评估表.js
+   说明：一个变量 --fs 控制全局字号（A＋ / A－ 改的就是它） */
+
+/* ============ 主题变量（字号统一由 --fs 控制，方便一键缩放） ============ */
+:root{
+  --fs: 17px;               /* 基础字号 */
+  --ink: #1b2430;
+  --ink-2: #55606e;
+  --line: #dde3ea;
+  --bg: #eef2f7;
+  --card: #ffffff;
+  --brand: #1f4e79;
+  --brand-soft: #eaf1f8;
+  --ok: #1e7a46;    --ok-bg: #e4f5ea;
+  --doing: #9a6100; --doing-bg: #fdf1da;
+  --bad: #b3261e;   --bad-bg: #fdeaea;
+  --info: #1f4e79;  --info-bg: #e8f0f8;
+  --plain: #55606e; --plain-bg: #eef1f5;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"微软雅黑","Microsoft YaHei","Segoe UI",system-ui,sans-serif;
+  font-size:var(--fs); line-height:1.7;
+}
+
+/* ============ 通用控件 ============ */
+button,select,input[type=search]{
+  font-family:inherit; font-size:.92em; color:var(--ink);
+  background:#fff; border:1.5px solid var(--line); border-radius:9px;
+  padding:7px 13px; cursor:pointer;
+}
+button:hover{border-color:var(--brand); color:var(--brand)}
+button.primary{background:var(--brand); border-color:var(--brand); color:#fff}
+button.primary:hover{background:#173d5e; color:#fff}
+button.on{background:var(--brand-soft); border-color:var(--brand); color:var(--brand); font-weight:700}
+input[type=search]{width:100%; cursor:text}
+input[type=search]:focus{outline:none; border-color:var(--brand)}
+
+/* 状态行 */
+.status{
+  color:var(--ink-2); font-size:.84em; line-height:1.6;
+  padding:10px 4px; border-bottom:1px solid var(--line); margin-bottom:10px;
+}
+
+/* ============ 投放区 ============ */
+#drop{
+  margin:16px auto; max-width:760px; padding:56px 28px; text-align:center;
+  background:#fff; border:3px dashed #b9c6d6; border-radius:20px;
+}
+body.hover #drop{border-color:var(--brand); background:var(--brand-soft)}
+#drop h2{margin:0 0 10px; font-size:1.5em; color:var(--brand)}
+#drop p{margin:6px 0; color:var(--ink-2); font-size:.95em}
+.big{font-size:3em; line-height:1}
+
+/* ============ 主体布局：左侧导航栏 + 右侧卡片 ============ */
+.layout{
+  display:flex; gap:16px; align-items:flex-start;
+  max-width:1600px; margin:0 auto; padding:14px;
+}
+aside{
+  flex:0 0 238px; position:sticky; top:14px;
+  max-height:calc(100vh - 28px); overflow:auto;
+  background:#fff; border:1px solid var(--line); border-radius:14px;
+  padding:12px; box-shadow:0 3px 14px rgba(15,35,60,.06);
+}
+.side-title{
+  font-size:1.02em; font-weight:700; color:var(--brand); line-height:1.35;
+  padding:2px 4px 10px; border-bottom:2px solid var(--brand-soft); margin-bottom:12px;
+}
+.side-title .side-sub{display:block; font-size:.72em; font-weight:400; color:var(--ink-2); letter-spacing:.04em}
+aside .nav-title{margin-top:2px; font-size:.84em; letter-spacing:.04em; border-bottom:1px solid var(--line)}
+/* 侧栏里的控件：整行或两三列排布 */
+.wide-btn{display:block; width:100%; margin-bottom:10px}
+aside input[type=search]{margin-bottom:10px}
+.tools{display:flex; gap:6px; margin-bottom:6px}
+.tools button,.tools select{flex:1; min-width:0; padding:6px 4px; font-size:.85em; text-align:center}
+.nav-item{
+  display:flex; align-items:center; gap:8px; justify-content:space-between;
+  padding:9px 10px; margin-bottom:4px; border-radius:9px;
+  font-size:.92em; color:var(--ink); cursor:pointer; line-height:1.4;
+}
+.nav-item:hover{background:var(--brand-soft)}
+.nav-item.active{background:var(--brand); color:#fff; font-weight:700}
+.nav-item .cnt{
+  flex:0 0 auto; min-width:1.9em; text-align:center; font-size:.8em;
+  padding:1px 7px; border-radius:999px; background:#eef1f5; color:var(--ink-2);
+}
+.nav-item.active .cnt{background:rgba(255,255,255,.25); color:#fff}
+.nav-item .nname{flex:1; min-width:0; word-break:break-word}
+
+/* ============ 记录卡片 ============ */
+main{flex:1; min-width:0}
+.card{
+  background:var(--card); border:1px solid var(--line); border-radius:14px;
+  margin-bottom:22px; box-shadow:0 3px 14px rgba(15,35,60,.07); overflow:hidden;
+  break-inside:avoid;
+}
+.card-head{
+  display:flex; gap:14px; align-items:flex-start;
+  padding:16px 20px; background:linear-gradient(180deg,#f7fafd,#eef4fa);
+  cursor:pointer; user-select:none;
+}
+.card.open .card-head{border-bottom:1px solid var(--line)}
+.card-head:hover{background:linear-gradient(180deg,#eff5fb,#e4eef8)}
+/* 展开/收起指示三角 */
+.caret{
+  flex:0 0 auto; width:1.6em; text-align:center; color:var(--brand);
+  font-size:1em; line-height:2.2; transition:transform .15s;
+}
+.card.open .caret{transform:rotate(90deg)}
+.idx{
+  flex:0 0 auto; min-width:2.2em; height:2.2em; border-radius:10px;
+  background:var(--brand); color:#fff; font-weight:700;
+  display:flex; align-items:center; justify-content:center; font-size:1em;
+  padding:0 .3em;
+}
+.head-main{flex:1; min-width:0}
+.card-title{
+  margin:0; font-size:1.28em; line-height:1.5; font-weight:700; color:#14212e;
+  white-space:pre-wrap; word-break:break-word;
+}
+.badges{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+.badge{
+  font-size:.82em; font-weight:700; padding:3px 11px; border-radius:999px;
+  background:var(--plain-bg); color:var(--plain); white-space:nowrap;
+}
+.badge b{font-weight:700; opacity:.72; margin-right:4px}
+.badge.ok{background:var(--ok-bg); color:var(--ok)}
+.badge.doing{background:var(--doing-bg); color:var(--doing)}
+.badge.bad{background:var(--bad-bg); color:var(--bad)}
+.badge.info{background:var(--info-bg); color:var(--info)}
+
+/* 字段区：默认收起，点标题栏后展开；宽屏两栏，长文本整行铺开 */
+.fields{
+  display:none;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:0; padding:6px 20px 18px;
+}
+.card.open .fields{display:grid}
+.field{padding:12px 16px 12px 0; border-bottom:1px dashed #eaeef3}
+.field.wide{grid-column:1/-1}
+.lbl{
+  font-size:.82em; font-weight:700; letter-spacing:.03em;
+  color:var(--brand); margin-bottom:4px;
+}
+.val{white-space:pre-wrap; word-break:break-word}
+.field.wide .val{font-size:1.02em; line-height:1.85}
+.val.blank{color:#a9b2bd; font-style:italic}
+
+/* ============ 打印 ============ */
+@media print{
+  :root{--fs:12pt}
+  body{background:#fff}
+  aside{display:none !important}
+  .layout{display:block; padding:0}
+  main{max-width:none; zoom:1 !important}
+  .card{box-shadow:none; border-color:#bbb; margin-bottom:14px}
+  .card-head{background:#f2f5f8}
+  .card .fields{display:grid !important}   /* 打印时总是展开全部内容 */
+  .caret{display:none}
+}
+@media (max-width:900px){
+  .layout{display:block; padding:12px}
+  aside{position:static; max-height:none; flex:none; margin-bottom:12px}
+  .nav{display:flex; flex-wrap:wrap; gap:8px}
+  .nav-item{margin:0}
+}

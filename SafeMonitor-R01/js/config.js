@@ -47,7 +47,7 @@ window.SLIDE_DATA = [
         titleTop: '管理评审',
         titleBottom: '建立并组织安全评审工作',
         synopsis: '负责建立并组织开展公司安全管理评审工作，制定管理评审年度计划、方案和议程，明确评审输入、输出、频次、参会范围、决议形成和跟踪验证机制。系统收集评审输入，包括安全政策与目标完成情况、安全绩效指标及警戒值/目标值趋势、危险源库和风险控制措施状态、风险管理与安全保证输出、审核监察/法定自查/IOSA/LOSA结果。',
-        poster: 'https://pic.rmb.bdstatic.com/bjh/events/3a006ab07685005476cec807c6ed2e4f.jpeg@h_1280'
+        poster: 'https://i2.hdslb.com/bfs/archive/ce7e52f54a70f57f97356c05069bc16287ed7bbc.jpg'        
     },
     {
         genre: 'Construction of Work Style',
@@ -66,7 +66,7 @@ window.SLIDE_DATA = [
     },
     {
         genre: 'LOSA',
-        titleTop: 'LOSA',
+        titleTop: '表格工具',
         titleBottom: '航线运行安全审计',
         synopsis: '统筹制定公司 LOSA 年度计划和抽样方案，覆盖机型、基地、航线、航段、昼夜时段、复杂机场、天气特点、机组搭配、高低威胁运行环境等维度；组织飞行部、运行标准技术部及训练、运控、安全信息等相关部门开展观察员选拔、培训、认证和校准，统一观察标准、TEM 判据、记录口径和质量控制方法。',
         poster: 'https://img0.baidu.com/it/u=386347427,3676949626&fm=253&fmt=auto&app=120&f=JPEG?w=1280&h=800'
@@ -76,7 +76,7 @@ window.SLIDE_DATA = [
         titleTop: '安全文化',
         titleBottom: '安全宣传与教育培训',
         synopsis: '组织编写、修订《航空安全管理程序》《安全监察部管理手册》及相关支持性程序；对公司整体安全形势开展月度、季度、年度分析，综合强制/自愿报告、QAR/FOQA、审核监察、法定自查、LOSA、事件调查、安全绩效指标、行业安全信息和监管要求，识别重点风险、薄弱环节和培训需求。',
-        poster: 'https://i2.hdslb.com/bfs/archive/ce7e52f54a70f57f97356c05069bc16287ed7bbc.jpg'
+        poster: 'https://pic.rmb.bdstatic.com/bjh/events/3a006ab07685005476cec807c6ed2e4f.jpeg@h_1280'
     },
     {
         genre: 'Various Assignment',

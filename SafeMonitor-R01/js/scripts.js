@@ -336,10 +336,16 @@ class SlideCarousel {
         });
         
         // 「法定自查」进的是另一个系统（年度审核计划 + 问题库），
+        // 「管理评审」进的是非 396 重点 QAR 多部门闭环系统，
+        // 「LOSA」进的是表格工具入口（隐患评估表 / 挂图作战查看器），
+        // 「各项任务」进的是个人记事本（按部门分类的那种），
         // 其余主题还是进「安全审核 · 工作计划」。
         // 想换别的主题进别的页，在这里加一个映射就行。
         const ENTRY = {
-            'Statutory Inspection': 'CheckQuestion/check.html'
+            'Statutory Inspection': 'CheckQuestion/check.html',
+            'Management Evaluation': 'ManagementReview/review.html',
+            'LOSA': 'SheetTools/index.html',
+            'Various Assignment': 'z/01/zzy.html'
         };
         const page = ENTRY[(slide.genre || '').trim()] || 'SafetyAudit/work.html';
         

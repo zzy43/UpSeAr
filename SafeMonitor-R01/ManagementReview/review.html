@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!--
+  管理复盘 · 事件协同闭环管理
+  ==================================================================
+  安监部牵头，运技部、飞行部共同参与，把非 396 事件里的重点 QAR 项目
+  做成一条闭环：调查 → 分析 → 讲评 → 措施 → 改进 → 督促。
+
+  从轮播首页点「管理评审（Management Evaluation）」那一页的信息面板进来。
+  数据保存在云端独立目录（ManagementReview/review.json），
+  和安全审核（SafetyAudit/）、法定自查（CheckQuestion/）分开，互不影响。
+  ==================================================================
+-->
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#f0e8d5">
+  <title>管理复盘 · 事件协同闭环管理</title>
+  <!-- 样式按功能拆分：基础层 / 组件层 / 业务层 / 亮色模式 -->
+  <link rel="stylesheet" href="css/review-base.css">
+  <link rel="stylesheet" href="css/review-parts.css">
+  <link rel="stylesheet" href="css/review-app.css">
+  <link rel="stylesheet" href="css/review-light.css">
+  <script>
+    // 提前套用上次选的亮/暗模式，避免刷新时先闪一下。
+    // 浏览器里**没有记录**（第一次打开 / 清了数据）→ 默认亮色；
+    // 之后就完全听记录的（选过暗色就回暗色）。
+    try {
+      var _t = localStorage.getItem('managementreview:theme');
+      document.documentElement.setAttribute('data-theme', _t === 'dark' ? 'dark' : 'light');
+    } catch (e) { /* 隐私模式下忽略 */ }
+  </script>
+</head>
+<body>
+  <!-- 海报背景：由 URL 参数 poster 传入，沿用轮播页当前主题的海报 -->
+  <div class="bg" id="bg"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <!-- 主题标识和更新时间挤一行，省一行高度 -->
+      <div class="brand-top">
+        <span class="brand-genre" id="brand-genre">MANAGEMENT EVALUATION</span>
+        <span class="brand-meta" id="brand-meta">加载中…</span>
+      </div>
+      <h1 class="brand-title" id="brand-title">管理复盘 · 事件协同闭环管理</h1>
+    </div>
+
+    <div class="topbar-side">
+      <div class="tools">
+        <span class="badge" id="source-badge">加载中…</span>
+        <span class="badge save-state" id="save-state" hidden></span>
+        <button class="btn" id="btn-view">▦ 六步看板</button>
+        <button class="btn" id="btn-theme" title="切换亮色模式">☀ 亮色</button>
+        <a class="btn" id="btn-home" href="../index.html" title="回到轮播首页">⌂ 返回首页</a>
+
+        <!-- 低频操作收进「⋯」，固定在最右边 -->
+        <div class="tool-group">
+          <button class="btn icon-btn" id="btn-more" title="更多操作">⋯</button>
+          <div class="popover more-menu" id="more-menu" hidden>
+            <button class="menu-item" id="btn-new-item">＋ 新建项目</button>
+            <button class="menu-item" id="btn-export-xlsx">⤓ 导出 Excel</button>
+            <button class="menu-item" id="btn-export">⤓ 导出 JSON</button>
+            <button class="menu-item" id="btn-import">⇪ 导入 JSON</button>
+            <button class="menu-item" id="btn-reload">⟳ 重新载入</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- 左边：QAR 项目列表（点一个，右边就只看这个项目的闭环详情） -->
+    <aside class="side">
+      <div class="side-tools">
+        <input class="search" id="item-search" placeholder="搜索项目 / 编号 / 负责人…">
+        <div class="chips" id="level-filter"></div>
+      </div>
+      <div class="item-list" id="item-list"></div>
+      <div class="side-foot">
+        <button class="btn ghost side-add" id="btn-new-item-2">＋ 新建项目</button>
+      </div>
+    </aside>
+
+    <!-- 右边：项目闭环详情 / 六步看板 -->
+    <section class="main" id="main"></section>
+  </main>
+
+  <!-- 通用弹层：编辑项目 / 编辑某一步 / 导入 JSON 都用它 -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true">
+      <header class="modal-head">
+        <h2 class="modal-title" id="modal-title">编辑</h2>
+        <button class="modal-x" id="modal-x" aria-label="关闭">✕</button>
+      </header>
+      <div class="modal-body" id="modal-body"></div>
+      <div class="modal-foot" id="modal-foot"></div>
+    </div>
+  </div>
+
+  <!-- 鼠标停在附件小牌子上，浮出来预览（图片 / PDF / Word 等） -->
+  <div class="file-tip" id="file-tip" hidden></div>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- 逻辑按功能拆分：配置 / 基础层 / 项目闭环 / 六步看板 / 启动
+       （顺序不能乱：视图要在启动之前挂好） -->
+  <script src="js/review-config.js"></script>
+  <script src="js/review-core.js"></script>
+  <script src="js/review-items.js"></script>
+  <script src="js/review-board.js"></script>
+  <script src="js/review-main.js"></script>
+</body>
+</html>

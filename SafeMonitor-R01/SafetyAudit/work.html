@@ -4,7 +4,7 @@
   · 从轮播页点击当前主题的信息面板进入，URL 参数带上海报、主题、标题
   · 数据从阿里云 OSS 上的 JSON 读取，页面上的改动会自动传回 OSS
 -->
-<html lang="zh-CN" data-theme="dark">
+<html lang="zh-CN" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -17,11 +17,11 @@
   <link rel="stylesheet" href="css/work-parts.css">
   <link rel="stylesheet" href="css/work-light.css">
   <script>
-    // 提前套用上次选的亮/暗模式，避免刷新时先闪一下暗色
+    // 提前套用上次选的亮/暗模式，避免刷新时先闪一下；
+    // 第一次打开（没存过偏好）默认亮色模式
     try {
-      if (localStorage.getItem('safemonitor:work:theme') === 'light') {
-        document.documentElement.setAttribute('data-theme', 'light');
-      }
+      const saved = localStorage.getItem('safemonitor:work:theme');
+      document.documentElement.setAttribute('data-theme', saved === 'dark' ? 'dark' : 'light');
     } catch (e) { /* 隐私模式下忽略 */ }
   </script>
 </head>

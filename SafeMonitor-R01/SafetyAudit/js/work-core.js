@@ -846,7 +846,7 @@ window.Work = window.Work || {};
     /* ============================== 亮色 / 暗色模式 ============================== */
 
     const THEME_KEY = 'safemonitor:work:theme';
-    let themeMode = 'dark';
+    let themeMode = 'light';   // 默认亮色模式（首次打开即亮色）
 
     const currentTheme = () => themeMode;
 
@@ -874,7 +874,8 @@ window.Work = window.Work || {};
             saved = localStorage.getItem(THEME_KEY) || '';
         } catch (e) { /* 忽略 */ }
 
-        applyTheme(saved === 'light' ? 'light' : 'dark');
+        // 只有明确存过 'dark' 才用暗色，其余（含首次打开）一律亮色
+        applyTheme(saved === 'dark' ? 'dark' : 'light');
     }
 
     /* ============================== 挂到命名空间 ============================== */

@@ -1,0 +1,190 @@
+# =============================================================================
+# SLIDE CAROUSEL - SHIPPING GITIGNORE
+# =============================================================================
+# This file excludes development, backup, and non-essential files from shipping
+
+# =============================================================================
+# BACKUP & DEVELOPMENT FILES
+# =============================================================================
+
+# Backup directories (working versions preserved during development)
+backup-working-movie-version/
+original/
+backups/
+old-versions/
+archive/
+
+# Development snapshots
+*.backup
+*.bak
+*.old
+*.orig
+*.save
+*.temp
+*.tmp
+
+# Version control artifacts
+.git/
+.gitattributes
+.gitmodules
+
+# =============================================================================
+# DEVELOPMENT TOOLS & CONFIGURATION
+# =============================================================================
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Windows system files
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# =============================================================================
+# BUILD & DEPENDENCY FILES
+# =============================================================================
+
+# Node.js (if used for build tools)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn-integrity
+
+# Package manager files (keep package.json, ignore lock files for distribution)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Build outputs
+dist/
+build/
+out/
+
+# =============================================================================
+# DEVELOPMENT SERVER & LOGS
+# =============================================================================
+
+# Local development servers
+.cache/
+.temp/
+
+# Log files
+*.log
+logs/
+*.log.*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# =============================================================================
+# TESTING & DEBUGGING
+# =============================================================================
+
+# Test files and coverage
+test/
+tests/
+spec/
+__tests__/
+coverage/
+.nyc_output/
+*.test.js
+*.spec.js
+
+# Debug files
+.debug/
+debug.log
+error.log
+
+# =============================================================================
+# DOCUMENTATION DRAFTS
+# =============================================================================
+
+# Draft documentation (keep final versions)
+NOTES.md
+TODO.md
+CHANGELOG.draft.md
+docs-draft/
+
+# =============================================================================
+# DEPLOYMENT & CI/CD
+# =============================================================================
+
+# Deployment scripts (not needed for end users)
+deploy/
+.github/
+.gitlab-ci.yml
+.travis.yml
+circle.yml
+appveyor.yml
+
+# Docker files (unless needed for deployment)
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# =============================================================================
+# CUSTOM DEVELOPMENT FILES
+# =============================================================================
+
+# Custom development utilities
+dev-tools/
+utilities/
+scripts/
+gulpfile.js
+webpack.config.js
+rollup.config.js
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.production
+
+# =============================================================================
+# SHIPPED FILES (THESE SHOULD BE INCLUDED)
+# =============================================================================
+# The following files SHOULD be included in the ship package:
+#
+# Core Files:
+# ✅ index.html
+# ✅ example-custom.html  
+# ✅ config.js
+# ✅ scripts.js
+# ✅ styles.css
+#
+# Documentation:
+# ✅ README.md
+# ✅ SHIP_READY.md
+# ✅ package.json
+#
+# Meta Files:
+# ✅ .gitignore (this file)
+#
+# =============================================================================
+
+# Custom exclusions for this project
+# Add any project-specific files that shouldn't be shipped

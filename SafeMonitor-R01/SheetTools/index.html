@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!--
+  SheetTools · 表格工具入口
+  作用：只做导航，把两个「拖 xlsx 进来看」的工具挂在一起
+    · SafeRisk —— 安全隐患协同评估表（大字号查看器）
+    · WallPic  —— 安全整顿挂图作战清单（大字号查看器）
+  纯静态页，无依赖；两个工具各自带 xlsx.full.min.js，离线可用。
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SheetTools · 表格工具</title>
+<style>
+  :root{
+    --ink:#2a2116;
+    --ink-2:#6b6152;
+    --line:#ded2b8;
+    --line-strong:#c9b894;
+    --bg:#f0e8d5;
+    --panel:#fbf7ee;
+    --panel-solid:#fffdf8;
+    --accent:#a86b0f;
+    --accent-soft:#f6ebd5;
+    --radius:16px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    min-height:100vh;
+    background:radial-gradient(1200px 600px at 50% -10%,#fbf6ea 0%,var(--bg) 60%);
+    color:var(--ink);
+    font-family:"微软雅黑","Microsoft YaHei","Segoe UI",system-ui,sans-serif;
+    font-size:16px;
+    line-height:1.7;
+  }
+
+  .wrap{max-width:980px;margin:0 auto;padding:52px 20px 60px}
+
+  /* ---------- 页头 ---------- */
+  .top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:34px}
+  .genre{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+  h1{margin:4px 0 6px;font-size:30px;font-weight:600;line-height:1.25}
+  .sub{margin:0;color:var(--ink-2);font-size:14px}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:8px 16px;border-radius:999px;
+    border:1px solid var(--line-strong);background:var(--panel-solid);
+    color:var(--ink);font-size:13px;text-decoration:none;white-space:nowrap;
+    transition:background .16s ease,border-color .16s ease,color .16s ease;
+  }
+  .btn:hover{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+
+  /* ---------- 工具卡片 ---------- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+
+  .tool{
+    display:flex;flex-direction:column;
+    padding:26px 24px 20px;
+    background:var(--panel-solid);
+    border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:0 6px 22px rgba(120,95,40,.08);
+    text-decoration:none;color:inherit;
+    transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease;
+  }
+  .tool:hover{
+    transform:translateY(-3px);
+    border-color:var(--accent);
+    box-shadow:0 14px 34px rgba(120,95,40,.16);
+  }
+  .tool .ico{
+    width:52px;height:52px;border-radius:14px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:26px;line-height:1;
+    background:var(--accent-soft);margin-bottom:16px;
+  }
+  .tool h2{margin:0 0 6px;font-size:20px;font-weight:600}
+  .tool .tagline{margin:0 0 14px;color:var(--ink-2);font-size:13.5px}
+  .tool .feats{margin:0 0 18px;padding:0;list-style:none;color:var(--ink-2);font-size:13.5px}
+  .tool .feats li{position:relative;padding-left:16px;margin-bottom:4px}
+  .tool .feats li::before{content:"";position:absolute;left:2px;top:.72em;width:6px;height:6px;border-radius:50%;background:var(--accent);opacity:.6}
+  .tool .go{
+    margin-top:auto;display:inline-flex;align-items:center;gap:6px;
+    color:var(--accent);font-size:14px;font-weight:600;
+  }
+  .tool:hover .go{gap:10px}
+  .tool .go span{transition:transform .16s ease}
+
+  /* ---------- 页脚 ---------- */
+  .foot{margin-top:36px;padding-top:18px;border-top:1px dashed var(--line);color:var(--ink-2);font-size:13px}
+
+  @media (max-width:560px){
+    .wrap{padding:34px 14px 44px}
+    h1{font-size:24px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div>
+      <div class="genre">Sheet Tools</div>
+      <h1>表格工具</h1>
+      <p class="sub">把 xlsx 拖进页面就能看：一项一项摊开，大字号、可搜索、可打印。</p>
+    </div>
+    <a class="btn" href="../index.html" title="回到首页">⌂ 返回首页</a>
+  </div>
+
+  <div class="grid">
+    <!-- SafeRisk：安全隐患协同评估表 -->
+    <a class="tool" href="SafeRisk/SafeRisk.html">
+      <div class="ico">📋</div>
+      <h2>安全隐患协同评估表</h2>
+      <p class="tagline">一条隐患一张卡片，看评估与整改情况</p>
+      <ul class="feats">
+        <li>按评估部门分组筛选</li>
+        <li>等级 / 类别 / 责任人 / 整改进度 彩色标签</li>
+        <li>描述、原因、措施整行铺开</li>
+      </ul>
+      <div class="go">打开 SafeRisk <span>→</span></div>
+    </a>
+
+    <!-- WallPic：挂图作战清单 -->
+    <a class="tool" href="WallPic/WallPic.html">
+      <div class="ico">🗺️</div>
+      <h2>挂图作战清单</h2>
+      <p class="tagline">一项任务一张卡片，盯进度、盯时限</p>
+      <ul class="feats">
+        <li>按牵头部门 + 完成状态双重筛选</li>
+        <li>进度、责任人、完成时限 彩色标签</li>
+        <li>工作内容、存在问题、下一步措施整行铺开</li>
+      </ul>
+      <div class="go">打开 WallPic <span>→</span></div>
+    </a>
+  </div>
+
+  <div class="foot">
+    两个工具都是纯本地页面，读取 xlsx 用的是离线内置的解析库，断网也能用；文件不会被上传。
+  </div>
+
+</div>
+</body>
+</html>

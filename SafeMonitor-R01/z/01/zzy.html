@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>写笔记</title>
+<link rel="stylesheet" href="md阅读器.css">
+<link rel="stylesheet" href="zzy.css">
+<script>
+  // 提前套用上次选的亮/暗模式，避免刷新时先闪一下；浏览器里没记录就是亮色
+  try {
+    var _t = localStorage.getItem('mdnotes.theme');
+    document.documentElement.setAttribute('data-theme', _t === 'dark' ? 'dark' : 'light');
+  } catch (e) { /* 隐私模式下忽略 */ }
+</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-top">
+      <span class="brand-genre">PERSONAL NOTES</span>
+      <span class="brand-meta" id="status">就绪</span>
+    </div>
+    <h1 class="brand-title">写笔记</h1>
+  </div>
+
+  <div class="tools">
+    <input type="search" id="search" class="search" placeholder="搜索笔记内容…" title="搜正文 / 分类 / 附件名；命中时对应的记录会自动展开">
+    <button class="btn" id="fold-all" title="把每条记录都收起来（只显示前两行）">▸ 全部收缩</button>
+    <button class="btn" id="unfold-all" title="把每条记录都展开">▾ 全部展开</button>
+    <button class="btn" id="theme" title="切换亮色 / 暗色">☀ 亮色</button>
+    <input type="file" id="anyfile" multiple hidden>
+    <a class="btn" id="home" href="../../index.html" title="回到轮播首页">⌂ 返回首页</a>
+  </div>
+</header>
+
+<main>
+  <div class="layout">
+    <!-- 左侧分类导航：按部门看笔记 -->
+    <aside class="sidebar">
+      <div class="side-title">分类</div>
+      <nav class="side-nav" id="depts"></nav>
+    </aside>
+
+    <div class="content">
+      <!-- 写新内容（附件就挂在这条上） -->
+      <section class="card">
+        <textarea id="editor" placeholder="在这里写…"></textarea>
+        <div class="compose-foot">
+          <div class="chips" id="draft-dept"></div>
+          <div class="atts" id="draft-atts" title="点「＋ 附件」选文件，也可以直接把文件拖到这里"></div>
+          <button class="btn primary" id="save">保存</button>
+        </div>
+      </section>
+
+      <!-- 已保存的记录（每条可以「完成」或「删除」） -->
+      <section>
+        <div class="sec-head">
+          <h2 class="sec-title">已保存的记录<span class="sec-count" id="entrycount"></span></h2>
+          <div class="chips" id="filter"></div>
+        </div>
+        <div id="doc"></div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<!-- 附件悬浮预览（图片 / PDF / Word） -->
+<div class="file-tip" id="file-tip" hidden></div>
+
+<!-- 确认弹层（删除记录时用） -->
+<div class="modal" id="modal" hidden>
+  <div class="modal-card" role="dialog" aria-modal="true">
+    <div class="modal-head"><h2 class="modal-title" id="modal-title">确认</h2></div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-foot" id="modal-foot"></div>
+  </div>
+</div>
+
+<script src="写笔记.js"></script>
+</body>
+</html>
