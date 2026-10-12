@@ -734,12 +734,15 @@
 .modal-card.is-tall .notes-edit {
   flex: 1 1 auto;
   min-height: 0;
+  /* 情况说明有好几条时，在这一块里滚动，而不是把每条压扁（压扁会让输入框叠在一起） */
+  overflow: auto;
 }
 
 .modal-card.is-tall .note-row {
   display: flex;
   flex-direction: column;
-  flex: 1 1 auto;
+  /* grow 1 / shrink 0：行只会长胖去填满剩余空间，绝不被压缩到内容高度以下 */
+  flex: 1 0 auto;
   min-height: 0;
 }
 

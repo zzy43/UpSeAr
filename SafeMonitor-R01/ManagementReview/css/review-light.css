@@ -22,7 +22,7 @@ html[data-theme="light"] {
   /* 级别色在米黄底上要压深，否则发飘 */
   --lv-1: #2f5fb3;
   --lv-2: #a8620a;
-  --lv-3: #b3261e;
+  --lv-3: #7a1f19;
 
   /* 状态文字（快到期 / 已过期 / 已完成）在米黄底上必须换成深色。
      ⚠ 暗色那套值（淡橙 / 淡粉 / 淡绿）是给黑底用的，在浅底上就是「浅字贴浅底」，
@@ -74,9 +74,9 @@ html[data-theme="light"] .unit-badge.has {
   color: var(--lv-1);
 }
 
-/* 删除类按钮的字色 */
+/* 删除类按钮的字色：暗红（原来跟「已过期」共用一个亮红，太扎眼） */
 html[data-theme="light"] .btn.danger {
-  color: var(--over-ink);
+  color: #7a1f19;
 }
 
 /* 海报遮罩改成浅色：海报像水印一样透出来，但不影响读内容 */
@@ -114,9 +114,9 @@ html[data-theme="light"] .btn.primary:hover {
 }
 
 html[data-theme="light"] .btn.danger {
-  background: rgba(255, 69, 58, 0.12);
-  border-color: rgba(179, 38, 30, 0.4);
-  color: #b3261e;
+  background: rgba(122, 31, 25, 0.08);
+  border-color: rgba(122, 31, 25, 0.32);
+  color: #7a1f19;
 }
 
 html[data-theme="light"] .btn.is-on {
@@ -195,9 +195,9 @@ html[data-theme="light"] .chip.lv-2 {
 }
 
 html[data-theme="light"] .chip.lv-3 {
-  color: #8f1d17;
-  background: rgba(179, 38, 30, 0.14);
-  border-color: rgba(179, 38, 30, 0.4);
+  color: #7a1f19;
+  background: rgba(122, 31, 25, 0.1);
+  border-color: rgba(122, 31, 25, 0.32);
 }
 
 html[data-theme="light"] .chip.plain {

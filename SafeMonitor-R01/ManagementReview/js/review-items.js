@@ -58,7 +58,7 @@
 
         const list = visibleItems();
 
-        // 级别过滤小牌子（全部 + QAR事件 / 396事件）
+        // 级别过滤小牌子（全部 + 普通 / 重要 / 严重）
         const fbox = $('level-filter');
         if (fbox) {
             const levels = W.CFG.LEVELS || [];
@@ -275,7 +275,7 @@
 
     /**
      * 下一个自动编号：<前缀>-<年>-<序号>。
-     * 前缀跟级别走（QAR事件 → QAR，396事件 → 396）；
+     * 前缀跟级别走（普通 → 普通，重要 → 重要，严重 → 严重）；
      * 年份取当前年（跨年到 2027 就自动变 2027）；
      * 序号在该前缀 + 该年份的已有编号里取最大 +1，不会重。
      */
@@ -349,7 +349,7 @@
         });
 
         // 级别一改，编号跟着换前缀重生成；用户自己动过编号就不再自动改
-        // （新建、编辑都适用：比如编辑时把 QAR事件 改成 396事件，编号自动变 396-…）
+        // （新建、编辑都适用：比如编辑时把 重要 改成 严重，编号自动变 严重-…）
         {
             const noEl = $('it-no');
             const lvEl = $('it-level');
@@ -378,7 +378,7 @@
 
             if (isNew) {
                 const defs = W.stageDefs();
-                const depts = W.stageDefaultDepts(data.level);   // 「调查」按级别定（QAR→运技部 / 396→安监部）
+                const depts = W.stageDefaultDepts(data.level);   // 「调查」按级别定（普通/重要→运技部，严重→安监部）
                 const id = W.uid('qar');
                 state.data.items.unshift(Object.assign({ id, status: 'open' }, data, {
                     stages: defs.map((d, i) => ({ key: d.key, status: 'todo', dept: depts[i], files: [] }))

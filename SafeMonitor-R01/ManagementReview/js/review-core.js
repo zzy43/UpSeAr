@@ -21,8 +21,10 @@
         FONT_FAMILY: '',
         FONT_URL: '',
         DEPARTMENTS: [],
-        LEVELS: ['QAR事件', '396事件'],
+        LEVELS: ['普通', '重要', '严重'],
         LEVEL_PREFIX: {},
+        LEVEL_ALIAS: {},
+        NO_PREFIX_ALIAS: {},
         LEVEL_FIRST_STAGE_DEPT: {},
         SOURCES: ['其他'],
         STAGES: [],
@@ -218,10 +220,33 @@
         return `lv-${i >= 0 ? i + 1 : 1}`;
     }
 
-    /** 级别 → 自动编号前缀（QAR事件 → QAR，396事件 → 396） */
+    /** 级别换算是「从轻到重」的三档：普通 → 重要 → 严重
+        老数据里叫 QAR事件 / 396事件 的，按 CFG.LEVEL_ALIAS 换算（见 review-config.js） */
+    function normalizeLevel(v) {
+        const levels = CFG.LEVELS || [];
+        const s = String(v == null ? '' : v).trim();
+        if (levels.indexOf(s) >= 0) return s;
+        const to = (CFG.LEVEL_ALIAS || {})[s];
+        if (to && levels.indexOf(to) >= 0) return to;
+        return levels[0];
+    }
+
+    /** 级别 → 自动编号前缀（普通 → 普通，重要 → 重要，严重 → 严重） */
     function levelPrefix(level) {
         const map = CFG.LEVEL_PREFIX || {};
-        return map[level] || 'QAR';
+        return map[level] || String(level || '') || (CFG.LEVELS || [])[0] || '';
+    }
+
+    /** 编号跟着级别走：老编号 QAR-2026-01 → 重要-2026-01、396-2026-01 → 严重-2026-01
+        （只换认得出的老前缀，其余编号原样不动，用户自己改过的编号不会被覆盖） */
+    function alignNo(no, level) {
+        const s = String(no == null ? '' : no).trim();
+        // 「前缀-年份-序号」，序号几位都行（QAR-2026-01 / QAR-2026-002 都认）
+        const m = s.match(/^([A-Za-z0-9\u4e00-\u9fa5]+)-(\d{4}-\d+)$/);
+        if (!m) return s;
+        if (!(CFG.NO_PREFIX_ALIAS || {})[m[1]]) return s;      // 不是老前缀就不动
+        const head = levelPrefix(level);
+        return head ? `${head}-${m[2]}` : s;
     }
 
 
@@ -317,7 +342,6 @@
     /** 统一清洗数据：补默认值、丢掉无效项 */
     function normalize(raw) {
         const d = (raw && typeof raw === 'object') ? raw : {};
-        const levels = CFG.LEVELS || [];
         const sources = CFG.SOURCES || [];
 
         const departments = normalizeDepartments(d.departments);
@@ -328,12 +352,14 @@
             .map((it, i) => {
                 const stages = itemStages({ stages: it.stages });
                 const open = stages.some((s) => s.status !== 'done');
+                const level = normalizeLevel(it.level);          // 老档次（QAR事件/396事件）自动换算
+                const no = alignNo(it.no, level);                // 编号前缀跟着级别走
 
                 return {
                     id: String(it.id || `qar-${i + 1}`),
-                    no: String(it.no || ''),
+                    no,
                     title: String(it.title || '未命名项目'),
-                    level: levels.indexOf(it.level) >= 0 ? it.level : levels[0],
+                    level,
                     source: sources.indexOf(it.source) >= 0 ? it.source : sources[0],
                     date: isDate(it.date) ? String(it.date).slice(0, 10) : TODAY,
                     flight: String(it.flight || ''),
@@ -1312,7 +1338,7 @@
         deptOf, deptColor, deptStyle, stageDef, stageDefs, stageStatusText, STAGE_STATUS,
         stageDefaultDepts,
         itemStages, itemProgress, currentStage, itemClosed, normalizeNotes,
-        levelClass, levelPrefix, isImageUrl, csvCell, downloadCsv, downloadXlsx,
+        levelClass, levelPrefix, normalizeLevel, isImageUrl, csvCell, downloadCsv, downloadXlsx,
         normalizeFiles, sizeText,
 
         normalize, serialize, defaultData, demoData,
