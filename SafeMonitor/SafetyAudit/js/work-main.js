@@ -14,7 +14,7 @@
         hasPendingSave, uploadNow, loadAll,
         applyFont, currentTheme, applyTheme, initTheme,
         scrollToToday, render, holidayYears,
-        openTaskEditor, openItemEditor, deleteItem, clearAssignee, togglePin,
+        openTaskEditor, openItemEditor, deleteItem, cleanEmptyItems, clearAssignee, togglePin,
         renderAssigneeChips, bindAssigneeDrag, bindRowDrag, openAssigneeDeleter,
         toggleBlankRow,
         toggleHideDone,
@@ -394,6 +394,7 @@
         });
         $('btn-calendar').addEventListener('click', toggleCalendar);
         $('btn-add-item').addEventListener('click', () => openItemEditor(null));
+        $('btn-clean-items').addEventListener('click', cleanEmptyItems);
         $('btn-export').addEventListener('click', exportJson);
         $('btn-export-csv').addEventListener('click', exportCsv);
         $('btn-blankrow').addEventListener('click', toggleBlankRow);

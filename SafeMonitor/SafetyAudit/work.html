@@ -17,12 +17,10 @@
   <link rel="stylesheet" href="css/work-parts.css">
   <link rel="stylesheet" href="css/work-light.css">
   <script>
-    // 提前套用上次选的亮/暗模式，避免刷新时先闪一下；
-    // 第一次打开（没存过偏好）默认亮色模式
-    try {
-      const saved = localStorage.getItem('safemonitor:work:theme');
-      document.documentElement.setAttribute('data-theme', saved === 'dark' ? 'dark' : 'light');
-    } catch (e) { /* 隐私模式下忽略 */ }
+    // 每次打开都是亮色（2026-10-14 用户要求「默认打开就是亮色」）：
+    // 不再记住上次选的暗色 —— 页面里切暗色只对这一次有效，刷新/下次打开还是亮色。
+    // 写在 <html> 上、放在 <link> 之前，避免首屏先闪一下。
+    document.documentElement.setAttribute('data-theme', 'light');
   </script>
 </head>
 <body>
@@ -43,7 +41,8 @@
         <!-- 把责任人名字拖到这里，就在表格区域列出他的全部工作 -->
         <span class="query-box" id="work-query" title="把责任人名字拖进来，看他的全部工作">🔍 工作查询</span>
 
-        <!-- 责任人一排：默认展开，点工具栏「👤 责任人」可以收起；名字拖到某天的格子上就是给他排活 -->
+        <!-- 责任人一排：默认展开，点工具栏「👤 责任人」可以收起；名字拖到某天就是给他排活
+             （日历里拖到「那一天」的空白处 = 弹窗新建一条工作，并预填责任人为这个人） -->
         <div class="assignee-bar" id="assignee-bar">
           <div class="chips" id="assignee-chips"></div>
         </div>
@@ -67,6 +66,7 @@
           <button class="btn icon-btn" id="btn-more" title="更多操作">⋯</button>
           <div class="popover more-menu" id="more-menu" hidden>
             <button class="menu-item" id="btn-add-item">＋ 工作项目</button>
+            <button class="menu-item" id="btn-clean-items">清理空工作项目</button>
             <button class="menu-item" id="btn-export-csv">⤓ 导出 CSV</button>
             <button class="menu-item" id="btn-export">⤓ 导出 JSON</button>
             <button class="menu-item" id="btn-import">⇪ 导入 JSON</button>

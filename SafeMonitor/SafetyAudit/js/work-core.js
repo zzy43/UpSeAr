@@ -845,12 +845,18 @@ window.Work = window.Work || {};
 
     /* ============================== 亮色 / 暗色模式 ============================== */
 
-    const THEME_KEY = 'safemonitor:work:theme';
-    let themeMode = 'light';   // 默认亮色模式（首次打开即亮色）
+    let themeMode = 'light';   // 默认亮色模式（每次打开都是亮色）
 
     const currentTheme = () => themeMode;
 
-    /** 切换亮/暗：值写在 <html data-theme> 上，样式由 CSS 里的 html[data-theme="light"] 覆盖 */
+    /**
+     * 切换亮/暗：值写在 <html data-theme> 上，样式由 CSS 里的 html[data-theme="light"] 覆盖。
+     *
+     * 2026-10-14 用户要求「默认打开就是亮色」：故意**不把这个选择存到 localStorage** ——
+     * 页面里切暗色只对这一次有效，刷新或下次打开又回到亮色。
+     * （以前存在 'safemonitor:work:theme' 里；真要改回「记住上次」，
+     *   在这里 setItem、initTheme 里再读一次就行。）
+     */
     function applyTheme(mode) {
         themeMode = mode === 'light' ? 'light' : 'dark';
         document.documentElement.setAttribute('data-theme', themeMode);
@@ -861,21 +867,11 @@ window.Work = window.Work || {};
             btn.textContent = toLight ? '☀ 亮色' : '☾ 暗色';
             btn.title = toLight ? '切换到亮色模式' : '切换到暗色模式';
         }
-
-        // 只存这一个界面偏好，工作数据一律在 OSS 上（不存浏览器本地）
-        try {
-            localStorage.setItem(THEME_KEY, themeMode);
-        } catch (e) { /* 隐私模式忽略 */ }
     }
 
+    /** 启动时定主题：一律亮色（work.html 里那段内联脚本已经先设过一次，这里只是对齐按钮文案） */
     function initTheme() {
-        let saved = '';
-        try {
-            saved = localStorage.getItem(THEME_KEY) || '';
-        } catch (e) { /* 忽略 */ }
-
-        // 只有明确存过 'dark' 才用暗色，其余（含首次打开）一律亮色
-        applyTheme(saved === 'dark' ? 'dark' : 'light');
+        applyTheme('light');
     }
 
     /* ============================== 挂到命名空间 ============================== */

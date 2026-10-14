@@ -81,7 +81,6 @@
         const cur = month();
         const d = new Date(cur.y, cur.m + n, 1);
         state.calendar = { y: d.getFullYear(), m: d.getMonth() };
-        rememberView();
         render();
         focusCurrentMonth('auto');
     }
@@ -93,48 +92,23 @@
         if (!state.calendar) return;
         const t = parseDate(TODAY);
         state.calendar = { y: t.getFullYear(), m: t.getMonth() };
-        rememberView();
         render();
         focusCurrentMonth('auto');
     }
 
-    /* ============================== 记住视图（刷新后不跳回表格） ============================== */
-
-    const VIEW_KEY = 'safemonitor:work:view';         // 'calendar' | 'grid'
-    const MONTH_KEY = 'safemonitor:work:calmonth';    // '2026-9'
-
-    /** 把「现在是不是日历模式、看的是哪个月」记到浏览器里（切模式/翻月时调） */
-    function rememberView() {
-        if (!state.calendar) {
-            lsSet(VIEW_KEY, 'grid');
-            return;
-        }
-        lsSet(VIEW_KEY, 'calendar');
-        lsSet(MONTH_KEY, `${state.calendar.y}-${state.calendar.m + 1}`);
-    }
+    /* ============================== 启动时定视图 ============================== */
 
     /**
-     * 启动时恢复上次的视图。
-     * 由 work-core 的 loadAll() 在**第一次 render 之前**调用，
-     * 所以按下 F5 刷新后直接就是上次那个视图（包括上次看的那个月），不会先闪一下表格。
+     * 启动时定视图：**每次打开都直接进日历模式**，落在今天所在的月。
      *
-     * 浏览器里**一点记录都没有**（第一次打开、或者清了浏览器数据）→ 默认进日历模式；
-     * 之后就按上次选的走：'calendar' 回日历、'grid' 回表格。
-     * （滚动到当前月由 work-core 启动尾部的 scrollToToday 负责，两种模式都盖到了）
+     * 2026-10-14 用户要求「默认打开就是日历模式」——
+     * 所以不再按上次的视图恢复（上次停在表格模式，下次打开照样是日历模式）。
+     * 由 work-core 的 loadAll() 在**第一次 render 之前**调用，
+     * 所以打开就是一屏日历，不会先闪一下表格。
+     * （滚动到当前月由 work-core 启动尾部的 scrollToToday 负责）
      */
     function restoreView() {
-        const saved = lsGet(VIEW_KEY);
-
-        if (!saved) {
-            month();            // 落在今天所在那个月
-            rememberView();     // 顺手记下来，让浏览器里的记录和当前状态一致
-            return;
-        }
-        if (saved !== 'calendar') return;   // 'grid'：老老实实回表格
-
-        const m = /^(\d{4})-(\d{1,2})$/.exec(lsGet(MONTH_KEY));
-        if (m) state.calendar = { y: Number(m[1]), m: Number(m[2]) - 1 };
-        else month();     // 没记过月份就落在今天所在那个月
+        month();          // state.calendar 为空时，month() 自己会落到今天所在那个月
     }
 
     /* ============================== 画日历 ============================== */
@@ -324,8 +298,9 @@
      *   · **点了取消就什么也不建** —— 不会白留一条空项目。
      * 跟表格模式里「点首行空白行的格子」走的是同一条路，两边行为完全一致。
      *
-     * 想挂到**已有**项目上：把名字牌子拖到那天（见 work-edit.js 的 bindAssigneeDrag，
-     * 那条路走的是 pickItemFor，会先让你选哪个项目）。
+     * 想挂到**已有**项目上：进那条安排的编辑弹层里改项目；或者切到表格模式拖到那一格上。
+     * （拖名字到某天的空白处现在也是走这里 —— openTaskEditor 会先把责任人预填好，
+     *   见 work-edit.js 的 bindAssigneeDrag。）
      */
     function addItemFor(date) {
         openTaskEditor(BLANK_ID, date);
@@ -337,9 +312,9 @@
      *
      * @param {string} date  哪一天（YYYY-MM-DD）
      * @param {Function} [onPick] 传统上不传，选完就开弹层填内容；
-     *        传了就先别开弹层，把项目 id 交给它 ——
-     *        目前用在「把一个名字牌子拖到空白的那天上」：选完项目直接把那个人排上去
-     *        （见 work-edit.js 的 bindAssigneeDrag）。
+     *        传了就先别开弹层，把项目 id 交给它。
+     *        ⚠ 2026-10-14 起「拖名字到空白那天」改成直接新建项目了，所以本函数**暂时没有调用方**；
+     *          留着是为了以后想恢复「先选项目」的老流程时可以直接调。
      */
     function pickItemFor(date, onPick) {
         const items = state.data.items || [];
@@ -400,7 +375,6 @@
         if (state.query) W.clearQuery();
 
         month();          // 保证有当前月份
-        rememberView();   // 记住「现在是日历模式」，刷新后还回这儿
         render();
         boardWrap.scrollTo({ top: 0, behavior: 'auto' });
         focusCurrentMonth('auto');
@@ -413,7 +387,6 @@
     function closeCalendar() {
         if (!state.calendar) return;
         state.calendar = null;
-        rememberView();
         render();
         paintBtn();
         W.scrollToToday('auto');   // 回表格时重新停在今天
@@ -612,6 +585,6 @@
         openCalendar, closeCalendar, toggleCalendar,
         calShift: shift, calToToday: toToday, paintCalendarBtn: paintBtn,
         calFocusMonth: focusCurrentMonth,
-        restoreView, rememberView
+        restoreView
     });
 })(window.Work);

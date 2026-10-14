@@ -139,10 +139,14 @@
      * 为什么这个牌子还得在弹层里（日历模式没有格子可点）：
      *   加人靠拖名字牌子（表格拖到格子上 / 日历拖到当天那条安排上）；
      *   减人表格模式是点格子里的名字，日历模式就只能点这里的 ✕。
+     *
+     * @param {Array} [pending] 还没保存的待加名单（拖名字到某天新建工作时预填的那个人，
+     *        见 bindAssigneeDrag）。它们排在后面，✕ 也能去掉。
      */
-    function ownersHint(itemId, date) {
+    function ownersHint(itemId, date, pending) {
         const task = (state.data.tasks || []).find((t) => t.item === itemId && t.date === date);
-        const owners = (task && task.assignees) || [];
+        const owners = ((task && task.assignees) || []).slice();
+        (pending || []).forEach((n) => { if (owners.indexOf(n) < 0) owners.push(n); });
 
         return owners.map((n) => (
             `<span class="cell-owner owner-del" data-owner="${esc(n)}"`
@@ -162,18 +166,25 @@
      *   · 附件和那边一个规矩：**上传是立刻的，但要点「保存」才挂到这条安排上**
      *     （见 work-io.js 的 bindFileBox）—— 好处是保存前能看到传了哪些、也能删掉传错的。
      */
-    function openTaskEditor(itemId, date) {
+    function openTaskEditor(itemId, date, presetOwners) {
         const item = findItem(itemId);
         const isBlank = itemId === W.BLANK_ID;   // 首行那条空白行（还没做实）
         const existing = (state.data.tasks || []).find((t) => t.item === itemId && t.date === date);
         const d = parseDate(date);
+
+        // 「待加」的责任人：拖名字到某天新建工作时预填的那个人（见 bindAssigneeDrag）。
+        // 只有这条安排**还不存在**时才有意义 —— 已经有了的安排，责任人直接读数据。
+        const pending = (presetOwners && !existing) ? presetOwners.slice() : [];
+        const hasOwners = ((existing && (existing.assignees || []).length) || pending.length);
 
         // 附件区先建好，保存时读它的 get()
         let fileBox = null;
 
         openModal({
             size: 'xl',
-            title: `${item ? item.name : (isBlank ? '新工作' : '任务')} · ${date} ${WEEK_LABEL[d.getDay()]}`,
+            // 还没实做的项目（空白行、拖名字新建）标题就写它**将要**叫的名字（工作A013 那种），
+            // 和保存后的真名字一致 —— 2026-10-14 用户要求
+            title: `${item ? item.name : (isBlank ? nextItemName() : '任务')} · ${date} ${WEEK_LABEL[d.getDay()]}`,
             body: `
                 <label class="field">                    
                     <div class="date-parts">
@@ -208,7 +219,7 @@
                         <input type="file" id="f-file-input" multiple hidden>
                     </div>
                 </div>
-                <p class="hint" id="f-owners"${existing && (existing.assignees || []).length ? ' style="margin-top:14px"' : ''}>${ownersHint(itemId, date)}</p>
+                <p class="hint" id="f-owners"${hasOwners ? ' style="margin-top:14px"' : ''}>${ownersHint(itemId, date, pending)}</p>
                 <label class="check">
                     <input type="checkbox" id="f-done" ${existing && existing.done ? 'checked' : ''}>
                     <span>已完成</span>
@@ -227,7 +238,8 @@
                         //   从空白行进来的话，「保存」这一下才真建项目（saveTaskForm → upsertTask）
                         const saved = saveTaskForm(itemId, date, {
                             detail: $('f-detail') ? $('f-detail').value.trim() : '',
-                            files: fileBox ? fileBox.get() : null
+                            files: fileBox ? fileBox.get() : null,
+                            owners: pending
                         });
                         if (saved) {
                             closeModal();
@@ -271,9 +283,15 @@
                 owners.addEventListener('click', (e) => {
                     const chip = e.target.closest('[data-owner]');
                     if (!chip) return;
-                    clearAssignee(itemId, date, chip.getAttribute('data-owner'));
+                    const who = chip.getAttribute('data-owner');
+                    const at = pending.indexOf(who);
+                    if (at >= 0) {
+                        pending.splice(at, 1);          // 还没保存的（拖名字预填的）：从这个名单里划掉就行
+                    } else {
+                        clearAssignee(itemId, date, who);
+                    }
                     // 列表原地重画，不动已填的内容；一个都不剩时把那段间距也收掉
-                    owners.innerHTML = ownersHint(itemId, date);
+                    owners.innerHTML = ownersHint(itemId, date, pending);
                     owners.style.marginTop = owners.innerHTML ? '14px' : '';
                 });
             }
@@ -284,8 +302,9 @@
      * 读弹层里的表单、校验后写进数据（改日期就是搬家）。
      * 成功返回那条安排（含新日期），失败或用户取消返回 null。
      *
-     * @param {Object} [extra] 一并写回去的东西：`{ detail, files }`
-     *        （2026-09-21 并了「详细 / 文件」弹层之后，这些和正文是同一次保存）
+     * @param {Object} [extra] 一并写回去的东西：`{ detail, files, owners }`
+     *        （2026-09-21 并了「详细 / 文件」弹层之后，这些和正文是同一次保存；
+     *          `owners` 是拖名字新建工作时预填的责任人，到这一步才真写进数据）
      */
     function saveTaskForm(itemId, date, extra) {
         const existing = (state.data.tasks || []).find((t) => t.item === itemId && t.date === date);
@@ -303,7 +322,9 @@
         }
 
         // 只有责任人的安排是允许的，所以有责任人时可以留空内容
-        const hasOwner = !!(existing && (existing.assignees || []).length);
+        // （extra.owners 是拖名字新建时预填的那个人，虽然还没进数据，也算「有责任人」）
+        const hasOwner = !!((existing && (existing.assignees || []).length)
+            || (extra && (extra.owners || []).length));
         if (!text && !hasOwner) {
             toast('内容不能为空；要清空这条安排请点「删除」');
             return null;
@@ -316,6 +337,12 @@
         if (task && extra) {
             if (extra.detail !== undefined) task.detail = extra.detail;
             if (extra.files) task.files = extra.files.slice();
+            // 拖名字新建工作预填的责任人：到保存这一步才真正写进这条安排
+            if (extra.owners && extra.owners.length) {
+                const now = W.toAssigneeList('', task.assignees || task.assignee);
+                extra.owners.forEach((n) => { if (now.indexOf(n) < 0) now.push(n); });
+                task.assignees = now;
+            }
             markChanged();
         }
 
@@ -560,7 +587,7 @@
         box.innerHTML = (assigneeList() || []).map((p) => (
             `<span class="chip" draggable="true" data-name="${esc(p.name)}"`
             + ` style="${esc(assigneeStyle(p.name))}"`
-            + ` title="拖到某天的格子上排活（日历模式里拖到那天的安排上）；点一下把这个人的活加进/移出「只看」">`
+            + ` title="把名字拖到某天 = 排活：日历里拖到「那一天」的空白处会弹窗新建一条工作（先去写清要干什么），拖到已有那条安排上就是给那条加人；表格模式拖到格子上就是给那一格加人。点一下 = 把这个人的活加进／移出「只看」">`
             + `${esc(p.name)}<i class="chip-x">✕</i></span>`
         )).join('')
             // 多选时给个一次清空的入口，不用一个个点掉
@@ -847,7 +874,8 @@
                         )).join('')}
                     </div>
                 </label>
-                <p class="hint">加好之后可以拖到某天的格子上排活；这个名字会跟着存到 OSS 的责任人名单里，
+                <p class="hint">加好之后可以拖到某天去排活（日历里拖到「那一天」会弹窗新建一条工作，
+                    责任人的位置先填好这个人）；这个名字会跟着存到 OSS 的责任人名单里，
                     别的电脑打开也能看到。<br>
                     牌子上的字默认是<b>纯白</b>，想改就在「⋯ → 🎨 编辑责任人样式」里调。</p>
             `,
@@ -1000,8 +1028,7 @@
             btn.textContent = flt.length ? `👤 只看 ${flt.join('、')}` : '👤 责任人';
             btn.title = flt.length
                 ? '正在只看这几个人的活；点开这项，再点名字可以加减（点已选中的就是取消他）'
-                : '点名字只看他的活（可以多选几个）；按住名字拖到格子上是排活'
-                    + '（日历模式里拖到那天的安排上）';
+                : '点名字只看他的活（可以多选几个）；按住名字拖到某天／某格就是排活';
         }
     }
 
@@ -1105,12 +1132,14 @@
 
         /*
          * 拖到哪儿才算数：表格模式和日历模式都要能接。
-         *   · 表格模式 → `.cell`（格子上就带着 data-item / data-date）；
-         *   · 日历模式 → `.cal-task`（某天的那一条安排，也带着这两个）；
-         *     拖到整天的空白处（`.cal-day`）时：这天**只有一条**安排就直接算那条，
-         *     **没有**安排就先问「给哪个工作项目排活」再排上去，
-         *     **有好几条**就不猜了（猜错了更麻烦），提示让人直接拖到那一条上。
-         * 返回 { el, item, date, many } —— el 是拿来高亮的那个元素。
+         *   · 表格模式 → `.cell`（格子上就带着 data-item / data-date）：给这一格加人；
+         *   · 日历模式 → `.cal-task`（某天的那一条安排）：给那条安排加人；
+         *   · 日历模式拖到「某一天」的空白处（`.cal-day`）→ 不是给谁加人，
+         *     而是**新增一条工作**（弹窗让人填内容，责任人位置预填拖的那位），
+         *     所以 `.cal-day` 一律返回 item: ''。
+         *     2026-10-14 用户要求：一天可以排多条、给同一个人也可以排多条，
+         *     所以不再有「这天有好几个安排」那种限制。
+         * 返回 { el, item, date } —— el 是拿来高亮的那个元素。
          */
         const dropTarget = (node) => {
             if (!node) return null;
@@ -1138,9 +1167,7 @@
             if (!day) return null;
             const date = day.getAttribute('data-date');
             if (!date) return null;      // 月初 / 月末那些空白占位格，不是真日子
-            const list = (state.data.tasks || []).filter((t) => t.date === date);
-            if (list.length === 1) return { el: day, item: list[0].item, date };
-            return { el: day, item: '', date, many: list.length > 1 };
+            return { el: day, item: '', date };
         };
 
         // 拖着名字经过可以放的地方：高亮，表示可以松手
@@ -1178,15 +1205,12 @@
             const who = dragAssignee;
             dragAssignee = null;      // 先清掉，免得弹层的回调里又当成在拖
 
-            if (t.many) {
-                toast(`这天有好几个安排，把「${who}」直接拖到要排的那一条上`);
-                return;
-            }
             if (!t.item) {
-                // 这天还空着：先问是哪个工作项目（安排必须挂在项目下），选完就把这个人排上去
-                if (W.pickItemFor) {
-                    W.pickItemFor(t.date, (itemId) => assignTo(itemId, t.date, who));
-                }
+                // 拖到「某一天」的空白处 = 新增一条工作：先弹「填安排」窗口，
+                // 让人写清这个人那天要干什么，责任人的位置预填刚才拖的那位。
+                // 2026-10-14 用户要求：不要自动建一条空工作；一天可以排多条，不加限制。
+                // （点「保存」才真建项目，点「取消」什么都不留 —— 和空白行同一条规矩）
+                openTaskEditor(W.BLANK_ID, t.date, [who]);
                 return;
             }
             assignTo(t.item, t.date, who);
@@ -1299,6 +1323,39 @@
         markChanged();
         closeModal();
         render();
+    }
+
+    /**
+     * 清理「一条安排都没有」的工作项目。
+     *
+     * 2026-10-14 用户问：「表格模式里怎么有这么多空着的工作？是不是删了人、没删掉工作？」
+     * —— 对的。删安排的路有两条，都只删安排、不动项目那一行：
+     *   · 弹层里的「删除」（removeTask）；
+     *   · 把唯一一条安排的责任人 ✕ 掉，而那条安排又只有人没有内容（clearAssignee 会把这条安排删掉）。
+     * 另外拖名字新建的工作，如果内容一直没填、人又撤了，也会剩一条空项目。
+     * 表格模式里这些行会带一个「待安排」标记并提到上端，所以看着很显眼。
+     *
+     * 行头那个 ✕ 是删单个项目的；这里是一次把空的全清掉（只清真的没安排的，
+     * 有安排的绝不碰）。要下手必须用户点菜单 + 确认那一下。
+     */
+    function cleanEmptyItems() {
+        const used = new Set((state.data.tasks || []).map((t) => t.item));
+        const dead = (state.data.items || []).filter((i) => !used.has(i.id));
+        if (!dead.length) {
+            toast('没有空的工作项目：每个项目名下都有安排');
+            return;
+        }
+        const names = dead.map((i) => i.name).join('、');
+        const ok = window.confirm(
+            `有 ${dead.length} 个工作项目一条安排都没有：\n${names}\n\n把这些行一起删掉？`
+        );
+        if (!ok) return;
+
+        const ids = new Set(dead.map((i) => i.id));
+        state.data.items = state.data.items.filter((i) => !ids.has(i.id));
+        markChanged();
+        render();
+        toast(`已删掉 ${dead.length} 个空的工作项目（有安排的项目一个没动）`);
     }
 
     /* ============================== 拖动行头调整项目顺序 ============================== */
@@ -1431,7 +1488,7 @@
         removeAssignee, setQuery, clearQuery, setQueryRange,
         assignTo, clearAssignee, bindAssigneeDrag,
         bindRowDrag, moveItem,
-        openItemEditor, deleteItem, placeItem, pinnedCount, togglePin,
+        openItemEditor, deleteItem, cleanEmptyItems, placeItem, pinnedCount, togglePin,
         itemFinished, nextDateOf, reorder,
         resolveItemId, materializeBlank, restoreBlankRow, toggleBlankRow, paintBlankRowBtn,
         restoreHideDone, toggleHideDone, paintHideDoneBtn
