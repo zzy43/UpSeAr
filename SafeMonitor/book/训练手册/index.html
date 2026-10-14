@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!--
+  B757/767 飞行机组训练手册（网页版）
+  ------------------------------------------------------------------
+  本文件只是个壳子：正文不写在这里！
+    · 正文数据：data/train-NN-章节名.js（由 G:\HYT\202609\分析\pdf_to_sop.py 从手册 PDF 生成）
+    · 样式 / 交互：跟标准操作程序共用 ../SOP/css/sop.css、../SOP/js/sop.js
+  正文来源：757&767 飞行机组训练手册.pdf，共 8 章；图片未收录。
+
+  ★ 重新生成某一章：python pdf_to_sop.py train 3（可一次写多章）
+  ★ 章节顺序就是下面 <script> 的顺序。
+-->
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>B757/767 飞行机组训练手册</title>
+<link rel="stylesheet" href="../SOP/css/sop.css">
+<script>
+  // 提前套用上次选的亮/暗模式，避免刷新时先闪一下；没记录就是亮色
+  try {
+    var _t = localStorage.getItem('sop:theme');
+    document.documentElement.setAttribute('data-theme', _t === 'dark' ? 'dark' : 'light');
+  } catch (e) { /* 隐私模式下忽略 */ }
+</script>
+</head>
+<body>
+
+<header class="topbar">
+  <!-- 手册快切：五本手册的简写，当前这本高亮 -->
+  <nav class="mnbar">
+    <a class="mn" href="../SOP/index.html" title="B757/767 标准操作程序">SOP</a>
+    <span class="mn on" title="B757/767 飞行机组训练手册">FCTM</span>
+    <a class="mn" href="../飞行手册/index.html" title="B757-200ER 飞机飞行手册">AFM</a>
+    <a class="mn" href="../操作手册V1/index.html" title="B757-200 飞行机组操作手册 V1">FCOM1</a>
+    <a class="mn" href="../操作手册V2/index.html" title="B757-200 飞行机组操作手册 V2">FCOM2</a>
+    <a class="mn" href="../运行手册/index.html" title="运行手册">OA</a>
+  </nav>
+
+  <div class="tools">
+    <button class="btn mini" id="btn-side" title="把左侧目录栏收起来（手机上看正文更舒服）">⇤ 收起目录</button>
+    <input class="search" id="q" type="search" placeholder="在正文里搜索…" title="输入关键词，回车跳到第一个命中处">
+    <button class="btn mini" id="prev-hit" title="上一个命中">↑</button>
+    <button class="btn mini" id="next-hit" title="下一个命中">↓</button>
+    <span class="badge" id="hit-info" hidden></span>
+    <button class="btn" id="btn-fold" title="把所有小节收起来 / 展开">▾ 全部收起</button>
+    <button class="btn" id="btn-minus" title="字号变小">A－</button>
+    <button class="btn" id="btn-plus" title="字号变大">A＋</button>
+    <button class="btn" id="btn-theme" title="切换亮色 / 暗色">☾ 暗色</button>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- 左边：目录（由 js 按各章正文的 h1/h2/h3/h4 自动生成，可逐级折叠） -->
+  <aside class="side">
+    <div class="side-tools">
+      <button class="btn mini" id="btn-toc-all" title="把目录里的子目录全部展开 / 收起">⤢ 全部展开</button>
+    </div>
+    <nav class="toc" id="toc"></nav>
+  </aside>
+
+  <!-- 右边：正文（内容由 js 从 data/ 下的章节文件读进来，这个壳子里没有正文） -->
+  <section class="main" id="doc"></section>
+</main>
+
+<button class="to-top" id="to-top" hidden title="回到顶部">↑</button>
+
+<!-- 正文数据：一章一个文件（顺序就是页面上从上到下的顺序） -->
+<script src="data/train-01-概述信息.js"></script>
+<script src="data/train-02-地面操作.js"></script>
+<script src="data/train-03-起飞和起始爬升.js"></script>
+<script src="data/train-04-爬升、巡航、下降和等待.js"></script>
+<script src="data/train-05-进近和复飞.js"></script>
+<script src="data/train-06-着陆.js"></script>
+<script src="data/train-07-机动飞行.js"></script>
+<script src="data/train-08-非正常操作.js"></script>
+<script src="../SOP/js/sop.js"></script>
+</body>
+</html>

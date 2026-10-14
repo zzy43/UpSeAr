@@ -1,0 +1,373 @@
+/**
+ * 工作系统样式（1/4）基础层
+ * 设计变量、基础/重置、海报背景、顶部工具条、底部统计
+ * 表格在 work-board.css；按钮/弹层等组件在 work-parts.css；亮色模式在 work-light.css
+ */
+
+/* ================================
+   设计变量
+   ================================ */
+:root {
+  --bg: #0b0d10;
+  --panel: rgba(18, 21, 26, 0.72);
+  --panel-solid: #14171d;
+  --panel-hover: rgba(255, 255, 255, 0.05);
+  --line: rgba(255, 255, 255, 0.09);
+  --line-strong: rgba(255, 255, 255, 0.18);
+
+  --text: #bed3ff;
+  --text-dim: rgba(245, 246, 248, 0.6);
+  --text-faint: rgba(245, 246, 248, 0.38);
+
+  --accent: #ecad29;   /* 主题色，取自轮播页 */
+  --today: #2196f3;    /* 今天 */
+  --done: #34c759;     /* 已完成 */
+  --danger: #ff453a;   /* 逾期 / 删除 */
+
+  /* 责任人 / 审核员牌子上的字色。
+     牌子的底色是名单里人手选的（粉、蓝、紫、青……），写纯白在这个亮度上发虚，
+     写深色又显得脏，最后定的是一道**亮蓝色**。
+     ★ 要调就改这一个数（亮色模式也用这个值，因为牌子底色两种主题下是一样的）。
+     试过并否掉的做法：① 写死白字；② 按底色亮度自动选黑/白（inkOn）—— 用户说黑字看不清。 */
+  --chip-ink: #cfe4ff;
+
+  /* 双休日 / 法定节假日的底色没有做成变量：颜色直接写在
+     work-board.css / work-calendar.css 对应的 data-state 规则里，
+     亮色模式在 work-light.css 里整条覆盖（2026-09-21 改回原配色后就是这个样子） */
+
+
+  --radius: 14px;
+  --radius-sm: 10px;
+
+  /* 表格尺寸会被 JS 用配置覆盖（见 js/work-config.js） */
+  --col-w: 198px;
+  --head-w: 320px;
+  --row-h: 96px;
+  /* 日期表头那一行的高度。表头里有「星期 + 日期 + 今天标签」三段，
+     这个数不能小于它们加起来的高度（改字号时记得跟着调，否则会被裁切） */
+  --head-h: 78px;
+  --cols: 30;
+
+  /* 左侧工作项目列的底色（悬浮按钮的遮底渐变也用它） */
+  --row-head-bg: rgba(20, 23, 29, 0.92);
+  --row-head-bg-hover: rgba(28, 32, 40, 0.96);
+
+  /* 常规系统字体（JS 会用 work-config.js 的 FONT_FAMILY 覆盖它）：
+     Windows 落微软雅黑 / macOS 落苹方，各平台都用自带的，打开快也不用下载字体 */
+  --font: "Segoe UI", "Microsoft YaHei", "PingFang SC", "Noto Sans SC", "Hiragino Sans GB", system-ui, sans-serif;
+}
+
+/* ================================
+   基础
+   ================================ */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* 海报背景 + 遮罩，保证表格文字始终清晰 */
+.bg {
+  position: fixed;
+  inset: 0;
+  background-color: var(--bg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* 遮罩只压到“能看清表格”的程度：太黑会把海报糊成一片纯色。
+     想让海报更明显就调小下面三个数，想更暗就调大 */
+  /* 遮罩：这三个数越大海报越淡、表格越好认（0 = 完全不遮） */
+  /* 遮罩：这三个数越大海报越淡、表格越好认（0 = 完全不遮）。
+     2026-09-21 用户要求「背景图再淡一点」→ 0.5/0.6/0.7 抬到 0.62/0.70/0.78 */
+  background: linear-gradient(
+    180deg,
+    rgba(11, 13, 16, 0.62) 0%,
+    rgba(11, 13, 16, 0.7) 55%,
+    rgba(11, 13, 16, 0.78) 100%
+  );
+}
+
+/* ================================
+   顶部工具条
+   ================================ */
+/* 弹出面板要盖在表格上面，所以顶栏的层级必须高于 .board-wrap */
+.topbar {
+  position: relative;
+  z-index: 30;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px 24px;
+  flex-wrap: wrap;
+  padding: 18px 24px 14px;
+  background: linear-gradient(180deg, rgba(11, 13, 16, 0.75) 0%, rgba(11, 13, 16, 0.34) 100%);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+}
+
+.brand {
+  min-width: 240px;
+}
+
+.brand-genre {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.brand-title {
+  margin: 2px 0 4px;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.brand-meta {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* 顶栏右半边：责任人一排在上面，工具按钮一行在下面 */
+.topbar-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  min-width: 0;
+}
+
+/* 「工作查询」小框 + 责任人一排 */
+.people-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 把责任人名字拖到这里 = 在表格区域列出他的全部工作 */
+.query-box {
+  flex: 0 0 auto;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px dashed var(--line-strong);
+  color: var(--text-dim);
+  font-size: 13px;
+  white-space: nowrap;
+  cursor: default;
+  transition: color 0.12s ease, border-color 0.12s ease, background 0.12s ease;
+}
+
+/* 拖着名字停在这个框上面 */
+.query-box.is-over {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* 责任人一排：点工具栏「👤 责任人」开合，四个名字永远排成一行
+   背景和边框都做成透明，就几个彩色名字浮在页面上，不压一层底 */
+.assignee-bar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 6px 10px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+}
+
+.assignee-bar[hidden] {
+  display: none;
+}
+
+.assignee-bar .chips {
+  flex-wrap: nowrap;
+}
+
+/* ================================
+   工具组：按钮 + 点开的小面板（责任人 / 更多操作）
+   ================================ */
+.tool-group {
+  position: relative;
+}
+
+.popover {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 20;
+  min-width: 176px;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-strong);
+  background: var(--panel-solid);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+}
+
+.popover[hidden] {
+  display: none;
+}
+
+.icon-btn {
+  width: 38px;
+  padding: 8px 0;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.menu-item {
+  display: block;
+  width: 100%;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  font-size: 13px;
+  text-align: left;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.menu-item:hover {
+  background: var(--panel-hover);
+}
+
+/* 责任人小牌子 */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 13px;
+  border-radius: 999px;
+  /* 字色不是写死的：见 :root 里的 --chip-ink（亮蓝色） */
+  color: var(--chip-ink);
+  font-size: 14px;
+  white-space: nowrap;
+  cursor: grab;
+  user-select: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.28);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.chip:hover {
+  transform: translateY(-1px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.chip:active {
+  cursor: grabbing;
+}
+
+/* 正在「只看这个人」的牌子：亮圈 + 小叉（再点一下就取消） */
+.chip.is-active {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.chip .chip-x {
+  display: none;
+  margin-left: 5px;
+  font-size: 11px;
+  font-style: normal;
+  opacity: 0.85;
+}
+
+.chip.is-active .chip-x {
+  display: inline;
+}
+
+/* 「只看」多选时，牌子后面跟一个「✕ 看全部」用来一次清空（不是责任人，就没底色） */
+.chip-clear {
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  color: var(--text-dim);
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.chip-clear:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  box-shadow: none;
+}
+
+/* 名字牌子最右边的「＋」：新增责任人 */
+.chip-add {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px dashed var(--line-strong);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-dim);
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+}
+
+.chip-add:hover {
+  transform: translateY(-1px) scale(1.06);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+
+/* ================================
+   底部统计
+   ================================ */
+/* 这一条（.footbar / .stat / .foot-tips）2026-09-21 已按用户要求去掉
+   —— 统计和上面的信息重复。原来它是：
+     .footbar   自带渐变底 + 上边框的横条（flex 0 0 auto）
+     .stat b / .s-done / .s-overdue   统计数字的强调色
+     .foot-tips  右下角的操作提示（小屏隐藏）
+   （.s-done / .s-overdue 这两个类名日历那边还在用，见 work-calendar.css） */
+
+

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!--
+  法定自查 · 年度审核计划与问题库
+  ==================================================================
+  和「安全审核（SafetyAudit/work.html）」是两套系统，从轮播页的
+  「法定自查（Statutory Inspection）」那一页点进来。
+
+  干什么用的：
+    · 一边排**年度审核计划**（哪个月去查哪个部门）；
+    · 一边给每个受检单位建一个**问题库**：还没去检查之前，审核员
+      平时发现的问题先随手记进去，慢慢攒着，等到计划那个月再去查。
+  · 数据存在阿里云 OSS 上（CheckQuestion/check.json），改动自动上传。
+  ==================================================================
+-->
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#f0e8d5">
+  <title>法定自查 年度审核计划</title>
+  <!-- 样式按功能拆分：基础层 / 组件层 / 业务层 / 亮色模式 -->
+  <link rel="stylesheet" href="css/check-base.css">
+  <link rel="stylesheet" href="css/check-parts.css">
+  <link rel="stylesheet" href="css/check-app.css">
+  <link rel="stylesheet" href="css/check-light.css">
+  <script>
+    // 提前套用上次选的亮/暗模式，避免刷新时先闪一下。
+    // 浏览器里**没有记录**（第一次打开 / 清了数据）→ 默认亮色；
+    // 之后就完全听记录的（选过暗色就回暗色）。
+    try {
+      var _t = localStorage.getItem('checkquestion:theme');
+      document.documentElement.setAttribute('data-theme', _t === 'dark' ? 'dark' : 'light');
+    } catch (e) { /* 隐私模式下忽略 */ }
+  </script>
+</head>
+<body>
+  <!-- 海报背景：由 URL 参数 poster 传入，沿用轮播页当前主题的海报 -->
+  <div class="bg" id="bg"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-genre" id="brand-genre">STATUTORY INSPECTION</span>
+      <h1 class="brand-title" id="brand-title">法定自查 年度审核计划</h1>
+      <span class="brand-meta" id="brand-meta">加载中…</span>
+    </div>
+
+    <!-- 右边：上面是「审核员」那一排，下面是工具按钮一行 -->
+    <div class="topbar-side">
+      <div class="people-row">
+        <!-- 审核员一排：默认展开，点工具栏「👤 审核员」可以收起。
+             最右边的「＋」加人 —— 名单是和安全审核（SafetyAudit/work.html）**共用**的，
+             在这边加了人 / 改了颜色，那边刷新后也是同一套，反过来也一样。 -->
+        <div class="assignee-bar" id="auditor-bar">
+          <div class="chips" id="auditor-chips"></div>
+        </div>
+      </div>
+
+      <div class="tools">
+        <span class="badge" id="source-badge">加载中…</span>
+        <span class="badge save-state" id="save-state" hidden></span>
+        <!-- 「＋ 记录问题」不放在这里：它和问题库视图右上角那个是重复的，一个就够
+             （2026-09-21 用户要求去掉）。要看哪个单位的问题就先在左边点它 -->
+        <button class="btn" id="btn-view">▤ 审核计划</button>
+        <button class="btn" id="btn-auditor">👤 审核员</button>
+        <button class="btn" id="btn-theme" title="切换亮色模式">☀ 亮色</button>
+        <a class="btn" id="btn-home" href="../index.html" title="回到轮播首页">⌂ 返回首页</a>
+
+        <!-- 低频操作收进「⋯」，固定在最右边 -->
+        <div class="tool-group">
+          <button class="btn icon-btn" id="btn-more" title="更多操作">⋯</button>
+          <div class="popover more-menu" id="more-menu" hidden>
+            <button class="menu-item" id="btn-new-unit">＋ 受检单位</button>
+            <button class="menu-item" id="btn-style">⟳ 编辑样式</button>
+            <button class="menu-item" id="btn-del-auditor">🗑 删除审核员</button>
+            <button class="menu-item" id="btn-export-csv">⤓ 导出 CSV</button>
+            <button class="menu-item" id="btn-export">⤓ 导出 JSON</button>
+            <button class="menu-item" id="btn-import">⇪ 导入 JSON</button>
+            <button class="menu-item" id="btn-reload">⟳ 重新载入</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- 左边：受检单位列表（点一个，右边就只看这个单位的问题库） -->
+    <aside class="side">
+      <div class="side-head">
+        <span class="side-title">受检单位</span>
+        <span class="side-count" id="side-count"></span>
+      </div>
+      <div class="unit-list" id="unit-list"></div>
+      <div class="side-foot">
+        <button class="btn ghost side-add" id="btn-new-unit-2">＋ 新增受检单位</button>
+      </div>
+    </aside>
+
+    <!-- 右边：问题库 / 审核计划总览 -->
+    <section class="main" id="main"></section>
+  </main>
+
+  <!-- 通用弹层：填问题 / 编辑单位 / 导入 JSON 都用它 -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true">
+      <header class="modal-head">
+        <h2 class="modal-title" id="modal-title">编辑</h2>
+        <button class="modal-x" id="modal-x" aria-label="关闭">✕</button>
+      </header>
+      <div class="modal-body" id="modal-body"></div>
+      <div class="modal-foot" id="modal-foot"></div>
+    </div>
+  </div>
+
+  <!-- 鼠标停在「图片附件」上浮出来的预览（只对 jpg/png/gif/webp 这类图片生效） -->
+  <div class="image-tip" id="image-tip" hidden><img id="image-tip-img" alt=""></div>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- 逻辑按功能拆分：配置 / 基础层 / 审核计划视图 / 问题库视图 / 启动
+       （顺序不能乱：视图要在启动之前挂好） -->
+  <script src="js/check-config.js"></script>
+  <script src="js/check-core.js"></script>
+  <script src="js/check-plan.js"></script>
+  <script src="js/check-issues.js"></script>
+  <script src="js/check-main.js"></script>
+</body>
+</html>

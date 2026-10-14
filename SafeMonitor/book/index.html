@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!--
+  B757/767 手册库（入口页 / 手册列表）
+  ------------------------------------------------------------------
+  这里只有一份「手册清单」，点卡片进对应手册。
+    · 样式 / 配色：与各手册共用 SOP/css/sop.css
+    · 各手册自己的页面：<目录>/index.html，章节目录 + 正文都由 js 从 data/ 读
+    · 六本手册顶栏最左边那排简写（SOP / FCTM / AFM / FCOM1 / FCOM2 / OA）可互相跳转
+  要加新手册：在 pdf_to_sop.py 的 MANUALS 里加一行 → 生成数据 → 照搭一个阅读页
+              → 下面加一张卡片 → 六个阅读页顶栏的 mnbar 各自补一个简写。
+-->
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>B757/767 手册库</title>
+<link rel="stylesheet" href="SOP/css/sop.css">
+<style>
+  /* 这一页只用共用样式里的变量和按钮，版式自己写（不跟手册页抢 .topbar / .wrap） */
+  .lib { max-width: 1180px; margin: 0 auto; padding: 28px 18px 64px; }
+  .lib-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .lib h1 { margin: 0 0 8px; font-size: 26px; font-weight: 600; }
+  .lib .sub { color: var(--text-dim); font-size: 13.5px; line-height: 1.9; max-width: 760px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; margin-top: 20px; }
+  .mcard {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 14px 16px;
+    border: 1px solid var(--line-strong); border-radius: var(--radius);
+    background: var(--panel-solid); color: var(--text); text-decoration: none;
+    transition: background 0.16s ease, border-color 0.16s ease, transform 0.16s ease;
+  }
+  .mcard:hover { border-color: var(--accent); background: var(--accent-soft); transform: translateY(-2px); }
+  .mcard .code {
+    flex: 0 0 auto; padding: 3px 9px; border-radius: 999px;
+    border: 1px solid var(--line-strong); background: var(--bg);
+    color: var(--accent); font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
+  }
+  .mcard h2 { margin: 0 0 6px; font-size: 16px; font-weight: 600; line-height: 1.4; }
+  .mcard .meta { color: var(--text-faint); font-size: 12.5px; line-height: 1.75; }
+  .foot { margin-top: 24px; padding-top: 12px; border-top: 1px dashed var(--line);
+          color: var(--text-faint); font-size: 12.5px; line-height: 1.9; }
+</style>
+<script>
+  // 与各手册页共用同一个亮/暗模式记忆，避免在这页选了、进手册又变回亮色
+  try {
+    var _t = localStorage.getItem('sop:theme');
+    document.documentElement.setAttribute('data-theme', _t === 'dark' ? 'dark' : 'light');
+  } catch (e) { /* 隐私模式下忽略 */ }
+</script>
+</head>
+<body>
+
+<div class="lib">
+  <div class="lib-top">
+    <div>
+      <h1>B757/767 手册库</h1>
+      
+    </div>
+    <button class="btn" id="btn-theme" title="切换亮色 / 暗色">☾ 暗色</button>
+  </div>
+
+  <div class="grid">
+    <a class="mcard" href="SOP/index.html">
+      <span class="code">SOP</span>
+      <span>
+        <h2>标准操作程序 R05</h2>
+        <div class="meta">共 7 章 · 总则 / 正常程序 / 非正常程序 / 机动飞行及特殊运行 / 恶劣天气 / 操作指南 / 附录</div>
+      </span>
+    </a>
+
+    <a class="mcard" href="训练手册/index.html">
+      <span class="code">FCTM</span>
+      <span>
+        <h2>飞行机组训练手册</h2>
+        <div class="meta">共 8 章 · 概述信息 / 地面操作 / 起飞和起始爬升 / 爬升、巡航、下降和等待 / 进近和复飞 / 着陆 / 机动飞行 / 非正常操作</div>
+      </span>
+    </a>
+
+    <a class="mcard" href="飞行手册/index.html">
+      <span class="code">AFM</span>
+      <span>
+        <h2>B757-200ER 飞机飞行手册 R00-03</h2>
+        <div class="meta">共 12 节 · 认证限制 / 应急程序 / 操作程序 / 性能 / 附录1、10F、20ABF、4 / AFRIS、ADSB、客改货、EFB 补充手册</div>
+      </span>
+    </a>
+
+    <a class="mcard" href="操作手册V1/index.html">
+      <span class="code">FCOM1</span>
+      <span>
+        <h2>飞行机组操作手册 V1（R02-10）</h2>
+        <div class="meta">共 5 章 · L章 限制 / NP章 正常程序 / SP章 补充程序 / PI 空中性能 / 改装厂补充手册</div>
+      </span>
+    </a>
+
+    <a class="mcard" href="操作手册V2/index.html">
+      <span class="code">FCOM2</span>
+      <span>
+        <h2>飞行机组操作手册 V2（R02-10）</h2>
+        <div class="meta">共 15 章 · 飞机舱门 / 空气系统 / 防冰排雨 / 自动飞行 / 通讯 / 电气 / 发动机APU / 防火 / 飞行操纵 / 仪表显示 / 飞行管理导航 / 燃油 / 液压 / 起落架 / 警告系统</div>
+      </span>
+    </a>
+
+    <a class="mcard" href="运行手册/index.html">
+      <span class="code">OA</span>
+      <span>
+        <h2>运行手册 R05-04</h2>
+        <div class="meta">共 19 章 · 手册文件管理 / 运行组织 / 运行总政策 / 机组成员政策 / 适航放行 / 运行标准 / 运行控制 / 特殊运行 / 性能载重 / 正常飞行 / 非计划运行 / 通信 / 恶劣天气 / 紧急情况 / 货物 / 安保 / 航卫 / 国际运行 / 附录</div>
+      </span>
+    </a>
+  </div>
+
+  
+</div>
+
+<script>
+  (function () {
+    var KEY = 'sop:theme';
+    var root = document.documentElement;
+    var btn = document.getElementById('btn-theme');
+    function apply(t) {
+      root.setAttribute('data-theme', t === 'dark' ? 'dark' : 'light');
+      btn.textContent = t === 'dark' ? '☀ 亮色' : '☾ 暗色';
+      try { localStorage.setItem(KEY, t); } catch (e) { /* 隐私模式下忽略 */ }
+    }
+    var saved = null;
+    try { saved = localStorage.getItem(KEY); } catch (e) { /* 隐私模式下忽略 */ }
+    apply(saved === 'dark' ? 'dark' : 'light');
+    btn.addEventListener('click', function () {
+      apply(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    });
+  })();
+</script>
+</body>
+</html>

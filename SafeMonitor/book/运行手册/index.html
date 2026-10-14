@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!--
+  运行手册 R05-04（网页版）
+  ------------------------------------------------------------------
+  本文件只是个壳子：正文不写在这里！
+    · 正文数据：data/oa-NN-章节名.js（由 G:\HYT\202609\分析\pdf_to_sop.py 从手册 PDF 生成）
+    · 样式 / 交互：跟标准操作程序共用 ../SOP/css/sop.css、../SOP/js/sop.js
+  正文来源：Operations Manual（R05-04）.pdf，共 19 章（第0章 概述、第17章（有意留空）不收）；
+  图片未收录。
+
+  ★ 重新生成某一章：python pdf_to_sop.py oa 3（可一次写多章）
+  ★ 章的顺序就是下面 <script> 的顺序（注意：文件序号是 1…19，书里的章号到第20章，
+    因为「第17章 有意留空」整章没收）。
+-->
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>运行手册 R05-04</title>
+<link rel="stylesheet" href="../SOP/css/sop.css">
+<script>
+  // 提前套用上次选的亮/暗模式，避免刷新时先闪一下；没记录就是亮色
+  try {
+    var _t = localStorage.getItem('sop:theme');
+    document.documentElement.setAttribute('data-theme', _t === 'dark' ? 'dark' : 'light');
+  } catch (e) { /* 隐私模式下忽略 */ }
+</script>
+</head>
+<body>
+
+<header class="topbar">
+  <!-- 手册快切：各本手册的简写，当前这本高亮 -->
+  <nav class="mnbar">
+    <a class="mn" href="../SOP/index.html" title="B757/767 标准操作程序">SOP</a>
+    <a class="mn" href="../训练手册/index.html" title="B757/767 飞行机组训练手册">FCTM</a>
+    <a class="mn" href="../飞行手册/index.html" title="B757-200ER 飞机飞行手册">AFM</a>
+    <a class="mn" href="../操作手册V1/index.html" title="B757-200 飞行机组操作手册 V1">FCOM1</a>
+    <a class="mn" href="../操作手册V2/index.html" title="B757-200 飞行机组操作手册 V2">FCOM2</a>
+    <span class="mn on" title="运行手册">OA</span>
+  </nav>
+
+  <div class="tools">
+    <button class="btn mini" id="btn-side" title="把左侧目录栏收起来（手机上看正文更舒服）">⇤ 收起目录</button>
+    <input class="search" id="q" type="search" placeholder="在正文里搜索…" title="输入关键词，回车跳到第一个命中处">
+    <button class="btn mini" id="prev-hit" title="上一个命中">↑</button>
+    <button class="btn mini" id="next-hit" title="下一个命中">↓</button>
+    <span class="badge" id="hit-info" hidden></span>
+    <button class="btn" id="btn-fold" title="把所有小节收起来 / 展开">▾ 全部收起</button>
+    <button class="btn" id="btn-minus" title="字号变小">A－</button>
+    <button class="btn" id="btn-plus" title="字号变大">A＋</button>
+    <button class="btn" id="btn-theme" title="切换亮色 / 暗色">☾ 暗色</button>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- 左边：目录（由 js 按正文的 h1/h2/h3/h4 自动生成，可逐级折叠） -->
+  <aside class="side">
+    <div class="side-tools">
+      <button class="btn mini" id="btn-toc-all" title="把目录里的子目录全部展开 / 收起">⤢ 全部展开</button>
+    </div>
+    <nav class="toc" id="toc"></nav>
+  </aside>
+
+  <!-- 右边：正文（内容由 js 从 data/ 下的章节文件读进来，这个壳子里没有正文） -->
+  <section class="main" id="doc"></section>
+</main>
+
+<button class="to-top" id="to-top" hidden title="回到顶部">↑</button>
+
+<!-- 正文数据：一章一个文件（顺序就是页面上从上到下的顺序） -->
+<script src="data/oa-01-手册文件管理与记录保存.js"></script>
+<script src="data/oa-02-运行组织与管理职责.js"></script>
+<script src="data/oa-03-运行总政策.js"></script>
+<script src="data/oa-04-机组成员基本政策.js"></script>
+<script src="data/oa-05-适航放行与飞机维修.js"></script>
+<script src="data/oa-06-运行标准与限制.js"></script>
+<script src="data/oa-07-运行控制【CCAR121.133（a）（2）】.js"></script>
+<script src="data/oa-08-特殊运行的要求.js"></script>
+<script src="data/oa-09-性能限制与载重平衡.js"></script>
+<script src="data/oa-10-正常飞行运行与运作要求.js"></script>
+<script src="data/oa-11-非计划运行.js"></script>
+<script src="data/oa-12-通信管理.js"></script>
+<script src="data/oa-13-恶劣天气运行.js"></script>
+<script src="data/oa-14-紧急情况处置.js"></script>
+<script src="data/oa-15-航空货物运输.js"></script>
+<script src="data/oa-16-航空安保.js"></script>
+<script src="data/oa-17-航空卫生.js"></script>
+<script src="data/oa-18-国际运行.js"></script>
+<script src="data/oa-19-附录.js"></script>
+<script src="../SOP/js/sop.js"></script>
+</body>
+</html>

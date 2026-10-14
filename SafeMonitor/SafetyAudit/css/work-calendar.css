@@ -1,0 +1,466 @@
+/**
+ * 工作系统样式 · 日历模式
+ * ==================================================================
+ * 只在「▤ 日历模式」下生效：表格容器 .board 会多一个 .is-calendar，
+ * 里面画的是月历（.cal-*）。表格模式的样式在 work-board.css，互不影响。
+ * 亮色模式的覆盖写在 work-light.css 最后一节。
+ * ==================================================================
+ */
+
+/* ================================
+   ① 容器：从网格换成普通块
+   ================================ */
+.board.is-calendar {
+  display: flex;
+  flex-direction: column;
+  /* 竖向撑满屏幕：.cal → .cal-months → .cal-grid 一路 flex，
+     最后 grid-auto-rows 把剩下的高度分给每一行 */
+  min-height: 100%;
+  /* 横向：三栏放不下就撑开，由 .board-wrap 出横向滚动条；
+     fit-content 的效果是「窗口够宽就铺满、不够宽就按最小宽度撑开」，
+     同时让底板背景跟着铺满整个可滚动宽度（不这么写，右边滑出来那块会露出海报） */
+  width: fit-content;
+  min-width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 12px 14px 14px;
+}
+
+/* 整个日历：纵向 flex，把高度一路传下去 */
+.cal {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* 三栏并列：左 = 上个月，中 = 当前月，右 = 下个月。
+   一栏最小 960px（每格 ≈ 132px，是之前 88px 的 1.5 倍）；
+   三栏加起来放不下就横向滚动（用户允许「宽度用滚轴左右移动」）。
+   flex: 1 1 auto —— 让这块把屏幕剩余高度吃掉，日历就竖向撑满了 */
+.cal-months {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(960px, 1fr));
+  gap: 10px;
+  flex: 1 1 auto;
+}
+
+/* 一栏 = 一个自然月 */
+.cal-month {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 8px 10px 10px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+}
+
+/* 当前月那一栏加个框，翻月的时候一眼知道在中间那一栏 */
+.cal-month[data-role="cur"] {
+  border-color: var(--line-strong);
+  background: rgba(255, 255, 255, 0.028);
+}
+
+.cal-mtitle {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.cal-month[data-role="cur"] .cal-mtitle {
+  color: var(--accent);
+}
+
+.cal-mcount {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-faint);
+}
+
+/* ================================
+   ② 顶部：年月 + 翻月 + 返回
+   ================================ */
+.cal-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 2px;
+}
+
+.cal-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.cal-nav {
+  display: flex;
+  gap: 6px;
+}
+
+.cal-tools {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+}
+
+/*
+ * 横向滚动时，上面这两行（年月/翻月/返回表格、本月统计）**不跟着左右动**，
+ * 贴在可视区左边不动；下面三栏月历自己滚。
+ *
+ * 注意宽度不能写 100% —— 那等于整个月历的宽度（三栏约 2900px），
+ * 元素跟着一起变宽就起不到「贴住」的作用了；这里用视口宽度算，
+ * 留 14px 左右内边距（和 .board 的 padding 对齐），右边多留点余量
+ * 免得碰上竖向滚动条时「← 返回表格」被切掉。
+ */
+.board.is-calendar .cal-head,
+.board.is-calendar .cal-sum {
+  position: sticky;
+  left: 14px;
+  width: calc(100vw - 40px);
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+/* 本月统计那一行 */
+.cal-sum {
+  margin: 3px 0 10px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.cal-sum b {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.cal-sum .s-done {
+  color: var(--done);
+}
+
+.cal-sum .s-overdue {
+  color: var(--danger);
+}
+
+.cal-sum-hol {
+  color: rgba(255, 158, 200, 0.95);
+}
+
+/* ================================
+   ③ 星期表头 + 日期网格
+   ================================ */
+.cal-week,
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 3px;
+}
+
+/* 日期网格撑满本栏剩余高度：每行至少 88px，高了就均分剩下的（屏幕高就格高） */
+.cal-grid {
+  flex: 1 1 auto;
+  grid-auto-rows: minmax(88px, 1fr);
+}
+
+.cal-week {
+  flex: 0 0 auto;
+  margin-bottom: 3px;
+}
+
+.cal-week span {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-dim);
+  padding: 1px 0;
+}
+
+/* 周末那两列标题压深一点，一眼能分出一周的头尾 */
+.cal-week span[data-state~="weekend"] {
+  color: var(--text-faint);
+}
+
+/* ================================
+   ④ 每一个日期格子
+   ================================ */
+.cal-day {
+  position: relative;   /* 里面的「＋」是绝对定位的 */
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-height: 88px;
+  padding: 5px 7px 6px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* 1 号前面的占位格（自然月：不借上个月的日子进来） */
+.cal-day.is-blank {
+  border-color: transparent;
+  background: transparent;
+}
+
+/* 普通双休日：淡绿底。
+   原来只是 5.5% 的白，跟工作日几乎分不出来（2026-09-21 用户要求明显一点）。
+   值深了/浅了就调下面这个 rgba 的最后一个数；
+   法定放假的红写在后面，会盖掉这里（调休上班那天则连 weekend 都不算，见下面） */
+.cal-day[data-state~="weekend"] {
+  background: rgba(52, 199, 89, 0.12);
+}
+
+.cal-day[data-state~="past"] .cal-num {
+  color: var(--text-faint);
+}
+
+/* 今天 */
+.cal-day[data-state~="today"] {
+  border-color: var(--today);
+  background: rgba(33, 150, 243, 0.13);
+  box-shadow: inset 0 0 0 1px rgba(33, 150, 243, 0.45);
+}
+
+/* 法定节假日：整格淡淡染粉色 + 同类色的边（2026-09-21 用户要求「用亮一点的粉色」，
+   原来是大红；粉色亮度高，格底反而要比红色更淡，否则会坨成一团） */
+.cal-day[data-state~="off"] {
+  background: rgba(255, 122, 178, 0.1);
+  border-color: rgba(255, 122, 178, 0.34);
+}
+
+/* 调休上班：**不上底色**（2026-09-21 用户要求：补班日就跟普通工作日长一样，
+   只靠那行「XX调班」的文字认出来）。data-state 里仍保留 makeup 这个值，
+   方便定位/调试，但别再往上加背景色了 */
+
+/* 上/下个月的日子、跳月月份标签这套样式已经不需要了：
+   现在三栏各管一个自然月，左右两栏就摆着邻月，格子里的日子必然属于本栏的那个月。 */
+
+/* 「休 / 班」那两个小标签**已经去掉了**（2026-09-21 用户要求）：
+   放假只写节日名（整格淡红），补班写「XX调班」（底色同工作日），
+   所以 .cal-tag 这套样式不再需要 */
+
+/* ================================
+   ⑤ 日期格子内部
+   ================================ */
+/* 日期数字独占一行，节日 / 调班那行（.cal-hol）在下一行，
+   「＋」绝对定位在右上角 —— 它们都不跟日期数字抢宽度 */
+.cal-num {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.cal-day[data-state~="today"] .cal-num {
+  color: var(--today);
+}
+
+/* 节日那一行（放不下就省略号）：放假 = 节日名，补班 = 「XX调班」 */
+.cal-hol {
+  min-width: 0;
+  font-size: 11px;
+  line-height: 1.15;
+  color: rgba(255, 158, 200, 0.95);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cal-day[data-state~="makeup"] .cal-hol {
+  color: #ffc46b;
+}
+
+/* 日期右上角的「＋」：平时半透明（一直能点），鼠标移到这一格就完全显出来。
+   注意别改成 opacity:0 + pointer-events:none —— 那样得先精准悬停到格子才点得到，
+   日历上每天都要用这个按钮，藏起来反而难按 */
+.cal-add {
+  /* 钉在格子右上角：不跟日期数字抢宽度（见 .cal-day 上的 position: relative） */
+  position: absolute;
+  top: 3px;
+  right: 4px;
+  width: 19px;
+  height: 19px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  border: 1px solid var(--line-strong);
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--text-dim);
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.45;
+  transition: opacity 0.15s ease, color 0.12s ease, border-color 0.12s ease;
+}
+
+.cal-day:hover .cal-add,
+.cal-add:hover,
+.cal-add:focus-visible {
+  opacity: 1;
+}
+
+.cal-add:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* 格子里的安排：一格只显示「责任人」，做成带底色的一个字（朱震宇 → 朱）。
+   内容、项目名、附件都收进 title 悬浮提示里，鼠标停一下就看得见 */
+.cal-tasks {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+/* 一条安排 = 一排责任人小牌子。这个按钮本身不加底色（底色在牌子上） */
+.cal-task {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.12s ease;
+}
+
+.cal-task:hover {
+  transform: scale(1.14);
+}
+
+/* 责任人牌子：底色就是那个人的牌子色（assigneeColor），只放一个字。
+   字色是 :root 里的 --chip-ink（亮蓝色） */
+.cal-owner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 19px;
+  height: 19px;
+  padding: 0 4px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--chip-ink);
+}
+
+/* 没指定责任人：中性灰 + 一个「？」，提醒这天还没排人 */
+.cal-owner.is-none {
+  background: rgba(122, 128, 135, 0.9);
+}
+
+/* 已完成：整条压淡 + **绿色虚线框**
+   （2026-09-21 用户要求「做一个灰色虚线边框的提示」，随后又要「已完成项目在日历页的改为绿色的」，
+     框线也加粗到 2px。绿色用 --done，和表格那边行头的「（已完成）」一个颜色）。
+   ⚠ opacity 会连同 outline 一起变淡，所以两个数都往大里给了一点，
+     不然框实际上只剩两成可见（原来只是 opacity: 0.45） */
+.cal-task[data-state~="done"] {
+  opacity: 0.6;
+  outline: 2px dashed var(--done);
+  outline-offset: 1px;
+}
+
+/* 置顶的工作项目：它名下每一条安排都带**紫色实线框 + 淡粉底色**
+   （2026-09-21 用户要求：「置顶的紫框改成实线边框吧，和已完成的虚框区分一下」→
+     「置顶项在日历模式中，底色也改成淡粉色，用以表现其重要程度」）。
+   ⚠ 原来 .cal-task 是 padding: 0 + 透明底（底色在各人的牌子上），
+     要看得出淡粉底就得给它补上 padding 和圆角 —— 所以置顶那几条会比别的略胖一点，
+     那正好也是一种「重要」的区分（.cal-tasks 是 flex-wrap，不会撑坏格子）。
+   ⚠ 写在 done 后面：一条既完成又属于置顶项目时紫色实线优先 ——
+     实线 + 粉底表示「这是置顶项目的活」，干完了用上面那个 opacity 压淡表达。
+   ⚠ 下面 `.is-drop-target`（拖人时的金框）写在更后面，拖拽时会盖掉这两个 —— 那是对的。 */
+.cal-task[data-state~="pin"] {
+  outline: 2px solid #a06bff;
+  outline-offset: 1px;
+  padding: 2px;
+  border-radius: 5px;
+  background: rgba(255, 122, 178, 0.22);
+}
+
+/* 逾期未完成：牌子外面加一圈红边 */
+.cal-task[data-state~="overdue"] .cal-owner {
+  box-shadow: 0 0 0 1.5px #ff453a;
+}
+
+/* ---- 拖着责任人名字经过日历格子 / 某条安排时高亮，明确告诉用户可以松手 ----
+   （高亮的那一整天或那一条具体的安排，逻辑在 work-edit.js 的 bindAssigneeDrag） */
+.cal-day.is-drop-target,
+.cal-task.is-drop-target {
+  outline: 2px dashed var(--accent);
+  outline-offset: -3px;
+}
+
+/* 「只看某个人」时：不是他的安排在 js/work-calendar.js 里就没画进来，
+   所以这里不需要「压暗」类的规则 */
+
+/* ================================
+   ⑥ 「给这天排活」的项目选择弹层
+   ================================ */
+.pick-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 46vh;
+  overflow: auto;
+}
+
+.pick-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 10px 12px;
+  text-align: left;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-strong);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.pick-item:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--accent);
+}
+
+.pick-sub {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+/* ================================
+   ⑦ 小屏：屏幕不够宽就竖着排（上月 → 本月 → 下月），别硬挤成三条细缝
+   ================================ */
+@media (max-width: 1180px) {
+  /* 窗口不够宽就竖着排（上月 → 本月 → 下月），别硬挤成三条细缝 */
+  .cal-months {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 700px) {
+  .cal-title {
+    font-size: 18px;
+  }
+
+  .cal-day {
+    min-height: 56px;
+    padding: 3px 4px 4px;
+  }
+
+  /* 太窄了就把节日那一行（中秋节 / 国庆节调班）收起来 */
+  .cal-hol {
+    display: none;
+  }
+}
