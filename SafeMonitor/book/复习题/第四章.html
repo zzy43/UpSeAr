@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+  《标准操作程序 R05》第 4 章 机动飞行及特殊运行 —— 填空题复习
+  ------------------------------------------------------------------
+  · 题库在 js/questions-ch4.js（想加题/改题只动那个文件；题目由手册正文自动抽取，可人工润色）
+  · 交互和样式跟第一章共用：js/quiz.js、css/quiz.css
+  · 纯静态，双击本文件就能用（不用服务器、不用联网）
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>SOP 第 4 章 机动飞行及特殊运行 · 填空复习</title>
+<link rel="stylesheet" href="css/quiz.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <h1 id="title">标准操作程序 · 第 4 章 机动飞行及特殊运行 · 填空复习</h1>
+    <div class="sub" id="sub">共 {{N}} 题</div>
+    <div class="switch">
+      <a href="index.html">1 总则</a>
+      <a href="第二章.html">2 正常程序</a>
+      <a href="第三章.html">3 非正常程序</a>
+      <span>4 机动飞行及特殊运行（当前）</span>
+      <a href="第五章.html">5 恶劣天气</a>
+      <a href="第六章.html">6 操作指南</a>
+      <a href="第七章.html">7 附录</a>
+    </div>
+  </div>
+</header>
+
+<div class="bar">
+  <div class="bar-in">
+    <button type="button" class="primary" id="btn-check">检查全部</button>
+    <button type="button" id="btn-reveal">显示全部答案</button>
+    <button type="button" id="btn-shuffle">打乱顺序</button>
+    <button type="button" id="btn-reset">重做</button>
+    <span class="stat" id="stat"></span>
+  </div>
+</div>
+
+<main class="wrap">
+  <div id="quiz"></div>
+</main>
+
+<div class="foot">
+  用法：在横线上填关键词，按 <b>回车</b> 判这一题并跳到下一题（改完离开输入框也会自动判）；
+  想一次对完就点「检查全部」。判分不管空格和标点，「10,000」写「10000」也算对。<br>
+  错的题下面会给出答案和出处（出处是 SOP 的条款号，方便回去翻原文）。内容取自 SOP R05 第 4 章。
+  本章题目由手册正文自动抽取，答案都取自原文；个别题表述不够顺时，可以直接改 <code>js/questions-ch4.js</code>。
+</div>
+
+<script src="js/questions-ch4.js"></script>
+<script src="js/quiz.js"></script>
+</body>
+</html>

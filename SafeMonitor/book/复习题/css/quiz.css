@@ -1,0 +1,191 @@
+/* ============================================================
+   SOP 第 1 章 填空复习 —— 样式（尽量简单）
+   ============================================================ */
+
+* { box-sizing: border-box; }
+
+:root {
+    --line: #dcdcdc;
+    --text: #232323;
+    --dim: #6d6d6d;
+    --faint: #9a9a9a;
+    --ok: #1e7d32;
+    --bad: #c62828;
+    --accent: #1565c0;
+    --bg: #fafafa;
+}
+
+html, body { margin: 0; padding: 0; }
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+/* ---------------- 顶部 ---------------- */
+.top {
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    padding: 18px 16px 14px;
+}
+
+.top-in, .wrap, .foot {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.top h1 {
+    margin: 0 0 4px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.top .sub {
+    color: var(--dim);
+    font-size: 13.5px;
+    line-height: 1.8;
+}
+
+/* 章节切换（第 1~7 章，一行放不下就换行） */
+.switch {
+    margin-top: 6px;
+    font-size: 13px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+}
+
+.switch a { color: var(--accent); text-decoration: none; }
+.switch a:hover { text-decoration: underline; }
+.switch span { color: var(--faint); }
+
+/* ---------------- 工具条 ---------------- */
+.bar {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: rgba(255, 255, 255, 0.96);
+    border-bottom: 1px solid var(--line);
+    padding: 8px 16px;
+}
+
+.bar-in {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.bar button {
+    font: inherit;
+    font-size: 13px;
+    padding: 4px 11px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: #fff;
+    color: var(--text);
+    cursor: pointer;
+}
+
+.bar button:hover { border-color: var(--accent); color: var(--accent); }
+.bar button.primary { border-color: var(--accent); color: var(--accent); }
+
+.stat {
+    margin-left: auto;
+    font-size: 13px;
+    color: var(--dim);
+    white-space: nowrap;
+}
+
+.stat b { color: var(--text); }
+.stat .ok { color: var(--ok); }
+.stat .bad { color: var(--bad); }
+
+/* ---------------- 题目 ---------------- */
+.wrap { padding: 8px 16px 40px; }
+
+h2.sec {
+    margin: 26px 0 8px;
+    padding-bottom: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--accent);
+    border-bottom: 1px solid var(--line);
+}
+
+ol.qs {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+ol.qs > li {
+    position: relative;
+    padding: 9px 0 9px 30px;
+    border-bottom: 1px dashed #ececec;
+}
+
+ol.qs > li > .no {
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 24px;
+    color: var(--faint);
+    font-size: 13px;
+    text-align: right;
+}
+
+.stem { margin: 0; }
+
+/* 填空框：下面一根线，看着像填空题 */
+input.blank {
+    font: inherit;
+    font-size: 15px;
+    width: 7em;
+    min-width: 4em;
+    margin: 0 2px;
+    padding: 0 4px 1px;
+    border: 0;
+    border-bottom: 1.5px solid #b9b9b9;
+    background: #fff9e8;
+    color: var(--text);
+    text-align: center;
+    outline: none;
+}
+
+input.blank:focus { border-bottom-color: var(--accent); }
+
+input.blank.wide { width: 12em; }
+
+/* 答对 / 答错 */
+li.ok input.blank { border-bottom-color: var(--ok); background: #eef7ee; }
+li.bad input.blank { border-bottom-color: var(--bad); background: #fdeeee; }
+
+.fb {
+    font-size: 13px;
+    line-height: 1.7;
+    margin-top: 2px;
+}
+
+.fb.ok { color: var(--ok); }
+.fb.bad { color: var(--bad); }
+.fb .ans { color: var(--text); }
+.fb .note { color: var(--faint); }
+
+.foot {
+    padding: 0 16px 30px;
+    color: var(--faint);
+    font-size: 12.5px;
+    line-height: 1.9;
+}
+
+@media (max-width: 520px) {
+    body { font-size: 15px; }
+    .stat { margin-left: 0; width: 100%; }
+    input.blank { width: 5.5em; }
+}
