@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--
+  《标准操作程序 R05》复习索引
+  ------------------------------------------------------------------
+  · 7 章的填空练习，点章节进入
+  · 章节页：第一章.html … 第七章.html
+  · 题库数据：js/questions.js（第 1 章）、js/questions-ch2.js … ch7.js
+  · 公用交互 / 样式：../js/quiz.js、../css/quiz.css
+  · 新增章节：照现有章节页复制一份，换标题并引入对应题库即可
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>SOP 复习索引 · 标准操作程序 R05</title>
+<style>
+  * { box-sizing: border-box; }
+  :root {
+    --line: #dcdcdc; --text: #232323; --dim: #6d6d6d; --faint: #9a9a9a;
+    --accent: #1565c0; --accent-soft: #eef4fc; --bg: #fafafa;
+  }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", system-ui, sans-serif;
+    font-size: 16px; line-height: 1.9;
+  }
+  .lib { max-width: 900px; margin: 0 auto; padding: 32px 16px 56px; }
+  .lib-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  h1 { margin: 0 0 6px; font-size: 24px; font-weight: 600; }
+  .sub { color: var(--dim); font-size: 13.5px; line-height: 1.9; }
+  .back { font-size: 13px; color: var(--accent); text-decoration: none; white-space: nowrap; }
+  .back:hover { text-decoration: underline; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin-top: 22px; }
+  .ch {
+    display: flex; align-items: baseline; gap: 10px;
+    padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px;
+    background: #fff; color: var(--text); text-decoration: none;
+    transition: border-color .16s ease, background .16s ease, transform .16s ease;
+  }
+  .ch:hover { border-color: var(--accent); background: var(--accent-soft); transform: translateY(-2px); }
+  .ch .no {
+    flex: 0 0 auto; min-width: 42px; text-align: center;
+    padding: 2px 8px; border-radius: 999px;
+    border: 1px solid var(--line); background: var(--bg);
+    color: var(--accent); font-size: 12px; font-weight: 600;
+  }
+  .ch .t { font-size: 15px; font-weight: 600; }
+  .ch .n { margin-left: auto; color: var(--faint); font-size: 12.5px; white-space: nowrap; }
+  .foot { margin-top: 26px; padding-top: 12px; border-top: 1px dashed var(--line);
+          color: var(--faint); font-size: 12.5px; line-height: 1.9; }
+</style>
+</head>
+<body>
+
+<div class="lib">
+  <div class="lib-top">
+    <div>
+      <h1>标准操作程序 R05 · 复习索引</h1>
+      <div class="sub">共 7 章 · 739 题。选择章节开始填空复习，判分忽略空格和标点，做错会给出答案和条款出处。</div>
+    </div>
+    <a class="back" href="../index.html">← 返回复习题库</a>
+  </div>
+
+  <div class="grid">
+    <a class="ch" href="第一章.html"><span class="no">第 1 章</span><span class="t">总则</span><span class="n">91 题</span></a>
+    <a class="ch" href="第二章.html"><span class="no">第 2 章</span><span class="t">正常程序</span><span class="n">190 题</span></a>
+    <a class="ch" href="第三章.html"><span class="no">第 3 章</span><span class="t">非正常程序</span><span class="n">159 题</span></a>
+    <a class="ch" href="第四章.html"><span class="no">第 4 章</span><span class="t">机动飞行及特殊运行</span><span class="n">125 题</span></a>
+    <a class="ch" href="第五章.html"><span class="no">第 5 章</span><span class="t">恶劣天气</span><span class="n">53 题</span></a>
+    <a class="ch" href="第六章.html"><span class="no">第 6 章</span><span class="t">操作指南</span><span class="n">111 题</span></a>
+    <a class="ch" href="第七章.html"><span class="no">第 7 章</span><span class="t">附录</span><span class="n">10 题</span></a>
+  </div>
+
+  <div class="foot">
+    内容取自《标准操作程序 R05》。以后新增其他主体的复习题时，在「复习题库」首页加一张卡片，并为本主体单独建一个文件夹。
+  </div>
+</div>
+
+</body>
+</html>

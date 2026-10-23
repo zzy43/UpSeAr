@@ -1,57 +1,89 @@
 <!DOCTYPE html>
 <!--
-  《标准操作程序 R05》第 1 章 总则 —— 填空题复习
+  复习题库 · 学科索引
   ------------------------------------------------------------------
-  · 题库在 js/questions.js（想加题/改题只动那个文件）
-  · 交互在 js/quiz.js，样式在 css/quiz.css
-  · 纯静态，双击本文件就能用（不用服务器、不用联网）
+  · 这里只列「有哪些学科的复习题」，点卡片进对应学科
+  · 每个学科的题目放在自己的文件夹里，例如 sop/
+      sop/index.html       该学科的章节索引
+      sop/第一章.html …    各章填空练习
+      sop/js/questions*.js 题库数据
+  · 公共交互和样式在 css/quiz.css、js/quiz.js，各学科共用
+  · 新增学科：建一个文件夹 → 放章节页和题库 → 下面加一张卡片
 -->
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>SOP 第 1 章 · 填空复习</title>
-<link rel="stylesheet" href="css/quiz.css">
+<title>复习题库</title>
+<style>
+  * { box-sizing: border-box; }
+  :root {
+    --line: #dcdcdc; --text: #232323; --dim: #6d6d6d; --faint: #9a9a9a;
+    --accent: #1565c0; --accent-soft: #eef4fc; --bg: #fafafa;
+  }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", system-ui, sans-serif;
+    font-size: 16px; line-height: 1.9;
+  }
+  .lib { max-width: 900px; margin: 0 auto; padding: 32px 16px 56px; }
+  .lib-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  h1 { margin: 0 0 6px; font-size: 24px; font-weight: 600; }
+  .sub { color: var(--dim); font-size: 13.5px; line-height: 1.9; }
+  .back { font-size: 13px; color: var(--accent); text-decoration: none; white-space: nowrap; }
+  .back:hover { text-decoration: underline; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin-top: 22px; }
+  .mcard {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 16px 18px; border: 1px solid var(--line); border-radius: 12px;
+    background: #fff; color: var(--text); text-decoration: none;
+    transition: border-color .16s ease, background .16s ease, transform .16s ease;
+  }
+  .mcard:hover { border-color: var(--accent); background: var(--accent-soft); transform: translateY(-2px); }
+  .mcard .code {
+    flex: 0 0 auto; padding: 3px 10px; border-radius: 999px;
+    border: 1px solid var(--line); background: var(--bg);
+    color: var(--accent); font-size: 11px; font-weight: 600; letter-spacing: .06em;
+  }
+  .mcard h2 { margin: 0 0 4px; font-size: 16px; font-weight: 600; line-height: 1.5; }
+  .mcard .meta { color: var(--dim); font-size: 12.5px; line-height: 1.8; }
+  .empty {
+    margin-top: 14px; padding: 18px;
+    border: 1px dashed var(--line); border-radius: 12px;
+    color: var(--faint); font-size: 13px; text-align: center;
+  }
+  .foot { margin-top: 26px; padding-top: 12px; border-top: 1px dashed var(--line);
+          color: var(--faint); font-size: 12.5px; line-height: 1.9; }
+</style>
 </head>
 <body>
 
-<header class="top">
-  <div class="top-in">
-    <h1 id="title">标准操作程序 · 第 1 章 总则 · 填空复习</h1>
-    <div class="sub" id="sub">共 {{N}} 题</div>
-    <div class="switch">
-      <span>1 总则（当前）</span>
-      <a href="第二章.html">2 正常程序</a>
-      <a href="第三章.html">3 非正常程序</a>
-      <a href="第四章.html">4 机动飞行及特殊运行</a>
-      <a href="第五章.html">5 恶劣天气</a>
-      <a href="第六章.html">6 操作指南</a>
-      <a href="第七章.html">7 附录</a>
+<div class="lib">
+  <div class="lib-top">
+    <div>
+      <h1>复习题库</h1>
+      <div class="sub">按学科选择复习题。目前收录 SOP（标准操作程序），后续其他手册的复习题会陆续加到这里。</div>
     </div>
+    <a class="back" href="../index.html">← 返回手册库</a>
   </div>
-</header>
 
-<div class="bar">
-  <div class="bar-in">
-    <button type="button" class="primary" id="btn-check">检查全部</button>
-    <button type="button" id="btn-reveal">显示全部答案</button>
-    <button type="button" id="btn-shuffle">打乱顺序</button>
-    <button type="button" id="btn-reset">重做</button>
-    <span class="stat" id="stat"></span>
+  <div class="grid">
+    <a class="mcard" href="sop/index.html">
+      <span class="code">SOP</span>
+      <span>
+        <h2>标准操作程序 R05</h2>
+        <div class="meta">共 7 章 · 739 题 · 总则 / 正常程序 / 非正常程序 / 机动飞行及特殊运行 / 恶劣天气 / 操作指南 / 附录</div>
+      </span>
+    </a>
+  </div>
+
+  <div class="empty">其他学科（训练手册、运行手册、飞行手册等）的复习题待补充</div>
+
+  <div class="foot">
+    用法：进入学科后选择章节，在横线上填关键词，按回车判题；判分忽略空格和标点。
   </div>
 </div>
 
-<main class="wrap">
-  <div id="quiz"></div>
-</main>
-
-<div class="foot">
-  用法：在横线上填关键词，按 <b>回车</b> 判这一题并跳到下一题（改完离开输入框也会自动判）；
-  想一次对完就点「检查全部」。判分不管空格和标点，「10,000」写「10000」也算对。<br>
-  错的题右边会给出答案和出处（出处是 SOP 的条款号，方便回去翻原文）。内容取自 SOP R05 第一章。
-</div>
-
-<script src="js/questions.js"></script>
-<script src="js/quiz.js"></script>
 </body>
 </html>
