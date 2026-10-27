@@ -140,12 +140,17 @@
                         for (var q = 0; q < inputs.length; q += 1) {
                             if (!norm(inputs[q].value)) { empty = inputs[q]; break; }
                         }
-                        if (empty && empty !== inp) { empty.focus(); return; }
+                        if (empty) { empty.focus(); return; }
                         checkOne(rec);
                         var next = items[items.indexOf(rec) + 1];
                         if (next) next.inputs[0].focus();
                     });
-                    inp.addEventListener('change', function () { checkOne(rec); });
+                    inp.addEventListener('change', function () {
+                        // 多空题：所有空都填了才自动判。
+                        // 否则从第一个空点到第二个空时，会拿“第二个空还空着”去判，误报错误。
+                        var allFilled = inputs.every(function (x) { return norm(x.value); });
+                        if (allFilled) checkOne(rec);
+                    });
                 });
             });
         });
