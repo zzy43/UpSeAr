@@ -1,0 +1,362 @@
+/* 起飞最低标准判定 —— 样式（亮色，配色沿用 CheckQuestion）*/
+  :root {
+    --bg: #f0e8d5;
+    --panel: #faf5e9;
+    --panel-2: rgba(90, 74, 40, 0.04);
+    --line: rgba(90, 74, 40, 0.18);
+    --line-strong: rgba(90, 74, 40, 0.3);
+    --text: #2b2718;
+    --dim: rgba(43, 39, 24, 0.68);
+    --faint: rgba(43, 39, 24, 0.46);
+    --accent: #a86b0f;
+    --ok: #1a7a35;
+    --bad: #b3261e;
+    --warn: #a8620a;
+    --radius: 14px;
+    --radius-sm: 10px;
+    --font: "Segoe UI", "Microsoft YaHei", "PingFang SC", "Noto Sans SC", "Hiragino Sans GB", system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  /* hidden 属性要能压住 .row2 的 display:grid，否则「折叠」的输入框会一直显示 */
+  [hidden] { display: none !important; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 25.5px;
+    font-weight: 500;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---------------- 顶部 ---------------- */
+  .top {
+    padding: 16px 8px 10px;
+  }
+  .genre {
+    font-size: 20.2px;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .top h1 {
+    margin: 4px 0 2px;
+    font-size: 45px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+  .top .meta {
+    font-size: 22.5px;
+    color: var(--faint);
+  }
+
+  /* ---------------- 布局 ---------------- */
+  .wrap {
+    padding: 0 8px 32px;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 12px;
+    align-items: start;
+  }
+  @media (max-width: 880px) {
+    .wrap { grid-template-columns: 1fr; padding: 0 6px 24px; }
+  }
+
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px 18px 18px;
+  }
+  .card > h2 {
+    margin: 0 0 12px;
+    font-size: 24.8px;
+    font-weight: 700;
+    color: var(--dim);
+    letter-spacing: 0.03em;
+  }
+
+  /* ---------------- 表单 ---------------- */
+  .field { margin-bottom: 14px; }
+  .field > label {
+    display: block;
+    font-size: 22.5px;
+    color: var(--dim);
+    margin-bottom: 6px;
+  }
+
+  select, input[type="number"], input[type="text"] {
+    width: 100%;
+    padding: 10px 12px;
+    font-family: inherit;
+    font-size: 29px;
+    font-weight: 700;
+    color: var(--text);
+    background: #fffdf7;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-sm);
+    outline: none;
+  }
+  select:focus, input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(168, 107, 15, 0.12); }
+
+  /* 昼 / 夜 + 三段 RVR 开关排一行 */
+  .seg-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .seg {
+    display: inline-flex;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .seg button {
+    border: 0;
+    background: transparent;
+    padding: 8px 20px;
+    font-family: inherit;
+    font-size: 24px;
+    color: var(--dim);
+    cursor: pointer;
+  }
+  .seg button.on {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .row3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+
+  /* 跑道设施：可点选的小标签 */
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    border: 1px solid var(--line-strong);
+    background: #fffdf7;
+    color: var(--dim);
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-family: inherit;
+    font-size: 24px;
+    line-height: 1.3;
+    cursor: pointer;
+  }
+  .tag:hover { border-color: var(--accent); color: var(--accent); }
+  .tag.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .tag i { font-style: normal; opacity: 0.72; font-size: 21.8px; margin-left: 5px; }
+
+  .hint {
+    font-size: 21.8px;
+    color: var(--faint);
+    margin-top: 5px;
+  }
+
+  /* 条款原文展示块（如 4.2.2） */
+  .rule {
+    background: var(--panel-2);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 22.5px;
+    line-height: 1.75;
+    color: var(--dim);
+  }
+  .rule-title {
+    font-size: 23.2px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .rule p { margin: 6px 0 0; }
+  .rule p:first-of-type { margin-top: 0; }
+  body.is-night .rule { background: rgba(232, 237, 246, 0.92); }
+
+  /* 三段 RVR 里「中间端 / 停止端」默认锁住：灰底虚线，点一下就放开 */
+  .sub-label {
+    display: block;
+    font-size: 21px;
+    color: var(--faint);
+    margin-bottom: 4px;
+  }
+  input.locked {
+    background: #e9e6dd !important;
+    color: var(--faint);
+    border-style: dashed;
+    cursor: pointer;
+  }
+  body.is-night input.locked { background: #d3dae6 !important; }
+
+  .check {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 24px;
+    color: var(--dim);
+    cursor: pointer;
+    margin: 8px 0 0;
+  }
+  .check input { margin-top: 4px; }
+
+  .btns { display: flex; gap: 10px; margin-top: 18px; }
+  button.primary, button.ghost {
+    padding: 10px 24px;
+    font-family: inherit;
+    font-size: 24.8px;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  button.primary {
+    background: var(--accent);
+    color: #fff;
+    border: 1px solid var(--accent);
+  }
+  button.primary:hover { filter: brightness(1.06); }
+  button.ghost {
+    background: transparent;
+    color: var(--dim);
+    border: 1px solid var(--line-strong);
+  }
+
+  /* ---------------- 结果 ---------------- */
+  .verdict {
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    margin-bottom: 14px;
+    border: 1px solid var(--line);
+    background: var(--panel-2);
+  }
+  .verdict .big {
+    font-size: 51px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .verdict .sub { font-size: 23.2px; color: var(--dim); margin-top: 3px; }
+  .verdict.ok { background: rgba(26, 122, 53, 0.08); border-color: rgba(26, 122, 53, 0.35); }
+  .verdict.ok .big { color: var(--ok); }
+  .verdict.bad { background: rgba(179, 38, 30, 0.07); border-color: rgba(179, 38, 30, 0.32); }
+  .verdict.bad .big { color: var(--bad); }
+  .verdict.idle .big { color: var(--faint); font-size: 34.5px; }
+
+  ul.checks { list-style: none; margin: 0; padding: 0; }
+  ul.checks li {
+    display: flex;
+    gap: 8px;
+    padding: 7px 0;
+    border-bottom: 1px dashed var(--line);
+    font-size: 24px;
+  }
+  ul.checks li:last-child { border-bottom: 0; }
+  ul.checks li .ic { flex: 0 0 18px; font-weight: 700; }
+  ul.checks li.pass .ic { color: var(--ok); }
+  ul.checks li.fail .ic { color: var(--bad); }
+  ul.checks li.info .ic { color: var(--faint); }
+  ul.checks li .tx { color: var(--text); }
+  ul.checks li .tx em { font-style: normal; color: var(--faint); font-size: 22.5px; }
+
+  .note {
+    margin-top: 14px;
+    padding: 10px 12px;
+    background: var(--panel-2);
+    border-left: 3px solid var(--line-strong);
+    border-radius: 6px;
+    font-size: 22.5px;
+    color: var(--dim);
+  }
+  .note b { color: var(--accent); }
+
+  /* ---------------- 表 1 速查 ---------------- */
+  details.table {
+    width: calc(100% - 16px);
+    margin: 14px auto 32px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 12px 18px;
+  }
+  details.table summary {
+    cursor: pointer;
+    font-size: 22.5px;
+    color: var(--dim);
+    font-weight: 700;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 23.2px;
+  }
+  th, td {
+    border: 1px solid var(--line);
+    padding: 7px 9px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th { background: var(--panel-2); font-weight: 700; color: var(--dim); }
+  td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .foot-note { font-size: 21.8px; color: var(--text); margin-top: 10px; line-height: 1.75; }
+
+  /* ================================
+     夜间时段：只把页面背景压成淡淡的夜色（蓝灰），
+     卡片、表格、输入框仍是浅色 —— 不整体转暗色，避免太黑不好读。
+     ================================ */
+  body.is-night {
+    background: linear-gradient(180deg, #4a5165 0%, #424859 45%, #3a404f 100%);
+    background-attachment: fixed;
+  }
+  body.is-night .top h1 { color: #f4efe3; }
+  body.is-night .top .genre { color: #e6bd6a; }
+  body.is-night .top .meta { color: rgba(244, 239, 227, 0.66); }
+
+  /* 夜间时卡片也跟着带明显的冷色（仍是浅色底，不压成暗色）*/
+  body.is-night .card,
+  body.is-night details.table {
+    background: #dde3ee;
+    border-color: rgba(255, 255, 255, 0.34);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.26);
+  }
+  body.is-night .card > h2 { color: rgba(43, 39, 24, 0.62); }
+  body.is-night .tag { background: #e8edf6; }
+  /* 选中的标签夜间要盖住上面那条，否则白底白字看不清 */
+  body.is-night .tag.on {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  body.is-night .verdict { background: rgba(232, 237, 246, 0.92); }
+  body.is-night .note { background: rgba(232, 237, 246, 0.92); }
+  body.is-night select,
+  body.is-night input[type="number"],
+  body.is-night input[type="text"] { background: #eef2f9; }
+  body.is-night th { background: rgba(226, 232, 243, 0.95); }
+
+/* 交互元素文字再粗一档（后加，优先级够用） */
+.seg button,
+.tag,
+button.primary,
+button.ghost,
+.check,
+.field > label,
+.sub-label {
+  font-weight: 600;
+}
+
+/* 分隔线：昼/夜 + 三段那一行 与 下面的设施标签之间 */
+.divider {
+  border: 0;
+  border-top: 1px solid var(--line-strong);
+  margin: 6px 0 18px;
+}
+
+/* 「满足建议」那一条：只加绿框，底色和文字颜色保持原样 */
+ul.checks li.sug {
+  border: 2px solid var(--ok);
+  border-radius: 10px;
+  padding: 8px 12px;
+  margin: 8px 0 4px;
+}

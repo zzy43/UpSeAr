@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!--
+  起飞最低标准判定（依据《全天候运行规定》4.2 起飞最低标准 · 表 1）
+  ------------------------------------------------------------------
+  · 拆分：css/style.css（样式）、js/app.js（判定逻辑），往后再加内容接着往这两个文件里写
+  · 双击就能用（不用服务器、不用联网）
+  · 判定逻辑完全按表 1 的 7 行设施要求 + 脚注 ①–⑦；
+    另外 4.2.1.3 的基本起飞最低标准、4.2.2 的云底高要求作为补充提示
+  · 样式沿用 CheckQuestion 的亮色（米黄底 + 金色主色），不做暗色
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f0e8d5">
+<title>全天候-圆通</title>
+<link rel="stylesheet" href="css/style.css?v=33">
+</head>
+<body>
+
+<header class="top">
+  <h1>全天候-圆通-起飞标准</h1>
+</header>
+
+<div class="wrap">
+
+  <!-- ========== 左：输入 ========== -->
+  <section class="card">   
+
+    <div class="field">
+      <div class="seg-row">
+        <div class="seg" id="seg">
+          <button type="button" data-v="day" class="on">☀ 昼间</button>
+          <button type="button" data-v="night">🌙 夜间</button>
+        </div>
+        <button type="button" class="tag" id="segThree">三段 RVR 报告</button>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="field">
+      <div class="tags" id="fac"></div>
+      <div class="hint" id="facHint"></div>
+    </div>
+    
+    <hr class="divider">
+
+    <div class="field">
+      <label>实际 RVR / VIS（米）</label>
+      <div class="row3">
+        <div>
+          <label for="rvr" class="sub-label">接地端</label>
+          <input type="number" id="rvr" min="0" step="5">
+        </div>
+        <div>
+          <label for="rvrMid" class="sub-label">中间端</label>
+          <input type="number" id="rvrMid" min="0" step="5">
+        </div>
+        <div>
+          <label for="rvrEnd" class="sub-label">停止端</label>
+          <input type="number" id="rvrEnd" min="0" step="5">
+        </div>
+      </div>
+    </div>
+
+    <div class="field" id="obstField">
+      <label class="check"><input type="checkbox" id="obst"> 起飞航径上需要目视避开障碍物（4.2.2 云底高要求）</label>
+
+      <div id="obstBox" hidden style="margin-top:10px">
+        <div class="row2">
+          <div>
+            <label for="cloud">云底高（米）</label>
+            <input type="number" id="cloud" min="0" step="10">
+          </div>
+          <div>
+            <label for="obstH">控制障碍物高（米）</label>
+            <input type="number" id="obstH" min="0" step="10">
+          </div>
+        </div>
+
+        <div class="rule" style="margin-top:10px">
+          <div class="rule-title">4.2.2 需要目视避障的起飞最低标准确定</div>
+          <p>如果要求目视避开障碍物（包括不公布程序设计梯度 PDG 的近距障碍物）时，起飞最低标准应当包括 RVR/VIS 和云底高，并在公布的离场程序图中标出该障碍物的确切位置。</p>
+          <p>要求看清和避开障碍物所需要的能见度，按起飞跑道的离地端（DER）至障碍物的最短距离加 500 米，或 5000 米（对于机场标高超过 3000 米的机场，为 8000 米），两者取较小数值。但是 A、B 类飞机最小 RVR/VIS 不得小于 1600 米，C、D 类飞机不得小于 2000 米。</p>
+          <p>起飞最低标准中的云底高至少应当高出控制障碍物 60 米。云底高数值按 10 米向上取整。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="btns">
+      <button type="button" class="primary" id="btn-run">确定</button>
+      <button type="button" class="ghost" id="btn-reset">清空</button>
+    </div>
+  </section>
+
+  <!-- ========== 右：结果 ========== -->
+  <section class="card">
+    <h2>判定结果</h2>
+
+    <div class="verdict idle" id="verdict">
+      <div class="big" id="verdictBig">等待输入</div>
+      <div class="sub" id="verdictSub"></div>
+    </div>
+
+    <ul class="checks" id="checks"></ul>
+
+    <div class="note" id="note">
+      <b>提示：</b>本工具只按表 1 的设施—RVR 对应关系判断。实际能否起飞还要看
+      机场公布的起飞最低标准（可能更严）、跑道状况代码、性能与障碍物、机组资格等。
+    </div>
+  </section>
+</div>
+
+<!-- ========== 表 1 速查 ========== -->
+<details class="table">
+  <summary>表 1 起飞最低标准（点开看原表）</summary>
+  <table>
+    <thead>
+      <tr><th style="width:52%">设施</th><th>RVR</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>足够的目视参考（仅昼间）⑤⑥</td><td class="num">500 米</td></tr>
+      <tr><td>跑道边灯 或 跑道中线标志 ①⑥</td><td class="num">400 米</td></tr>
+      <tr><td>跑道边灯 和 跑道中线标志 ①</td><td class="num">300 米</td></tr>
+      <tr><td>跑道边灯 和 跑道中线灯</td><td class="num">200 米</td></tr>
+      <tr><td>跑道边灯 和 跑道中线灯（带三段 RVR 报告）②</td><td class="num">接地段 150 / 中间段 150 / 停止段 150 米</td></tr>
+      <tr><td>高光强跑道边灯 和 跑道中线灯（间距 15 米或以下）②</td><td class="num">接地段 125 / 中间段 125 / 停止段 125 米</td></tr>
+      <tr><td>高光强跑道边灯 和 跑道中线灯（间距 15 米或以下）和经批准的横向引导系统（如 HUD）②③</td><td class="num">接地段 75 / 中间段 75 / 停止段 75 米</td></tr>
+    </tbody>
+  </table>
+  <div class="foot-note">
+    ① 对于夜间运行，至少需要跑道边灯和跑道末端灯，或跑道中线灯和跑道末端灯正常工作；<br>
+    ② 所有三段跑道视程都应达到所需的跑道视程；<br>
+    ③ 对于经批准的横向引导系统，若横向引导使用 ILS 信号，ILS 航向信号应当满足 CAT Ⅲ 运行要求，对 ILS 运行保护区应当进行保护；若横向引导使用 GLS 信号，GLS 性能类型应当满足 CAT Ⅲ 运行要求；<br>
+    ④ 以下内容仅适用于航空器运营人：RVR 200 米以下起飞需获得三段 RVR 报告，RVR 200 米（含）以上起飞需至少获得接地段 RVR 报告，所有报告的 RVR 均需满足起飞运行最低标准（以运行规范 C0055 为准）；<br>
+    ⑤ 足够的目视参考意味着驾驶员能够持续地确定起飞道面并保持方向控制；<br>
+    ⑥ 若 RVR 不工作，可用与 RVR 数值相同的 VIS 标准代替，例如：RVR 不工作时，若起飞标准为 RVR400 米，可用 VIS400 米来代替；需注意替代的 VIS 需满足机场公布的 VIS 最低标准；<br>
+    ⑦ 若接地段 RVR 不工作或驾驶员判断接地段 RVR 报告值与实际目视条件存在重大差异时，RVR 可以由驾驶员目视判断。
+  </div>
+</details>
+
+<script src="js/app.js?v=33"></script>
+</body>
+</html>
