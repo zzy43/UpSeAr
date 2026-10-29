@@ -115,6 +115,23 @@
   }
   select:focus, input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(168, 107, 15, 0.12); }
 
+  /* 机场 / 跑道下拉：比普通输入框再大一档，字更粗好认 */
+  #airport, #rwy {
+    font-size: 33px;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    padding: 15px 14px;
+    border: 2px solid var(--line-strong);
+    border-radius: 12px;
+    min-height: 66px;
+  }
+  #airport:focus, #rwy:focus { border-color: var(--accent); }
+  /* LVP 机型（C 类/D 类）按钮文字较长，字号略收一点，别把这一行挤爆 */
+  #acSeg button {
+    font-size: 22px;
+    padding: 8px 16px;
+  }
+
   /* 昼 / 夜 + 三段 RVR 开关排一行 */
   .seg-row {
     display: flex;
