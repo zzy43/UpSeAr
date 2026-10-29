@@ -140,7 +140,7 @@ window.QTH = window.QTH || {};
         S.rvrKind = b.dataset.v;
         each('#rvrSeg button', function (x) { x.classList.toggle('on', x === b); });
         Q.el('rvrKindLabel').textContent = S.rvrKind === 'vis' ? '实际 VIS（米）' : '实际 RVR（米）';
-        Q.renderPicks();
+        Q.syncFac();          // 单位换了，提示里的门限和摘要都要跟着刷新
       });
     });
 
