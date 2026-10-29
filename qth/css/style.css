@@ -59,12 +59,12 @@
   .wrap {
     padding: 0 8px 32px;
     display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
+    grid-template-columns: 1fr;      /* 两张卡片上下排 */
     gap: 12px;
     align-items: start;
   }
   @media (max-width: 880px) {
-    .wrap { grid-template-columns: 1fr; padding: 0 6px 24px; }
+    .wrap { padding: 0 6px 24px; }
   }
 
   .card {
@@ -79,6 +79,17 @@
     font-weight: 700;
     color: var(--dim);
     letter-spacing: 0.03em;
+  }
+  /* 判定结果卡片：底色同条件页，靠蓝色边框区分 */
+  .card.result {
+    background: var(--panel);
+    border: 2px solid #2f6fae;
+    box-shadow: 0 2px 10px rgba(47, 111, 174, 0.12);
+  }
+  body.is-night .card.result {
+    background: #dde3ee;
+    border-color: #7aa8dd;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.22);
   }
 
   /* ---------------- 表单 ---------------- */
@@ -155,6 +166,11 @@
     font-size: 21.8px;
     color: var(--faint);
     margin-top: 5px;
+  }
+  /* 强制要求类提示（如 LVP 强制灯光） */
+  .hint.warn {
+    color: var(--bad);
+    font-weight: 700;
   }
 
   /* 条款原文展示块（如 4.2.2） */
@@ -269,6 +285,25 @@
     color: var(--dim);
   }
   .note b { color: var(--accent); }
+
+  /* 判定结果上方的「已选内容」摘要 */
+  .picks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .picks .chip {
+    padding: 5px 13px;
+    border-radius: 999px;
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    font-size: 21px;
+    color: var(--dim);
+    white-space: nowrap;
+  }
+  .picks .chip.miss { color: var(--bad); border-color: var(--bad); }
+  body.is-night .picks .chip { background: rgba(232, 237, 246, 0.92); }
 
   /* ---------------- 表 1 速查 ---------------- */
   details.table {

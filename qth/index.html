@@ -2,7 +2,7 @@
 <!--
   起飞最低标准判定（依据《全天候运行规定》4.2 起飞最低标准 · 表 1）
   ------------------------------------------------------------------
-  · 拆分：css/style.css（样式）、js/app.js（判定逻辑），往后再加内容接着往这两个文件里写
+  · 拆分：css/style.css（样式）、js/ 下按职责分模块（data / core / facility / judge / inputs / main）
   · 双击就能用（不用服务器、不用联网）
   · 判定逻辑完全按表 1 的 7 行设施要求 + 脚注 ①–⑦；
     另外 4.2.1.3 的基本起飞最低标准、4.2.2 的云底高要求作为补充提示
@@ -14,7 +14,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#f0e8d5">
 <title>全天候-圆通</title>
-<link rel="stylesheet" href="css/style.css?v=43">
+<link rel="stylesheet" href="css/style.css?v=57">
 </head>
 <body>
 
@@ -26,6 +26,38 @@
 
   <!-- ========== 左：输入 ========== -->
   <section class="card">   
+
+    <div class="field">
+      <div class="row2">
+        <div>
+          <label for="airport" class="sub-label">机场</label>
+          <select id="airport">
+            <option value="">默认（全天候）</option>
+            <option value="ZPPP">ZPPP（昆明/长水）</option>
+            <option value="ZSWZ">ZSWZ（温州/龙湾）</option>
+          </select>
+        </div>
+        <div>
+          <label for="rwy" class="sub-label">跑道</label>
+          <select id="rwy" disabled>
+            <option value="">先选机场</option>
+          </select>
+        </div>
+      </div>
+      <div class="hint" id="rwyHint" hidden></div>
+
+      <!-- LVP（低能见运行）只在选了具体机场时才出现 -->
+      <div class="seg-row" id="lpvRow" style="margin-top:10px" hidden>
+        <button type="button" class="tag" id="lpvBtn">LVP 实施中</button>
+        <div class="seg" id="acSeg" hidden>
+          <button type="button" data-v="C" class="on">C 类</button>
+          <button type="button" data-v="D">D 类</button>
+        </div>
+      </div>
+      <div class="hint warn" id="lpvWarn" hidden></div>
+    </div>
+
+    <hr class="divider">
 
     <div class="field">
       <div class="seg-row">
@@ -122,8 +154,11 @@
   </section>
 
   <!-- ========== 右：结果 ========== -->
-  <section class="card">
+  <section class="card result">
     <h2>判定结果</h2>
+
+    <!-- 本次判定的输入摘要 -->
+    <div class="picks" id="picks"></div>
 
     <div class="verdict idle" id="verdict">
       <div class="big" id="verdictBig">等待输入</div>
@@ -166,6 +201,12 @@
   </div>
 </details>
 
-<script src="js/app.js?v=43"></script>
+<!-- 脚本按依赖顺序加载：数据 → 基础 → 设施 → 判定 → 输入 → 启动 -->
+<script src="js/data.js?v=57"></script>
+<script src="js/core.js?v=57"></script>
+<script src="js/facility.js?v=57"></script>
+<script src="js/judge.js?v=57"></script>
+<script src="js/inputs.js?v=57"></script>
+<script src="js/main.js?v=57"></script>
 </body>
 </html>
