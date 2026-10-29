@@ -115,15 +115,22 @@
   }
   select:focus, input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(168, 107, 15, 0.12); }
 
-  /* 机场 / 跑道下拉：比普通输入框再大一档，字更粗好认 */
+  /* 机场 / 跑道下拉：比普通输入框再大一档，字更粗好认（iPad 上尤其要看清楚） */
   #airport, #rwy {
-    font-size: 33px;
+    font-size: 38px;
     font-weight: 800;
+    line-height: 1.45;
     letter-spacing: 0.01em;
-    padding: 15px 14px;
+    padding: 18px 16px;
     border: 2px solid var(--line-strong);
     border-radius: 12px;
-    min-height: 66px;
+    min-height: 78px;
+  }
+  /* 展开后的选项列表也放大加粗（桌面浏览器生效；iOS 会按上面 select 的字号放大选择盘） */
+  #airport option, #rwy option {
+    font-size: 32px;
+    font-weight: 700;
+    padding: 12px 10px;
   }
   #airport:focus, #rwy:focus { border-color: var(--accent); }
   /* LVP 机型（C 类/D 类）按钮文字较长，字号略收一点，别把这一行挤爆 */
