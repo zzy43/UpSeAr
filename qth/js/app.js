@@ -54,6 +54,8 @@
   // 当前 RVR 不够时，列出所有「再补哪些设施就能满足」的方案（按门限从高到低）
   function suggestAll(head, night) {
     var KEYS = ['edge', 'end', 'center', 'mark', 'hi', 'three', 'hud'];
+    // 选了「仅目视参考」时，建议就是「改用哪些具体设施」，所以以空集为起点
+    var base = picked.vis ? {} : picked;
     var best = {};                       // rvr -> { rvr, added }
     for (var m = 1; m < (1 << KEYS.length); m += 1) {
       var cand = {};
@@ -62,8 +64,8 @@
       }
       // 只能在现有选择上「加」，不能把已选的去掉
       var superset = true;
-      for (var k in picked) {
-        if (k === 'vis' || !cand[k]) { superset = false; break; }
+      for (var k in base) {
+        if (!cand[k]) { superset = false; break; }
       }
       if (!superset) continue;
 
@@ -75,30 +77,37 @@
 
       var added = [];
       for (var j = 0; j < KEYS.length; j += 1) {
-        if (cand[KEYS[j]] && !picked[KEYS[j]]) added.push(KEYS[j]);
+        if (cand[KEYS[j]] && !base[KEYS[j]]) added.push(KEYS[j]);
       }
       if (!added.length) continue;
 
-      // 同一个门限只留「补得最少」的那种组合
-      if (!best[f2.rvr] || added.length < best[f2.rvr].added.length) {
-        best[f2.rvr] = { rvr: f2.rvr, added: added };
+      // 同一个门限只留「补得最少」的组合；并列的（如「跑道边灯」和「跑道中线标志」都够 400）都收着
+      var cur = best[f2.rvr];
+      if (!cur || added.length < cur.min) {
+        best[f2.rvr] = { rvr: f2.rvr, min: added.length, list: [added] };
+      } else if (added.length === cur.min) {
+        var dup = cur.list.some(function (a2) { return a2.join(',') === added.join(','); });
+        if (!dup) cur.list.push(added);
       }
+    }
+
+    function nameOf(k) {
+      for (var i = 0; i < ITEMS.length; i += 1) {
+        if (ITEMS[i].k === k) return ITEMS[i].label;
+      }
+      return k === 'three' ? '三段 RVR 报告' : k;    // three 在「三段」开关上，不在 ITEMS 里
     }
 
     return Object.keys(best)
       .map(function (k) { return best[k]; })
       .sort(function (a, b) { return b.rvr - a.rvr; })
-      .slice(0, 1)      // 只给「刚好能满足」的那一条，后面更低的档不再列
+      .slice(0, 1)      // 只给「刚好能满足」的那一档
       .map(function (x) {
-        return {
-          rvr: x.rvr,
-          names: x.added.map(function (k) {
-            for (var i = 0; i < ITEMS.length; i += 1) {
-              if (ITEMS[i].k === k) return ITEMS[i].label;
-            }
-            return k === 'three' ? '三段 RVR 报告' : k;    // three 在「三段」开关上，不在 ITEMS 里
-          })
-        };
+        // 同一档里有几种并列选法 → 用「或」连接；同一种选法里多项 → 用「、」连接
+        var parts = x.list.map(function (added) {
+          return added.map(nameOf).join('」、「');
+        });
+        return { rvr: x.rvr, names: parts.join('」或「') };
       });
   }
 
@@ -322,7 +331,7 @@
       var sugs = suggestAll(head, night);
       sugs.forEach(function (sg) {
         lines.push(['sug', '满足建议',
-          '需要「' + sg.names.join('」、「') + '」，标准降到 RVR ' + sg.rvr + ' 米']);
+          '需要「' + sg.names + '」，标准降到 RVR ' + sg.rvr + ' 米']);
       });
     }
 
@@ -334,13 +343,8 @@
     el('verdictBig').textContent = fails.length ? '不满足起飞标准' : '满足起飞标准';
     el('verdictSub').textContent = fails.length
       ? fails[0] + (fails.length > 1 ? '（共 ' + fails.length + ' 条不满足）' : '')
-      : '按表 1 的设施—RVR 对应关系，本条件可以起飞。';
+      : '仅依据全天候按表1设施—RVR 对应关系，本条件可以起飞。';
 
-    // 6) 补充说明
-    el('note').innerHTML = '<b>补充：</b>'
-      + '① RVR 200 米（含）以上起飞至少要有接地端 RVR 报告，200 米以下必须三段报告（④）；'
-      + '② 若同时可获得 RVR 和 VIS，以 RVR 为准（4.1.1）。<br>'
-      + '实际放行还要结合机场公布的起飞最低标准（可能更严）、跑道状况代码、性能与障碍物、机组资格等。';
   }
 
   el('btn-run').addEventListener('click', run);
