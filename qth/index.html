@@ -14,7 +14,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#f0e8d5">
 <title>全天候-圆通</title>
-<link rel="stylesheet" href="css/style.css?v=38">
+<link rel="stylesheet" href="css/style.css?v=43">
 </head>
 <body>
 
@@ -34,6 +34,7 @@
           <button type="button" data-v="night">🌙 夜间</button>
         </div>
         <button type="button" class="tag" id="segThree">三段 RVR 报告</button>
+        <button type="button" class="tag on" id="cat2Btn">资质 CAT Ⅱ</button>
       </div>
     </div>
 
@@ -47,7 +48,13 @@
     <hr class="divider">
 
     <div class="field">
-      <label>实际 RVR / VIS（米）</label>
+      <div class="rvr-head">
+        <label id="rvrKindLabel">实际 RVR（米）</label>
+        <div class="seg" id="rvrSeg">
+          <button type="button" data-v="rvr" class="on">RVR</button>
+          <button type="button" data-v="vis">VIS</button>
+        </div>
+      </div>
       <div class="row3">
         <div>
           <label for="rvr" class="sub-label">接地端</label>
@@ -60,6 +67,26 @@
         <div>
           <label for="rvrEnd" class="sub-label">停止端</label>
           <input type="number" id="rvrEnd" min="0" step="5">
+        </div>
+      </div>
+      <div class="hint" id="rvrNote" hidden>若接地段 RVR 不工作或驾驶员判断接地段 RVR 报告值与实际目视条件存在重大差异时，RVR 可以由驾驶员目视判断。</div>
+    </div>
+
+    <div class="field" id="baseStdField">
+      <label class="check"><input type="checkbox" id="baseStd"> 机场未公布起飞标准（按 4.2.1.3 基本起飞最低标准）</label>
+
+      <div id="baseStdBox" hidden style="margin-top:10px">
+        <div class="rule">
+          <div class="rule-title">4.2.1.3 基本起飞最低标准</div>
+          <p>(a) 对于所有双发飞机，基本起飞最低标准为 VIS 1600 米或 RVR 1500 米；对于三发及以上飞机，基本起飞最低标准为 VIS 800 米或 RVR 720 米。</p>
+          <p>(b) 仅当未公布起飞最低标准时，航空器运营人方可使用相应的基本起飞最低标准。对于特定的跑道，如果能够获得接地段 RVR 报告，应以接地段的 RVR 报告为准。</p>
+        </div>
+        <div style="margin-top:10px">
+          <label for="engCount" class="sub-label">飞机类型</label>
+          <select id="engCount">
+            <option value="2">双发 —— VIS 1600 米 / RVR 1500 米</option>
+            <option value="3">三发及以上 —— VIS 800 米 / RVR 720 米</option>
+          </select>
         </div>
       </div>
     </div>
@@ -139,6 +166,6 @@
   </div>
 </details>
 
-<script src="js/app.js?v=38"></script>
+<script src="js/app.js?v=43"></script>
 </body>
 </html>

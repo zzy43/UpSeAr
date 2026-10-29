@@ -360,3 +360,13 @@ ul.checks li.sug {
   padding: 8px 12px;
   margin: 8px 0 4px;
 }
+
+/* RVR / VIS 切换那一行 */
+.rvr-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.rvr-head > label { margin-bottom: 0; }

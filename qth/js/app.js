@@ -17,6 +17,20 @@
   var el = function (id) { return document.getElementById(id); };
   var dayNight = 'day';
   var picked = {};                     // 当前选中的设施
+  var rvrKind = 'rvr';                 // 输入的是 RVR 还是 VIS（默认 RVR）
+  var hasCat2 = true;                  // 是否有资质 CAT Ⅱ（默认有）
+
+  // RVR / VIS 切换
+  Array.prototype.forEach.call(el('rvrSeg').querySelectorAll('button'), function (b) {
+    b.addEventListener('click', function () {
+      rvrKind = b.dataset.v;
+      Array.prototype.forEach.call(el('rvrSeg').querySelectorAll('button'), function (x) {
+        x.classList.toggle('on', x === b);
+      });
+      el('rvrKindLabel').textContent = rvrKind === 'vis' ? '实际 VIS（米）' : '实际 RVR（米）';
+    });
+  });
+
 
   // 按表 1 从高到低匹配：看不清的就逐级降标准
   function judgeFacilities(pp) {
@@ -52,8 +66,9 @@
   }
 
   // 当前 RVR 不够时，列出所有「再补哪些设施就能满足」的方案（按门限从高到低）
-  function suggestAll(head, night) {
+  function suggestAll(head, night, minRvr) {
     var KEYS = ['edge', 'end', 'center', 'mark', 'hi', 'three', 'hud'];
+    minRvr = minRvr || 0;
     // 选了「仅目视参考」时，建议就是「改用哪些具体设施」，所以以空集为起点
     var base = picked.vis ? {} : picked;
     var best = {};                       // rvr -> { rvr, added }
@@ -74,6 +89,7 @@
 
       var f2 = judgeFacilities(cand);
       if (!f2 || f2.dayOnly || head < f2.rvr) continue;
+      if (f2.rvr < minRvr) continue;                 // 无 CAT Ⅱ 时不给 400 以下的组合
 
       var added = [];
       for (var j = 0; j < KEYS.length; j += 1) {
@@ -149,6 +165,13 @@
     el('segThree').classList.toggle('on', !!picked.three);
   }
 
+  // 资质 CAT Ⅱ：没有的话，起飞标准不低于 400 米
+  el('cat2Btn').addEventListener('click', function () {
+    hasCat2 = !hasCat2;
+    el('cat2Btn').classList.toggle('on', hasCat2);
+    syncFac();
+  });
+
   el('segThree').addEventListener('click', function () {
     picked.three = !picked.three;
     if (picked.three) {
@@ -186,6 +209,7 @@
     var three = !!picked.three;
     el('rvrMid').parentNode.hidden = !three;
     el('rvrEnd').parentNode.hidden = !three;
+    el('rvrNote').hidden = !three;              // 三段报告时才提示「RVR 可由驾驶员目视判断」
     if (three) {
       unlockSeg(el('rvrMid'));
       unlockSeg(el('rvrEnd'));
@@ -197,9 +221,14 @@
     if (!f) {
       el('facHint').textContent = '请至少选「跑道边灯」或「跑道中线标志」（或昼间勾「仅目视参考」）。';
     } else {
-      el('facHint').textContent = '要求 RVR ≥ ' + f.rvr + ' 米'
-        + (f.three ? '（三段都要达到）' : '') + '。' + f.note
-        + (three && !f.three ? ' 注意：当前设施组合还达不到三段 RVR 的标准，需跑道边灯＋跑道中线灯。' : '');
+      var needShow = hasCat2 ? f.rvr : Math.max(f.rvr, 400);
+      el('facHint').textContent = (el('baseStd').checked
+        ? '已勾选「机场未公布起飞标准」，判定按 4.2.1.3 基本标准，下面的设施选择不参与。'
+        : '要求 RVR ≥ ' + needShow + ' 米'
+        + (f.three && hasCat2 ? '（三段都要达到）' : '')
+        + (hasCat2 ? '' : '（无资质 CAT Ⅱ，标准不低于 400 米）')
+        + '。' + f.note
+        + (three && !f.three ? ' 注意：当前设施组合还达不到三段 RVR 的标准，需跑道边灯＋跑道中线灯。' : ''));
     }
   }
 
@@ -213,6 +242,11 @@
     inp.readOnly = false;
     inp.classList.remove('locked');
   }
+
+  el('baseStd').addEventListener('change', function () {
+    el('baseStdBox').hidden = !el('baseStd').checked;
+    syncFac();
+  });
 
   el('obst').addEventListener('change', function () {
     el('obstBox').hidden = !el('obst').checked;
@@ -234,11 +268,52 @@
     return isFinite(n) ? n : null;
   }
 
+  // 4.2.1.3 基本起飞最低标准：双发 VIS1600/RVR1500，三发及以上 VIS800/RVR720
+  function runBaseStd() {
+    var box = el('checks');
+    var fails = [], lines = [];
+    var head = num('rvr');
+    var three = Number(el('engCount').value) === 3;
+    var needRvr = three ? 720 : 1500;
+    var needVis = three ? 800 : 1600;
+    var isVis = rvrKind === 'vis';
+    var need = isVis ? needVis : needRvr;
+    var unit = isVis ? 'VIS' : 'RVR';
+
+    lines.push(['info', '适用依据', '机场未公布起飞最低标准，按 4.2.1.3 基本起飞最低标准']);
+    lines.push(['info', three ? '三发及以上' : '双发',
+      'VIS ≥ ' + needVis + ' 米　或　RVR ≥ ' + needRvr + ' 米']);
+    lines.push(['info', '本次按 ' + unit + ' 判定', unit + ' ≥ ' + need + ' 米']);
+
+    if (head === null) {
+      fails.push('还没填接地端 ' + unit + ' 数值。');
+      lines.push(['fail', '数值输入', '缺少 ' + unit]);
+    } else if (head >= need) {
+      lines.push(['pass', unit + ' ' + head + ' 米 ≥ ' + need + ' 米', '']);
+    } else {
+      fails.push(unit + ' ' + head + ' 米低于基本起飞最低标准的 ' + need + ' 米。');
+      lines.push(['fail', unit + ' ' + head + ' 米 < ' + need + ' 米',
+        '差 ' + (need - head) + ' 米']);
+    }
+
+    lines.forEach(function (x) { box.appendChild(line(x[0], x[1], x[2])); });
+
+    el('verdict').className = 'verdict ' + (fails.length ? 'bad' : 'ok');
+    el('verdictBig').textContent = fails.length ? '不满足起飞标准' : '满足起飞标准';
+    el('verdictSub').textContent = fails.length
+      ? fails[0]
+      : '仅依据全天候 4.2.1.3 基本起飞最低标准，本条件可以起飞。';
+  }
+
   function run() {
-    var f = judgeFacilities();
-    var night = dayNight === 'night';
     var box = el('checks');
     box.innerHTML = '';
+
+    // 勾了「机场未公布起飞标准」→ 按 4.2.1.3 基本起飞最低标准判
+    if (el('baseStd').checked) { runBaseStd(); return; }
+
+    var f = judgeFacilities();
+    var night = dayNight === 'night';
 
     var fails = [];
     var lines = [];
@@ -266,21 +341,25 @@
       lines.push(['pass', '运行时段', night ? '夜间（边灯或中线灯 + 跑道末端灯）' : '昼间']);
     }
 
-    // 3) 需要的 RVR
-    lines.push(['info', '本设施组合要求', 'RVR ≥ <b>' + f.rvr + ' 米</b>' + (f.three ? '（三段都要达到）' : '')]);
+    // 3) 需要的 RVR（无 CAT Ⅱ 资质时不低于 400 米）
+    var need = hasCat2 ? f.rvr : Math.max(f.rvr, 400);
+    var needThree = f.three && hasCat2;      // 门限抬到 400 时不再需要三段报告
+    lines.push(['info', '本设施组合要求', 'RVR ≥ <b>' + need + ' 米</b>'
+      + (needThree ? '（三段都要达到）' : '')
+      + (hasCat2 ? '' : '（无资质 CAT Ⅱ，标准不低于 400 米）')]);
 
     if (head === null) {
       fails.push('还没填实际 RVR/VIS 数值。');
       lines.push(['fail', '数值输入', '缺少实际 RVR/VIS']);
     } else {
-      var unit = 'RVR';
+      var unit = rvrKind === 'vis' ? 'VIS' : 'RVR';
 
-      if (!f.three) {
-        if (head >= f.rvr) {
-          lines.push(['pass', unit + ' ' + head + ' 米 ≥ ' + f.rvr + ' 米', '']);
+      if (!needThree) {
+        if (head >= need) {
+          lines.push(['pass', unit + ' ' + head + ' 米 ≥ ' + need + ' 米', '']);
         } else {
-          fails.push(unit + ' ' + head + ' 米低于本设施组合要求的 ' + f.rvr + ' 米。');
-          lines.push(['fail', unit + ' ' + head + ' 米 < ' + f.rvr + ' 米', '差 ' + (f.rvr - head) + ' 米']);
+          fails.push(unit + ' ' + head + ' 米低于本设施组合要求的 ' + need + ' 米。');
+          lines.push(['fail', unit + ' ' + head + ' 米 < ' + need + ' 米', '差 ' + (need - head) + ' 米']);
         }
       } else {
         // 勾了三段 RVR 报告：三段都报了才按三段那一行判；
@@ -298,13 +377,13 @@
             }
           });
         } else {
-          var need = Math.max(f.rvr, 200);
-          lines.push(['info', '只报了接地端', '按 ④：200 米（含）以上只需接地端报告，本标准按 ' + need + ' 米判']);
-          if (head >= need) {
-            lines.push(['pass', '接地端 RVR ' + head + ' 米 ≥ ' + need + ' 米', '']);
+          var needFloor = Math.max(f.rvr, 200);
+          lines.push(['info', '只报了接地端', '按 ④：200 米（含）以上只需接地端报告，本标准按 ' + needFloor + ' 米判']);
+          if (head >= needFloor) {
+            lines.push(['pass', '接地端 RVR ' + head + ' 米 ≥ ' + needFloor + ' 米', '']);
           } else {
             fails.push('接地端 RVR ' + head + ' 米低于 200 米，此时必须获得接地端、中间端、停止端三段 RVR 报告（④）。');
-            lines.push(['fail', '接地端 RVR ' + head + ' 米 < ' + need + ' 米', '低于 200 米须三段报告']);
+            lines.push(['fail', '接地端 RVR ' + head + ' 米 < ' + needFloor + ' 米', '低于 200 米须三段报告']);
           }
         }
       }
@@ -327,8 +406,8 @@
     }
 
     // 4.5) 不满足时给设施建议：最少再勾哪几项就能满足
-    if (fails.length && head !== null && head < f.rvr) {
-      var sugs = suggestAll(head, night);
+    if (fails.length && head !== null && head < need) {
+      var sugs = suggestAll(head, night, hasCat2 ? 0 : 400);
       sugs.forEach(function (sg) {
         lines.push(['sug', '满足建议',
           '需要「' + sg.names + '」，标准降到 RVR ' + sg.rvr + ' 米']);
@@ -360,6 +439,17 @@
     el('obst').checked = false;
     el('obstBox').hidden = true;
     el('obstField').hidden = false;
+    el('baseStd').checked = false;
+    el('baseStdBox').hidden = true;
+    el('engCount').value = '2';
+    // RVR / VIS 复位成 RVR
+    hasCat2 = true;
+    el('cat2Btn').classList.add('on');
+    rvrKind = 'rvr';
+    el('rvrKindLabel').textContent = '实际 RVR（米）';
+    Array.prototype.forEach.call(el('rvrSeg').querySelectorAll('button'), function (x) {
+      x.classList.toggle('on', x.dataset.v === 'rvr');
+    });
     dayNight = 'day';
     document.body.classList.remove('is-night');
     Array.prototype.forEach.call(el('seg').querySelectorAll('button'), function (x) {
