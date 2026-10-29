@@ -12,8 +12,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#f0e8d5">
-<title>全天候-圆通</title>
+<meta name="theme-color" content="#4e148c">
+<title>圆通-全天候</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="img/favicon-32.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<!-- 装到主屏幕后全屏、像 App 一样用（iOS） -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="圆通-全天候">
 <link rel="stylesheet" href="css/style.css?v=60">
 </head>
 <body>
@@ -208,5 +216,13 @@
 <script src="js/judge.js?v=60"></script>
 <script src="js/inputs.js?v=60"></script>
 <script src="js/main.js?v=60"></script>
+<script>
+  // PWA：装到主屏后整站离线可用（https / localhost 才生效，file:// 下自动跳过）
+  if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('sw.js').catch(function () { /* 注册失败不影响正常使用 */ });
+    });
+  }
+</script>
 </body>
 </html>

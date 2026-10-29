@@ -1,0 +1,17 @@
+{
+  "name": "圆通-全天候",
+  "short_name": "圆通-全天候",
+  "description": "起飞最低标准判定（依据《全天候运行规定》4.2 表 1），离线可用",
+  "lang": "zh-CN",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f0e8d5",
+  "theme_color": "#4e148c",
+  "icons": [
+    { "src": "img/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "img/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "img/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
