@@ -3,20 +3,23 @@
    策略：有网时用网络（顺手更新缓存），没网时回退缓存。
    匹配时忽略 ?v=xx 查询串，所以改版本号不用同步改这里的清单。*/
 
-var CACHE = 'qth-v60';
+var CACHE = 'qth-v65';
 
 // 首次安装要预缓存的文件（相对路径，部署在子目录也能用）
 var ASSETS = [
   './',
   './index.html',
+  './landing.html',
   './manifest.json',
   './css/style.css',
+  './css/landing.css',
   './js/data.js',
   './js/core.js',
   './js/facility.js',
   './js/judge.js',
   './js/inputs.js',
   './js/main.js',
+  './js/landing.js',
   './img/logo.png',
   './img/icon-192.png',
   './img/icon-512.png',

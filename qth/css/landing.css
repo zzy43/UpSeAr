@@ -1,0 +1,76 @@
+/* 落地标准页布局 */
+
+/* 整页淡绿黄底，和起飞页（米黄）区分开 */
+body.page-landing { background: #eef2d4; }
+body.is-night.page-landing {
+  background: linear-gradient(180deg, #47505f 0%, #454c40 52%, #3b4034 100%);
+  background-attachment: fixed;
+}
+
+/* 落地页三个下拉并排，字号比起飞页稍收一档 */
+#airport, #rwy, #proc {
+  font-size: 30px;
+  font-weight: 800;
+  padding: 12px 12px;
+  border: 2px solid var(--line-strong);
+  min-height: 60px;
+}
+#airport option, #rwy option, #proc option {
+  font-size: 26px;
+  font-weight: 700;
+}
+#airport:focus, #rwy:focus, #proc:focus { border-color: var(--accent); }
+
+/* 两张卡片也用同一个淡绿黄，整页一个色调，靠边框和阴影分隔 */
+body.page-landing .card {
+  background: #eef2d4;
+  border-color: rgba(90, 74, 40, 0.24);
+  box-shadow: 0 2px 10px rgba(90, 74, 40, 0.09);
+}
+body.is-night.page-landing .card {
+  background: #ccd5c2;
+  border-color: rgba(255, 255, 255, 0.34);
+}
+
+/* 标准展示块里的小字说明 */
+#stdText b { color: var(--accent); }
+
+/* 运规 R5 生效后的实际标准：整行突出显示 */
+#stdR5 {
+  margin-top: 10px;
+  padding: 9px 13px;
+  background: rgba(168, 107, 15, 0.14);
+  border-left: 4px solid var(--accent);
+  border-radius: 6px;
+  font-weight: 700;
+  color: var(--text);
+}
+#stdR5 b {
+  font-size: 1.08em;
+  color: var(--accent);
+}
+
+/* 非精密进近的 DDA 计算行 */
+#stdNpa {
+  margin-top: 8px;
+  padding: 8px 13px;
+  background: rgba(47, 111, 174, 0.12);
+  border-left: 4px solid #2f6fae;
+  border-radius: 6px;
+  font-weight: 700;
+  color: var(--text);
+}
+#stdNpa b { color: #2f6fae; font-size: 1.08em; }
+
+/* 规则原文说明（DDA 定义那类） */
+.rule-note {
+  margin-top: 10px !important;
+  font-size: 21.5px;
+  color: var(--faint);
+}
+
+/* 落地页机型按钮文字较长，字号略收一点 */
+#acSeg button {
+  font-size: 22px;
+  padding: 8px 16px;
+}

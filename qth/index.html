@@ -22,12 +22,16 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="圆通-全天候">
-<link rel="stylesheet" href="css/style.css?v=60">
+<link rel="stylesheet" href="css/style.css?v=65">
 </head>
 <body>
 
 <header class="top">
-  <h1>全天候-圆通-起飞标准</h1>
+  <h1>圆通-全天候 · 起飞标准</h1>
+  <nav class="nav">
+    <span class="tab on">起飞标准</span>
+    <a class="tab" href="landing.html">落地标准</a>
+  </nav>
 </header>
 
 <div class="wrap">
@@ -48,7 +52,7 @@
         <div>
           <label for="rwy" class="sub-label">跑道</label>
           <select id="rwy" disabled>
-            <option value="">先选机场</option>
+            <option value="">---</option>
           </select>
         </div>
       </div>
@@ -210,12 +214,12 @@
 </details>
 
 <!-- 脚本按依赖顺序加载：数据 → 基础 → 设施 → 判定 → 输入 → 启动 -->
-<script src="js/data.js?v=60"></script>
-<script src="js/core.js?v=60"></script>
-<script src="js/facility.js?v=60"></script>
-<script src="js/judge.js?v=60"></script>
-<script src="js/inputs.js?v=60"></script>
-<script src="js/main.js?v=60"></script>
+<script src="js/data.js?v=65"></script>
+<script src="js/core.js?v=65"></script>
+<script src="js/facility.js?v=65"></script>
+<script src="js/judge.js?v=65"></script>
+<script src="js/inputs.js?v=65"></script>
+<script src="js/main.js?v=65"></script>
 <script>
   // PWA：装到主屏后整站离线可用（https / localhost 才生效，file:// 下自动跳过）
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {

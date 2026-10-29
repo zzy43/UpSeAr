@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--
+  落地（进近）最低标准判定
+  ------------------------------------------------------------------
+  · 与起飞标准页（index.html）共用 css/style.css，本页只多引 css/landing.css
+  · 标准数据写在 js/landing.js 顶部，按「机场 → 跑道 → 进近程序」选择
+  · 判定：有 RVR 标准的程序按 RVR 判（RVR 不工作时可用等值 VIS 代替）；
+          只有 VIS 标准的程序（如 VOR/DME）按 VIS 判，VIS 随 C/D 类机型不同
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#4e148c">
+<title>圆通-全天候 · 落地标准</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="img/favicon-32.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="圆通-全天候">
+<link rel="stylesheet" href="css/style.css?v=65">
+<link rel="stylesheet" href="css/landing.css?v=65">
+</head>
+<body class="page-landing">
+
+<header class="top">
+  <h1>圆通-全天候 · 落地标准</h1>
+  <nav class="nav">
+    <a class="tab" href="index.html">起飞标准</a>
+    <span class="tab on">落地标准</span>
+  </nav>
+</header>
+
+<div class="wrap">
+
+  <!-- ========== 左：输入 ========== -->
+  <section class="card">
+
+    <div class="field">
+      <div class="row3">
+        <div>
+          <label for="airport" class="sub-label">机场</label>
+          <select id="airport">
+            <option value="">---</option>
+            <option value="ZPPP">ZPPP（昆明/长水）</option>
+            <option value="ZSWZ">ZSWZ（温州/龙湾）</option>
+          </select>
+        </div>
+        <div>
+          <label for="rwy" class="sub-label">跑道</label>
+          <select id="rwy" disabled>
+            <option value="">---</option>
+          </select>
+        </div>
+        <div>
+          <label for="proc" class="sub-label">进近程序</label>
+          <select id="proc" disabled>
+            <option value="">---</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="field">
+      <div class="seg-row">
+        <div class="seg" id="acSeg">
+          <button type="button" data-v="C" class="on">C 类（B757、ARJ）</button>
+          <button type="button" data-v="D">D 类（B767、B777）</button>
+        </div>
+        <span class="hint" style="margin:0">VOR/DME 的 VIS 标准按机型不同</span>
+      </div>
+    </div>
+
+    <div class="field">
+      <button type="button" class="tag on" id="r5Btn">运规 R5（R5-C0009）</button>
+      <div class="hint" id="r5Hint">运规 R5-C0009：公司放行及运行，MDA(H)/DA(H) 增加 100 英尺，RVR/VIS 增加 600 米。</div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="field">
+      <div class="rule">
+        <div class="rule-title">该程序公布标准</div>
+        <p id="stdText">先选机场、跑道和进近程序。</p>
+        <p id="stdR5" hidden></p>
+        <p id="stdNpa" hidden></p>
+        <p class="rule-note">非精密进近（VOR/DME 等只有 MDA 的程序）：DDA = MDA + 50 ft。</p>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="row2">
+        <div>
+          <label for="rvr" class="sub-label">实际 RVR（米）</label>
+          <input type="number" id="rvr" min="0" step="25">
+        </div>
+        <div>
+          <label for="vis" class="sub-label">实际 VIS（米）</label>
+          <input type="number" id="vis" min="0" step="50">
+        </div>
+      </div>
+      <div class="hint">有 RVR 标准时按 RVR 判；RVR 不工作或未填时，可用 VIS 代替（需不低于该程序的 VIS 标准）。</div>
+    </div>
+
+    <div class="btns">
+      <button type="button" class="primary" id="btn-run">确定</button>
+      <button type="button" class="ghost" id="btn-reset">清空</button>
+    </div>
+  </section>
+
+  <!-- ========== 右：结果 ========== -->
+  <section class="card result">
+    <h2>判定结果</h2>
+
+    <div class="picks" id="picks"></div>
+
+    <div class="verdict idle" id="verdict">
+      <div class="big" id="verdictBig">等待输入</div>
+      <div class="sub" id="verdictSub"></div>
+    </div>
+
+    <ul class="checks" id="checks"></ul>
+
+    <div class="note" id="note">
+      <b>提示：</b>落地标准只按所选进近程序的公布值判定，不含复飞程序、跑道灯光与机组资质的附加要求。
+    </div>
+  </section>
+</div>
+
+<script src="js/landing.js?v=65"></script>
+<script>
+  // PWA：装到主屏后整站离线可用（https / localhost 才生效，file:// 下自动跳过）
+  if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('sw.js').catch(function () {});
+    });
+  }
+</script>
+</body>
+</html>

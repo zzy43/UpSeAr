@@ -37,6 +37,11 @@
   /* ---------------- 顶部 ---------------- */
   .top {
     padding: 16px 8px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px 18px;
+    flex-wrap: wrap;
   }
   .genre {
     font-size: 20.2px;
@@ -114,6 +119,35 @@
     outline: none;
   }
   select:focus, input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(168, 107, 15, 0.12); }
+
+  /* 顶部导航：起飞标准 / 落地标准 两个入口，固定在标题右侧 */
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+  }
+  .nav .tab {
+    display: inline-block;
+    padding: 9px 22px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: #fffdf7;
+    color: var(--dim);
+    font-size: 24px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .nav .tab:hover { border-color: var(--accent); color: var(--accent); }
+  .nav .tab.on {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    cursor: default;
+  }
+  body.is-night .nav .tab { background: #e8edf6; }
+  body.is-night .nav .tab.on { background: var(--accent); border-color: var(--accent); }
 
   /* 机场 / 跑道下拉：比普通输入框再大一档，字更粗好认（iPad 上尤其要看清楚） */
   #airport, #rwy {

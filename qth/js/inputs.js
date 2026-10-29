@@ -58,7 +58,7 @@ window.QTH = window.QTH || {};
         // 默认（全天候）：按表 1 通用设施组合
         var o0 = document.createElement('option');
         o0.value = '';
-        o0.textContent = '先选机场';
+        o0.textContent = '---';
         sel.appendChild(o0);
         sel.disabled = true;
         Q.el('rwyHint').hidden = true;
@@ -69,7 +69,7 @@ window.QTH = window.QTH || {};
       } else {
         var o1 = document.createElement('option');
         o1.value = '';
-        o1.textContent = '请选择跑道';
+        o1.textContent = '---';
         sel.appendChild(o1);
         ap.rwys.forEach(function (r) {
           var o = document.createElement('option');
@@ -215,7 +215,7 @@ window.QTH = window.QTH || {};
     S.airport = '';
     S.rwy = '';
     Q.el('airport').value = '';
-    Q.el('rwy').innerHTML = '<option value="">先选机场</option>';
+    Q.el('rwy').innerHTML = '<option value="">---</option>';
     Q.el('rwy').disabled = true;
     Q.el('rwyHint').hidden = true;
     Q.el('rwyHint').textContent = '';
