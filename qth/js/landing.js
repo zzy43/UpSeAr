@@ -127,10 +127,17 @@
     var p = current();
     var box = el('stdText');
     var box5 = el('stdR5');
+    syncNeed();
+
+    // 非精密进近只有 VIS 标准：RVR 不用提示，VIS 必填
+    var isNpa = !!p && p.type === 'MDA';
+    el('rvr').classList.toggle('skip', isNpa);
+    el('vis').classList.toggle('must', isNpa);
     if (!p) {
       box.textContent = '先选机场、跑道和进近程序。';
       box5.hidden = true;
       el('stdNpa').hidden = true;
+      el('npaNote').hidden = true;
       renderPicks();
       return;
     }
@@ -153,15 +160,26 @@
 
     // 非精密进近（只有 MDA）：DDA = MDA + 50 ft
     var npa = el('stdNpa');
+    var npaNote = el('npaNote');
     if (p.type === 'MDA') {
       var an = applied(p);
+      npaNote.hidden = false;
       npa.hidden = false;
       npa.innerHTML = '非精密进近：DDA = MDA ' + an.h + ' + 50 = <b>' + (an.h + 50) + '</b> ft'
         + (S.r5 ? '（MDA 已含运规 R5 +100 ft）' : '');
     } else {
+      npaNote.hidden = true;
       npa.hidden = true;
     }
     renderPicks();
+  }
+
+  // 还没选的下拉框标绿提醒
+  function syncNeed() {
+    ['airport', 'rwy', 'proc'].forEach(function (id) {
+      var s = el(id);
+      s.classList.toggle('need', !s.disabled && s.value === '');
+    });
   }
 
   function renderPicks() {
@@ -224,7 +242,7 @@
       + '（' + p.type + ' ' + p.h + ' ft）']);
     if (S.r5) {
       lines.push(['info', '运规 R5-C0009',
-        '公司放行及运行 ' + p.type + '(H) +100 ft、RVR/VIS +600 米 → 本次门限 '
+        '公司放行及运行 ' + p.type + '(H) +100 ft、RVR/VIS +600 米 → 计算结果 '
         + p.type + ' <b>' + a.h + '</b> ft'
         + (a.rvr !== null ? '，RVR <b>' + a.rvr + '</b> 米' : '')
         + '，VIS <b>' + a.vis + '</b> 米']);
@@ -244,7 +262,7 @@
         if (rvr >= a.rvr) {
           lines.push(['pass', 'RVR ' + rvr + ' 米 ≥ ' + a.rvr + ' 米', '']);
         } else {
-          fails.push('RVR ' + rvr + ' 米低于本次门限 ' + a.rvr + ' 米。');
+          fails.push('RVR ' + rvr + ' 米低于计算结果 ' + a.rvr + ' 米。');
           lines.push(['fail', 'RVR ' + rvr + ' 米 < ' + a.rvr + ' 米', '差 ' + (a.rvr - rvr) + ' 米']);
         }
       } else if (hasVis) {
@@ -252,7 +270,7 @@
         if (vis >= a.vis) {
           lines.push(['pass', 'VIS ' + vis + ' 米 ≥ ' + a.vis + ' 米', '']);
         } else {
-          fails.push('VIS ' + vis + ' 米低于本次门限 ' + a.vis + ' 米。');
+          fails.push('VIS ' + vis + ' 米低于计算结果 ' + a.vis + ' 米。');
           lines.push(['fail', 'VIS ' + vis + ' 米 < ' + a.vis + ' 米', '差 ' + (a.vis - vis) + ' 米']);
         }
       } else {
@@ -267,7 +285,7 @@
       } else if (vis >= a.vis) {
         lines.push(['pass', 'VIS ' + vis + ' 米 ≥ ' + a.vis + ' 米', '']);
       } else {
-        fails.push('VIS ' + vis + ' 米低于本次门限 ' + a.vis + ' 米（' + S.acCat + ' 类）。');
+        fails.push('VIS ' + vis + ' 米低于计算结果 ' + a.vis + ' 米（' + S.acCat + ' 类）。');
         lines.push(['fail', 'VIS ' + vis + ' 米 < ' + a.vis + ' 米', '差 ' + (a.vis - vis) + ' 米']);
       }
     }

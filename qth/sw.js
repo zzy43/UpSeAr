@@ -13,6 +13,7 @@ var ASSETS = [
   './manifest.json',
   './css/style.css',
   './css/landing.css',
+  './css/feedback.css',
   './js/data.js',
   './js/core.js',
   './js/facility.js',
@@ -20,6 +21,8 @@ var ASSETS = [
   './js/inputs.js',
   './js/main.js',
   './js/landing.js',
+  './js/oss-config.js',
+  './js/feedback.js',
   './img/logo.png',
   './img/icon-192.png',
   './img/icon-512.png',
@@ -56,6 +59,10 @@ self.addEventListener('activate', function (e) {
 self.addEventListener('fetch', function (e) {
   var req = e.request;
   if (req.method !== 'GET' || req.url.indexOf('http') !== 0) return;
+  // 跨域请求（如 OSS）交回浏览器原生处理，避免自定义头/预检被影响
+  try {
+    if (new URL(req.url).origin !== self.location.origin) return;
+  } catch (err) { return; }
 
   e.respondWith(
     fetch(req)

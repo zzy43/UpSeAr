@@ -245,6 +245,12 @@ window.QTH = window.QTH || {};
     Q.el('verdictSub').textContent = '';
   }
 
+  // 还没选跑道时，跑道下拉框标绿提醒
+  function syncNeed() {
+    var rwy = Q.el('rwy');
+    rwy.classList.toggle('need', !rwy.disabled && rwy.value === '');
+  }
+
   // 统一绑定全部控件
   Q.setup = function () {
     bindAirport();
@@ -252,5 +258,8 @@ window.QTH = window.QTH || {};
     bindInputs();
     Q.el('btn-run').addEventListener('click', function () { Q.run(); });
     Q.el('btn-reset').addEventListener('click', resetAll);
+    syncNeed();
+    Q.el('airport').addEventListener('change', syncNeed);
+    Q.el('rwy').addEventListener('change', syncNeed);
   };
 })(window.QTH);

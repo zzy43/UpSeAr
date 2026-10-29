@@ -23,6 +23,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="圆通-全天候">
 <link rel="stylesheet" href="css/style.css?v=65">
+<link rel="stylesheet" href="css/feedback.css?v=65">
 </head>
 <body>
 
@@ -102,15 +103,15 @@
       <div class="row3">
         <div>
           <label for="rvr" class="sub-label">接地端</label>
-          <input type="number" id="rvr" min="0" step="5">
+          <input type="number" id="rvr" min="0" step="5" placeholder=" ">
         </div>
         <div>
           <label for="rvrMid" class="sub-label">中间端</label>
-          <input type="number" id="rvrMid" min="0" step="5">
+          <input type="number" id="rvrMid" min="0" step="5" placeholder=" ">
         </div>
         <div>
           <label for="rvrEnd" class="sub-label">停止端</label>
-          <input type="number" id="rvrEnd" min="0" step="5">
+          <input type="number" id="rvrEnd" min="0" step="5" placeholder=" ">
         </div>
       </div>
       <div class="hint" id="rvrNote" hidden>若接地段 RVR 不工作或驾驶员判断接地段 RVR 报告值与实际目视条件存在重大差异时，RVR 可以由驾驶员目视判断。</div>
@@ -142,11 +143,11 @@
         <div class="row2">
           <div>
             <label for="cloud">云底高（米）</label>
-            <input type="number" id="cloud" min="0" step="10">
+            <input type="number" id="cloud" min="0" step="10" placeholder=" ">
           </div>
           <div>
             <label for="obstH">控制障碍物高（米）</label>
-            <input type="number" id="obstH" min="0" step="10">
+            <input type="number" id="obstH" min="0" step="10" placeholder=" ">
           </div>
         </div>
 
@@ -219,7 +220,7 @@
 <script src="js/facility.js?v=65"></script>
 <script src="js/judge.js?v=65"></script>
 <script src="js/inputs.js?v=65"></script>
-<script src="js/main.js?v=65"></script>
+<script src="js/main.js?v=65"></script><script src="js/oss-config.js?v=86"></script><script src="js/feedback.js?v=65"></script>
 <script>
   // PWA：装到主屏后整站离线可用（https / localhost 才生效，file:// 下自动跳过）
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {

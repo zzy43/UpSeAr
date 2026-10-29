@@ -21,6 +21,40 @@ body.is-night.page-landing {
 }
 #airport:focus, #rwy:focus, #proc:focus { border-color: var(--accent); }
 
+/* 实际 VIS 可以不填（按 RVR 判时用不到），所以默认不做绿色必填提示 */
+#vis:placeholder-shown {
+  background: #fffdf7;
+  border-color: var(--line-strong);
+  box-shadow: none;
+}
+body.is-night #vis:placeholder-shown {
+  background: #eef2f9;
+  border-color: var(--line-strong);
+  box-shadow: none;
+}
+
+/* 非精密进近（只有 VIS 标准）：RVR 不提示，VIS 变绿 */
+#rvr.skip:placeholder-shown {
+  background: #fffdf7;
+  border-color: var(--line-strong);
+  box-shadow: none;
+}
+body.is-night #rvr.skip:placeholder-shown {
+  background: #eef2f9;
+  border-color: var(--line-strong);
+  box-shadow: none;
+}
+#vis.must:placeholder-shown {
+  background: #c8f0c0;
+  border-color: #4f9e46;
+  box-shadow: inset 0 0 0 1px rgba(79, 158, 70, 0.35);
+}
+body.is-night #vis.must:placeholder-shown {
+  background: #b7e3ae;
+  border-color: #3f8a37;
+  box-shadow: inset 0 0 0 1px rgba(63, 138, 55, 0.4);
+}
+
 /* 两张卡片也用同一个淡绿黄，整页一个色调，靠边框和阴影分隔 */
 body.page-landing .card {
   background: #eef2d4;

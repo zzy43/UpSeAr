@@ -22,6 +22,7 @@
 <meta name="apple-mobile-web-app-title" content="圆通-全天候">
 <link rel="stylesheet" href="css/style.css?v=65">
 <link rel="stylesheet" href="css/landing.css?v=65">
+<link rel="stylesheet" href="css/feedback.css?v=65">
 </head>
 <body class="page-landing">
 
@@ -71,12 +72,8 @@
           <button type="button" data-v="C" class="on">C 类（B757、ARJ）</button>
           <button type="button" data-v="D">D 类（B767、B777）</button>
         </div>
-        <span class="hint" style="margin:0">VOR/DME 的 VIS 标准按机型不同</span>
+        <button type="button" class="tag on" id="r5Btn">运规 R5（R5-C0009）</button>
       </div>
-    </div>
-
-    <div class="field">
-      <button type="button" class="tag on" id="r5Btn">运规 R5（R5-C0009）</button>
       <div class="hint" id="r5Hint">运规 R5-C0009：公司放行及运行，MDA(H)/DA(H) 增加 100 英尺，RVR/VIS 增加 600 米。</div>
     </div>
 
@@ -88,7 +85,7 @@
         <p id="stdText">先选机场、跑道和进近程序。</p>
         <p id="stdR5" hidden></p>
         <p id="stdNpa" hidden></p>
-        <p class="rule-note">非精密进近（VOR/DME 等只有 MDA 的程序）：DDA = MDA + 50 ft。</p>
+        <p class="rule-note" id="npaNote" hidden>非精密进近（VOR/DME 等只有 MDA 的程序）：DDA = MDA + 50 ft。</p>
       </div>
     </div>
 
@@ -96,11 +93,11 @@
       <div class="row2">
         <div>
           <label for="rvr" class="sub-label">实际 RVR（米）</label>
-          <input type="number" id="rvr" min="0" step="25">
+          <input type="number" id="rvr" min="0" step="25" placeholder=" ">
         </div>
         <div>
           <label for="vis" class="sub-label">实际 VIS（米）</label>
-          <input type="number" id="vis" min="0" step="50">
+          <input type="number" id="vis" min="0" step="50" placeholder=" ">
         </div>
       </div>
       <div class="hint">有 RVR 标准时按 RVR 判；RVR 不工作或未填时，可用 VIS 代替（需不低于该程序的 VIS 标准）。</div>
@@ -131,7 +128,7 @@
   </section>
 </div>
 
-<script src="js/landing.js?v=65"></script>
+<script src="js/landing.js?v=65"></script><script src="js/oss-config.js?v=86"></script><script src="js/feedback.js?v=65"></script>
 <script>
   // PWA：装到主屏后整站离线可用（https / localhost 才生效，file:// 下自动跳过）
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {

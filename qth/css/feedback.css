@@ -1,0 +1,211 @@
+/* 需求反馈：右上角带圈感叹号 + 弹窗 */
+
+.help-btn {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  background: #fffdf7;
+  color: var(--accent);
+  font-family: inherit;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+.help-btn:hover { background: var(--accent); color: #fff; }
+body.is-night .help-btn { background: #e8edf6; }
+
+/* 遮罩 + 面板 */
+.fb-mask {
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 24, 12, 0.42);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 99;
+}
+.fb-panel {
+  width: 100%;
+  max-width: 720px;
+  max-height: 88vh;
+  overflow: auto;
+  background: var(--panel);
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 18px 20px 16px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
+}
+body.page-landing .fb-panel { background: #eef2d4; }
+.fb-panel h3 {
+  margin: 0 0 10px;
+  font-size: 27px;
+  color: var(--text);
+}
+.fb-tip {
+  font-size: 21px;
+  line-height: 1.6;
+  color: var(--faint);
+  margin-bottom: 10px;
+}
+.fb-count { margin-top: 10px; margin-bottom: 0; }
+.fb-panel textarea {
+  width: 100%;
+  min-height: 170px;
+  padding: 12px 14px;
+  font-family: inherit;
+  font-size: 24px;
+  line-height: 1.6;
+  color: var(--text);
+  background: #fffdf7;
+  border: 2px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  outline: none;
+  resize: vertical;
+}
+.fb-panel textarea:focus { border-color: var(--accent); }
+.fb-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.fb-state { font-size: 21px; font-weight: 700; }
+.fb-state.ok { color: var(--ok); }
+.fb-state.bad { color: var(--bad); }
+.fb-state.warn { color: var(--warn); }
+
+/* 提交后展示用户填写的内容 */
+.fb-json-wrap { margin-top: 14px; }
+.fb-json {
+  margin: 0;
+  padding: 12px 14px;
+  max-height: 320px;
+  overflow: auto;
+  background: #fffdf7;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  font-family: ui-monospace, Consolas, "Courier New", monospace;
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--text);
+  white-space: pre-wrap;
+  word-break: break-word;
+  -webkit-user-select: text;
+  user-select: text;
+}
+body.is-night .fb-json { background: #eef2f9; }
+
+/* ---------- 需求记录列表 ---------- */
+.fb-list {
+  max-height: 46vh;
+  overflow: auto;
+  margin-bottom: 12px;
+  padding-right: 4px;
+}
+.fb-list-head {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--faint);
+  margin: 6px 0 6px;
+}
+.fb-empty {
+  padding: 14px 12px;
+  font-size: 21px;
+  color: var(--faint);
+  background: var(--panel-2);
+  border-radius: var(--radius-sm);
+}
+.fb-empty.bad { color: var(--bad); }
+
+.fb-item {
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: 10px;
+  background: rgba(255, 253, 247, 0.72);
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.fb-item.done {
+  border-left-color: var(--ok);
+  opacity: 0.78;
+}
+.fb-item.pending { border-left-color: var(--warn); }
+
+.fb-item-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+.fb-time { font-size: 20px; color: var(--faint); font-variant-numeric: tabular-nums; }
+.fb-page {
+  font-size: 19px;
+  padding: 1px 10px;
+  border-radius: 999px;
+  background: var(--panel-2);
+  color: var(--dim);
+}
+.fb-badge {
+  font-size: 19px;
+  font-weight: 700;
+  padding: 1px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--warn);
+  color: var(--warn);
+}
+.fb-badge.done { border-color: var(--ok); color: var(--ok); }
+
+.fb-item-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 24px;
+  line-height: 1.55;
+  color: var(--text);
+  white-space: pre-wrap;
+  word-break: break-word;
+  -webkit-user-select: text;
+  user-select: text;
+}
+.fb-item.done .fb-item-text {
+  color: var(--faint);
+  text-decoration: line-through;
+}
+.fb-item-btns {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+/* 小图标按钮：勾 = 完成，叉 = 删除（不显眼、无颜色） */
+.fb-mark {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--faint);
+  font-family: inherit;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+.fb-mark:hover { color: var(--dim); }
+.fb-mark.ok.on { color: var(--dim); font-weight: 900; }
+.fb-mark:disabled { opacity: 0.4; }
+.fb-mini {
+  padding: 4px 16px !important;
+  font-size: 20px !important;
+  border-radius: 999px;
+}
+body.is-night .fb-item { background: rgba(232, 237, 246, 0.72); }
