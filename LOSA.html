@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>LOSA|TEM|观察模版</title>
+<meta name="theme-color" content="#1976d2">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="LOSA观察">
+<link rel="manifest" href="./manifest.json">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: "PingFang SC","Microsoft YaHei",sans-serif; padding:14px; color:#333; font-size:25.5px; }
+.form-box { background:#fff; border-radius:10px; padding:16px 14px; margin-bottom:18px; box-shadow:0 1px 4px rgba(0,0,0,.08); }
+.form-box label { display:block; font-size:24px; font-weight:600; margin-bottom:6px; color:#555; }
+.form-box textarea { width:100%; border:1px solid #d0d0d0; border-radius:8px; padding:12px 14px; font-size:24px; line-height:1.6; font-family:inherit; resize:vertical; outline:none; min-height:44px; }
+.form-box textarea:focus { border-color:#1976d2; }
+.form-box select { border:1px solid #d0d0d0; border-radius:8px; padding:10px 14px; font-size:25.5px; font-family:inherit; outline:none; background:#fff; }
+.hdr-row { display:flex; gap:12px; margin-bottom:12px; }
+.hdr-row:last-child { margin-bottom:0; }
+.hdr-field { flex:1 1 0; min-width:0; }
+.hdr-field label { display:block; font-size:19px; font-weight:600; color:#555; margin-bottom:6px; }
+.hdr-field input { width:100%; border:1px solid #d0d0d0; border-radius:8px; padding:10px 12px; min-height:44px; font-size:17px; font-family:inherit; color:#333; background:#fff; outline:none; }
+.hdr-field input:focus { border-color:#1976d2; }
+@media (max-width:640px){ .hdr-row { flex-direction:column; gap:10px; } }
+.form-row { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+.form-row label { margin-bottom:0; }
+.form-box .mgmt-box { display:none; margin-top:12px; }
+.form-box .mgmt-box.show { display:block; }
+.section { border-radius:10px; padding:16px 14px; margin-bottom:18px; }
+.section-title { font-size:28.5px; font-weight:700; padding-bottom:10px; margin-bottom:12px; border-bottom:2px solid rgba(0,0,0,.1); }
+.sub-cat { font-size:22.5px; font-weight:600; color:#666; padding:10px 0 6px 4px; border-bottom:1px solid rgba(0,0,0,.06); margin:8px 0 6px; }
+.tag-group { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:6px; }
+.tag { display:inline-block; font-size:22.5px; line-height:1.35; padding:8px 14px; border-radius:16px; border:1px solid rgba(0,0,0,.12); background:#fff; color:#333; cursor:pointer; user-select:none; -webkit-user-select:none; }
+.tag.sel { background:#1976d2; color:#fff; border-color:#1976d2; }
+.btn-add { display:block; width:100%; margin:0 0 18px; padding:14px 12px; font-size:25.5px; font-weight:600; font-family:inherit; color:#1976d2; background:#fff; border:1.5px dashed #90caf9; border-radius:10px; cursor:pointer; transition:background .2s,border-color .2s; }
+.btn-add:hover { background:#e3f2fd; border-color:#1976d2; }
+.btn-add:active { background:#bbdefb; }
+.form-box-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+.form-box-head .form-index { font-size:24px; font-weight:700; color:#1976d2; }
+.btn-remove { font-size:21px; font-family:inherit; color:#d32f2f; background:transparent; border:1px solid #ef9a9a; border-radius:8px; padding:5px 12px; cursor:pointer; }
+.btn-remove:hover { background:#ffebee; }
+</style>
+</head>
+<body>
+
+<div class="form-box" id="headerBox">
+  <div class="hdr-row">
+    <div class="hdr-field">
+      <label>航班日期</label>
+      <input type="date" id="hdDate">
+    </div>
+    <div class="hdr-field">
+      <label>航班号</label>
+      <input type="text" id="hdFlightNo" value="YG" placeholder="">
+    </div>
+    <div class="hdr-field">
+      <label>航线观察员</label>
+      <input type="text" id="hdObserver" placeholder="">
+    </div>
+  </div>
+  <div class="hdr-row">
+    <div class="hdr-field">
+      <label>机长资质</label>
+      <input type="text" id="hdCapQual" placeholder="例如：C1">
+    </div>
+    <div class="hdr-field">
+      <label>副驾驶1资质</label>
+      <input type="text" id="hdFo1Qual" placeholder="例如：F1">
+    </div>
+    <div class="hdr-field">
+      <label>副驾驶2资质</label>
+      <input type="text" id="hdFo2Qual" placeholder="例如：S2">
+    </div>
+  </div>
+</div>
+
+<div id="descContainer">
+
+<div class="form-box">
+  <div class="form-box-head">
+    <span class="form-index">观察描述 1</span>
+    <button type="button" class="btn-remove" style="display:none;">删除</button>
+  </div>
+  <div class="form-row">
+    <label style="min-width:130px;">观察描述</label>
+    <textarea class="descInput" rows="4" placeholder="请输入观察描述..."></textarea>
+  </div>
+  <div class="form-row" style="align-items:flex-start;">
+    <label style="min-width:130px;padding-top:6px;">飞行阶段</label>
+    <div class="tag-group phaseGroup">
+      <span class="tag" data-phase="准备">准备</span>
+      <span class="tag" data-phase="推出">推出</span>
+      <span class="tag" data-phase="滑出">滑出</span>
+      <span class="tag" data-phase="起飞">起飞</span>
+      <span class="tag" data-phase="爬升">爬升</span>
+      <span class="tag" data-phase="巡航">巡航</span>
+      <span class="tag" data-phase="下降">下降</span>
+      <span class="tag" data-phase="进场">进场</span>
+      <span class="tag" data-phase="进近">进近</span>
+      <span class="tag" data-phase="着陆">着陆</span>
+      <span class="tag" data-phase="滑入">滑入</span>
+      <span class="tag" data-phase="离机">离机</span>
+    </div>
+  </div>
+  <div class="form-row">
+    <label style="min-width:130px;">是否管理</label>
+    <select class="mgmtSelect">
+      <option value="否">否</option>
+      <option value="是">是</option>
+    </select>
+  </div>
+  <div class="mgmt-box mgmtBox">
+    <label>管理措施</label>
+    <textarea class="mgmtInput" rows="3" placeholder="请输入管理措施..."></textarea>
+  </div>
+</div>
+
+</div>
+
+<button type="button" class="btn-add" id="addDescBtn">＋ 新增观察描述</button>
+
+<div class="section" style="background:#e3f2fd;">
+<div class="section-title">威胁分类</div>
+
+<div class="sub-cat">ATC带来的威胁</div>
+<div class="tag-group">
+<span class="tag" data-code="T1.1">频繁变化的指令</span>
+<span class="tag" data-code="T1.2">指令内容多</span>
+<span class="tag" data-code="T1.3">指令内容不合理</span>
+<span class="tag" data-code="T1.4">偏晚的改变指令</span>
+<span class="tag" data-code="T1.5">语言沟通问题/使用非标准术语</span>
+<span class="tag" data-code="T1.6">ATC的差错</span>
+<span class="tag" data-code="T1.7">跑道变更</span>
+<span class="tag" data-code="T1.8">相似航班号</span>
+<span class="tag" data-code="T1.9">指令时机不合理</span>
+</div>
+
+<div class="sub-cat">机场威胁</div>
+<div class="tag-group">
+<span class="tag" data-code="T2.1">机场修建(改扩建)</span>
+<span class="tag" data-code="T2.2">标志/标识看不清</span>
+<span class="tag" data-code="T2.3">跑道或滑行道关闭</span>
+<span class="tag" data-code="T2.4">不良的刹车效应/污染的跑道/滑行道</span>
+<span class="tag" data-code="T2.5">导航台不工作</span>
+<span class="tag" data-code="T2.6">复杂的进离场程序</span>
+<span class="tag" data-code="T2.7">起降阶段跑道不可用</span>
+<span class="tag" data-code="T2.8">不合适的发动机启动条</span>
+</div>
+
+<div class="sub-cat">环境运行压力威胁</div>
+<div class="tag-group">
+<span class="tag" data-code="T3.1">地形</span>
+<span class="tag" data-code="T3.2">交通流量</span>
+</div>
+
+<div class="sub-cat">天气威胁</div>
+<div class="tag-group">
+<span class="tag" data-code="T4.1">雷暴</span>
+<span class="tag" data-code="T4.2">降水</span>
+<span class="tag" data-code="T4.3">低能见/低云</span>
+<span class="tag" data-code="T4.4">高空颠簸</span>
+<span class="tag" data-code="T4.5">不稳定气流</span>
+<span class="tag" data-code="T4.6">低温</span>
+<span class="tag" data-code="T4.7">高温</span>
+<span class="tag" data-code="T4.8">过低的大气气压</span>
+<span class="tag" data-code="T4.9">过高的大气气压</span>
+</div>
+
+<div class="sub-cat">外来物威胁</div>
+<div class="tag-group">
+<span class="tag" data-code="T5.1">鸟群</span>
+<span class="tag" data-code="T5.2">无人机、气球等空中漂浮物</span>
+</div>
+
+<div class="sub-cat">航空器的威胁</div>
+<div class="tag-group">
+<span class="tag" data-code="T6.1">航空器故障</span>
+<span class="tag" data-code="T6.2">有运行限制的MEL项目</span>
+<span class="tag" data-code="T6.3">有运行限制的CDL项目</span>
+<span class="tag" data-code="T6.4">设备有问题或反常</span>
+</div>
+
+<div class="sub-cat">运行压力威胁</div>
+<div class="tag-group">
+<span class="tag" data-code="T7.1">准点的压力</span>
+<span class="tag" data-code="T7.2">延误</span>
+<span class="tag" data-code="T7.3">航空器或机组晚到</span>
+<span class="tag" data-code="T7.4">机组人员任务中断</span>
+<span class="tag" data-code="T7.5">不熟悉的机场/飞机构型</span>
+</div>
+
+<div class="sub-cat">货舱威胁</div>
+<div class="tag-group">
+<span class="tag" data-code="T8.1">货舱事件</span>
+<span class="tag" data-code="T8.2">危险品/锂电池</span>
+</div>
+
+<div class="sub-cat">签派或文书工作威胁</div>
+<div class="tag-group">
+<span class="tag" data-code="T9.1">舱单错误</span>
+<span class="tag" data-code="T9.2">飞行计划错误</span>
+<span class="tag" data-code="T9.3">较晚的文件变更</span>
+<span class="tag" data-code="T9.4">特殊货物通知单不规范/签署错误</span>
+<span class="tag" data-code="T9.5">机组排班事件</span>
+<span class="tag" data-code="T9.6">其他飞行必备文件</span>
+<span class="tag" data-code="T9.7">导航数据库未及时更新/EFB</span>
+<span class="tag" data-code="T9.8">签派讲解不到位</span>
+</div>
+
+<div class="sub-cat">地面维修威胁</div>
+<div class="tag-group">
+<span class="tag" data-code="T10.1">飞机地面维修</span>
+<span class="tag" data-code="T10.2">维修差错</span>
+<span class="tag" data-code="T10.3">有问题的维修记录本</span>
+</div>
+
+<div class="sub-cat">地面或停机坪威胁</div>
+<div class="tag-group">
+<span class="tag" data-code="T11.1">装载事件</span>
+<span class="tag" data-code="T11.2">加油错误</span>
+<span class="tag" data-code="T11.3">不恰当的地面支持</span>
+<span class="tag" data-code="T11.4">地面服务设备问题</span>
+</div>
+
+<div class="sub-cat">组织管理威胁</div>
+<div class="tag-group">
+<span class="tag" data-code="T12.1">政策实施不恰当(方法、时机)</span>
+<span class="tag" data-code="T12.2">政策不合理</span>
+</div>
+</div>
+
+<div class="section" style="background:#fff3e0;">
+<div class="section-title">差错分类</div>
+
+<div class="sub-cat">自动化方面的差错</div>
+<div class="tag-group">
+<span class="tag" data-code="E1.1">垂直方向差错(设置/模式选择/输入(设置高度表))</span>
+<span class="tag" data-code="E1.2">速度差错(设置/模式选择/输入)</span>
+<span class="tag" data-code="E1.3">水平方向差错(设置/模式选择/输入)</span>
+<span class="tag" data-code="E1.4">自动油门差错(设置/模式选择/输入)</span>
+</div>
+
+<div class="sub-cat">人工操纵差错</div>
+<div class="tag-group">
+<span class="tag" data-code="E2.1">人工飞行中垂直的、横向的以及速度偏离</span>
+<span class="tag" data-code="E2.2">有意的进近偏离</span>
+<span class="tag" data-code="E2.3">不正确的设置襟翼</span>
+<span class="tag" data-code="E2.4">不正确的设置减速板</span>
+<span class="tag" data-code="E2.5">不正确的设置自动刹车</span>
+<span class="tag" data-code="E2.6">不正确的设置发动机反推</span>
+<span class="tag" data-code="E2.7">不正确的设置推力</span>
+<span class="tag" data-code="E2.8">不正确的设置配平</span>
+<span class="tag" data-code="E2.9">不正确的设置起落架</span>
+<span class="tag" data-code="E2.10">不正确的EGPWS改出</span>
+<span class="tag" data-code="E2.11">不正确的Wind Shear改出</span>
+<span class="tag" data-code="E2.12">不正确的TCAS改出</span>
+<span class="tag" data-code="E2.13">不正确使用人工刹车</span>
+</div>
+
+<div class="sub-cat">系统、无线电、设备使用差错</div>
+<div class="tag-group">
+<span class="tag" data-code="E3.1">不正确的设置气源系统</span>
+<span class="tag" data-code="E3.2">不正确的设置燃油系统</span>
+<span class="tag" data-code="E3.3">不正确的设置防冰排雨</span>
+<span class="tag" data-code="E3.4">不正确的设置音频控制面板</span>
+<span class="tag" data-code="E3.5">不正确的使用雷达模式</span>
+<span class="tag" data-code="E3.6">不正确的设置EGPWS</span>
+<span class="tag" data-code="E3.7">不合理的设置仪表显示(EFIS)</span>
+<span class="tag" data-code="E3.8">不合理的设置灯光</span>
+</div>
+
+<div class="sub-cat">滑行差错</div>
+<div class="tag-group">
+<span class="tag" data-code="E4.1">意图转向错误的滑行道</span>
+<span class="tag" data-code="E4.2">意图转向错误的跑道</span>
+<span class="tag" data-code="E4.3">滑过等待线</span>
+<span class="tag" data-code="E4.4">滑行超速</span>
+</div>
+
+<div class="sub-cat">简令差错</div>
+<div class="tag-group">
+<span class="tag" data-code="E5.1">遗漏机组协作</span>
+<span class="tag" data-code="E5.2">遗漏起飞简令</span>
+<span class="tag" data-code="E5.3">遗漏补充起飞简令</span>
+<span class="tag" data-code="E5.4">遗漏进近简令</span>
+<span class="tag" data-code="E5.5">遗漏交接简令</span>
+<span class="tag" data-code="E5.6">不完整的简令</span>
+<span class="tag" data-code="E5.7">错误的简令内容</span>
+<span class="tag" data-code="E5.8">没有互动式的简令</span>
+</div>
+
+<div class="sub-cat">标准喊话差错</div>
+<div class="tag-group">
+<span class="tag" data-code="E6.1">自动飞行系统模式喊话</span>
+<span class="tag" data-code="E6.2">飞机构型喊话</span>
+<span class="tag" data-code="E6.3">飞机状态喊话(高度、速度、航向、位置)</span>
+<span class="tag" data-code="E6.4">偏差喊话</span>
+</div>
+
+<div class="sub-cat">检查单差错</div>
+<div class="tag-group">
+<span class="tag" data-code="E7.1">背诵检查单(检查单程序执行类错误)</span>
+<span class="tag" data-code="E7.2">使用错误的响应方式(检查单程序执行类错误)</span>
+<span class="tag" data-code="E7.3">自己执行检查单，对方没有回答(检查单程序执行错误)</span>
+<span class="tag" data-code="E7.4">不完整的检查单执行(检查单程序执行类错误)</span>
+<span class="tag" data-code="E7.5">检查单完成时未喊"完成"(检查单程序执行类错误)</span>
+<span class="tag" data-code="E7.6">在PF/机长未要求的情况下自己执行检查单(检查单执行时机不当类)</span>
+<span class="tag" data-code="E7.7">检查单执行晚/早(检查单执行时机不当类)</span>
+<span class="tag" data-code="E7.8">在繁忙时执行检查单(检查单执行时机不当类)</span>
+<span class="tag" data-code="E7.9">遗漏检查单</span>
+<span class="tag" data-code="E7.10">执行错误的检查单</span>
+</div>
+
+<div class="sub-cat">交叉检查差错</div>
+<div class="tag-group">
+<span class="tag" data-code="E8.1">未能交叉证实飞行模式</span>
+<span class="tag" data-code="E8.2">未能交叉证实MCP/FCU/高度表的设定</span>
+<span class="tag" data-code="E8.3">未能交叉证实FMC/MCDU/无线电面板的输入</span>
+<span class="tag" data-code="E8.4">未能交叉检查油单油量/总油量/起飞性能数据输入与计算</span>
+<span class="tag" data-code="E8.5">未交叉检查电门、旋钮、手柄的操作</span>
+</div>
+
+<div class="sub-cat">文件工作差错</div>
+<div class="tag-group">
+<span class="tag" data-code="E9.1">飞行计划认读差错</span>
+<span class="tag" data-code="E9.2">飞机计划输入差错</span>
+<span class="tag" data-code="E9.3">航行通告认读差错</span>
+<span class="tag" data-code="E9.4">遗漏航行通告信息</span>
+<span class="tag" data-code="E9.5">气象资料认读差错</span>
+<span class="tag" data-code="E9.6">遗漏气象资料信息</span>
+<span class="tag" data-code="E9.7">未检查飞机记录簿(飞机记录簿差错)</span>
+<span class="tag" data-code="E9.8">不正确的记录本录入(飞机记录簿差错)</span>
+<span class="tag" data-code="E9.9">不正确的执行MEL程序</span>
+<span class="tag" data-code="E9.10">载重平衡认读差错</span>
+<span class="tag" data-code="E9.11">载重平衡输入差错</span>
+<span class="tag" data-code="E9.12">燃油信息计算差错</span>
+<span class="tag" data-code="E9.13">燃油信息输入差错</span>
+<span class="tag" data-code="E9.14">性能计算认读差错</span>
+<span class="tag" data-code="E9.15">性能计算输入差错</span>
+<span class="tag" data-code="E9.16">ATIS认读差错</span>
+<span class="tag" data-code="E9.17">放行许可认读差错</span>
+<span class="tag" data-code="E9.18">放行许可输入差错</span>
+<span class="tag" data-code="E9.19">不正确的或遗漏国际航班通关资料</span>
+<span class="tag" data-code="E9.20">证照、装具不齐全或不在有效期</span>
+<span class="tag" data-code="E9.21">航图认读、使用差错</span>
+<span class="tag" data-code="E9.22">EFB未更新、EFB电量不足</span>
+</div>
+
+<div class="sub-cat">任务责任区差错</div>
+<div class="tag-group">
+<span class="tag" data-code="E10.1">PF/PM责任区差错</span>
+<span class="tag" data-code="E10.2">左/右座驾驶责任区差错</span>
+<span class="tag" data-code="E10.3">机长/副驾驶责任区差错</span>
+</div>
+
+<div class="sub-cat">程序执行错忘漏</div>
+<div class="tag-group">
+<span class="tag" data-code="E11.1">执行程序时机错误</span>
+<span class="tag" data-code="E11.2">漏忘程序项目</span>
+<span class="tag" data-code="E11.3">错误执行程序动作</span>
+</div>
+
+<div class="sub-cat">机组与外部沟通交流差错</div>
+<div class="tag-group">
+<span class="tag" data-code="E12.1">遗漏ATC呼叫(机组与ATC)</span>
+<span class="tag" data-code="E12.2">错误理解指令(机组与ATC)</span>
+<span class="tag" data-code="E12.3">错误复诵(机组与ATC)</span>
+<span class="tag" data-code="E12.4">非标准的术语(机组与ATC)</span>
+<span class="tag" data-code="E12.5">未守听121.5(机组与ATC)</span>
+<span class="tag" data-code="E12.6">机组与机务之间的沟通差错</span>
+<span class="tag" data-code="E12.7">机组与签派之间的沟通差错</span>
+<span class="tag" data-code="E12.8">机组间未证实ATC的指令</span>
+</div>
+
+<div class="sub-cat">机组内沟通交流差错</div>
+<div class="tag-group">
+<span class="tag" data-code="E13.1">错误传达ATC指令</span>
+<span class="tag" data-code="E13.2">飞行关键阶段进行非必要的交谈</span>
+<span class="tag" data-code="E13.3">非标准的术语/表达不清</span>
+<span class="tag" data-code="E13.4">机组间缺乏为建立共同情境意识的信息交流</span>
+</div>
+</div>
+
+<div class="section" style="background:#e8f5e9;">
+<div class="section-title">非期望的航空器状态（UAS）分类</div>
+
+<div class="sub-cat">构型状态</div>
+<div class="tag-group">
+<span class="tag" data-code="U1.1">不正确的航空器构型</span>
+<span class="tag" data-code="U1.2">不正确的航空器系统状态</span>
+<span class="tag" data-code="U1.3">不正确的自动设备状态</span>
+<span class="tag" data-code="U1.4">不正确的发动机状态</span>
+</div>
+
+<div class="sub-cat">地面状态</div>
+<div class="tag-group">
+<span class="tag" data-code="U2.1">误推出/推出冲突</span>
+<span class="tag" data-code="U2.2">用错滑行道/停机坪</span>
+<span class="tag" data-code="U2.3">滑行道/停机坪侵入</span>
+<span class="tag" data-code="U2.4">滑过等待点</span>
+<span class="tag" data-code="U2.5">用错跑道</span>
+<span class="tag" data-code="U2.6">跑道侵入</span>
+<span class="tag" data-code="U2.7">错误的停机位</span>
+<span class="tag" data-code="U2.8">滑行超速</span>
+</div>
+
+<div class="sub-cat">非期望的航空器状态处置</div>
+<div class="tag-group">
+<span class="tag" data-code="U3.1">垂直偏差</span>
+<span class="tag" data-code="U3.2">横向偏差</span>
+<span class="tag" data-code="U3.3">速度偏差</span>
+<span class="tag" data-code="U3.4">坡度过大</span>
+<span class="tag" data-code="U3.5">俯仰过大</span>
+</div>
+
+<div class="sub-cat">进近/着陆状态</div>
+<div class="tag-group">
+<span class="tag" data-code="U4.1">偏离下滑道或FMS航路的垂直轨迹</span>
+<span class="tag" data-code="U4.2">偏离航向道或FMS的水平轨迹</span>
+<span class="tag" data-code="U4.3">不稳定进近</span>
+<span class="tag" data-code="U4.4">不稳定进近并继续着陆</span>
+<span class="tag" data-code="U4.5">长平飘</span>
+<span class="tag" data-code="U4.6">接地距离短</span>
+<span class="tag" data-code="U4.7">偏离中心线着陆</span>
+<span class="tag" data-code="U4.8">在接地区外着陆</span>
+<span class="tag" data-code="U4.9">着陆载荷大(重着陆)</span>
+<span class="tag" data-code="U4.10">穿越危险天气/未经批准的空域</span>
+<span class="tag" data-code="U4.11">超出航空器限制进行操纵</span>
+</div>
+
+<div class="sub-cat">其他</div>
+<div class="tag-group">
+<span class="tag" data-code="U5.1">其他非期望状态</span>
+<span class="tag" data-code="U5.2">航班额外消耗燃油量超过计划不可预期燃油量</span>
+</div>
+</div>
+
+<script>
+document.querySelectorAll('.section .tag').forEach(function(el){
+  el.addEventListener('click', function(){
+    this.classList.toggle('sel');
+  });
+});
+
+var descContainer = document.getElementById('descContainer');
+var addDescBtn = document.getElementById('addDescBtn');
+
+/* 飞行阶段标签点击（事件委托，支持动态新增的表单） */
+descContainer.addEventListener('click', function(e){
+  var tag = e.target.closest('.phaseGroup .tag');
+  if (tag) { tag.classList.toggle('sel'); return; }
+  if (e.target.classList.contains('btn-remove')) {
+    e.target.closest('.form-box').remove();
+    renumberForms();
+  }
+});
+
+/* 是否管理切换（事件委托） */
+descContainer.addEventListener('change', function(e){
+  if (e.target.classList.contains('mgmtSelect')) {
+    var box = e.target.closest('.form-box').querySelector('.mgmtBox');
+    box.classList.toggle('show', e.target.value === '是');
+  }
+});
+
+/* ---------- 观察描述表单：填充 / 新增 / 编号 ---------- */
+function fillBox(box, data){
+  data = data || {};
+  box.querySelector('.descInput').value = data.desc || '';
+  box.querySelector('.mgmtInput').value = data.mgmtText || '';
+  var sel = box.querySelector('.mgmtSelect');
+  sel.value = data.mgmt || '否';
+  box.querySelector('.mgmtBox').classList.toggle('show', sel.value === '是');
+  var phases = data.phases || [];
+  box.querySelectorAll('.phaseGroup .tag').forEach(function(t){
+    t.classList.toggle('sel', phases.indexOf(t.getAttribute('data-phase')) > -1);
+  });
+}
+
+function createFormBox(data){
+  var template = descContainer.querySelector('.form-box');
+  var clone = template.cloneNode(true);
+  fillBox(clone, data);
+  clone.querySelector('.btn-remove').style.display = '';
+  descContainer.appendChild(clone);
+  renumberForms();
+  return clone;
+}
+
+/* 新增观察描述 */
+addDescBtn.addEventListener('click', function(){
+  var clone = createFormBox();
+  clone.querySelector('.descInput').focus();
+  clone.scrollIntoView({ behavior: 'smooth', block: 'center' });
+});
+
+/* 重新编号 & 控制删除按钮显示 */
+function renumberForms(){
+  var boxes = descContainer.querySelectorAll('.form-box');
+  boxes.forEach(function(box, i){
+    box.querySelector('.form-index').textContent = '观察描述 ' + (i + 1);
+    box.querySelector('.btn-remove').style.display = boxes.length > 1 ? '' : 'none';
+  });
+}
+
+/* ---------- 表头：日期默认今天 ---------- */
+function setDefaultDate(){
+  var d = document.getElementById('hdDate');
+  if (d && !d.value) {
+    var t = new Date();
+    d.value = t.getFullYear() + '-' +
+      String(t.getMonth() + 1).padStart(2, '0') + '-' +
+      String(t.getDate()).padStart(2, '0');
+  }
+}
+
+/* ---------- 草稿自动保存（离线可用，关闭后再打开内容还在） ---------- */
+var SAVE_KEY = 'losa_form_state_v1';
+var saveTimer = null;
+
+function collectState(){
+  var header = {};
+  document.querySelectorAll('#headerBox input').forEach(function(el){
+    header[el.id] = el.value;
+  });
+  var boxes = [];
+  descContainer.querySelectorAll('.form-box').forEach(function(box){
+    boxes.push({
+      desc: box.querySelector('.descInput').value,
+      phases: Array.prototype.map.call(
+        box.querySelectorAll('.phaseGroup .tag.sel'),
+        function(t){ return t.getAttribute('data-phase'); }
+      ),
+      mgmt: box.querySelector('.mgmtSelect').value,
+      mgmtText: box.querySelector('.mgmtInput').value
+    });
+  });
+  return { header: header, boxes: boxes };
+}
+
+function saveNow(){
+  try { localStorage.setItem(SAVE_KEY, JSON.stringify(collectState())); } catch (e) {}
+}
+function scheduleSave(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveNow, 500);
+}
+document.addEventListener('input', scheduleSave);
+document.addEventListener('change', scheduleSave);
+
+function restoreState(){
+  var saved = null;
+  try { saved = JSON.parse(localStorage.getItem(SAVE_KEY) || 'null'); } catch (e) { saved = null; }
+  if (!saved) return;
+  if (saved.header) {
+    Object.keys(saved.header).forEach(function(id){
+      var el = document.getElementById(id);
+      if (el) el.value = saved.header[id];
+    });
+  }
+  if (saved.boxes && saved.boxes.length) {
+    fillBox(descContainer.querySelector('.form-box'), saved.boxes[0]);
+    for (var i = 1; i < saved.boxes.length; i++) createFormBox(saved.boxes[i]);
+  }
+  renumberForms();
+}
+
+restoreState();
+setDefaultDate();
+renumberForms();
+
+/* ---------- 离线 PWA：注册 Service Worker ---------- */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('./sw.js').catch(function(){});
+  });
+}
+</script>
+
+</body>
+</html>
