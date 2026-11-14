@@ -1,0 +1,73 @@
+/* LOSA|TEM|观察模版 —— 样式（从 LOSA模版V3.html 拆出）*/
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: "PingFang SC","Microsoft YaHei",sans-serif; padding:14px; color:#333; font-size:25.5px; }
+.form-box { background:#fff; border-radius:10px; padding:16px 14px; margin-bottom:18px; box-shadow:0 1px 4px rgba(0,0,0,.08); }
+.form-box label { display:block; font-size:24px; font-weight:600; margin-bottom:6px; color:#555; }
+.form-box textarea { width:100%; border:1px solid #d0d0d0; border-radius:8px; padding:12px 14px; font-size:24px; line-height:1.6; font-family:inherit; resize:vertical; outline:none; min-height:44px; }
+.form-box textarea:focus { border-color:#1976d2; }
+.form-box select { border:1px solid #d0d0d0; border-radius:8px; padding:10px 14px; font-size:25.5px; font-family:inherit; outline:none; background:#fff; }
+.hdr-row { display:flex; gap:12px; margin-bottom:12px; }
+.hdr-row:last-child { margin-bottom:0; }
+.hdr-field { flex:1 1 0; min-width:0; max-width:100%; overflow:hidden; }
+.hdr-field label { display:block; font-size:19px; font-weight:600; color:#555; margin-bottom:6px; }
+.hdr-field input { display:block; width:100%; max-width:100%; min-width:0; border:1px solid #d0d0d0; border-radius:8px; padding:10px 12px; min-height:44px; font-size:17px; font-family:inherit; color:#333; background:#fff; outline:none; -webkit-appearance:none; appearance:none; -webkit-box-sizing:border-box; box-sizing:border-box; }
+.hdr-field input:focus { border-color:#1976d2; }
+/* iOS Safari：日期框默认外观会撑宽，重置后按容器宽度显示 */
+.hdr-field input[type="date"] { -webkit-appearance:none; appearance:none; width:100%; max-width:100%; min-width:0; line-height:1.2; text-align:left; }
+.hdr-field input[type="date"]::-webkit-date-and-time-value { text-align:left; margin:0; }
+.hdr-field input[type="date"]::-webkit-datetime-edit { padding:0; }
+.hdr-field input[type="date"]::-webkit-calendar-picker-indicator { margin:0; padding:0; opacity:.6; }
+@media (max-width:640px){ .hdr-row { flex-direction:column; gap:10px; } }
+.form-row { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+.form-row label { margin-bottom:0; }
+.form-box .mgmt-box { display:none; margin-top:12px; }
+.form-box .mgmt-box.show { display:block; }
+.section { border-radius:10px; padding:16px 14px; margin-bottom:18px; }
+.section-title { font-size:28.5px; font-weight:700; padding-bottom:10px; margin-bottom:12px; border-bottom:2px solid rgba(0,0,0,.1); }
+.sub-cat { font-size:22.5px; font-weight:600; color:#666; padding:10px 0 6px 4px; border-bottom:1px solid rgba(0,0,0,.06); margin:8px 0 6px; }
+.tag-group { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:6px; }
+.tag { display:inline-block; font-size:22.5px; line-height:1.35; padding:8px 14px; border-radius:16px; border:1px solid rgba(0,0,0,.12); background:#fff; color:#333; cursor:pointer; user-select:none; -webkit-user-select:none; }
+.tag.sel { background:#1976d2; color:#fff; border-color:#1976d2; }
+.btn-add { display:block; width:100%; margin:0 0 18px; padding:14px 12px; font-size:25.5px; font-weight:600; font-family:inherit; color:#1976d2; background:#fff; border:1.5px dashed #90caf9; border-radius:10px; cursor:pointer; transition:background .2s,border-color .2s; }
+.btn-add:hover { background:#e3f2fd; border-color:#1976d2; }
+.btn-add:active { background:#bbdefb; }
+.form-box-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+.form-box-head .form-index { font-size:24px; font-weight:700; color:#1976d2; }
+.btn-remove { font-size:21px; font-family:inherit; color:#d32f2f; background:transparent; border:1px solid #ef9a9a; border-radius:8px; padding:5px 12px; cursor:pointer; }
+.btn-remove:hover { background:#ffebee; }
+/* ---------- 提交按钮 ---------- */
+.btn-submit { display:block; width:100%; padding:18px 12px; font-size:27px; font-weight:700; font-family:inherit; color:#fff; background:#1976d2; border:none; border-radius:12px; cursor:pointer; margin:0 0 18px; box-shadow:0 2px 8px rgba(25,118,210,.3); transition:background .2s,transform .1s; }
+.btn-submit:hover { background:#1565c0; }
+.btn-submit:active { transform:scale(.985); background:#0d47a1; }
+.btn-submit:disabled { background:#90a4ae; box-shadow:none; }
+/* ---------- 提交结果面板 ---------- */
+.result-panel { display:none; background:#fff; border-radius:12px; padding:16px 14px; margin-bottom:18px; box-shadow:0 1px 4px rgba(0,0,0,.12); }
+.result-panel.show { display:block; }
+.result-panel .result-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+.result-panel .result-title { font-size:25px; font-weight:700; color:#1976d2; }
+.result-panel pre { white-space:pre-wrap; word-break:break-word; font-size:20px; line-height:1.7; font-family:inherit; background:#f5f7fa; border-radius:8px; padding:12px; max-height:52vh; overflow:auto; color:#333; }
+.result-actions { display:flex; gap:10px; margin-top:12px; }
+.result-actions button { flex:1 1 0; padding:14px 8px; font-size:22px; font-family:inherit; font-weight:600; border-radius:10px; border:1px solid #90caf9; background:#e3f2fd; color:#1976d2; cursor:pointer; }
+.result-actions button.primary { background:#1976d2; color:#fff; border-color:#1976d2; }
+.result-actions button:active { opacity:.85; }
+.toast { position:fixed; left:50%; bottom:12%; transform:translateX(-50%); background:rgba(0,0,0,.82); color:#fff; font-size:22px; padding:12px 22px; border-radius:24px; opacity:0; pointer-events:none; transition:opacity .25s; z-index:999; }
+.toast.show { opacity:1; }
+/* ---------- 标签备注：带圈感叹号 ---------- */
+.tag-wrap { position:relative; display:inline-flex; align-items:stretch; }
+.note-badge { display:none; position:absolute; right:-9px; top:-10px; width:28px; height:28px; padding:0; border-radius:50%; border:2px solid #43a047; background:#fff; color:#43a047; font-size:19px; font-weight:700; line-height:1; font-family:inherit; align-items:center; justify-content:center; cursor:pointer; z-index:5; box-shadow:0 1px 4px rgba(0,0,0,.22); -webkit-tap-highlight-color:transparent; }
+.note-badge.show { display:flex; }
+.note-badge.has-note { background:#43a047; color:#fff; border-color:#43a047; }
+.note-badge:active { transform:scale(.92); }
+/* ---------- 备注输入弹窗 ---------- */
+.note-mask { position:fixed; inset:0; display:none; align-items:center; justify-content:center; padding:16px; background:rgba(0,0,0,.45); z-index:1001; }
+.note-mask.show { display:flex; }
+.note-dialog { width:100%; max-width:600px; max-height:88vh; overflow:auto; background:#fff; border-radius:14px; padding:18px 16px; box-shadow:0 10px 34px rgba(0,0,0,.28); animation:notePop .18s ease; }
+@keyframes notePop { from { transform:scale(.94); opacity:0; } to { transform:scale(1); opacity:1; } }
+.note-dialog h3 { font-size:25px; font-weight:700; color:#1976d2; margin-bottom:12px; word-break:break-word; }
+.note-dialog textarea { width:100%; min-height:130px; border:1px solid #d0d0d0; border-radius:8px; padding:12px 14px; font-size:23px; line-height:1.6; font-family:inherit; color:#333; resize:vertical; outline:none; }
+.note-dialog textarea:focus { border-color:#1976d2; }
+.note-actions { display:flex; gap:10px; margin-top:14px; }
+.note-actions button { flex:1 1 0; padding:14px 6px; font-size:22px; font-weight:600; font-family:inherit; border-radius:10px; border:1px solid #90caf9; background:#e3f2fd; color:#1976d2; cursor:pointer; white-space:nowrap; }
+.note-actions button.primary { background:#1976d2; color:#fff; border-color:#1976d2; }
+.note-actions button:active { opacity:.85; }
+@media (max-width:420px){ .note-actions { flex-wrap:wrap; } .note-actions button { flex:1 1 45%; } }
