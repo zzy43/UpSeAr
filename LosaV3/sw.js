@@ -3,13 +3,14 @@
    作用：装上之后整个页面离线可用，飞机上几个月没网也能打开填写。
 
    ⚠ 两个前提：
-     1. 本文件和 LOSA模版V3.html 放在同一目录，一起上传到网站
+     1. 本文件和 LOSA.html 放在同一目录，一起上传到网站
      2. 第一次打开时**必须有网**（让 SW 装好），之后就能断网用
 
-   ⚠ 如果以后改了 HTML 的文件名，把下面 PAGE 改掉，并把 CACHE 的版本号 +1
+   ⚠ 如果以后又改了 HTML 文件名，把下面 PAGE 和 manifest.json 的 start_url
+     一起改掉，并把 CACHE 的版本号 +1
 */
-var CACHE = 'losa-v2';
-var PAGE = './LOSA模版V3.html';
+var CACHE = 'losa-v3';
+var PAGE = './LOSA.html';
 
 var ASSETS = [
   PAGE,

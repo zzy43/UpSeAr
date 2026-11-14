@@ -3,7 +3,7 @@
   "short_name": "LOSA观察",
   "description": "LOSA / TEM 观察单，离线可用",
   "lang": "zh-CN",
-  "start_url": "./LOSA模版V3.html",
+  "start_url": "./LOSA.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
