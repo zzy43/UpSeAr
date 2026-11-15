@@ -1,0 +1,340 @@
+/* ============================================================
+   大侧风落地滑跑 · 反推与方向控制
+   ============================================================ */
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #f4f6f9;
+  color: #1b2430;
+  font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 28px 20px 70px;
+}
+
+/* ---------- 标题 ---------- */
+h1 {
+  font-size: 22px;
+  line-height: 1.4;
+  margin: 0 0 8px;
+}
+h1 em { font-style: normal; color: #dc2626; }
+
+.lead {
+  color: #5b6b7f;
+  font-size: 13.5px;
+  margin: 0 0 22px;
+  max-width: 780px;
+}
+
+h2 {
+  font-size: 16px;
+  margin: 38px 0 4px;
+}
+h2 span {
+  display: inline-block;
+  font-size: 11px;
+  color: #94a3b8;
+  margin-left: 8px;
+  font-weight: 400;
+}
+.sub {
+  color: #7b8a9d;
+  font-size: 12.5px;
+  margin: 0 0 14px;
+}
+
+/* ---------- 卡片 ---------- */
+.card {
+  background: #fff;
+  border: 1px solid #e3e8ef;
+  border-radius: 10px;
+  padding: 14px;
+}
+
+/* ---------- 跑道 ---------- */
+#scene {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.controls {
+  margin-top: 10px;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 26px;
+  background: transparent;
+  cursor: pointer;
+  margin: 0;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(90deg,
+    #16a34a 0%, #16a34a 46%,
+    #d97706 46%, #d97706 60%,
+    #dc2626 60%, #dc2626 79%,
+    #2563eb 79%, #2563eb 100%);
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #1b2430;
+  margin-top: -6px;
+}
+input[type="range"]::-moz-range-track {
+  height: 8px;
+  border-radius: 4px;
+  background: #cbd5e1;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #1b2430;
+}
+
+.nodes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+.nodes button {
+  font: inherit;
+  font-size: 12.5px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  border: 1px solid #d9e0e8;
+  background: #fff;
+  color: #3b4757;
+  cursor: pointer;
+  transition: .15s;
+}
+.nodes button:hover { background: #eef2f7; }
+.nodes button.active {
+  background: #1b2430;
+  border-color: #1b2430;
+  color: #fff;
+}
+
+/* ---------- 解说条 ---------- */
+.caption {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: #f7f9fc;
+  border: 1px solid #e6ebf2;
+  border-left-width: 4px;
+  border-left-color: #16a34a;
+  transition: border-left-color .2s;
+}
+.caption .tag {
+  flex: none;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  background: #16a34a;
+  border-radius: 5px;
+  padding: 1px 7px;
+  margin-top: 2px;
+  transition: background .2s;
+}
+.caption h3 {
+  margin: 0 0 2px;
+  font-size: 14px;
+}
+.caption p {
+  margin: 0;
+  font-size: 13px;
+  color: #52606f;
+}
+
+/* ---------- 数据 ---------- */
+.hud {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.hud div {
+  background: #f7f9fc;
+  border: 1px solid #e6ebf2;
+  border-radius: 8px;
+  padding: 8px 11px;
+}
+.hud .k {
+  font-size: 11.5px;
+  color: #7b8a9d;
+}
+.hud .v {
+  font-size: 19px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.hud .v small {
+  font-size: 11.5px;
+  font-weight: 400;
+  color: #7b8a9d;
+  margin-left: 2px;
+}
+.hud .v.ok   { color: #15803d; }
+.hud .v.warn { color: #b45309; }
+.hud .v.bad  { color: #b91c1c; }
+
+/* ---------- 仪表 ---------- */
+.meters {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.meter {
+  background: #fff;
+  border: 1px solid #e3e8ef;
+  border-radius: 10px;
+  padding: 13px 15px;
+}
+.meter h4 {
+  margin: 0 0 3px;
+  font-size: 13px;
+}
+.meter .desc {
+  font-size: 11.5px;
+  color: #8695a8;
+  margin: 0 0 10px;
+  min-height: 32px;
+}
+
+.bar {
+  display: flex;
+  height: 22px;
+  border-radius: 5px;
+  overflow: hidden;
+  background: #eef1f6;
+  margin-bottom: 6px;
+}
+.bar .seg {
+  height: 100%;
+  font-size: 11px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  transition: width .15s;
+  min-width: 0;
+}
+.bar .seg.fx  { background: #ea580c; }
+.bar .seg.fy  { background: #16a34a; }
+.bar .seg.req { background: #dc2626; }
+.bar .seg.avl { background: #2563eb; }
+
+.meter .note {
+  font-size: 11.5px;
+  color: #6b7a8d;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+.meter .note b { color: #1b2430; }
+
+/* ---------- 原因卡片 ---------- */
+.causes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.cause {
+  background: #fff;
+  border: 1px solid #e3e8ef;
+  border-radius: 10px;
+  padding: 15px 17px;
+  position: relative;
+}
+.cause .num {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 26px;
+  font-weight: 800;
+  color: #eef1f6;
+  line-height: 1;
+}
+.cause h4 {
+  margin: 0 0 6px;
+  font-size: 13.5px;
+  padding-right: 34px;
+}
+.cause .plain {
+  font-size: 13px;
+  color: #33404f;
+  margin: 0 0 8px;
+}
+.cause .why {
+  font-size: 12px;
+  color: #7b8a9d;
+  border-top: 1px dashed #e6ebf2;
+  padding-top: 8px;
+  margin: 0;
+}
+.cause.wide { grid-column: 1 / -1; }
+
+/* ---------- 三步 ---------- */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
+  gap: 12px;
+}
+.step {
+  background: #fff;
+  border: 1px solid #e3e8ef;
+  border-radius: 10px;
+  padding: 15px 16px;
+}
+.step .ico {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 9px;
+}
+.step h4 { margin: 0 0 5px; font-size: 13.5px; }
+.step p { margin: 0; font-size: 12.5px; color: #52606f; }
+
+.footer {
+  margin-top: 34px;
+  padding-top: 14px;
+  border-top: 1px solid #e3e8ef;
+  font-size: 11.5px;
+  color: #94a3b8;
+}
+
+@media (max-width: 860px) {
+  .meters, .causes, .steps { grid-template-columns: 1fr; }
+  h1 { font-size: 19px; }
+}
